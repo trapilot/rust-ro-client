@@ -1,10 +1,12 @@
 /data/*.grf
 /data/testdata
+/data/extracted
 /target/
 .idea
 .pi-lens/
 /.worktree/
 /gif_export/
 /data/BGM/
+/data/Font/
 /data/emblem/
 /config.json
