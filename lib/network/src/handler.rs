@@ -188,6 +188,14 @@ pub fn dispatch_packet(packet: &dyn Packet, packetver: u32) -> Vec<GameEvent> {
             result: p.result as u32,
         }];
     }
+    if any.downcast_ref::<PacketHcAcceptDeletechar>().is_some() {
+        return vec![GameEvent::CharacterDeleteAccepted];
+    }
+    if let Some(p) = any.downcast_ref::<PacketHcRefuseDeletechar>() {
+        return vec![GameEvent::CharacterDeleteRefused {
+            error_code: p.error_code,
+        }];
+    }
     if let Some(p) = any.downcast_ref::<PacketZcAcceptEnter>() {
         let (x, y, dir) = decode_pos(&p.pos_dir);
         return vec![GameEvent::MapEntered {

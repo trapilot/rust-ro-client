@@ -89,6 +89,8 @@ pub enum GameEvent {
         hair_color: u16,
         /// STR, AGI, VIT, INT, DEX, LUK. Only sent for packetver < 20120307.
         stats: [u8; 6],
+        /// Index into the starting maps offered by the server (defaults to 0).
+        map_index: u8,
     },
     CharacterCreated {
         character: CharacterInfo,
@@ -102,7 +104,7 @@ pub enum GameEvent {
     },
     RequestDeleteCharacterConfirm {
         gid: u32,
-        birthdate: String,
+        password: String,
     },
     RequestDeleteCharacterCancel {
         gid: u32,
@@ -115,6 +117,14 @@ pub enum GameEvent {
     CharacterDeleted {
         gid: u32,
         result: u32,
+    },
+    /// The account password was accepted and the character was queued for
+    /// deletion (classic `PacketHcAcceptDeletechar`, 0x6F00).
+    CharacterDeleteAccepted,
+    /// The deletion was refused; `error_code` is the classic refuse reason
+    /// (`PacketHcRefuseDeletechar`, 0x7000).
+    CharacterDeleteRefused {
+        error_code: u8,
     },
     CharacterDeleteCancelled {
         gid: u32,

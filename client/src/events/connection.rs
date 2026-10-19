@@ -147,6 +147,24 @@ impl App {
         &mut self,
         maps: Vec<ragnarok_game::event::AccessibleMap>,
     ) {
+        // While the character list / creation screen is shown, the maps describe the
+        // starting points offered during character creation. Store them for the create
+        // window and keep the default (first) selection instead of redirecting.
+        if matches!(
+            self.game.session.app_state,
+            AppState::CharacterSelect | AppState::CharacterCreate
+        ) {
+            self.starting_maps = maps.into_iter().map(|m| m.name).collect();
+            tracing::info!(
+                "Received {} starting map(s) for character creation",
+                self.starting_maps.len()
+            );
+            if let Some(win) = &mut self.char_create_window {
+                win.set_map_list(self.starting_maps.clone());
+            }
+            return;
+        }
+
         let Some(index) = maps.iter().position(|m| m.status == 0) else {
             tracing::warn!("No accessible map-server available for character");
             return;

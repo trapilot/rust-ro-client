@@ -95,6 +95,8 @@ const MAKE_ID: WidgetId = WidgetId(4505);
 const CANCEL_ID: WidgetId = WidgetId(4506);
 const COLOR_R_ID: WidgetId = WidgetId(4507);
 const SKIN_TOGGLE_ID: WidgetId = WidgetId(4508);
+const MAP_L_ID: WidgetId = WidgetId(4509);
+const MAP_R_ID: WidgetId = WidgetId(4510);
 const STAT_ARROW_BASE: u32 = 4520;
 
 const WIN_TEXTURE: &str = ragnarok_resources::ui::login::WIN_MAKE;
@@ -177,6 +179,11 @@ pub struct CharCreateWindow {
     /// window skin: with stats = win_make.bmp hexagon layout, without = win_make2.bmp.
     pub with_stats: bool,
     pub error_message: Option<String>,
+    /// Starting map names offered by the server, in display order. Empty when none
+    /// were received.
+    pub map_list: Vec<String>,
+    /// Index into `map_list` selected by the player. Defaults to 0 (first entry).
+    pub map_index: usize,
     /// Dev aid: draw a small button that flips the skin (v1 hexagon ↔ v2 compact).
     /// Off in the real client, where the packetver fixes the skin.
     pub show_skin_toggle: bool,
@@ -194,6 +201,8 @@ impl CharCreateWindow {
             stats: [STAT_START; 6],
             with_stats,
             error_message: None,
+            map_list: Vec::new(),
+            map_index: 0,
             show_skin_toggle: false,
             has_grf_textures: false,
             win_origin: (0.0, 0.0),
@@ -263,6 +272,26 @@ impl CharCreateWindow {
         self.hair_color = (self.hair_color as i32 + delta).rem_euclid(n) as u16;
     }
 
+    /// Sets the starting maps offered by the server and resets the selection to the
+    /// first entry.
+    pub fn set_map_list(&mut self, map_list: Vec<String>) {
+        self.map_list = map_list;
+        self.map_index = 0;
+    }
+
+    /// Currently selected starting map name, if any.
+    pub fn selected_map_name(&self) -> Option<&str> {
+        self.map_list.get(self.map_index).map(|name| name.as_str())
+    }
+
+    fn cycle_map(&mut self, delta: i32) {
+        if self.map_list.len() <= 1 {
+            return;
+        }
+        let n = self.map_list.len() as i32;
+        self.map_index = (self.map_index as i32 + delta).rem_euclid(n) as usize;
+    }
+
     fn raise_stat(&mut self, i: usize) {
         let p = STAT_PARTNER[i];
         if self.stats[i] < STAT_MAX && self.stats[p] > STAT_MIN {
@@ -284,6 +313,7 @@ impl CharCreateWindow {
                 hair_style: self.hair_style,
                 hair_color: self.hair_color,
                 stats: self.stats,
+                map_index: self.map_index as u8,
             });
         }
     }
@@ -319,6 +349,29 @@ impl CharCreateWindow {
             self.with_stats = !self.with_stats;
             self.error_message = None;
         }
+    }
+
+    /// Draws the starting-map selector row (a label flanked by cycle arrows). No-op when
+    /// the server sent no maps.
+    fn build_map_selector(&mut self, ui: &mut UiFrame, label_x: f32, y: f32) {
+        if self.map_list.is_empty() {
+            return;
+        }
+        let label = self.selected_map_name().unwrap_or_default().to_string();
+        let left = Rect::new(label_x, y, ARROW_W, ARROW_H);
+        let right = Rect::new(label_x + ARROW_W + 76.0, y, ARROW_W, ARROW_H);
+        if ui.button(MAP_L_ID, left, &ARROW_L_BTN, "<").clicked() {
+            self.cycle_map(-1);
+        }
+        if ui.button(MAP_R_ID, right, &ARROW_R_BTN, ">").clicked() {
+            self.cycle_map(1);
+        }
+        ui.text(
+            label_x + ARROW_W + 4.0,
+            y + ui.atlas.line_height / 1.5,
+            &label,
+            TEXT_COLOR,
+        );
     }
 
     fn build_stat_layout(&mut self, ui: &mut UiFrame, events: &mut Vec<GameEvent>) {
@@ -375,14 +428,10 @@ impl CharCreateWindow {
         }
 
         self.build_stats(ui, ox, oy);
+        self.build_map_selector(ui, ox + NAME_X, oy + 268.0);
 
         if let Some(msg) = &self.error_message {
-            ui.text(
-                ox + NAME_X,
-                oy + NAME_Y + NAME_H + ui.atlas.line_height,
-                msg,
-                ERROR_COLOR,
-            );
+            ui.text(ox + NAME_X, oy + 288.0, msg, ERROR_COLOR);
         }
 
         let btn_y = oy + WIN_H - BTN_BOTTOM - BTN_H;
@@ -547,6 +596,7 @@ impl CharCreateWindow {
                 ERROR_COLOR,
             );
         }
+        self.build_map_selector(ui, ox + 8.0, content_y + 226.0);
 
         let btn_y = footer_y + V2_FOOTER_H - BTN_BOTTOM - BTN_H;
         let make = Rect::new(ox + V2_W - MAKE_RIGHT - BTN_W, btn_y, BTN_W, BTN_H);

@@ -126,6 +126,9 @@ struct App {
     server_list_window: Option<ServerListWindow>,
     char_select_window: Option<CharSelectWindow>,
     char_create_window: Option<CharCreateWindow>,
+    /// Starting maps offered by the server for character creation, in display order.
+    /// The first entry is the default selection.
+    starting_maps: Vec<String>,
     account_background: Option<String>,
     account_anims: HashMap<u32, SpriteAnimationState>,
     char_create_built_appearance: Option<(u16, u16)>,
@@ -202,6 +205,7 @@ impl App {
             server_list_window: None,
             char_select_window: None,
             char_create_window: None,
+            starting_maps: Vec::new(),
             account_background: None,
             account_anims: HashMap::new(),
             char_create_built_appearance: None,

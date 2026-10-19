@@ -94,10 +94,16 @@ pub fn build_delete_char_reserve_packet(gid: u32, packetver: u32) -> Vec<u8> {
     pkt.raw
 }
 
-pub fn build_delete_char_confirm_packet(gid: u32, birthdate: &str, packetver: u32) -> Vec<u8> {
-    let mut pkt = PacketChDeleteChar3::new(packetver);
+/// Confirms the deletion of a character by re-sending the account password
+/// (`PacketChDeleteChar`, 0x0068) instead of the birthdate.
+pub fn build_delete_char_confirm_packet(gid: u32, password: &str, packetver: u32) -> Vec<u8> {
+    let mut pkt = PacketChDeleteChar::new(packetver);
     pkt.set_gid(gid);
-    pkt.set_birth(birthdate_to_char6(birthdate));
+    let mut key = [0 as char; 40];
+    for (i, c) in password.chars().take(40).enumerate() {
+        key[i] = c;
+    }
+    pkt.set_key(key);
     pkt.fill_raw();
     pkt.raw
 }
@@ -1044,19 +1050,6 @@ fn name_to_char24(name: &str) -> [char; 24] {
     let mut buf = [0 as char; 24];
     for (i, c) in name.chars().take(23).enumerate() {
         buf[i] = c;
-    }
-    buf
-}
-
-/// Birthdate as the 6 raw digits (YYMMDD) the server compares against; non-digits
-/// are dropped and the century is trimmed, so "2001-05-14", "20010514" and
-/// "010514" all send "010514".
-fn birthdate_to_char6(birthdate: &str) -> [char; 6] {
-    let digits: Vec<char> = birthdate.chars().filter(|c| c.is_ascii_digit()).collect();
-    let start = digits.len().saturating_sub(6);
-    let mut buf = [0 as char; 6];
-    for (i, c) in digits[start..].iter().enumerate() {
-        buf[i] = *c;
     }
     buf
 }

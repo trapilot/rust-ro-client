@@ -71,7 +71,16 @@ pub(crate) fn char_delete_confirm_error(result: u32) -> &'static str {
         2 => "This character cannot be deleted.",
         3 => "A database error occurred.",
         4 => "The deletion delay has not elapsed yet.",
-        5 => "The birthdate does not match.",
+        5 => "The password does not match.",
+        _ => "Character deletion failed.",
+    }
+}
+
+pub(crate) fn char_delete_refuse_error(error_code: u8) -> &'static str {
+    match error_code {
+        1 => "The password does not match.",
+        2 => "This character cannot be deleted.",
+        3 => "A database error occurred.",
         _ => "Character deletion failed.",
     }
 }
@@ -1624,6 +1633,17 @@ impl App {
                         }
                     }
                 }
+                GameEvent::CharacterDeleteAccepted => {
+                    if let Some(win) = &mut self.char_select_window {
+                        win.close_delete_dialog();
+                        win.set_delete_status("Character scheduled for deletion.".to_string());
+                    }
+                }
+                GameEvent::CharacterDeleteRefused { error_code } => {
+                    if let Some(win) = &mut self.char_select_window {
+                        win.set_delete_dialog_error(char_delete_refuse_error(error_code).to_string());
+                    }
+                }
 
                 GameEvent::HomunPropertyReceived { property } => {
                     self.handle_homun_property(property);
@@ -1861,25 +1881,32 @@ impl App {
                 GameEvent::RequestSelectCharacter { slot } => {
                     self.sound_queue
                         .ui(ragnarok_game::sound::tables::ui::BUTTON);
-                    if let Some(char_win) = &self.char_select_window {
-                        self.game.session.selected_character = char_win
-                            .characters
-                            .iter()
-                            .find(|c| c.slot == slot as i8)
-                            .cloned();
+                    // `slot` is the on-screen list index (characters are laid out in
+                    // list order, gaps from deleted characters removed), so resolve it
+                    // to the character's real `char_num` before talking to the server.
+                    let selected = self
+                        .char_select_window
+                        .as_ref()
+                        .and_then(|char_win| char_win.characters.get(slot as usize).cloned());
+                    if let Some(selected) = selected {
+                        let char_num = selected.slot as u8;
+                        self.game.session.selected_character = Some(selected);
+                        self.channel.send_packet(build_select_char_packet(
+                            char_num,
+                            self.active_packetver,
+                        ));
                     }
                     if self.config.last_char_slot != Some(slot) {
                         self.config.last_char_slot = Some(slot);
                         self.config.save("config.json");
                     }
-                    self.channel
-                        .send_packet(build_select_char_packet(slot, self.active_packetver));
                 }
                 GameEvent::RequestCreateCharacter { slot } => {
                     self.sound_queue
                         .ui(ragnarok_game::sound::tables::ui::BUTTON);
                     let with_stats = self.active_packetver < 20120307;
                     let mut win = CharCreateWindow::new(slot, with_stats);
+                    win.set_map_list(self.starting_maps.clone());
                     if let (Some(grf), Some(renderer)) = (&self.grf, &mut self.renderer) {
                         let loaded = renderer.preload_textures(&win.layout_texture_paths(), grf);
                         win.set_has_grf_textures(loaded);
@@ -1900,9 +1927,17 @@ impl App {
                     hair_style,
                     hair_color,
                     stats,
+                    map_index,
                 } => {
                     self.sound_queue
                         .ui(ragnarok_game::sound::tables::ui::BUTTON);
+                    // Tell the char server which starting map to spawn the character on
+                    // before the creation packet, so it can persist the selection.
+                    self.channel.send_packet(build_select_accessible_map_packet(
+                        slot,
+                        map_index,
+                        self.active_packetver,
+                    ));
                     let packet = if self.active_packetver >= 20120307 {
                         build_make_char_packet(
                             &name,
@@ -1933,12 +1968,12 @@ impl App {
                     self.channel
                         .send_packet(build_delete_char_reserve_packet(gid, self.active_packetver));
                 }
-                GameEvent::RequestDeleteCharacterConfirm { gid, birthdate } => {
+                GameEvent::RequestDeleteCharacterConfirm { gid, password } => {
                     self.sound_queue
                         .ui(ragnarok_game::sound::tables::ui::BUTTON);
                     self.channel.send_packet(build_delete_char_confirm_packet(
                         gid,
-                        &birthdate,
+                        &password,
                         self.active_packetver,
                     ));
                 }

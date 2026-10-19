@@ -61,7 +61,7 @@ const DIALOG_W: f32 = 300.0;
 const DIALOG_H: f32 = 140.0;
 const DIALOG_TITLE_H: f32 = 17.0;
 const DIALOG_FOOTER_H: f32 = 30.0;
-const BIRTHDATE_MAX_LEN: usize = 8;
+const PASSWORD_MAX_LEN: usize = 23;
 
 const WIN_TEXTURE: &str = ragnarok_resources::ui::login::WIN_SELECT;
 const BOX_TEXTURE: &str = ragnarok_resources::ui::login::BOX_SELECT;
@@ -109,11 +109,11 @@ pub struct CharSlotView {
     pub selected: bool,
 }
 
-/// Open only while a character is queued for deletion and awaiting the birthdate
-/// confirmation (the reserved-deletion flow).
+/// Open only while a character is queued for deletion and awaiting the account
+/// password confirmation (the reserved-deletion flow).
 struct DeleteDialog {
     gid: u32,
-    birthdate: TextInput,
+    password: TextInput,
     error: Option<String>,
 }
 
@@ -131,16 +131,11 @@ pub struct CharSelectWindow {
 
 impl CharSelectWindow {
     pub fn new(characters: Vec<CharacterInfo>) -> Self {
-        let first_slot = characters.iter().map(|c| c.slot.max(0) as usize).min();
-        let (page, selected_col) = match first_slot {
-            Some(slot) => (slot / SLOTS_PER_PAGE, slot % SLOTS_PER_PAGE),
-            None => (0, 0),
-        };
         Self {
             characters,
             max_slots: DEFAULT_MAX_SLOTS,
-            page,
-            selected_col,
+            page: 0,
+            selected_col: 0,
             has_grf_textures: false,
             win_origin: (0.0, 0.0),
             delete_dialog: None,
@@ -157,8 +152,10 @@ impl CharSelectWindow {
     /// cursor on its page. Ignored if the slot is out of range.
     pub fn preselect_slot(&mut self, slot: Option<u8>) {
         if let Some(slot) = slot {
+            // Slots are list indices now, so only indices backed by a character are
+            // worth restoring (a short list must not land the cursor on a blank box).
             let slot = slot as usize;
-            if slot < self.max_slots {
+            if slot < self.characters.len() && slot < self.max_slots {
                 self.page = slot / SLOTS_PER_PAGE;
                 self.selected_col = slot % SLOTS_PER_PAGE;
             }
@@ -167,14 +164,14 @@ impl CharSelectWindow {
 
     pub fn open_delete_dialog(&mut self, gid: u32, _delete_reserved_date: i32) {
         // Idempotent: a server reserve-ack arriving after the user opened the dialog
-        // and started typing must not reset the birthdate field.
+        // and started typing must not reset the password field.
         if self.delete_dialog.as_ref().map(|d| d.gid) == Some(gid) {
             return;
         }
         self.delete_status = None;
         self.delete_dialog = Some(DeleteDialog {
             gid,
-            birthdate: TextInput::new(BIRTHDATE_MAX_LEN, false).with_numeric_only(true),
+            password: TextInput::new(PASSWORD_MAX_LEN, true),
             error: None,
         });
     }
@@ -205,10 +202,10 @@ impl CharSelectWindow {
         self.page * SLOTS_PER_PAGE + self.selected_col
     }
 
+    /// Characters are laid out in list order (not by their stored `char_num`), so
+    /// slots left behind by deleted characters never leave gaps on screen.
     fn character_at(&self, slot: usize) -> Option<&CharacterInfo> {
-        self.characters
-            .iter()
-            .find(|c| c.slot.max(0) as usize == slot)
+        self.characters.get(slot)
     }
 
     fn move_selection(&mut self, delta: i32) {
@@ -227,13 +224,9 @@ impl CharSelectWindow {
         let mut out = Vec::new();
         for col in 0..SLOTS_PER_PAGE {
             let slot = self.page * SLOTS_PER_PAGE + col;
-            if let Some(idx) = self
-                .characters
-                .iter()
-                .position(|c| c.slot.max(0) as usize == slot)
-            {
+            if slot < self.characters.len() {
                 out.push(CharSlotView {
-                    char_index: idx,
+                    char_index: slot,
                     anchor: [
                         self.win_origin.0 + SLOT_LEFTS[col] + SPRITE_ANCHOR_X,
                         self.win_origin.1 + SLOT_TOP + SPRITE_ANCHOR_Y,
@@ -503,7 +496,7 @@ impl CharSelectWindow {
         ui.text(
             dx + 12.0,
             body_y + lh,
-            "Enter birthdate (YYMMDD) to confirm:",
+            "Enter your password to confirm:",
             fg,
         );
 
@@ -512,7 +505,7 @@ impl CharSelectWindow {
         ui.text_input(
             DEL_INPUT_ID,
             input_rect,
-            &mut dialog.birthdate,
+            &mut dialog.password,
             TextInputBg::Default,
         );
 
@@ -521,7 +514,7 @@ impl CharSelectWindow {
         }
 
         let gid = dialog.gid;
-        let birthdate = dialog.birthdate.text.clone();
+        let password = dialog.password.text.clone();
         let btn_y = footer_y + (DIALOG_FOOTER_H - BTN_H) / 2.0;
         let confirm = Rect::new(dx + DIALOG_W - OK_RIGHT - BTN_W, btn_y, BTN_W, BTN_H);
         let cancel = Rect::new(dx + DIALOG_W - CANCEL_RIGHT - BTN_W, btn_y, BTN_W, BTN_H);
@@ -529,7 +522,7 @@ impl CharSelectWindow {
         let submit =
             ui.button(DEL_CONFIRM_ID, confirm, &OK_BTN, "OK").clicked() || ui.ctx.key_enter;
         if submit {
-            events.push(GameEvent::RequestDeleteCharacterConfirm { gid, birthdate });
+            events.push(GameEvent::RequestDeleteCharacterConfirm { gid, password });
         }
         if ui
             .button(DEL_CANCEL_ID, cancel, &CANCEL_BTN, "Cancel")
@@ -666,9 +659,11 @@ mod tests {
 
     #[test]
     fn enter_on_occupied_slot_selects_that_slot() {
+        // Characters are laid out in list order, so a character stored in slot 2 is
+        // the first entry on screen (index 0).
         let mut win = CharSelectWindow::new(vec![character(2, "Hunter")]);
         let mut state = StateCache::new();
-        assert_eq!(win.selected_slot(), 2);
+        assert_eq!(win.selected_slot(), 0);
 
         let mut ctx = UiContext::new(800.0, 600.0);
         ctx.key_enter = true;
@@ -677,7 +672,7 @@ mod tests {
         assert!(
             events
                 .iter()
-                .any(|e| matches!(e, GameEvent::RequestSelectCharacter { slot: 2 }))
+                .any(|e| matches!(e, GameEvent::RequestSelectCharacter { slot: 0 }))
         );
     }
 
@@ -740,7 +735,8 @@ mod tests {
 
     #[test]
     fn preselect_slot_restores_page_and_column() {
-        let mut win = CharSelectWindow::new(vec![character(0, "Knight")]);
+        let characters = (0..9i8).map(|i| character(i, "Hero")).collect();
+        let mut win = CharSelectWindow::new(characters);
         assert_eq!(win.selected_slot(), 0);
 
         win.preselect_slot(Some(7)); // page 2, column 1
@@ -750,6 +746,15 @@ mod tests {
 
         win.preselect_slot(Some(99)); // out of range: ignored
         assert_eq!(win.selected_slot(), 7);
+    }
+
+    #[test]
+    fn preselect_slot_ignores_indices_past_the_character_list() {
+        // Slots are list indices; a stale value from a longer list must not land the
+        // cursor on a blank box.
+        let mut win = CharSelectWindow::new(vec![character(0, "Knight")]);
+        win.preselect_slot(Some(5));
+        assert_eq!(win.selected_slot(), 0);
     }
 
     #[test]
