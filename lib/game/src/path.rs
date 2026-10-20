@@ -181,6 +181,38 @@ mod tests {
     }
 
     #[test]
+    fn try_move_to_walks_around_long_wall() {
+        let (width, height) = (60, 60);
+        let mut walkable = vec![true; width * height];
+        for y in 10..50 {
+            walkable[y * width + 30] = false;
+        }
+        let data = build_gat_bytes(width as i32, height as i32, &walkable);
+        let gat = GatFile::parse(&data).unwrap();
+
+        let action = try_move_to(&gat, 25, 30, 35, 30).expect("a detour exists around the wall");
+        let last = action.path.last().unwrap();
+        assert_eq!((last.x, last.y), (35, 30));
+        assert!(action.path.iter().all(|n| n.x != 30 || !(10..50).contains(&n.y)));
+    }
+
+    #[test]
+    fn path_search_uses_diagonal_steps_on_open_ground() {
+        let walkable = vec![true; 36];
+        let data = build_gat_bytes(6, 6, &walkable);
+        let gat = GatFile::parse(&data).unwrap();
+
+        let path = path_search(&gat, 0, 0, 5, 5);
+        assert_eq!((path.last().unwrap().x, path.last().unwrap().y), (5, 5));
+        assert!(
+            path.iter().any(|n| n.is_diagonal),
+            "an open diagonal must be walked diagonally, not as a staircase"
+        );
+        // The cheapest route is 5 diagonal steps and no orthogonal ones.
+        assert_eq!(path.len(), 5);
+    }
+
+    #[test]
     fn compute_destination_within_range_north_east() {
         let (dx, dy) = compute_destination_within_range(10, 5, 0, 0, 3);
         assert_eq!((dx, dy), (3, 1));

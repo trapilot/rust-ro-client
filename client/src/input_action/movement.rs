@@ -11,6 +11,8 @@ use ragnarok_game::sprite_path::{OPTION_HIDE, hide_blocks_move};
 use ragnarok_game::targeting::can_attack;
 use ragnarok_network::{build_action_request_packet, build_request_move_packet};
 
+const CHASE_WALK_RESEND_SECS: f32 = 0.5;
+
 impl App {
     pub(crate) fn is_local_player_incapacitated(&self) -> bool {
         self.game.world.entities.player().is_some_and(|p| {
@@ -182,6 +184,7 @@ impl App {
         }
         self.game.pending_casts.pending_pickup_item_id = None;
         self.game.combat.queued_move = None;
+        self.game.combat.chase_walk_cooldown = 0.0;
         self.game.combat.attack_is_locked = locked;
         self.game.combat.attack_request_sent = false;
 
@@ -292,11 +295,15 @@ impl App {
                 }
                 return true;
             }
+            if self.game.combat.chase_walk_cooldown > 0.0 {
+                return true;
+            }
             self.channel.send_packet(build_request_move_packet(
                 move_action.dest_x,
                 move_action.dest_y,
                 self.active_packetver,
             ));
+            self.game.combat.chase_walk_cooldown = CHASE_WALK_RESEND_SECS;
             true
         } else {
             false

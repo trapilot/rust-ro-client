@@ -96,6 +96,10 @@ pub struct CombatState {
     pub attack_target_id: Option<u32>,
     pub last_attacked_enemy: Option<u32>,
     pub attack_request_cooldown: f32,
+    /// Holds back a repeat walk toward a target while the server has not started
+    /// the previous one, so chasing from a standstill sends one request, not one
+    /// per frame.
+    pub chase_walk_cooldown: f32,
     pub attack_range: i16,
     pub attack_is_locked: bool,
     /// Whether an attack request has gone out since the current target was picked.
@@ -123,6 +127,7 @@ impl CombatState {
             attack_target_id: None,
             last_attacked_enemy: None,
             attack_request_cooldown: 0.0,
+            chase_walk_cooldown: 0.0,
             attack_range: 1,
             attack_is_locked: false,
             attack_request_sent: false,

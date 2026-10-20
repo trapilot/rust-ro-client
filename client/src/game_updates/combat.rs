@@ -21,6 +21,8 @@ impl App {
     pub(crate) fn check_pending_attack(&mut self, delta: f32) {
         self.game.combat.attack_request_cooldown =
             (self.game.combat.attack_request_cooldown - delta).max(0.0);
+        self.game.combat.chase_walk_cooldown =
+            (self.game.combat.chase_walk_cooldown - delta).max(0.0);
 
         if self.game.pending_casts.pending_skill.is_some() {
             return;
