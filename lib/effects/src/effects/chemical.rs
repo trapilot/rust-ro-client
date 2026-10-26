@@ -122,7 +122,7 @@ pub const CHEMICAL2: ChemicalParams = ChemicalParams {
     spawn_frame: 40.0,
     body_tint: Some((YELLOW_GLOW, (20.0, 120.0))),
     quake_at: Some(44.0),
-    sfx: Some(("effect\\뇌격쇄.wav", 44.0)),
+    sfx: Some(("effect\\thunder_strike.wav", 44.0)),
 };
 pub const CHEMICAL3: ChemicalParams = ChemicalParams {
     kind: ChemKind::Chemical3,
@@ -135,7 +135,7 @@ pub const CHEMICAL3: ChemicalParams = ChemicalParams {
 };
 pub const CHEMICAL4: ChemicalParams = ChemicalParams {
     group: 20,
-    sfx: Some(("effect\\피어싱샷.wav", 28.0)),
+    sfx: Some(("effect\\piercing_shot.wav", 28.0)),
     ..CHEMICAL3
 };
 pub const CHEMICAL2DASH: ChemicalParams = ChemicalParams {

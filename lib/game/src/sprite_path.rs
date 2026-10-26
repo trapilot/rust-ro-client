@@ -103,15 +103,15 @@ pub fn mercenary_imf_path(name: &str) -> Option<String> {
     Some(ragnarok_resources::imf::of(base))
 }
 
-/// The mercenary weapon sprite sits under `용병`, named `<body>_<weapon>` where
-/// the weapon character is the body name's first character (활 bow / 창 spear /
-/// 검 sword). The sex sub-path present on the body name is dropped here.
+/// The mercenary weapon sprite sits under `mercenary`, named `<body>_<weapon>` where
+/// the weapon is the text before the first `_` of the base name (`bow_mercenary` ->
+/// `bow`, likewise `spear` / `sword`). The sex sub-path present on the body name is
+/// dropped here.
 pub fn mercenary_weapon_sprite_path(name: &str) -> Option<String> {
     let base = name.rsplit(['/', '\\']).next()?;
-    let weapon_char = base.chars().next()?;
+    let weapon = base.split('_').next().filter(|w| !w.is_empty())?;
     Some(ragnarok_resources::sprite::player::mercenary_weapon(
-        base,
-        weapon_char,
+        base, weapon,
     ))
 }
 
@@ -367,66 +367,66 @@ pub fn base_job(job: u16) -> u16 {
 
 fn job_name_kr(job_class: u16) -> &'static str {
     match base_job(job_class) {
-        0 => "초보자",
-        1 => "검사",
-        2 => "마법사",
-        3 => "궁수",
-        4 => "성직자",
-        5 => "상인",
-        6 => "도둑",
-        7 => "기사",
-        8 => "프리스트",
-        9 => "위저드",
-        10 => "제철공",
-        11 => "헌터",
-        12 => "어세신",
-        13 => "페코페코_기사",
-        14 => "크루세이더",
-        15 => "몽크",
-        16 => "세이지",
-        17 => "로그",
-        18 => "연금술사",
-        19 => "바드",
-        20 => "무희",
-        21 => "신페코크루세이더",
-        22 => "결혼",
-        23 => "슈퍼노비스",
-        24 => "건너",
-        25 => "닌자",
-        26 => "산타",
-        27 => "여름",
-        4001 => "초보자",
-        4002 => "검사",
-        4003 => "마법사",
-        4004 => "궁수",
-        4005 => "성직자",
-        4006 => "상인",
-        4007 => "도둑",
-        4008 => "로드나이트",
-        4009 => "하이프리",
-        4010 => "하이위저드",
-        4011 => "화이트스미스",
-        4012 => "스나이퍼",
-        4013 => "어쌔신크로스",
-        4014 => "로드페코",
-        4015 => "팔라딘",
-        4016 => "챔피온",
-        4017 => "프로페서",
-        4018 => "스토커",
-        4019 => "크리에이터",
-        4020 => "클라운",
-        4021 => "집시",
-        4022 => "페코팔라딘",
-        4046 => "태권소년",
-        4047 => "권성",
-        4048 => "권성융합",
-        4049 => "소울링커",
-        _ => "초보자",
+        0 => "novice",
+        1 => "swordman",
+        2 => "magician",
+        3 => "archer",
+        4 => "acolyte",
+        5 => "merchant",
+        6 => "thief",
+        7 => "knight",
+        8 => "priest",
+        9 => "wizard",
+        10 => "blacksmith",
+        11 => "hunter",
+        12 => "assassin",
+        13 => "peco_peco_knight",
+        14 => "crusader",
+        15 => "monk",
+        16 => "sage",
+        17 => "rogue",
+        18 => "alchemist",
+        19 => "bard",
+        20 => "dancer",
+        21 => "new_peco_crusader",
+        22 => "wedding",
+        23 => "super_novice",
+        24 => "gunslinger",
+        25 => "ninja",
+        26 => "santa",
+        27 => "summer",
+        4001 => "novice",
+        4002 => "swordman",
+        4003 => "magician",
+        4004 => "archer",
+        4005 => "acolyte",
+        4006 => "merchant",
+        4007 => "thief",
+        4008 => "lord_knight",
+        4009 => "high_priest",
+        4010 => "high_wizard",
+        4011 => "whitesmith",
+        4012 => "sniper",
+        4013 => "assassin_cross",
+        4014 => "lord_peco",
+        4015 => "paladin",
+        4016 => "champion",
+        4017 => "professor",
+        4018 => "stalker",
+        4019 => "creator",
+        4020 => "clown",
+        4021 => "gypsy",
+        4022 => "peco_paladin",
+        4046 => "taekwon_boy",
+        4047 => "star_gladiator",
+        4048 => "star_gladiator_union",
+        4049 => "soul_linker",
+        _ => "novice",
     }
 }
 
 fn sex_kr(sex: u8) -> &'static str {
-    if sex == 0 { "여" } else { "남" }
+    if sex == 0 { "female" } else { "male" }
 }
 
 pub fn body_sprite_path(job_class: u16, sex: u8) -> String {
@@ -519,30 +519,30 @@ pub fn body_palette_path(job_class: u16, sex: u8, palette_id: u16) -> String {
 
 fn weapon_suffix(weapon_type: WeaponType) -> &'static str {
     match weapon_type {
-        WeaponType::Dagger => "_단검",
-        WeaponType::Sword1H | WeaponType::Sword2H => "_검",
-        WeaponType::Spear1H | WeaponType::Spear2H => "_창",
-        WeaponType::Axe1H | WeaponType::Axe2H => "_도끼",
-        WeaponType::Mace | WeaponType::Mace2H => "_클럽",
-        WeaponType::Staff | WeaponType::Staff2H => "_롯드",
-        WeaponType::Bow => "_활",
-        WeaponType::Knuckle => "_너클",
-        WeaponType::Musical => "_악기",
-        WeaponType::Whip => "_채찍",
-        WeaponType::Book => "_책",
-        WeaponType::Katar => "_카타르_카타르",
-        WeaponType::DoubleDd => "_단검_단검",
-        WeaponType::DoubleSs => "_검_검",
-        WeaponType::DoubleAa => "_도끼_도끼",
-        WeaponType::DoubleDs => "_단검_검",
-        WeaponType::DoubleDa => "_단검_도끼",
-        WeaponType::DoubleSa => "_검_도끼",
-        WeaponType::Revolver => "_권총",
+        WeaponType::Dagger => "_dagger",
+        WeaponType::Sword1H | WeaponType::Sword2H => "_sword",
+        WeaponType::Spear1H | WeaponType::Spear2H => "_spear",
+        WeaponType::Axe1H | WeaponType::Axe2H => "_axe",
+        WeaponType::Mace | WeaponType::Mace2H => "_club",
+        WeaponType::Staff | WeaponType::Staff2H => "_rod",
+        WeaponType::Bow => "_bow",
+        WeaponType::Knuckle => "_knuckle",
+        WeaponType::Musical => "_instrument",
+        WeaponType::Whip => "_whip",
+        WeaponType::Book => "_book",
+        WeaponType::Katar => "_katar_katar",
+        WeaponType::DoubleDd => "_dagger_dagger",
+        WeaponType::DoubleSs => "_sword_sword",
+        WeaponType::DoubleAa => "_axe_axe",
+        WeaponType::DoubleDs => "_dagger_sword",
+        WeaponType::DoubleDa => "_dagger_axe",
+        WeaponType::DoubleSa => "_sword_axe",
+        WeaponType::Revolver => "_pistol",
         WeaponType::Rifle | WeaponType::Gatling | WeaponType::Shotgun | WeaponType::Grenade => {
-            "_기관총"
+            "_machine_gun"
         }
-        WeaponType::Huuma => "_수리검",
-        _ => "_검",
+        WeaponType::Huuma => "_shuriken",
+        _ => "_sword",
     }
 }
 
@@ -652,10 +652,10 @@ pub fn headgear_sprite_path(suffix: &str, sex: u8) -> String {
 
 fn shield_name_kr(view_id: u16) -> Option<&'static str> {
     match view_id {
-        1 => Some("가드"),
-        2 => Some("버클러"),
-        3 => Some("쉴드"),
-        4 => Some("미러쉴드"),
+        1 => Some("guard"),
+        2 => Some("buckler"),
+        3 => Some("shield"),
+        4 => Some("mirror_shield"),
         _ => None,
     }
 }
@@ -733,8 +733,12 @@ pub fn weapon_item_trail_sprite_path(
     item_id: u16,
     weapon_type: WeaponType,
 ) -> Option<String> {
-    weapon_has_trail(weapon_type)
-        .then(|| format!("{}_검광", weapon_item_sprite_path(job_class, sex, item_id)))
+    weapon_has_trail(weapon_type).then(|| {
+        format!(
+            "{}_sword_flash",
+            weapon_item_sprite_path(job_class, sex, item_id)
+        )
+    })
 }
 
 pub fn weapon_has_trail(weapon_type: WeaponType) -> bool {
@@ -767,13 +771,17 @@ pub fn weapon_trail_sprite_path(
     sex: u8,
     weapon_type: WeaponType,
 ) -> Option<String> {
-    weapon_has_trail(weapon_type)
-        .then(|| format!("{}_검광", weapon_sprite_path(job_class, sex, weapon_type)))
+    weapon_has_trail(weapon_type).then(|| {
+        format!(
+            "{}_sword_flash",
+            weapon_sprite_path(job_class, sex, weapon_type)
+        )
+    })
 }
 
 /// The kick flash a TaeKwon-line actor wears in place of a weapon.
 pub fn kick_glow_sprite_path(job_class: u16, sex: u8) -> String {
-    ragnarok_resources::sprite::player::weapon(job_name_kr(job_class), sex_kr(sex), "_발광")
+    ragnarok_resources::sprite::player::weapon(job_name_kr(job_class), sex_kr(sex), "_glow")
 }
 
 #[cfg(test)]
@@ -781,10 +789,27 @@ mod tests {
     use super::*;
 
     #[test]
+    fn mercenary_weapon_path_uses_text_before_first_underscore() {
+        assert_eq!(
+            mercenary_weapon_sprite_path("female\\bow_mercenary").as_deref(),
+            Some("data/sprite/human/mercenary/bow_mercenary_bow")
+        );
+        assert_eq!(
+            mercenary_weapon_sprite_path("male\\spear_mercenary").as_deref(),
+            Some("data/sprite/human/mercenary/spear_mercenary_spear")
+        );
+        assert_eq!(
+            mercenary_weapon_sprite_path("male/sword_mercenary").as_deref(),
+            Some("data/sprite/human/mercenary/sword_mercenary_sword")
+        );
+        assert_eq!(mercenary_weapon_sprite_path("_mercenary"), None);
+    }
+
+    #[test]
     fn novice_male_path() {
         assert_eq!(
             body_sprite_path(0, 1),
-            "data/sprite/인간족/몸통/남/초보자_남"
+            "data/sprite/human/body/male/novice_male"
         );
     }
 
@@ -792,20 +817,23 @@ mod tests {
     fn novice_female_path() {
         assert_eq!(
             body_sprite_path(0, 0),
-            "data/sprite/인간족/몸통/여/초보자_여"
+            "data/sprite/human/body/female/novice_female"
         );
     }
 
     #[test]
     fn knight_male_path() {
-        assert_eq!(body_sprite_path(7, 1), "data/sprite/인간족/몸통/남/기사_남");
+        assert_eq!(
+            body_sprite_path(7, 1),
+            "data/sprite/human/body/male/knight_male"
+        );
     }
 
     #[test]
     fn lord_knight_has_own_sprite() {
         assert_eq!(
             body_sprite_path(4008, 1),
-            "data/sprite/인간족/몸통/남/로드나이트_남"
+            "data/sprite/human/body/male/lord_knight_male"
         );
     }
 
@@ -813,7 +841,7 @@ mod tests {
     fn clown_has_own_sprite() {
         assert_eq!(
             body_sprite_path(4020, 1),
-            "data/sprite/인간족/몸통/남/클라운_남"
+            "data/sprite/human/body/male/clown_male"
         );
     }
 
@@ -821,7 +849,7 @@ mod tests {
     fn high_priest_path() {
         assert_eq!(
             body_sprite_path(4009, 1),
-            "data/sprite/인간족/몸통/남/하이프리_남"
+            "data/sprite/human/body/male/high_priest_male"
         );
     }
 
@@ -829,7 +857,7 @@ mod tests {
     fn unknown_class_falls_back_to_novice() {
         assert_eq!(
             body_sprite_path(9999, 1),
-            "data/sprite/인간족/몸통/남/초보자_남"
+            "data/sprite/human/body/male/novice_male"
         );
     }
 
@@ -936,32 +964,38 @@ mod tests {
 
     #[test]
     fn imf_path_falls_back_to_the_base_class() {
-        assert_eq!(imf_path(6, 1), "data/imf/도둑_남.imf");
+        assert_eq!(imf_path(6, 1), "data/imf/thief_male.imf");
         assert_eq!(imf_fallback_job(6), None);
-        assert_eq!(imf_path(4030, 1), "data/imf/기사_남.imf");
+        assert_eq!(imf_path(4030, 1), "data/imf/knight_male.imf");
         assert_eq!(
             imf_fallback_job(4013).map(|j| imf_path(j, 1)),
-            Some("data/imf/어세신_남.imf".to_string())
+            Some("data/imf/assassin_male.imf".to_string())
         );
         assert_eq!(
             imf_fallback_job(26).map(|j| imf_path(j, 0)),
-            Some("data/imf/결혼_여.imf".to_string())
+            Some("data/imf/wedding_female.imf".to_string())
         );
     }
 
     #[test]
     fn head_index_maps_per_sex() {
-        assert_eq!(head_sprite_path(1, 1), "data/sprite/인간족/머리통/남/2_남");
-        assert_eq!(head_sprite_path(2, 1), "data/sprite/인간족/머리통/남/1_남");
-        assert_eq!(head_sprite_path(2, 0), "data/sprite/인간족/머리통/여/4_여");
-        assert_eq!(head_sprite_path(8, 0), "data/sprite/인간족/머리통/여/12_여");
+        assert_eq!(head_sprite_path(1, 1), "data/sprite/human/head/male/2_male");
+        assert_eq!(head_sprite_path(2, 1), "data/sprite/human/head/male/1_male");
+        assert_eq!(
+            head_sprite_path(2, 0),
+            "data/sprite/human/head/female/4_female"
+        );
+        assert_eq!(
+            head_sprite_path(8, 0),
+            "data/sprite/human/head/female/12_female"
+        );
         assert_eq!(
             head_sprite_path(20, 0),
-            "data/sprite/인간족/머리통/여/20_여"
+            "data/sprite/human/head/female/20_female"
         );
         assert_eq!(
             head_sprite_path(99, 1),
-            "data/sprite/인간족/머리통/남/13_남"
+            "data/sprite/human/head/male/13_male"
         );
     }
 
@@ -969,7 +1003,7 @@ mod tests {
     fn knight_dagger_weapon_path() {
         assert_eq!(
             weapon_sprite_path(7, 1, WeaponType::Dagger),
-            "data/sprite/인간족/기사/기사_남_단검"
+            "data/sprite/human/knight/knight_male_dagger"
         );
     }
 
@@ -977,7 +1011,7 @@ mod tests {
     fn novice_sword_weapon_path() {
         assert_eq!(
             weapon_sprite_path(0, 1, WeaponType::Sword1H),
-            "data/sprite/인간족/초보자/초보자_남_검"
+            "data/sprite/human/novice/novice_male_sword"
         );
     }
 
@@ -985,7 +1019,7 @@ mod tests {
     fn staff_weapon_path() {
         assert_eq!(
             weapon_sprite_path(2, 1, WeaponType::Staff),
-            "data/sprite/인간족/마법사/마법사_남_롯드"
+            "data/sprite/human/magician/magician_male_rod"
         );
     }
 
@@ -993,7 +1027,7 @@ mod tests {
     fn female_weapon_path() {
         assert_eq!(
             weapon_sprite_path(7, 0, WeaponType::Spear1H),
-            "data/sprite/인간족/기사/기사_여_창"
+            "data/sprite/human/knight/knight_female_spear"
         );
     }
 
@@ -1043,7 +1077,7 @@ mod tests {
         }
         assert_eq!(
             weapon_trail_sprite_path(7, 1, WeaponType::Sword2H).as_deref(),
-            Some("data/sprite/인간족/기사/기사_남_검_검광")
+            Some("data/sprite/human/knight/knight_male_sword_sword_flash")
         );
     }
 
@@ -1051,11 +1085,11 @@ mod tests {
     fn taekwon_kick_glow_is_named_after_the_job() {
         assert_eq!(
             kick_glow_sprite_path(4046, 1),
-            "data/sprite/인간족/태권소년/태권소년_남_발광"
+            "data/sprite/human/taekwon_boy/taekwon_boy_male_glow"
         );
         assert_eq!(
             kick_glow_sprite_path(4046, 0),
-            "data/sprite/인간족/태권소년/태권소년_여_발광"
+            "data/sprite/human/taekwon_boy/taekwon_boy_female_glow"
         );
     }
 
@@ -1093,22 +1127,22 @@ mod tests {
         assert_eq!(weapon_view_id_to_type(13100), Some(WeaponType::Revolver));
         assert_eq!(
             weapon_sprite_path(GUNSLINGER, 1, WeaponType::Revolver),
-            "data/sprite/인간족/건너/건너_남_권총"
+            "data/sprite/human/gunslinger/gunslinger_male_pistol"
         );
         assert_eq!(weapon_view_id_to_type(13154), Some(WeaponType::Rifle));
         assert_eq!(
             weapon_sprite_path(GUNSLINGER, 1, WeaponType::Rifle),
-            "data/sprite/인간족/건너/건너_남_기관총"
+            "data/sprite/human/gunslinger/gunslinger_male_machine_gun"
         );
 
         // Individual guns carry their own art, keyed by item id.
         assert_eq!(
             weapon_item_sprite_path(GUNSLINGER, 1, 13154),
-            "data/sprite/인간족/건너/건너_남_13154"
+            "data/sprite/human/gunslinger/gunslinger_male_13154"
         );
         assert_eq!(
             weapon_item_trail_sprite_path(GUNSLINGER, 0, 13154, WeaponType::Rifle).as_deref(),
-            Some("data/sprite/인간족/건너/건너_여_13154_검광")
+            Some("data/sprite/human/gunslinger/gunslinger_female_13154_sword_flash")
         );
 
         // A weapon look the archive cannot name a file after.
@@ -1168,10 +1202,13 @@ mod tests {
 
     #[test]
     fn body_palette_path_formats_correctly() {
-        assert_eq!(body_palette_path(1, 1, 3), "data/palette/몸/검사_남_3.pal");
+        assert_eq!(
+            body_palette_path(1, 1, 3),
+            "data/palette/body/swordman_male_3.pal"
+        );
         assert_eq!(
             body_palette_path(0, 0, 1),
-            "data/palette/몸/초보자_여_1.pal"
+            "data/palette/body/novice_female_1.pal"
         );
     }
 
@@ -1179,11 +1216,11 @@ mod tests {
     fn head_palette_path_formats_correctly() {
         assert_eq!(
             head_palette_path(1, 0, 1, 3),
-            "data/palette/머리/머리2_남_3.pal"
+            "data/palette/hair/hair2_male_3.pal"
         );
         assert_eq!(
             head_palette_path(5, 0, 0, 7),
-            "data/palette/머리/머리5_여_7.pal"
+            "data/palette/hair/hair5_female_7.pal"
         );
     }
 
@@ -1191,19 +1228,19 @@ mod tests {
     fn head_zero_palette_follows_the_job() {
         assert_eq!(
             head_palette_path(0, 1, 1, 2),
-            "data/palette/머리/머리1_남_2.pal"
+            "data/palette/hair/hair1_male_2.pal"
         );
         assert_eq!(
             head_palette_path(0, 0, 1, 2),
-            "data/palette/머리/머리2_남_2.pal"
+            "data/palette/hair/hair2_male_2.pal"
         );
-        assert_eq!(head_sprite_path(0, 1), "data/sprite/인간족/머리통/남/2_남");
+        assert_eq!(head_sprite_path(0, 1), "data/sprite/human/head/male/2_male");
     }
 
     #[test]
     fn npc_and_monster_sprite_paths() {
         assert_eq!(npc_sprite_path("1_ETC_01"), "data/sprite/npc/1_ETC_01");
-        assert_eq!(monster_sprite_path("Poring"), "data/sprite/몬스터/Poring");
+        assert_eq!(monster_sprite_path("Poring"), "data/sprite/monster/Poring");
     }
 
     #[test]
@@ -1220,7 +1257,10 @@ mod tests {
     #[test]
     fn shield_sprite_path_with_item_id() {
         let path = shield_sprite_path(2103, 12, 1);
-        assert_eq!(path.unwrap(), "data/sprite/방패/어세신/어세신_남_버클러");
+        assert_eq!(
+            path.unwrap(),
+            "data/sprite/shield/assassin/assassin_male_buckler"
+        );
     }
 
     #[test]
@@ -1242,7 +1282,7 @@ mod tests {
         assert!(!is_baby(1));
         assert_eq!(
             body_sprite_path(4024, 1),
-            "data/sprite/인간족/몸통/남/검사_남"
+            "data/sprite/human/body/male/swordman_male"
         );
         assert_eq!(base_job(4045), 23);
         assert_eq!(visual_job(4030, OPTION_RIDING), 4036);
@@ -1271,15 +1311,15 @@ mod tests {
         assert_eq!(visual_job(7, 0), 7);
         assert_eq!(
             body_sprite_path(JT_MARRIED, 1),
-            "data/sprite/인간족/몸통/남/결혼_남"
+            "data/sprite/human/body/male/wedding_male"
         );
         assert_eq!(
             body_sprite_path(JT_SANTA, 0),
-            "data/sprite/인간족/몸통/여/산타_여"
+            "data/sprite/human/body/female/santa_female"
         );
         assert_eq!(
             body_sprite_path(JT_SUMMER, 1),
-            "data/sprite/인간족/몸통/남/여름_남"
+            "data/sprite/human/body/male/summer_male"
         );
     }
 
@@ -1287,19 +1327,19 @@ mod tests {
     fn gm_sprite_paths_per_sex() {
         assert_eq!(
             gm_body_sprite_path(1),
-            "data/sprite/인간족/몸통/남/운영자_남"
+            "data/sprite/human/body/male/game_master_male"
         );
         assert_eq!(
             gm_body_sprite_path(0),
-            "data/sprite/인간족/몸통/여/운영자_여"
+            "data/sprite/human/body/female/game_master_female"
         );
         assert_eq!(
             gm_weapon_sprite_path(1),
-            "data/sprite/인간족/운영자/운영자_남_검"
+            "data/sprite/human/game_master/game_master_male_sword"
         );
         assert_eq!(
             gm_weapon_sprite_path(0),
-            "data/sprite/인간족/운영자/운영자_여_검"
+            "data/sprite/human/game_master/game_master_female_sword"
         );
     }
 
@@ -1321,27 +1361,27 @@ mod tests {
         assert!(has_falcon(OPTION_FALCON | OPTION_RIDING));
         assert!(!has_falcon(0));
         assert!(!has_falcon(OPTION_RIDING));
-        assert_eq!(falcon_sprite_path(11), "data/sprite/이팩트/매");
-        assert_eq!(falcon_sprite_path(4012), "data/sprite/이팩트/매2");
+        assert_eq!(falcon_sprite_path(11), "data/sprite/effect/hawk");
+        assert_eq!(falcon_sprite_path(4012), "data/sprite/effect/hawk2");
     }
 
     #[test]
     fn mounted_job_sprite_paths() {
         assert_eq!(
             body_sprite_path(13, 1),
-            "data/sprite/인간족/몸통/남/페코페코_기사_남"
+            "data/sprite/human/body/male/peco_peco_knight_male"
         );
         assert_eq!(
             body_sprite_path(21, 0),
-            "data/sprite/인간족/몸통/여/신페코크루세이더_여"
+            "data/sprite/human/body/female/new_peco_crusader_female"
         );
         assert_eq!(
             body_sprite_path(4014, 1),
-            "data/sprite/인간족/몸통/남/로드페코_남"
+            "data/sprite/human/body/male/lord_peco_male"
         );
         assert_eq!(
             body_sprite_path(4022, 1),
-            "data/sprite/인간족/몸통/남/페코팔라딘_남"
+            "data/sprite/human/body/male/peco_paladin_male"
         );
     }
 }

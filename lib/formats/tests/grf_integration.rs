@@ -60,27 +60,31 @@ fn extract_and_parse_all_formats_from_grf() {
     GatFile::parse(&grf.read_file(&gat_ref).unwrap())
         .unwrap_or_else(|e| panic!("failed to parse RSW-referenced {gat_ref}: {e}"));
 
-    let data = grf.read_file("data/model/나무잡초꽃/나무01.rsm").unwrap();
+    let data = grf
+        .read_file("data/model/trees_weeds_flowers/tree01.rsm")
+        .unwrap();
     let rsm = RsmFile::parse(&data).expect("failed to parse rsm");
     assert!(!rsm.nodes.is_empty());
     assert!(!rsm.root_node_names.is_empty());
 
-    let data = grf.read_file("data/sprite/몬스터/mandragora.spr").unwrap();
+    let data = grf.read_file("data/sprite/monster/mandragora.spr").unwrap();
     let spr = SprFile::parse(&data).expect("failed to parse mandragora.spr");
     assert!(spr.indexed_sprites.len() + spr.rgba_sprites.len() > 0);
 
-    let data = grf.read_file("data/sprite/몬스터/mandragora.act").unwrap();
+    let data = grf.read_file("data/sprite/monster/mandragora.act").unwrap();
     let act = ActFile::parse(&data).expect("failed to parse mandragora.act");
     assert!(!act.actions.is_empty());
 
-    let data = grf.read_file("data/sprite/이팩트/jong_mini.str").unwrap();
+    let data = grf.read_file("data/sprite/effect/jong_mini.str").unwrap();
     let str_file = StrEffectFile::parse(&data).expect("failed to parse jong_mini.str");
     assert!(!str_file.layers.is_empty());
 
-    let data = grf.read_file("data/palette/몸/검사_남_0.pal").unwrap();
+    let data = grf
+        .read_file("data/palette/body/swordman_male_0.pal")
+        .unwrap();
     PalFile::parse(&data).expect("failed to parse pal");
 
-    let data = grf.read_file("data/imf/검사_남.imf").unwrap();
+    let data = grf.read_file("data/imf/swordman_male.imf").unwrap();
     let imf = ImfFile::parse(&data).expect("failed to parse imf");
     assert!(!imf.layers.is_empty());
 
@@ -122,11 +126,11 @@ fn aliased_map_resolves_through_res_name_table() {
     assert_eq!(rsw.gnd_file.to_ascii_lowercase(), "job_hunter.gnd");
     assert!(gnd.width > 0 && gnd.height > 0);
 
-    let minimap = "data/texture/유저인터페이스/map/pvp_n_2-2.bmp";
+    let minimap = "data/texture/user_interface/map/pvp_n_2-2.bmp";
     assert!(grf.file_exists(minimap));
     assert_eq!(
         grf.read_file(minimap).unwrap(),
-        grf.read_file("data/texture/유저인터페이스/map/job_hunter.bmp")
+        grf.read_file("data/texture/user_interface/map/job_hunter.bmp")
             .unwrap()
     );
 }

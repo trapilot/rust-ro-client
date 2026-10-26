@@ -26,10 +26,10 @@
 //! bucket before the Additive one, so the additive hanbok wings always draw
 //! over the costume — the Angel3 body sits behind its wings too.
 //!
-//! Sprites live under the Korean effect dir `data/sprite/이팩트/`; the
-//! English names (`angel`, `angelwings`, …) map to `천사`, `천사날개`,
-//! `천사날개깃털`, `한복천사(본체)`, `한복천사(날개)`. The GRF ships a
-//! single feather sprite, so both feather layers share it.
+//! Sprites live under the effect dir `data/sprite/effect/`, named `angel`,
+//! `angel_wings`, `angel_wing_feather`, `hanbok_angel_main_body` and
+//! `hanbok_angel_wings`. The GRF ships a single feather sprite, so both
+//! feather layers share it.
 
 use crate::draw::{BlendKind, EffectDrawList, EffectPrimitiveDraw, EffectStatus};
 use crate::effect_trait::{Effect, EffectRenderCtx, EffectUpdateCtx};

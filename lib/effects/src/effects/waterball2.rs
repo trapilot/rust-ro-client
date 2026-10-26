@@ -3,7 +3,7 @@
 //! Reference: the
 //! original game gif `100-150/117.gif` — a tall braided blue/green column that
 //! swirls upward then sinks. A single swirling particle strand
-//! (`data/sprite/이팩트/waterball`, 12 segments,
+//! (`data/sprite/effect/waterball`, 12 segments,
 //! size 0.75) whose head rises while a swirl spins it around a
 //! vertical axis; the 12 trailing history points draw the braid.
 //!

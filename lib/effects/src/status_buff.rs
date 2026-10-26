@@ -165,7 +165,7 @@ pub fn status_reaction(efst: ClientEffectIcon) -> Option<StatusReaction> {
         I::SgSunWarm => StatusReaction::aura(&[E::Doublegumgang, E::Redlightbody]),
         I::Mindbreaker => StatusReaction::on_activate(&[E::Magiccrasher2]),
         I::Ting => StatusReaction::on_activate(&[E::Quakebody]).with_sound(
-            "effect\\t_벽튕김.wav",
+            "effect\\t_wall_bounce.wav",
             SfxPos::World,
             false,
         ),

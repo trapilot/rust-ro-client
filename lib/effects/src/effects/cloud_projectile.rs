@@ -5,9 +5,9 @@ use crate::effect_trait::{Effect, EffectRenderCtx, EffectUpdateCtx};
 
 pub const TEXTURES: &[&str] = &[
     "blue_ivy.bmp",
-    "emp shock.tga",
+    "emp_shock.tga",
     "shield_boomerang.bmp",
-    "토마.bmp",
+    "tomahawk.bmp",
 ];
 
 const UNIT_UV: [[f32; 2]; 4] = [[0.0, 0.0], [1.0, 0.0], [0.0, 1.0], [1.0, 1.0]];
@@ -140,7 +140,7 @@ pub const SHIELDBOOMERANG: CloudParams = CloudParams {
     blend: BlendKind::Alpha,
 };
 pub const SHIELDBOOMERANG2: CloudParams = CloudParams {
-    texture: "토마.bmp",
+    texture: "tomahawk.bmp",
     tint: WHITE,
     base_distance: 3.5,
     speed: 2.0,
@@ -448,7 +448,7 @@ impl Projectile {
                     size: [SPARK_SIZE, SPARK_SIZE],
                     uv: UNIT_UV,
                     rotation: s.spin_deg.to_radians(),
-                    texture: "emp shock.tga",
+                    texture: "emp_shock.tga",
                     color: [color[0], color[1], color[2], color[3] * a],
                     blend: BlendKind::Additive,
                 });
@@ -646,14 +646,14 @@ mod tests {
         let mut t2 = CloudProjectileEffect::new([0.0, 0.0, 0.0], [0.0, 0.0, 40.0], 0, TANJI2);
         step(&mut t2, TANJI_SPAWN_DELAY_FRAMES as u32 + 10);
         assert!(
-            draws(&t2).iter().any(|(_, t, _)| *t == "emp shock.tga"),
+            draws(&t2).iter().any(|(_, t, _)| *t == "emp_shock.tga"),
             "Tanji2 sprays impact sparks"
         );
 
         let mut t1 = CloudProjectileEffect::new([0.0, 0.0, 0.0], [0.0, 0.0, 40.0], 0, TANJI);
         step(&mut t1, TANJI_SPAWN_DELAY_FRAMES as u32 + 10);
         assert!(
-            !draws(&t1).iter().any(|(_, t, _)| *t == "emp shock.tga"),
+            !draws(&t1).iter().any(|(_, t, _)| *t == "emp_shock.tga"),
             "Tanji (boomerang) has no sparks"
         );
     }

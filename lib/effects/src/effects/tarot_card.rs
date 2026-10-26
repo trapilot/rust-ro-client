@@ -2,7 +2,7 @@
 //! camera-facing billboards.
 //!
 //! The tarot cards (`Tarot{NN}.tga`) and the slow-cast clock
-//! (`blast_mine##clock.bmp`) are both EffectTexture quads. The clock's branch
+//! (`blast_mine_clock.bmp`) are both EffectTexture quads. The clock's branch
 //! forces the same fade behaviour, so both share one alpha curve, also used by
 //! the result banner (`temp_result.rs`): alpha rises to
 //! 220/255, holds, then fades out, while a `1 + 0.05·sin` factor breathes the
@@ -54,7 +54,7 @@ pub const TEXTURES: &[&str] = &[
     "tarot12.tga",
     "tarot13.tga",
     "tarot14.tga",
-    "blast_mine##clock.bmp",
+    "blast_mine_clock.bmp",
 ];
 
 const CLOCK_INDEX: usize = 14;
@@ -301,7 +301,7 @@ mod tests {
         let (cs, _, ct) = card(&clock).expect("clock visible");
         assert_eq!(ft, "tarot01.tga");
         assert_eq!(lt, "tarot14.tga");
-        assert_eq!(ct, "blast_mine##clock.bmp");
+        assert_eq!(ct, "blast_mine_clock.bmp");
         assert!(fs[1] > fs[0], "tarot card is taller than wide");
         assert!((cs[0] - cs[1]).abs() < 1e-3, "clock is square");
     }

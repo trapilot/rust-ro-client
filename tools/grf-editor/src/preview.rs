@@ -405,10 +405,10 @@ mod tests {
         assert!(is_text_previewable("data/idnum2itemdesctable.txt"));
         assert!(is_text_previewable("data/book/BOOK01.XML"));
         assert!(is_text_previewable(
-            "data/lua files/datainfo/accessoryid.lua"
+            "data/lua_files/datainfo/accessoryid.lua"
         ));
         assert!(is_text_previewable(
-            "data/lua files/datainfo/jobidentity.lub"
+            "data/lua_files/datainfo/jobidentity.lub"
         ));
         assert!(is_text_previewable("data/mp3nametable.ini"));
         assert!(is_text_previewable("data/error.log"));

@@ -357,23 +357,23 @@ ACCESSORY_RIBBON = 4,
 ACCESSORY_HEADBAND = 6,
 "#;
         let name_content = r#"
-[ACCESSORY_IDs.ACCESSORY_GOGGLES] = "_고글",
-[ACCESSORY_IDs.ACCESSORY_RIBBON] = "_리본",
-[ACCESSORY_IDs.ACCESSORY_HEADBAND] = "_머리띠",
+[ACCESSORY_IDs.ACCESSORY_GOGGLES] = "_goggles",
+[ACCESSORY_IDs.ACCESSORY_RIBBON] = "_ribbon",
+[ACCESSORY_IDs.ACCESSORY_HEADBAND] = "_headband",
 "#;
         let table = build_accessory_table(id_content, name_content);
-        assert_eq!(table.get(&1).unwrap(), "_고글");
-        assert_eq!(table.get(&4).unwrap(), "_리본");
-        assert_eq!(table.get(&6).unwrap(), "_머리띠");
+        assert_eq!(table.get(&1).unwrap(), "_goggles");
+        assert_eq!(table.get(&4).unwrap(), "_ribbon");
+        assert_eq!(table.get(&6).unwrap(), "_headband");
         assert_eq!(table.len(), 3);
     }
 
     #[test]
     fn skips_comments_and_empty_lines() {
         let id_content = "-- comment\nACCESSORY_TEST = 5,\n\n";
-        let name_content = "-- comment\n[ACCESSORY_IDs.ACCESSORY_TEST] = \"_테스트\",\n";
+        let name_content = "-- comment\n[ACCESSORY_IDs.ACCESSORY_TEST] = \"_test\",\n";
         let table = build_accessory_table(id_content, name_content);
-        assert_eq!(table.get(&5).unwrap(), "_테스트");
+        assert_eq!(table.get(&5).unwrap(), "_test");
     }
 
     #[test]

@@ -448,7 +448,7 @@ mod tests {
         assert_eq!(bone_type_from_name("dragon_5.gr2"), Some(5));
         assert_eq!(bone_type_from_name("poring.spr"), None);
         assert!(is_gr2_name("Guildflag90_1.gr2"));
-        assert!(!is_gr2_name("몬스터"));
+        assert!(!is_gr2_name("monster"));
         assert_eq!(
             gr2_model_path("Empelium90_0.gr2"),
             "data/model/3dmob/empelium90_0.gr2"

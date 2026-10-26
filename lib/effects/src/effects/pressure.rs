@@ -2,9 +2,9 @@ use crate::draw::{BlendKind, EffectDrawList, EffectPrimitiveDraw, EffectStatus};
 use crate::effect_trait::{CameraShake, Effect, EffectRenderCtx, EffectUpdateCtx};
 
 pub const TEXTURES: &[&str] = &[
-    "유저인터페이스/item/레드슬림포션.bmp",
-    "유저인터페이스/item/옐로우슬림포션.bmp",
-    "유저인터페이스/item/화이트슬림포션.bmp",
+    "user_interface/item/red_slim_potion.bmp",
+    "user_interface/item/yellow_slim_potion.bmp",
+    "user_interface/item/white_slim_potion.bmp",
     "bbbb.bmp",
     "cross_old.bmp",
     "explosive_1_128.bmp",
@@ -63,7 +63,7 @@ pub struct PressureParams {
 }
 
 pub const SLIM: PressureParams = PressureParams {
-    icon_texture: "유저인터페이스/item/레드슬림포션.bmp",
+    icon_texture: "user_interface/item/red_slim_potion.bmp",
     icon_tint: WHITE,
     ring_tint: RING_RED,
     drop_y: -80.0,
@@ -75,7 +75,7 @@ pub const SLIM: PressureParams = PressureParams {
     quake: false,
 };
 pub const SLIM2: PressureParams = PressureParams {
-    icon_texture: "유저인터페이스/item/옐로우슬림포션.bmp",
+    icon_texture: "user_interface/item/yellow_slim_potion.bmp",
     icon_tint: WHITE,
     ring_tint: RING_YELLOW,
     drop_y: -80.0,
@@ -87,7 +87,7 @@ pub const SLIM2: PressureParams = PressureParams {
     quake: false,
 };
 pub const SLIM3: PressureParams = PressureParams {
-    icon_texture: "유저인터페이스/item/화이트슬림포션.bmp",
+    icon_texture: "user_interface/item/white_slim_potion.bmp",
     icon_tint: WHITE,
     ring_tint: WHITE,
     drop_y: -80.0,

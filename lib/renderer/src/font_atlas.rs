@@ -311,19 +311,19 @@ mod tests {
     #[test]
     fn euc_kr_charset_hangul_is_mapped_not_question_mark() {
         let chars = euc_kr_charset();
-        assert!(chars.contains(&'가'));
+        assert!(chars.contains(&'\u{ac00}'));
         assert!(chars.len() > 2000);
         let a = FontAtlas::build_with_extra_chars(FALLBACK_FONT, 14.0, 1.0, &chars);
-        assert!(a.glyphs.contains_key(&'가'));
+        assert!(a.glyphs.contains_key(&'\u{ac00}'));
     }
 
     #[test]
     fn embedded_cjk_rasterizes_hangul() {
         let a = FontAtlas::from_embedded_cjk(16.0, 1.0, &euc_kr_charset());
-        let g = a.glyph('가');
+        let g = a.glyph('\u{ac00}');
         assert!(
             g.size[0] > 0.0 && g.size[1] > 0.0,
-            "hangul glyph not rendered"
+            "hangul glyph (U+AC00) not rendered"
         );
     }
 
@@ -333,6 +333,6 @@ mod tests {
         let g = a.glyph(bold_char('A'));
         assert!(g.advance > 0.0);
         assert_ne!(bold_char('A'), 'A');
-        assert_eq!(bold_char('가'), '가');
+        assert_eq!(bold_char('\u{ac00}'), '\u{ac00}');
     }
 }

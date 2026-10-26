@@ -2295,7 +2295,7 @@ mod tests {
         assert_eq!(taekwon_head_action(88, 0, MALE), None);
     }
 
-    // Real dir=2 idle attach points from data.grf (초보자_남 / 1_남): each idle
+    // Real dir=2 idle attach points from data.grf (novice_male / 1_male): each idle
     // action has 3 doridori-pose motions whose neck anchor differs by ~17px.
     #[test]
     fn doridori_keeps_head_attached_to_body() {

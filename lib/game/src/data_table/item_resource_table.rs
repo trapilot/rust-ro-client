@@ -81,10 +81,10 @@ mod tests {
 
     fn make_table() -> ItemResourceTable {
         let mut identified = HashMap::new();
-        identified.insert(501, "빨간포션".to_string());
-        identified.insert(1201, "단검".to_string());
+        identified.insert(501, "red_potion".to_string());
+        identified.insert(1201, "dagger".to_string());
         let mut unidentified = HashMap::new();
-        unidentified.insert(1201, "무기".to_string());
+        unidentified.insert(1201, "weapon".to_string());
         ItemResourceTable {
             identified_entries: identified,
             unidentified_entries: unidentified,
@@ -94,18 +94,18 @@ mod tests {
     #[test]
     fn get_resource_name_returns_identified() {
         let table = make_table();
-        assert_eq!(table.get_resource_name(501), Some("빨간포션"));
-        assert_eq!(table.get_resource_name(1201), Some("단검"));
+        assert_eq!(table.get_resource_name(501), Some("red_potion"));
+        assert_eq!(table.get_resource_name(1201), Some("dagger"));
         assert!(table.get_resource_name(999).is_none());
     }
 
     #[test]
     fn get_resource_name_for_dispatches_by_identified() {
         let table = make_table();
-        assert_eq!(table.get_resource_name_for(1201, true), Some("단검"));
-        assert_eq!(table.get_resource_name_for(1201, false), Some("무기"));
-        assert_eq!(table.get_resource_name_for(501, true), Some("빨간포션"));
-        assert_eq!(table.get_resource_name_for(501, false), Some("빨간포션"));
+        assert_eq!(table.get_resource_name_for(1201, true), Some("dagger"));
+        assert_eq!(table.get_resource_name_for(1201, false), Some("weapon"));
+        assert_eq!(table.get_resource_name_for(501, true), Some("red_potion"));
+        assert_eq!(table.get_resource_name_for(501, false), Some("red_potion"));
     }
 
     #[test]
@@ -113,7 +113,7 @@ mod tests {
         let table = make_table();
         assert_eq!(
             table.item_icon_path(501).unwrap(),
-            "data/texture/유저인터페이스/item/빨간포션.bmp"
+            "data/texture/user_interface/item/red_potion.bmp"
         );
         assert!(table.item_icon_path(999).is_none());
     }

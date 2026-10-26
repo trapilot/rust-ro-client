@@ -109,7 +109,7 @@ mod tests {
     use super::*;
 
     const SAMPLE: &str = concat!(
-        "//지역번호//맵이름//Xlt//yLT//xRB//yRB\n",
+        "//area_number//map_name//Xlt//yLT//xRB//yRB\n",
         "12@\n",
         "0#hugel.rsw#871#0#927#57#\n",
         "8#prontera.rsw#812#587#870#643#\n",

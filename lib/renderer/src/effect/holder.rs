@@ -1361,7 +1361,7 @@ mod tests {
             handle: EffectHandle(1),
             effect_id: EffectId::Portal4,
             payload: HeldPayload::Custom(Box::new(SfxFake {
-                pending: Some("effect\\윈드워크.wav"),
+                pending: Some("effect\\wind_walk.wav"),
             })),
             attach: Attach::Entity(7),
             age: 0.0,
@@ -1377,7 +1377,7 @@ mod tests {
         assert_eq!(
             h.drain_sfx(),
             vec![SfxEmission {
-                name: "effect\\윈드워크.wav".to_string(),
+                name: "effect\\wind_walk.wav".to_string(),
                 world_pos: [10.0, 0.0, 5.0],
                 pos: SfxPos::World,
             }],
@@ -1601,7 +1601,7 @@ mod tests {
         h.update(&ctx(0.25), &|_| None, &|_| None);
         let snaps = h.collect_spr_emitters(&|_| None);
         assert_eq!(snaps.len(), 1);
-        assert_eq!(snaps[0].sprite, "data/sprite/이팩트/torch_01");
+        assert_eq!(snaps[0].sprite, "data/sprite/effect/torch_01");
         assert_eq!(snaps[0].position, [10.0, 20.0, 30.0]);
         assert!((snaps[0].anim_time - 0.25).abs() < 1e-6);
         assert_eq!(snaps[0].action_index, 0);
@@ -1631,7 +1631,7 @@ mod tests {
         let snaps = h.collect_spr_burst_emitters(&|_| None);
         assert_eq!(snaps.len(), 1);
         let snap = &snaps[0];
-        assert_eq!(snap.sprite, "data/sprite/이팩트/굴뚝연기");
+        assert_eq!(snap.sprite, "data/sprite/effect/chimney_smoke");
         assert!(
             (1..=4).contains(&snap.particles.len()),
             "burst count out of range: {}",
@@ -1656,7 +1656,7 @@ mod tests {
         let snaps = h.collect_spr_burst_emitters(&|_| None);
         assert_eq!(snaps.len(), 1);
         let snap = &snaps[0];
-        assert_eq!(snap.sprite, "data/sprite/이팩트/particle7");
+        assert_eq!(snap.sprite, "data/sprite/effect/particle7");
         assert!(snap.size_shrink, "Steal particles must shrink to 0");
         assert!(!snap.twinkle, "Steal does not twinkle");
         assert_eq!(

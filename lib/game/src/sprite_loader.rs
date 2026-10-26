@@ -537,14 +537,14 @@ pub fn load_cursor_sprite(grf: &GrfArchive) -> Option<SpriteData> {
 
 /// Mercenaries are player-style composites: a mercenary body plus a regular
 /// character head. The name table entry carries the sex/type sub-path (e.g.
-/// `여\활용병`); the head index follows the original client's `(job % 23) + 1`.
+/// `female\bow_mercenary`); the head index follows the original client's `(job % 23) + 1`.
 pub fn load_mercenary_sprite_data(
     grf: &GrfArchive,
     name_table: &NameTable,
     job: u16,
 ) -> Option<PlayerSpriteData> {
     let name = name_table.get_name(job)?;
-    let sex = if name.starts_with('여') { 0 } else { 1 };
+    let sex = if name.starts_with("female") { 0 } else { 1 };
     let base = mercenary_sprite_path(name);
     let body = load_sprite_data(grf, &format!("{base}.spr"), &format!("{base}.act"))?;
     let head_id = (job % 23) + 1;
@@ -555,10 +555,13 @@ pub fn load_mercenary_sprite_data(
         .as_deref()
         .and_then(|w| load_sprite_data(grf, &format!("{w}.spr"), &format!("{w}.act")));
     // Bow mercenaries have no weapon-trail sprite; the load simply returns None.
-    let weapon_trail = weapon
-        .as_ref()
-        .and(weapon_base.as_deref())
-        .and_then(|w| load_sprite_data(grf, &format!("{w}_검광.spr"), &format!("{w}_검광.act")));
+    let weapon_trail = weapon.as_ref().and(weapon_base.as_deref()).and_then(|w| {
+        load_sprite_data(
+            grf,
+            &format!("{w}_sword_flash.spr"),
+            &format!("{w}_sword_flash.act"),
+        )
+    });
     Some(PlayerSpriteData {
         body,
         head,

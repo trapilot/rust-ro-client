@@ -930,7 +930,7 @@ mod tests {
         let item = make_normal_item(1, 501, 0, 1);
         assert_eq!(
             item.icon_path().unwrap(),
-            "data/texture/유저인터페이스/item/item_501.bmp"
+            "data/texture/user_interface/item/item_501.bmp"
         );
 
         let mut no_resource = make_normal_item(2, 502, 0, 1);
@@ -1058,8 +1058,8 @@ mod tests {
             HashMap::from([(1201, "Knife".to_string())]),
         ));
         data_table.item_resource = Some(ItemResourceTable::from_entries(
-            HashMap::from([(1201, "단검".to_string())]),
-            HashMap::from([(1201, "무기".to_string())]),
+            HashMap::from([(1201, "dagger".to_string())]),
+            HashMap::from([(1201, "weapon".to_string())]),
         ));
         data_table.item_slot_count = Some(ItemSlotCountTable::from_entries(HashMap::from([(
             1201u16, 4u8,
@@ -1087,7 +1087,7 @@ mod tests {
         assert!(item.is_identified);
         assert_eq!(
             icon_path.as_deref(),
-            Some("data/texture/유저인터페이스/item/단검.bmp")
+            Some("data/texture/user_interface/item/dagger.bmp")
         );
         assert_eq!(
             crate::display_name::format_equipment_display_name(

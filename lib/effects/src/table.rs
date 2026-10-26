@@ -1089,7 +1089,7 @@ mod tests {
         else {
             panic!("Torch should resolve to EffectSpec::Spr");
         };
-        assert_eq!(sprite, "data/sprite/이팩트/torch_01");
+        assert_eq!(sprite, "data/sprite/effect/torch_01");
         assert_eq!(duration_ms, 4167);
         assert_eq!(size_scale, 1.0);
         assert_eq!(anim_speed, 1.0);
@@ -1113,7 +1113,7 @@ mod tests {
         else {
             panic!("Aqua should resolve to EffectSpec::Spr");
         };
-        assert_eq!(sprite, "data/sprite/이팩트/성수뜨기");
+        assert_eq!(sprite, "data/sprite/effect/scoop_holy_water");
         assert_eq!(duration_ms, 1667);
         assert_eq!(size_scale, 1.0);
         assert_eq!(anim_speed, 2.0);
@@ -1125,11 +1125,11 @@ mod tests {
     #[test]
     fn item_status_billboards_resolve_to_one_shot_spr() {
         for (id, sprite) in [
-            (EffectId::ItemThunder, "data/sprite/이팩트/item_thunder"),
-            (EffectId::ItemCloud, "data/sprite/이팩트/item_cloud"),
-            (EffectId::ItemCurse, "data/sprite/이팩트/item_curse"),
-            (EffectId::ItemZzz, "data/sprite/이팩트/item_zzz"),
-            (EffectId::ItemRain, "data/sprite/이팩트/item_rain"),
+            (EffectId::ItemThunder, "data/sprite/effect/item_thunder"),
+            (EffectId::ItemCloud, "data/sprite/effect/item_cloud"),
+            (EffectId::ItemCurse, "data/sprite/effect/item_curse"),
+            (EffectId::ItemZzz, "data/sprite/effect/item_zzz"),
+            (EffectId::ItemRain, "data/sprite/effect/item_rain"),
         ] {
             let Some(EffectSpec::Spr {
                 sprite: got,
@@ -1153,20 +1153,20 @@ mod tests {
     #[test]
     fn spr_oneshot_batch_resolves() {
         for (id, sprite, anim, dur) in [
-            (EffectId::M01, "data/sprite/이팩트/m_ef01", 3.0, 833),
-            (EffectId::M03, "data/sprite/이팩트/m_ef03", 4.0, 1667),
-            (EffectId::M05, "data/sprite/이팩트/m_ef05", 4.0, 1667),
-            (EffectId::M06, "data/sprite/이팩트/m_ef06", 4.0, 1667),
-            (EffectId::M07, "data/sprite/이팩트/m_ef07", 4.0, 1667),
+            (EffectId::M01, "data/sprite/effect/m_ef01", 3.0, 833),
+            (EffectId::M03, "data/sprite/effect/m_ef03", 4.0, 1667),
+            (EffectId::M05, "data/sprite/effect/m_ef05", 4.0, 1667),
+            (EffectId::M06, "data/sprite/effect/m_ef06", 4.0, 1667),
+            (EffectId::M07, "data/sprite/effect/m_ef07", 4.0, 1667),
             (
                 EffectId::PokWhite,
-                "data/sprite/이팩트/폭죽_화이트데이",
+                "data/sprite/effect/firecracker_white_day",
                 4.0,
                 1000,
             ),
             (
                 EffectId::PokValen,
-                "data/sprite/이팩트/폭죽_발렌타인",
+                "data/sprite/effect/firecracker_valentine",
                 4.0,
                 1000,
             ),
@@ -1216,7 +1216,7 @@ mod tests {
         else {
             panic!("Vallentine2 should resolve to EffectSpec::Spr");
         };
-        assert_eq!(sprite, "data/sprite/이팩트/vallentine");
+        assert_eq!(sprite, "data/sprite/effect/vallentine");
         assert_eq!(action_index, 1, "Vallentine2 plays ACT action 1");
         assert_eq!(anim_speed, 2.0);
         assert!(!repeat);
@@ -1230,7 +1230,7 @@ mod tests {
         else {
             panic!("Itemfast should resolve to EffectSpec::Spr");
         };
-        assert_eq!(sprite, "data/sprite/이팩트/fast");
+        assert_eq!(sprite, "data/sprite/effect/fast");
         assert_eq!(action_index, 0);
         assert_eq!(anim_speed, 4.0);
 
@@ -1295,7 +1295,7 @@ mod tests {
         else {
             panic!("Poisonhit should resolve to EffectSpec::Spr");
         };
-        assert_eq!(sprite, "data/sprite/이팩트/poisonhit");
+        assert_eq!(sprite, "data/sprite/effect/poisonhit");
         assert_eq!(duration_ms, 500);
         assert_eq!(size_scale, 1.5);
         assert_eq!(anim_speed, 2.0);
@@ -1319,7 +1319,7 @@ mod tests {
         else {
             panic!("Darkbreath should resolve to EffectSpec::Spr");
         };
-        assert_eq!(sprite, "data/sprite/이팩트/darkbreath");
+        assert_eq!(sprite, "data/sprite/effect/darkbreath");
         assert_eq!(duration_ms, 1083);
         assert!((size_scale - 0.8).abs() < 1e-6);
         assert_eq!(anim_speed, 1.0);
@@ -1409,7 +1409,7 @@ mod tests {
         else {
             panic!("Demonstration should resolve to EffectSpec::Spr");
         };
-        assert_eq!(sprite, "data/sprite/이팩트/데몬스트레이션");
+        assert_eq!(sprite, "data/sprite/effect/demonstration");
         assert!((size_scale - 1.2).abs() < 1e-6);
         assert!(repeat, "MT_LOOP means the action keeps cycling");
         assert_eq!(pos_y, -1.0);
@@ -1482,7 +1482,7 @@ mod tests {
         else {
             panic!("Slowpoison should resolve to EffectSpec::SprBurst");
         };
-        assert_eq!(sprite, "data/sprite/이팩트/particle3");
+        assert_eq!(sprite, "data/sprite/effect/particle3");
         assert_eq!(burst.period_frames, Some(5));
         assert_eq!(burst.pos_y_start, -20.0);
         assert!(

@@ -69,11 +69,11 @@ pub struct TwilightParams {
     pub textures: &'static [&'static str],
 }
 
-const HAYAN_HERB: &str = "유저인터페이스/item/하얀허브.bmp";
-const WHITE_SLIM_POTION: &str = "유저인터페이스/item/화이트슬림포션.bmp";
-const MOLOTOV: &str = "유저인터페이스/item/화염병.bmp";
-const ACID_BOTTLE: &str = "유저인터페이스/item/염산병.bmp";
-const ALCOHOL: &str = "유저인터페이스/item/알코올.bmp";
+const HAYAN_HERB: &str = "user_interface/item/white_herb.bmp";
+const WHITE_SLIM_POTION: &str = "user_interface/item/white_slim_potion.bmp";
+const MOLOTOV: &str = "user_interface/item/molotov_cocktail.bmp";
+const ACID_BOTTLE: &str = "user_interface/item/acid_bottle.bmp";
+const ALCOHOL: &str = "user_interface/item/alcohol.bmp";
 
 pub const TWILIGHT1: TwilightParams = TwilightParams {
     textures: &[HAYAN_HERB],

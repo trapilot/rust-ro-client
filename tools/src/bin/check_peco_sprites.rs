@@ -37,10 +37,10 @@ fn main() {
         println!("{}: spr={} act={}", label, has_spr, has_act);
     }
 
-    println!("\n=== All files containing 페코 or crusader mount patterns ===");
+    println!("\n=== All files containing peco or crusader mount patterns ===");
     for name in grf.file_names() {
         let lower = name.to_lowercase();
-        if name.contains("페코") || lower.contains("peco") || name.contains("크루세이더") {
+        if lower.contains("peco") || lower.contains("crusader") {
             if name.contains("sprite") {
                 println!("  {}", name);
             }

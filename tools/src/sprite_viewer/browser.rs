@@ -545,7 +545,7 @@ mod tests {
         let sprites = vec![
             "data/sprite/npc/kafra.spr".to_string(),
             "data/sprite/npc/merchant.spr".to_string(),
-            "data/sprite/몬스터/poring.spr".to_string(),
+            "data/sprite/monster/poring.spr".to_string(),
         ];
         let browser = SpriteBrowser::new_with_tabs(sprites, &AccessoryTable::empty());
         assert!(browser.has_tabs());
@@ -557,7 +557,7 @@ mod tests {
     fn tab_switch_changes_items() {
         let sprites = vec![
             "data/sprite/npc/kafra.spr".to_string(),
-            "data/sprite/몬스터/poring.spr".to_string(),
+            "data/sprite/monster/poring.spr".to_string(),
         ];
         let mut browser = SpriteBrowser::new_with_tabs(sprites, &AccessoryTable::empty());
         assert_eq!(browser.items.len(), 1); // 1 NPC
@@ -599,20 +599,20 @@ mod tests {
     fn other_tab_captures_uncategorized_sprites() {
         let sprites = vec![
             "data/sprite/npc/kafra.spr".to_string(),
-            "data/sprite/몬스터/poring.spr".to_string(),
-            "data/sprite/인간족/몸통/남/초보자_남.spr".to_string(),
-            "data/sprite/악세사리/남/남_1.spr".to_string(),
-            "data/sprite/방패/기사/기사_남_1.spr".to_string(),
+            "data/sprite/monster/poring.spr".to_string(),
+            "data/sprite/human/body/male/novice_male.spr".to_string(),
+            "data/sprite/accessory/male/male_1.spr".to_string(),
+            "data/sprite/shield/knight/knight_male_1.spr".to_string(),
             "data/sprite/cursors.spr".to_string(),
             "data/sprite/shadow.spr".to_string(),
-            "data/sprite/이팩트/effect.spr".to_string(),
+            "data/sprite/effect/effect.spr".to_string(),
         ];
         let mut browser = SpriteBrowser::new_with_tabs(sprites, &AccessoryTable::empty());
         browser.switch_tab(BrowserTab::Other);
         assert_eq!(browser.active_tab(), Some(BrowserTab::Other));
         assert_eq!(browser.items.len(), 3);
         assert_eq!(browser.items[0], "data/sprite/cursors.spr");
-        assert_eq!(browser.items[1], "data/sprite/shadow.spr");
-        assert_eq!(browser.items[2], "data/sprite/이팩트/effect.spr");
+        assert_eq!(browser.items[1], "data/sprite/effect/effect.spr");
+        assert_eq!(browser.items[2], "data/sprite/shadow.spr");
     }
 }

@@ -123,10 +123,10 @@ mod tests {
 
     #[test]
     fn concentration_shows_white_pillar_from_frame_zero_with_str_overlay() {
-        let mut e = PotionConEffect::new([1.0, 2.0, 3.0], "집중", CONCENTRATION);
+        let mut e = PotionConEffect::new([1.0, 2.0, 3.0], "concentrate", CONCENTRATION);
         step(&mut e, 1.0 / FRAMES_PER_SECOND);
         assert!(has_cylinder(&e), "column visible immediately");
-        assert_eq!(e.str_overlay(), Some("집중"));
+        assert_eq!(e.str_overlay(), Some("concentrate"));
     }
 
     #[test]
@@ -142,7 +142,7 @@ mod tests {
 
     #[test]
     fn dies_after_total_duration() {
-        let mut e = PotionConEffect::new([0.0; 3], "집중", CONCENTRATION);
+        let mut e = PotionConEffect::new([0.0; 3], "concentrate", CONCENTRATION);
         let total_s = CONCENTRATION.total_frames / FRAMES_PER_SECOND;
         assert!(matches!(step(&mut e, total_s + 0.1), EffectStatus::Dead));
     }

@@ -239,7 +239,7 @@ impl PortalWindEffect {
             WindSlot::new(3, &cfg),
         ];
         let pending_sfx = if cfg.play_windwalk_wav {
-            Some("effect\\윈드워크.wav")
+            Some("effect\\wind_walk.wav")
         } else {
             None
         };
@@ -525,7 +525,7 @@ mod tests {
     #[test]
     fn portal4_windwalk_sfx_drained_once() {
         let mut e = PortalWindEffect::new([0.0, 0.0, 0.0], PORTAL4);
-        assert_eq!(e.take_sfx_request(), Some("effect\\윈드워크.wav"));
+        assert_eq!(e.take_sfx_request(), Some("effect\\wind_walk.wav"));
         assert_eq!(e.take_sfx_request(), None, "SFX consumed on first take");
     }
 }

@@ -4,7 +4,7 @@ use crate::draw::{BlendKind, EffectDrawList, EffectPrimitiveDraw, EffectStatus};
 use crate::effect_trait::{CameraShake, Effect, EffectRenderCtx, EffectUpdateCtx};
 
 pub const RING_TEXTURE: &str = "ring_yellow.tga";
-pub const EXPLOSION_TEXTURE: &str = "대폭발.tga";
+pub const EXPLOSION_TEXTURE: &str = "big_explosion.tga";
 pub const TEXTURES: &[&str] = &[RING_TEXTURE, EXPLOSION_TEXTURE];
 
 const FRAMES_PER_SECOND: f32 = 60.0;

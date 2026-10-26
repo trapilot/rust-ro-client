@@ -486,8 +486,8 @@ the embedded `NotoSans-Regular.ttf`.
 
 ### texture paths
 
-Ragnarok UI textures live under `data/texture/유저인터페이스/` in the game resources, with
-UTF-8 Korean names decoded from EUC-KR. Use forward slashes.
+Ragnarok UI textures live under `data/texture/user_interface/` in the game resources, with
+lowercase English names. Use forward slashes.
 
 ## Testing
 

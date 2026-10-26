@@ -329,7 +329,7 @@ fn is_trail_byte(byte: u8) -> bool {
 mod tests {
     use super::*;
 
-    /// `갂` is CP949 `81 41`: its trail byte is an ASCII `A`, so anything that
+    /// `cp949_sample` is CP949 `81 41`: its trail byte is an ASCII `A`, so anything that
     /// decoded or cased these bytes would corrupt it.
     const KOREAN: &[u8] = b"\x81\x41";
 

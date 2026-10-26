@@ -83,7 +83,7 @@ mod tests {
             "//pvp\n",
             "pvp_n_2-2.rsw#job_hunter.rsw#\n",
             "pvp_n_2-2.gat#job_hunter.gat#\n",
-            "유저인터페이스\\map\\pvp_n_2-2.bmp#유저인터페이스\\map\\job_hunter.bmp#\n",
+            "user_interface\\map\\pvp_n_2-2.bmp#user_interface\\map\\job_hunter.bmp#\n",
         ));
         let table = ResNameTable::parse(&euc_kr);
 
@@ -97,9 +97,9 @@ mod tests {
         );
         assert_eq!(
             table
-                .resolve("data/texture/유저인터페이스/map/pvp_n_2-2.bmp")
+                .resolve("data/texture/user_interface/map/pvp_n_2-2.bmp")
                 .as_deref(),
-            Some("data/texture/유저인터페이스/map/job_hunter.bmp")
+            Some("data/texture/user_interface/map/job_hunter.bmp")
         );
         assert_eq!(table.resolve("data/prontera.rsw"), None);
     }

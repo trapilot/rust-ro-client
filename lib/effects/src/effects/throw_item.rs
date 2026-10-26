@@ -18,13 +18,12 @@
 //! frame 5.
 //!
 //! Texture note: each effect throws the matching item icon. The data archive
-//! stores item icons under their Korean names in
-//! `data/texture/유저인터페이스/item/`.
+//! stores item icons in `data/texture/user_interface/item/`.
 //!
 //! Of the ten, six icons are present
-//! (298 염산병, 308 돌, 600 베넘나이프, 613 수리검, 614 쿠나이_독, 616
-//! `effect/coin_a.bmp`); 615 names the faithful 풍마_뇌우 (absent here) with
-//! the present 풍마_대차륜 sibling as a `|`-separated alias fallback; and
+//! (298 acid_bottle, 308 stone, 600 venom_knife, 613 shuriken, 614 kunai_poison, 616
+//! `effect/coin_a.bmp`); 615 names the faithful fuuma_thunder_rain (absent here) with
+//! the present fuuma_great_wheel sibling as a `|`-separated alias fallback; and
 //! 539 has no classic icon (renders nothing).
 //!
 //! The pitcher throws (Potion / Slim Potion / Berserk Pitcher) reuse a single
@@ -44,26 +43,26 @@ use crate::effect_trait::{Effect, EffectRenderCtx, EffectUpdateCtx};
 use crate::projectile::ProjectileCursor;
 use models::enums::effect_id::EffectId;
 
-/// Item icons to preload. Korean names live under the item dir; `coin_a` is
+/// Item icons to preload. Item icons live under the item dir; `coin_a` is
 /// an effect-dir texture referenced by its bare name.
 pub const TEXTURES: &[&str] = &[
-    "유저인터페이스/item/염산병.bmp",
-    "유저인터페이스/item/돌.bmp",
-    "유저인터페이스/item/베넘나이프.bmp",
-    "유저인터페이스/item/수리검.bmp",
-    "유저인터페이스/item/쿠나이_독.bmp",
-    "유저인터페이스/item/풍마_뇌우.bmp",
-    "유저인터페이스/item/풍마_대차륜.bmp",
+    "user_interface/item/acid_bottle.bmp",
+    "user_interface/item/stone.bmp",
+    "user_interface/item/venom_knife.bmp",
+    "user_interface/item/shuriken.bmp",
+    "user_interface/item/kunai_poison.bmp",
+    "user_interface/item/fuuma_thunder_rain.bmp",
+    "user_interface/item/fuuma_great_wheel.bmp",
     "coin_a.bmp",
-    "유저인터페이스/item/빨간포션.bmp",
-    "유저인터페이스/item/주홍포션.bmp",
-    "유저인터페이스/item/노란포션.bmp",
-    "유저인터페이스/item/하얀포션.bmp",
-    "유저인터페이스/item/파란포션.bmp",
-    "유저인터페이스/item/레드슬림포션.bmp",
-    "유저인터페이스/item/옐로우슬림포션.bmp",
-    "유저인터페이스/item/화이트슬림포션.bmp",
-    "유저인터페이스/item/버서크포션.bmp",
+    "user_interface/item/red_potion.bmp",
+    "user_interface/item/orange_potion.bmp",
+    "user_interface/item/yellow_potion.bmp",
+    "user_interface/item/white_potion.bmp",
+    "user_interface/item/blue_potion.bmp",
+    "user_interface/item/red_slim_potion.bmp",
+    "user_interface/item/yellow_slim_potion.bmp",
+    "user_interface/item/white_slim_potion.bmp",
+    "user_interface/item/berserk_potion.bmp",
 ];
 
 const UNIT_UV: [[f32; 2]; 4] = [[0.0, 0.0], [1.0, 0.0], [0.0, 1.0], [1.0, 1.0]];
@@ -164,30 +163,31 @@ const fn coin_throw(texture: &'static str) -> ThrowItemParams {
     }
 }
 
-// 298 Acid Terror — throws an acid bottle (염산병).
-pub const THROW_BOTTLES: ThrowItemParams = default_throw("유저인터페이스/item/염산병.bmp", 0);
+// 298 Acid Terror — throws an acid bottle (acid_bottle).
+pub const THROW_BOTTLES: ThrowItemParams = default_throw("user_interface/item/acid_bottle.bmp", 0);
 // Potion Pitcher: the icon is chosen per level by `potion_throw_params`; this
 // is the flight-timing representative.
-pub const THROW_ITEM2: ThrowItemParams = default_throw("유저인터페이스/item/빨간포션.bmp", 0);
-// 308 Throw Stone (돌).
-pub const THROW_STONE: ThrowItemParams = stone_throw("유저인터페이스/item/돌.bmp");
-// 539 Acid Demonstration — throws a molotov (화염병), launched at frame 5.
-pub const THROW_MOLOTOV: ThrowItemParams = default_throw("유저인터페이스/item/화염병.bmp", 5);
-// Berserk Pitcher — throws a Berserk Potion (버서크포션).
-pub const THROW_ITEM4: ThrowItemParams = default_throw("유저인터페이스/item/버서크포션.bmp", 0);
-// 600 Throw Venom Knife (베넘나이프).
-pub const THROW_ITEM6: ThrowItemParams = coin_throw("유저인터페이스/item/베넘나이프.bmp");
-// 613 Throw Shuriken (수리검).
-pub const THROW_ITEM7: ThrowItemParams = coin_throw("유저인터페이스/item/수리검.bmp");
-// 614 Throw Kunai (쿠나이_독).
-pub const THROW_ITEM8: ThrowItemParams = coin_throw("유저인터페이스/item/쿠나이_독.bmp");
+pub const THROW_ITEM2: ThrowItemParams = default_throw("user_interface/item/red_potion.bmp", 0);
+// 308 Throw Stone (stone).
+pub const THROW_STONE: ThrowItemParams = stone_throw("user_interface/item/stone.bmp");
+// 539 Acid Demonstration — throws a molotov (molotov_cocktail), launched at frame 5.
+pub const THROW_MOLOTOV: ThrowItemParams =
+    default_throw("user_interface/item/molotov_cocktail.bmp", 5);
+// Berserk Pitcher — throws a Berserk Potion (berserk_potion).
+pub const THROW_ITEM4: ThrowItemParams = default_throw("user_interface/item/berserk_potion.bmp", 0);
+// 600 Throw Venom Knife (venom_knife).
+pub const THROW_ITEM6: ThrowItemParams = coin_throw("user_interface/item/venom_knife.bmp");
+// 613 Throw Shuriken (shuriken).
+pub const THROW_ITEM7: ThrowItemParams = coin_throw("user_interface/item/shuriken.bmp");
+// 614 Throw Kunai (kunai_poison).
+pub const THROW_ITEM8: ThrowItemParams = coin_throw("user_interface/item/kunai_poison.bmp");
 // 615 Throw Fuuma Shuriken. The faithful icon is the thunderstorm variant
-// (풍마_뇌우), absent from this GRF — fall back to the Grand Wheel huuma
-// shuriken (풍마_대차륜), the closest present sibling, via the `|` alias list.
+// (fuuma_thunder_rain), absent from this GRF — fall back to the Grand Wheel huuma
+// shuriken (fuuma_great_wheel), the closest present sibling, via the `|` alias list.
 pub const THROW_ITEM9: ThrowItemParams = coin_throw(concat!(
-    "유저인터페이스/item/풍마_뇌우.bmp",
+    "user_interface/item/fuuma_thunder_rain.bmp",
     "|",
-    "유저인터페이스/item/풍마_대차륜.bmp",
+    "user_interface/item/fuuma_great_wheel.bmp",
 ));
 // 616 Throw Money (effect/coin_a.bmp).
 pub const THROW_COIN: ThrowItemParams = coin_throw("coin_a.bmp");
@@ -198,15 +198,15 @@ pub const THROW_COIN: ThrowItemParams = coin_throw("coin_a.bmp");
 /// Berserk Potion. All share the default bottle arc.
 pub fn potion_throw_params(potion: u8) -> ThrowItemParams {
     let texture = match potion {
-        1 => "유저인터페이스/item/빨간포션.bmp",
-        2 => "유저인터페이스/item/주홍포션.bmp",
-        3 => "유저인터페이스/item/노란포션.bmp",
-        4 => "유저인터페이스/item/하얀포션.bmp",
-        5 => "유저인터페이스/item/파란포션.bmp",
-        6 => "유저인터페이스/item/레드슬림포션.bmp",
-        7 => "유저인터페이스/item/옐로우슬림포션.bmp",
-        8 => "유저인터페이스/item/화이트슬림포션.bmp",
-        _ => "유저인터페이스/item/버서크포션.bmp",
+        1 => "user_interface/item/red_potion.bmp",
+        2 => "user_interface/item/orange_potion.bmp",
+        3 => "user_interface/item/yellow_potion.bmp",
+        4 => "user_interface/item/white_potion.bmp",
+        5 => "user_interface/item/blue_potion.bmp",
+        6 => "user_interface/item/red_slim_potion.bmp",
+        7 => "user_interface/item/yellow_slim_potion.bmp",
+        8 => "user_interface/item/white_slim_potion.bmp",
+        _ => "user_interface/item/berserk_potion.bmp",
     };
     default_throw(texture, 0)
 }
@@ -423,7 +423,7 @@ mod tests {
     #[test]
     fn variants_use_their_own_texture() {
         for (params, tex) in [
-            (THROW_STONE, "유저인터페이스/item/돌.bmp"),
+            (THROW_STONE, "user_interface/item/stone.bmp"),
             (THROW_COIN, "coin_a.bmp"),
         ] {
             let mut e = ThrowItemEffect::new([0.0, 0.0, 0.0], [0.0, 0.0, 20.0], &[params]);
@@ -435,11 +435,11 @@ mod tests {
     #[test]
     fn pitcher_throws_the_potion_icon_for_its_index() {
         for (potion, tex) in [
-            (1u8, "유저인터페이스/item/빨간포션.bmp"),
-            (5, "유저인터페이스/item/파란포션.bmp"),
-            (6, "유저인터페이스/item/레드슬림포션.bmp"),
-            (8, "유저인터페이스/item/화이트슬림포션.bmp"),
-            (9, "유저인터페이스/item/버서크포션.bmp"),
+            (1u8, "user_interface/item/red_potion.bmp"),
+            (5, "user_interface/item/blue_potion.bmp"),
+            (6, "user_interface/item/red_slim_potion.bmp"),
+            (8, "user_interface/item/white_slim_potion.bmp"),
+            (9, "user_interface/item/berserk_potion.bmp"),
         ] {
             let params = potion_throw_params(potion);
             let mut e = ThrowItemEffect::new([0.0, 0.0, 0.0], [0.0, 0.0, 20.0], &[params]);

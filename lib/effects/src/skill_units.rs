@@ -155,7 +155,7 @@ pub fn skill_unit_entry_sound(unit_id: u8) -> Option<SkillUnitEntrySound> {
             one_in: 1,
         },
         UNT_KAEN => SkillUnitEntrySound {
-            wave: "effect\\화염진.wav",
+            wave: "effect\\flame_array.wav",
             one_in: 8,
         },
         _ => return None,
@@ -167,16 +167,16 @@ pub fn skill_unit_entry_sound(unit_id: u8) -> Option<SkillUnitEntrySound> {
 /// blast, …) fires separately via [`trap_trigger_effect`].
 pub fn trap_model_name(unit_id: u8) -> Option<&'static str> {
     Some(match unit_id {
-        UNT_ANKLESNARE => "외부소품\\트랩01.rsm",
-        UNT_SKIDTRAP => "외부소품\\트랩02.rsm",
-        UNT_LANDMINE => "외부소품\\트랩03.rsm",
-        UNT_FREEZINGTRAP => "외부소품\\트랩03_2.rsm",
-        UNT_BLASTMINE => "외부소품\\트랩03_3.rsm",
-        UNT_SANDMAN => "외부소품\\트랩03_4.rsm",
-        UNT_FLASHER => "외부소품\\트랩03_5.rsm",
-        UNT_SHOCKWAVE => "외부소품\\트랩03_6.rsm",
-        UNT_CLAYMORETRAP => "외부소품\\트랩04.rsm",
-        UNT_TALKIEBOX => "외부소품\\트랩05.rsm",
+        UNT_ANKLESNARE => "outdoor_props\\trap01.rsm",
+        UNT_SKIDTRAP => "outdoor_props\\trap02.rsm",
+        UNT_LANDMINE => "outdoor_props\\trap03.rsm",
+        UNT_FREEZINGTRAP => "outdoor_props\\trap03_2.rsm",
+        UNT_BLASTMINE => "outdoor_props\\trap03_3.rsm",
+        UNT_SANDMAN => "outdoor_props\\trap03_4.rsm",
+        UNT_FLASHER => "outdoor_props\\trap03_5.rsm",
+        UNT_SHOCKWAVE => "outdoor_props\\trap03_6.rsm",
+        UNT_CLAYMORETRAP => "outdoor_props\\trap04.rsm",
+        UNT_TALKIEBOX => "outdoor_props\\trap05.rsm",
         _ => return None,
     })
 }
@@ -315,11 +315,11 @@ mod tests {
         assert_eq!(skill_unit_effect(UNT_ANKLESNARE, true), None);
         assert_eq!(
             trap_model_name(UNT_ANKLESNARE),
-            Some("외부소품\\트랩01.rsm")
+            Some("outdoor_props\\trap01.rsm")
         );
         assert_eq!(
             trap_model_name(UNT_BLASTMINE),
-            Some("외부소품\\트랩03_3.rsm")
+            Some("outdoor_props\\trap03_3.rsm")
         );
         assert_eq!(trap_model_name(UNT_SAFETYWALL), None);
         // Trigger: the burst fires for explosive traps, not for holders.

@@ -18,7 +18,7 @@ pub struct BottomLandProtectorParams {
 }
 
 pub const LA: BottomLandProtectorParams = BottomLandProtectorParams {
-    texture: "aaa copy.bmp",
+    texture: "aaa_copy.bmp",
     distance: 7.0,
     rot_start_deg: 0.0,
     alpha_b: 100.0 / 255.0,
@@ -54,7 +54,7 @@ pub const SPIDER: BottomLandProtectorParams = BottomLandProtectorParams {
 };
 
 pub const TEXTURES: &[&str] = &[
-    "aaa copy.bmp",
+    "aaa_copy.bmp",
     "hanmoon1.tga",
     "hanmoon2.tga",
     "spiderweb.tga",
@@ -181,7 +181,7 @@ mod tests {
             panic!("expected WorldQuad");
         };
         assert_eq!(*blend, BlendKind::Additive);
-        assert_eq!(*texture, "aaa copy.bmp");
+        assert_eq!(*texture, "aaa_copy.bmp");
         let y0 = corners[0][1];
         for c in corners {
             assert!((c[1] - y0).abs() < 1e-4, "corners not horizontal");

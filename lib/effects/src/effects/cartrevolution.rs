@@ -3,7 +3,7 @@ use crate::effect_trait::{Effect, EffectRenderCtx, EffectUpdateCtx};
 
 pub const STR_FILE: &str = "CartRevolution";
 pub const RING_TEXTURE: &str = "ring_yellow.tga";
-pub const SPHERE_TEXTURE: &str = "대폭발.tga";
+pub const SPHERE_TEXTURE: &str = "big_explosion.tga";
 pub const TEXTURES: &[&str] = &[RING_TEXTURE, SPHERE_TEXTURE];
 
 const FRAMES_PER_SECOND: f32 = 60.0;

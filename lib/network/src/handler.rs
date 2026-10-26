@@ -5052,9 +5052,9 @@ mod tests {
         let mut pkt = PacketZcTalkboxChatcontents::new(packetver);
         pkt.set_aid(4000);
         let mut contents = [0xffu8; 80];
-        // "프론테라" followed by a NUL and trailing junk.
+        // "prontera" (ASCII is valid CP949) followed by a NUL and trailing junk.
         let text: &[u8] = &[
-            0xc7, 0xc1, 0xb7, 0xd0, 0xc5, 0xd7, 0xb6, 0xf3, 0x00, b'j', b'u', b'n', b'k',
+            b'p', b'r', b'o', b'n', b't', b'e', b'r', b'a', 0x00, b'j', b'u', b'n', b'k',
         ];
         contents[..text.len()].copy_from_slice(text);
         pkt.set_contents_raw(contents);
@@ -5062,7 +5062,7 @@ mod tests {
         match &dispatch_packet(&pkt, packetver)[0] {
             GameEvent::TalkboxContents { aid, message } => {
                 assert_eq!(*aid, 4000);
-                assert_eq!(message, "프론테라");
+                assert_eq!(message, "prontera");
             }
             other => panic!("expected TalkboxContents, got {other:?}"),
         }

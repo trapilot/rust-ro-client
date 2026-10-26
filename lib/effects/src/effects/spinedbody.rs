@@ -120,7 +120,7 @@ impl Effect for SpinedBodyEffect {
     fn take_sfx_request(&mut self) -> Option<&'static str> {
         if self.sfx_pending {
             self.sfx_pending = false;
-            Some("effect\\t_돌려차기.wav")
+            Some("effect\\t_roundhouse_kick.wav")
         } else {
             None
         }

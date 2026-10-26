@@ -1,0 +1,2365 @@
+texture\user_interface\basic_interface\rodexsystem\items_2.bmp	texture\user_interface\basic_interface\rodexsystem\items-2.bmp
+texture\user_interface\basic_interface\rodexsystem\mail_btncheck_1.bmp	texture\user_interface\basic_interface\rodexsystem\mail_btncheck-1.bmp
+texture\user_interface\basic_interface\rodexsystem\mail_btncheck_2.bmp	texture\user_interface\basic_interface\rodexsystem\mail_btncheck-2.bmp
+texture\user_interface\basic_interface\rodexsystem\mail_btncheck_3.bmp	texture\user_interface\basic_interface\rodexsystem\mail_btncheck-3.bmp
+texture\user_interface\basic_interface\rodexsystem\mail_btncompose_2.bmp	texture\user_interface\basic_interface\rodexsystem\mail_btncompose-2.bmp
+texture\user_interface\basic_interface\rodexsystem\mail_btndelete_1.bmp	texture\user_interface\basic_interface\rodexsystem\mail_btndelete-1.bmp
+texture\user_interface\basic_interface\rodexsystem\mail_btndelete_2.bmp	texture\user_interface\basic_interface\rodexsystem\mail_btndelete-2.bmp
+texture\user_interface\basic_interface\rodexsystem\mail_btndelete_3.bmp	texture\user_interface\basic_interface\rodexsystem\mail_btndelete-3.bmp
+texture\user_interface\basic_interface\rodexsystem\mail_btnreceive_1.bmp	texture\user_interface\basic_interface\rodexsystem\mail_btnreceive-1.bmp
+texture\user_interface\basic_interface\rodexsystem\mail_btnreceive_2.bmp	texture\user_interface\basic_interface\rodexsystem\mail_btnreceive-2.bmp
+texture\user_interface\basic_interface\rodexsystem\mail_btnreceive_3.bmp	texture\user_interface\basic_interface\rodexsystem\mail_btnreceive-3.bmp
+texture\user_interface\basic_interface\rodexsystem\mail_btnrefresh_2.bmp	texture\user_interface\basic_interface\rodexsystem\mail_btnrefresh-2.bmp
+texture\user_interface\basic_interface\rodexsystem\mail_btnsend_2.bmp	texture\user_interface\basic_interface\rodexsystem\mail_btnsend-2.bmp
+texture\user_interface\basic_interface\rodexsystem\mail_btnsend_3.bmp	texture\user_interface\basic_interface\rodexsystem\mail_btnsend-3.bmp
+texture\user_interface\basic_interface\rodexsystem\none_2.bmp	texture\user_interface\basic_interface\rodexsystem\none-2.bmp
+texture\user_interface\basic_interface\rodexsystem\zeny_items_2.bmp	texture\user_interface\basic_interface\rodexsystem\zeny&items-2.bmp
+texture\user_interface\basic_interface\rodexsystem\zeny_items.bmp	texture\user_interface\basic_interface\rodexsystem\zeny&items.bmp
+texture\user_interface\basic_interface\rodexsystem\zeny_2.bmp	texture\user_interface\basic_interface\rodexsystem\zeny-2.bmp
+texture\user_interface\basic_interface\0_a.bmp	texture\user_interface\basic_interface\0-a.bmp
+texture\user_interface\basic_interface\0_b.bmp	texture\user_interface\basic_interface\0-b.bmp
+texture\user_interface\basic_interface\0_c.bmp	texture\user_interface\basic_interface\0-c.bmp
+texture\user_interface\basic_interface\1_a.bmp	texture\user_interface\basic_interface\1-a.bmp
+texture\user_interface\basic_interface\1_b.bmp	texture\user_interface\basic_interface\1-b.bmp
+texture\user_interface\basic_interface\1_c.bmp	texture\user_interface\basic_interface\1-c.bmp
+texture\user_interface\basic_interface\2_a.bmp	texture\user_interface\basic_interface\2-a.bmp
+texture\user_interface\basic_interface\2_b.bmp	texture\user_interface\basic_interface\2-b.bmp
+texture\user_interface\basic_interface\2_c.bmp	texture\user_interface\basic_interface\2-c.bmp
+texture\user_interface\basic_interface\3_a.bmp	texture\user_interface\basic_interface\3-a.bmp
+texture\user_interface\basic_interface\3_b.bmp	texture\user_interface\basic_interface\3-b.bmp
+texture\user_interface\basic_interface\3_c.bmp	texture\user_interface\basic_interface\3-c.bmp
+texture\user_interface\basic_interface\4_a.bmp	texture\user_interface\basic_interface\4-a.bmp
+texture\user_interface\basic_interface\4_b.bmp	texture\user_interface\basic_interface\4-b.bmp
+texture\user_interface\basic_interface\4_c.bmp	texture\user_interface\basic_interface\4-c.bmp
+texture\user_interface\basic_interface\5_a.bmp	texture\user_interface\basic_interface\5-a.bmp
+texture\user_interface\basic_interface\5_b.bmp	texture\user_interface\basic_interface\5-b.bmp
+texture\user_interface\basic_interface\5_c.bmp	texture\user_interface\basic_interface\5-c.bmp
+texture\user_interface\basic_interface\6_a.bmp	texture\user_interface\basic_interface\6-a.bmp
+texture\user_interface\basic_interface\6_b.bmp	texture\user_interface\basic_interface\6-b.bmp
+texture\user_interface\basic_interface\6_c.bmp	texture\user_interface\basic_interface\6-c.bmp
+texture\user_interface\basic_interface\7_a.bmp	texture\user_interface\basic_interface\7-a.bmp
+texture\user_interface\basic_interface\7_b.bmp	texture\user_interface\basic_interface\7-b.bmp
+texture\user_interface\basic_interface\7_c.bmp	texture\user_interface\basic_interface\7-c.bmp
+texture\user_interface\basic_interface\8_a.bmp	texture\user_interface\basic_interface\8-a.bmp
+texture\user_interface\basic_interface\8_b.bmp	texture\user_interface\basic_interface\8-b.bmp
+texture\user_interface\basic_interface\8_c.bmp	texture\user_interface\basic_interface\8-c.bmp
+texture\user_interface\basic_interface\9_a.bmp	texture\user_interface\basic_interface\9-a.bmp
+texture\user_interface\basic_interface\9_b.bmp	texture\user_interface\basic_interface\9-b.bmp
+texture\user_interface\basic_interface\9_c.bmp	texture\user_interface\basic_interface\9-c.bmp
+texture\user_interface\basic_interface\card_1.bmp	texture\user_interface\basic_interface\card-1.bmp
+texture\user_interface\basic_interface\card_2.bmp	texture\user_interface\basic_interface\card-2.bmp
+texture\user_interface\basic_interface\cash_1.bmp	texture\user_interface\basic_interface\cash-1.bmp
+texture\user_interface\basic_interface\cash_2.bmp	texture\user_interface\basic_interface\cash-2.bmp
+texture\user_interface\basic_interface\consumable_1.bmp	texture\user_interface\basic_interface\consumable-1.bmp
+texture\user_interface\basic_interface\consumable_2.bmp	texture\user_interface\basic_interface\consumable-2.bmp
+texture\user_interface\basic_interface\costume_1.bmp	texture\user_interface\basic_interface\costume-1.bmp
+texture\user_interface\basic_interface\costume_2.bmp	texture\user_interface\basic_interface\costume-2.bmp
+texture\user_interface\basic_interface\defensive_gear_1.bmp	texture\user_interface\basic_interface\defensive_gear-1.bmp
+texture\user_interface\basic_interface\defensive_gear_2.bmp	texture\user_interface\basic_interface\defensive_gear-2.bmp
+texture\user_interface\basic_interface\guitar_1.bmp	texture\user_interface\basic_interface\guitar-1.bmp
+texture\user_interface\basic_interface\guitar_2.bmp	texture\user_interface\basic_interface\guitar-2.bmp
+texture\user_interface\basic_interface\projectile_1.bmp	texture\user_interface\basic_interface\projectile-1.bmp
+texture\user_interface\basic_interface\projectile_2.bmp	texture\user_interface\basic_interface\projectile-2.bmp
+texture\user_interface\basic_interface\reset_a.bmp	texture\user_interface\basic_interface\reset-a.bmp
+texture\user_interface\basic_interface\reset_b.bmp	texture\user_interface\basic_interface\reset-b.bmp
+texture\user_interface\basic_interface\reset_c.bmp	texture\user_interface\basic_interface\reset-c.bmp
+texture\user_interface\basic_interface\weapon_1.bmp	texture\user_interface\basic_interface\weapon-1.bmp
+texture\user_interface\basic_interface\weapon_2.bmp	texture\user_interface\basic_interface\weapon-2.bmp
+texture\user_interface\collection\box_delivery.bmp	texture\user_interface\collection\box-delivery.bmp
+texture\user_interface\collection\box_iron.bmp	texture\user_interface\collection\box-iron.bmp
+texture\user_interface\collection\coupon_normal.bmp	texture\user_interface\collection\coupon-normal.bmp
+texture\user_interface\illust\1_1.bmp	texture\user_interface\illust\1-1.bmp
+texture\user_interface\illust\2_1.bmp	texture\user_interface\illust\2-1.bmp
+texture\user_interface\illust\3_1.bmp	texture\user_interface\illust\3-1.bmp
+texture\user_interface\illust\4_1.bmp	texture\user_interface\illust\4-1.bmp
+texture\user_interface\illust\5_1.bmp	texture\user_interface\illust\5-1.bmp
+texture\user_interface\illust\npc_tiara.bmp	texture\user_interface\illust\npc-tiara.bmp
+texture\user_interface\illust\paycana_b.bmp	texture\user_interface\illust\paycana_b .bmp
+texture\user_interface\item\box_delivery.bmp	texture\user_interface\item\box-delivery.bmp
+texture\user_interface\item\box_iron.bmp	texture\user_interface\item\box-iron.bmp
+texture\user_interface\item\coupon_normal.bmp	texture\user_interface\item\coupon-normal.bmp
+texture\user_interface\login_interface\arw_agi0.bmp	texture\user_interface\login_interface\arw-agi0.bmp
+texture\user_interface\login_interface\arw_agi1.bmp	texture\user_interface\login_interface\arw-agi1.bmp
+texture\user_interface\login_interface\arw_dex0.bmp	texture\user_interface\login_interface\arw-dex0.bmp
+texture\user_interface\login_interface\arw_dex1.bmp	texture\user_interface\login_interface\arw-dex1.bmp
+texture\user_interface\login_interface\arw_int0.bmp	texture\user_interface\login_interface\arw-int0.bmp
+texture\user_interface\login_interface\arw_int1.bmp	texture\user_interface\login_interface\arw-int1.bmp
+texture\user_interface\login_interface\arw_luk0.bmp	texture\user_interface\login_interface\arw-luk0.bmp
+texture\user_interface\login_interface\arw_luk1.bmp	texture\user_interface\login_interface\arw-luk1.bmp
+texture\user_interface\login_interface\arw_str0.bmp	texture\user_interface\login_interface\arw-str0.bmp
+texture\user_interface\login_interface\arw_str1.bmp	texture\user_interface\login_interface\arw-str1.bmp
+texture\user_interface\login_interface\arw_vit0.bmp	texture\user_interface\login_interface\arw-vit0.bmp
+texture\user_interface\login_interface\arw_vit1.bmp	texture\user_interface\login_interface\arw-vit1.bmp
+texture\user_interface\login_interface\name_edit.bmp	texture\user_interface\login_interface\name-edit.bmp
+texture\user_interface\map\1_cata.bmp	texture\user_interface\map\1@cata.bmp
+texture\user_interface\map\1_mist.bmp	texture\user_interface\map\1@mist.bmp
+texture\user_interface\map\1_nyd.bmp	texture\user_interface\map\1@nyd.bmp
+texture\user_interface\map\1_orcs.bmp	texture\user_interface\map\1@orcs.bmp
+texture\user_interface\map\1_tower.bmp	texture\user_interface\map\1@tower.bmp
+texture\user_interface\map\2_cata.bmp	texture\user_interface\map\2@cata.bmp
+texture\user_interface\map\2_nyd.bmp	texture\user_interface\map\2@nyd.bmp
+texture\user_interface\map\2_orcs.bmp	texture\user_interface\map\2@orcs.bmp
+texture\user_interface\map\2_tower.bmp	texture\user_interface\map\2@tower.bmp
+texture\user_interface\map\3_tower.bmp	texture\user_interface\map\3@tower.bmp
+texture\user_interface\map\4_tower.bmp	texture\user_interface\map\4@tower.bmp
+texture\user_interface\map\5_tower.bmp	texture\user_interface\map\5@tower.bmp
+texture\user_interface\map\6_tower.bmp	texture\user_interface\map\6@tower.bmp
+texture\user_interface\map\force_1_1.bmp	texture\user_interface\map\force_1-1.bmp
+texture\user_interface\map\force_1_2.bmp	texture\user_interface\map\force_1-2.bmp
+texture\user_interface\map\new_1_1.bmp	texture\user_interface\map\new_1-1.bmp
+texture\user_interface\map\new_1_3.bmp	texture\user_interface\map\new_1-3.bmp
+texture\user_interface\map\pvp_n_1_2.bmp	texture\user_interface\map\pvp_n_1-2.bmp
+texture\user_interface\map\pvp_n_1_3.bmp	texture\user_interface\map\pvp_n_1-3.bmp
+texture\user_interface\map\pvp_n_1_4.bmp	texture\user_interface\map\pvp_n_1-4.bmp
+texture\user_interface\map\pvp_n_1_5.bmp	texture\user_interface\map\pvp_n_1-5.bmp
+model\china\china_abandoned_house01.rsm	model\china\china-abandoned_house01.rsm
+model\china\china_abandoned_house02.rsm	model\china\china-abandoned_house02.rsm
+model\china\china_abandoned_house_bridge01.rsm	model\china\china-abandoned_house_bridge01.rsm
+model\china\china_abandoned_house_bridge02.rsm	model\china\china-abandoned_house_bridge02.rsm
+model\china\china_abandoned_house_bridge_pillar.rsm	model\china\china-abandoned_house_bridge_pillar.rsm
+model\china\china_abandoned_house_pillar01.rsm	model\china\china-abandoned_house_pillar01.rsm
+model\china\china_abandoned_house_pillar02.rsm	model\china\china-abandoned_house_pillar02.rsm
+model\china\china_abandoned_house_railing01.rsm	model\china\china-abandoned_house_railing01.rsm
+model\china\china_abandoned_house_railing03.rsm	model\china\china-abandoned_house_railing03.rsm
+model\china\china_abandoned_house_railing_pillar01.rsm	model\china\china-abandoned_house_railing_pillar01.rsm
+model\china\china_abandoned_house_railing_pillar02.rsm	model\china\china-abandoned_house_railing_pillar02.rsm
+model\china\china_abandoned_house_stairs.rsm	model\china\china-abandoned_house_stairs.rsm
+model\china\china_abandoned_house_stairs02.rsm	model\china\china-abandoned_house_stairs02.rsm
+model\china\china_abandoned_house_wall01.rsm	model\china\china-abandoned_house_wall01.rsm
+model\china\china_abandoned_house_wall02.rsm	model\china\china-abandoned_house_wall02.rsm
+model\china\china_abandoned_house_wall03.rsm	model\china\china-abandoned_house_wall03.rsm
+model\china\china_abandoned_house_wall04.rsm	model\china\china-abandoned_house_wall04.rsm
+model\china\china_abandoned_house_wall05.rsm	model\china\china-abandoned_house_wall05.rsm
+model\china\china_abandoned_house_wall06.rsm	model\china\china-abandoned_house_wall06.rsm
+model\china\china_abandoned_house_wall07.rsm	model\china\china-abandoned_house_wall07.rsm
+model\china\china_armoire01.rsm	model\china\china-armoire01.rsm
+model\china\china_armoire02.rsm	model\china\china-armoire02.rsm
+model\china\china_book01.rsm	model\china\china-book01.rsm
+model\china\china_book02.rsm	model\china\china-book02.rsm
+model\china\china_book03.rsm	model\china\china-book03.rsm
+model\china\china_book04.rsm	model\china\china-book04.rsm
+model\china\china_book05.rsm	model\china\china-book05.rsm
+model\china\china_bookcase.rsm	model\china\china-bookcase.rsm
+model\china\china_brazier.rsm	model\china\china-brazier.rsm
+model\china\china_brazier02.rsm	model\china\china-brazier02.rsm
+model\china\china_bridge.rsm	model\china\china-bridge.rsm
+model\china\china_bridge02.rsm	model\china\china-bridge02.rsm
+model\china\china_castle_inner_wall01.rsm	model\china\china-castle_inner_wall01.rsm
+model\china\china_castle_inner_wall02.rsm	model\china\china-castle_inner_wall02.rsm
+model\china\china_castle_inner_wall03.rsm	model\china\china-castle_inner_wall03.rsm
+model\china\china_castle_inner_wall_entrance.rsm	model\china\china-castle_inner_wall_entrance.rsm
+model\china\china_chair01.rsm	model\china\china-chair01.rsm
+model\china\china_chair02.rsm	model\china\china-chair02.rsm
+model\china\china_chair03.rsm	model\china\china-chair03.rsm
+model\china\china_clay_soldier01.rsm	model\china\china-clay_soldier01.rsm
+model\china\china_clay_soldier02.rsm	model\china\china-clay_soldier02.rsm
+model\china\china_clay_soldier_fragment01.rsm	model\china\china-clay_soldier_fragment01.rsm
+model\china\china_clay_soldier_fragment02.rsm	model\china\china-clay_soldier_fragment02.rsm
+model\china\china_clay_soldier_fragment03.rsm	model\china\china-clay_soldier_fragment03.rsm
+model\china\china_clay_soldier_fragment04.rsm	model\china\china-clay_soldier_fragment04.rsm
+model\china\china_clay_soldier_head.rsm	model\china\china-clay_soldier_head.rsm
+model\china\china_conference_hall.rsm	model\china\china-conference_hall.rsm
+model\china\china_conference_hall02.rsm	model\china\china-conference_hall02.rsm
+model\china\china_display_cabinet01.rsm	model\china\china-display_cabinet01.rsm
+model\china\china_display_cabinet02.rsm	model\china\china-display_cabinet02.rsm
+model\china\china_door.rsm	model\china\china-door.rsm
+model\china\china_flag.rsm	model\china\china-flag.rsm
+model\china\china_flower_pot.rsm	model\china\china-flower_pot.rsm
+model\china\china_flower_pot02.rsm	model\china\china-flower_pot02.rsm
+model\china\china_garden_hill01.rsm	model\china\china-garden_hill01.rsm
+model\china\china_garden_hill_tree.rsm	model\china\china-garden_hill_tree.rsm
+model\china\china_lamp.rsm	model\china\china-lamp.rsm
+model\china\china_laundry.rsm	model\china\china-laundry.rsm
+model\china\china_outer_wall01.rsm	model\china\china-outer_wall01.rsm
+model\china\china_outer_wall02.rsm	model\china\china-outer_wall02.rsm
+model\china\china_outer_wall03.rsm	model\china\china-outer_wall03.rsm
+model\china\china_outer_wall04.rsm	model\china\china-outer_wall04.rsm
+model\china\china_outer_wall05.rsm	model\china\china-outer_wall05.rsm
+model\china\china_outer_wall06.rsm	model\china\china-outer_wall06.rsm
+model\china\china_outer_wall07.rsm	model\china\china-outer_wall07.rsm
+model\china\china_outer_wall_entrance.rsm	model\china\china-outer_wall_entrance.rsm
+model\china\china_outer_wall_stairs.rsm	model\china\china-outer_wall_stairs.rsm
+model\china\china_residence01.rsm	model\china\china-residence01.rsm
+model\china\china_residence02.rsm	model\china\china-residence02.rsm
+model\china\china_residence03.rsm	model\china\china-residence03.rsm
+model\china\china_residence04.rsm	model\china\china-residence04.rsm
+model\china\china_roof_tile_piece01.rsm	model\china\china-roof_tile_piece01.rsm
+model\china\china_roof_tile_piece02.rsm	model\china\china-roof_tile_piece02.rsm
+model\china\china_roof_tile_piece03.rsm	model\china\china-roof_tile_piece03.rsm
+model\china\china_royal_palace.rsm	model\china\china-royal_palace.rsm
+model\china\china_stone_statue.rsm	model\china\china-stone_statue.rsm
+model\china\china_table01.rsm	model\china\china-table01.rsm
+model\china\china_table021.rsm	model\china\china-table021.rsm
+model\china\china_table03.rsm	model\china\china-table03.rsm
+model\china\china_tavern.rsm	model\china\china-tavern.rsm
+model\china\china_tool_shop.rsm	model\china\china-tool_shop.rsm
+model\china\china_tower.rsm	model\china\china-tower.rsm
+model\china\china_watchtower.rsm	model\china\china-watchtower.rsm
+model\china\china_weapon_rack01.rsm	model\china\china-weapon_rack01.rsm
+model\china\china_weapon_rack02.rsm	model\china\china-weapon_rack02.rsm
+model\china\china_weapon_shop.rsm	model\china\china-weapon_shop.rsm
+model\china\china_willow.rsm	model\china\china-willow.rsm
+model\einbroch\factorya_01.rsm	model\einbroch\factorya-01.rsm
+model\einbroch\factorya_02.rsm	model\einbroch\factorya-02.rsm
+model\einbroch\factorya_03.rsm	model\einbroch\factorya-03.rsm
+model\einbroch\factoryb_01.rsm	model\einbroch\factoryb-01.rsm
+model\einbroch\factoryb_02.rsm	model\einbroch\factoryb-02.rsm
+model\einbroch\factoryb_03.rsm	model\einbroch\factoryb-03.rsm
+model\einbroch\factoryb_04.rsm	model\einbroch\factoryb-04.rsm
+model\einbroch\factoryb_05.rsm	model\einbroch\factoryb-05.rsm
+model\einbroch\factoryc_01.rsm	model\einbroch\factoryc-01.rsm
+model\einbroch\factoryc_02.rsm	model\einbroch\factoryc-02.rsm
+model\einbroch\factoryc_03.rsm	model\einbroch\factoryc-03.rsm
+model\einbroch\factoryc_04.rsm	model\einbroch\factoryc-04.rsm
+model\einbroch\factoryd_01.rsm	model\einbroch\factoryd-01.rsm
+model\einbroch\factoryd_02.rsm	model\einbroch\factoryd-02.rsm
+model\einbroch\factoryd_03.rsm	model\einbroch\factoryd-03.rsm
+model\einbroch\factoryd_04.rsm	model\einbroch\factoryd-04.rsm
+model\interior_props\knight_bronze_1.rsm	model\interior_props\knight_bronze-1.rsm
+model\interior_props\pront_arena1_1.rsm	model\interior_props\pront_arena1-1.rsm
+model\interior_props\pront_arena1_2.rsm	model\interior_props\pront_arena1-2.rsm
+model\interior_props\pront_arena1_3.rsm	model\interior_props\pront_arena1-3.rsm
+model\interior_props\pront_arena1_4.rsm	model\interior_props\pront_arena1-4.rsm
+model\interior_props\pront_arena1_5.rsm	model\interior_props\pront_arena1-5.rsm
+model\interior_props\pront_arena1_flag.rsm	model\interior_props\pront_arena1-flag.rsm
+model\interior_props\pront_arena1_pillar.rsm	model\interior_props\pront_arena1-pillar.rsm
+model\interior_props\pront_arena1_torch.rsm	model\interior_props\pront_arena1-torch.rsm
+model\interior_props\shared_table_01.rsm	model\interior_props\shared_table-01.rsm
+model\japan\japan_tool_shop.rsm	model\japan\japan-tool_shop.rsm
+model\jawaii\bed_lace1_1.rsm	model\jawaii\bed_lace1-1.rsm
+model\jawaii\bed_lace1_2.rsm	model\jawaii\bed_lace1-2.rsm
+model\jawaii\bed_lace2_1.rsm	model\jawaii\bed_lace2-1.rsm
+model\jawaii\bed_lace2_2.rsm	model\jawaii\bed_lace2-2.rsm
+model\niflheim\niflheim_bed.rsm	model\niflheim\niflheim-bed.rsm
+model\niflheim\niflheim_bed2.rsm	model\niflheim\niflheim-bed2.rsm
+model\niflheim\niflheim_bed3.rsm	model\niflheim\niflheim-bed3.rsm
+model\niflheim\niflheim_bookcase.rsm	model\niflheim\niflheim-bookcase.rsm
+model\niflheim\niflheim_chair.rsm	model\niflheim\niflheim-chair.rsm
+model\niflheim\niflheim_cliff1.rsm	model\niflheim\niflheim-cliff1.rsm
+model\niflheim\niflheim_cliff2.rsm	model\niflheim\niflheim-cliff2.rsm
+model\niflheim\niflheim_cliff3.rsm	model\niflheim\niflheim-cliff3.rsm
+model\niflheim\niflheim_clock.rsm	model\niflheim\niflheim-clock.rsm
+model\niflheim\niflheim_clock2.rsm	model\niflheim\niflheim-clock2.rsm
+model\niflheim\niflheim_entrance01.rsm	model\niflheim\niflheim-entrance01.rsm
+model\niflheim\niflheim_entrance02.rsm	model\niflheim\niflheim-entrance02.rsm
+model\niflheim\niflheim_fence.rsm	model\niflheim\niflheim-fence.rsm
+model\niflheim\niflheim_grass01.rsm	model\niflheim\niflheim-grass01.rsm
+model\niflheim\niflheim_grass02.rsm	model\niflheim\niflheim-grass02.rsm
+model\niflheim\niflheim_hay.rsm	model\niflheim\niflheim-hay.rsm
+model\niflheim\niflheim_interior_pillar.rsm	model\niflheim\niflheim-interior_pillar.rsm
+model\niflheim\niflheim_interior_pillar2.rsm	model\niflheim\niflheim-interior_pillar2.rsm
+model\niflheim\niflheim_iron_fence.rsm	model\niflheim\niflheim-iron_fence.rsm
+model\niflheim\niflheim_lamp_fixture1.rsm	model\niflheim\niflheim-lamp_fixture1.rsm
+model\niflheim\niflheim_lamp_fixture2.rsm	model\niflheim\niflheim-lamp_fixture2.rsm
+model\niflheim\niflheim_painting1.rsm	model\niflheim\niflheim-painting1.rsm
+model\niflheim\niflheim_painting2.rsm	model\niflheim\niflheim-painting2.rsm
+model\niflheim\niflheim_painting3.rsm	model\niflheim\niflheim-painting3.rsm
+model\niflheim\niflheim_residence.rsm	model\niflheim\niflheim-residence.rsm
+model\niflheim\niflheim_residence01.rsm	model\niflheim\niflheim-residence01.rsm
+model\niflheim\niflheim_residence02.rsm	model\niflheim\niflheim-residence02.rsm
+model\niflheim\niflheim_residence03.rsm	model\niflheim\niflheim-residence03.rsm
+model\niflheim\niflheim_stairs.rsm	model\niflheim\niflheim-stairs.rsm
+model\niflheim\niflheim_stair_railing.rsm	model\niflheim\niflheim-stair_railing.rsm
+model\niflheim\niflheim_statue.rsm	model\niflheim\niflheim-statue.rsm
+model\niflheim\niflheim_street_lamp.rsm	model\niflheim\niflheim-street_lamp.rsm
+model\niflheim\niflheim_street_vendor01.rsm	model\niflheim\niflheim-street_vendor01.rsm
+model\niflheim\niflheim_street_vendor02.rsm	model\niflheim\niflheim-street_vendor02.rsm
+model\niflheim\niflheim_tavern.rsm	model\niflheim\niflheim-tavern.rsm
+model\niflheim\niflheim_tombstone1.rsm	model\niflheim\niflheim-tombstone1.rsm
+model\niflheim\niflheim_tombstone2.rsm	model\niflheim\niflheim-tombstone2.rsm
+model\niflheim\niflheim_tool_shop.rsm	model\niflheim\niflheim-tool_shop.rsm
+model\niflheim\niflheim_tree1.rsm	model\niflheim\niflheim-tree1.rsm
+model\niflheim\niflheim_tree2.rsm	model\niflheim\niflheim-tree2.rsm
+model\niflheim\niflheim_tree3.rsm	model\niflheim\niflheim-tree3.rsm
+model\niflheim\niflheim_weapon_shop.rsm	model\niflheim\niflheim-weapon_shop.rsm
+model\niflheim\niflheim_windmill.rsm	model\niflheim\niflheim-windmill.rsm
+model\niflheim\niflheim_witch_castle.rsm	model\niflheim\niflheim-witch_castle.rsm
+model\niflheim\niflheim_witch_castle01.rsm	model\niflheim\niflheim-witch_castle01.rsm
+model\niflheim\niflheim_witch_castle02.rsm	model\niflheim\niflheim-witch_castle02.rsm
+model\outdoor_props\izlude_ship.rsm	model\outdoor_props\izlude-ship.rsm
+model\outdoor_props\payon_alt_abandoned_house01.rsm	model\outdoor_props\payon_alt-abandoned_house01.rsm
+model\outdoor_props\payon_alt_abandoned_house02.rsm	model\outdoor_props\payon_alt-abandoned_house02.rsm
+model\prontera\residence01_1.rsm	model\prontera\residence01-1.rsm
+model\prontera\residence01_2.rsm	model\prontera\residence01-2.rsm
+model\trees_weeds_flowers\beach_village_bush01.rsm	model\trees_weeds_flowers\beach_village-bush01.rsm
+model\trees_weeds_flowers\beach_village_bush02.rsm	model\trees_weeds_flowers\beach_village-bush02.rsm
+model\trees_weeds_flowers\beach_village_creeper01.rsm	model\trees_weeds_flowers\beach_village-creeper01.rsm
+model\trees_weeds_flowers\border_reed01.rsm	model\trees_weeds_flowers\border-reed01.rsm
+model\trees_weeds_flowers\border_reed02.rsm	model\trees_weeds_flowers\border-reed02.rsm
+model\trees_weeds_flowers\border_reed03.rsm	model\trees_weeds_flowers\border-reed03.rsm
+model\trees_weeds_flowers\payon_alt_bush01.rsm	model\trees_weeds_flowers\payon_alt-bush01.rsm
+model\trees_weeds_flowers\payon_alt_tree01.rsm	model\trees_weeds_flowers\payon_alt-tree01.rsm
+model\umbala\ig_aerial_tree.rsm	model\umbala\ig-aerial_tree.rsm
+model\umbala\ig_flower.rsm	model\umbala\ig-flower.rsm
+model\umbala\ig_fruit.rsm	model\umbala\ig-fruit.rsm
+model\umbala\tree_dungeon_axe.rsm	model\umbala\tree_dungeon-axe.rsm
+model\umbala\tree_dungeon_dandelion_seed.rsm	model\umbala\tree_dungeon-dandelion_seed.rsm
+model\umbala\tree_dungeon_dicot_plant.rsm	model\umbala\tree_dungeon-dicot_plant.rsm
+model\umbala\tree_dungeon_gem_stone1.rsm	model\umbala\tree_dungeon-gem_stone1.rsm
+model\umbala\tree_dungeon_gem_stone2.rsm	model\umbala\tree_dungeon-gem_stone2.rsm
+model\umbala\tree_dungeon_large_mushroom.rsm	model\umbala\tree_dungeon-large_mushroom.rsm
+model\umbala\tree_dungeon_log.rsm	model\umbala\tree_dungeon-log.rsm
+model\umbala\tree_dungeon_saw.rsm	model\umbala\tree_dungeon-saw.rsm
+model\umbala\umbala_bed.rsm	model\umbala\umbala-bed.rsm
+model\umbala\umbala_bone_hammer.rsm	model\umbala\umbala-bone_hammer.rsm
+model\umbala\umbala_broom.rsm	model\umbala\umbala-broom.rsm
+model\umbala\umbala_carpentry_shop.rsm	model\umbala\umbala-carpentry_shop.rsm
+model\umbala\umbala_chief_house.rsm	model\umbala\umbala-chief_house.rsm
+model\umbala\umbala_dungeon_entrance.rsm	model\umbala\umbala-dungeon_entrance.rsm
+model\umbala\umbala_floor.rsm	model\umbala\umbala-floor.rsm
+model\umbala\umbala_floor2.rsm	model\umbala\umbala-floor2.rsm
+model\umbala\umbala_floor_pillar.rsm	model\umbala\umbala-floor_pillar.rsm
+model\umbala\umbala_floor_rope.rsm	model\umbala\umbala-floor_rope.rsm
+model\umbala\umbala_floor_vine.rsm	model\umbala\umbala-floor_vine.rsm
+model\umbala\umbala_interior_wall1.rsm	model\umbala\umbala-interior_wall1.rsm
+model\umbala\umbala_interior_wall2.rsm	model\umbala\umbala-interior_wall2.rsm
+model\umbala\umbala_large_wooden_pillar1_1.rsm	model\umbala\umbala-large_wooden_pillar1-1.rsm
+model\umbala\umbala_large_wooden_pillar1_2.rsm	model\umbala\umbala-large_wooden_pillar1-2.rsm
+model\umbala\umbala_large_wooden_pillar1_3.rsm	model\umbala\umbala-large_wooden_pillar1-3.rsm
+model\umbala\umbala_large_wooden_pillar1_4.rsm	model\umbala\umbala-large_wooden_pillar1-4.rsm
+model\umbala\umbala_large_wooden_pillar1_5.rsm	model\umbala\umbala-large_wooden_pillar1-5.rsm
+model\umbala\umbala_residence1.rsm	model\umbala\umbala-residence1.rsm
+model\umbala\umbala_residence2.rsm	model\umbala\umbala-residence2.rsm
+model\umbala\umbala_short_floor.rsm	model\umbala\umbala-short_floor.rsm
+model\umbala\umbala_signboard.rsm	model\umbala\umbala-signboard.rsm
+model\umbala\umbala_table.rsm	model\umbala\umbala-table.rsm
+model\umbala\umbala_tool_shop.rsm	model\umbala\umbala-tool_shop.rsm
+model\umbala\umbala_tree.rsm	model\umbala\umbala-tree.rsm
+model\umbala\umbala_tree_leaf.rsm	model\umbala\umbala-tree_leaf.rsm
+model\umbala\umbala_tree_leaf1.rsm	model\umbala\umbala-tree_leaf1.rsm
+model\umbala\umbala_tree_leaf2.rsm	model\umbala\umbala-tree_leaf2.rsm
+model\umbala\umbala_tree_leaf3.rsm	model\umbala\umbala-tree_leaf3.rsm
+model\umbala\umbala_water_bottle.rsm	model\umbala\umbala-water_bottle.rsm
+model\umbala\umbala_weapon_shop.rsm	model\umbala\umbala-weapon_shop.rsm
+model\umbala\umbala_wild_boar.rsm	model\umbala\umbala-wild_boar.rsm
+model\umbala\umbala_wooden_bridge1.rsm	model\umbala\umbala-wooden_bridge1.rsm
+model\umbala\umbala_wooden_bridge2.rsm	model\umbala\umbala-wooden_bridge2.rsm
+model\umbala\umbala_wooden_bridge3.rsm	model\umbala\umbala-wooden_bridge3.rsm
+model\umbala\umbala_wooden_chair.rsm	model\umbala\umbala-wooden_chair.rsm
+sprite\effect\hanbok_angel_main_body.act	sprite\effect\hanbok_angel(main_body).act
+sprite\effect\hanbok_angel_main_body.spr	sprite\effect\hanbok_angel(main_body).spr
+sprite\effect\hanbok_angel_wings.act	sprite\effect\hanbok_angel(wings).act
+sprite\effect\hanbok_angel_wings.spr	sprite\effect\hanbok_angel(wings).spr
+sprite\effect\status_curse.act	sprite\effect\status-curse.act
+sprite\effect\status_curse.spr	sprite\effect\status-curse.spr
+sprite\effect\status_sleep.act	sprite\effect\status-sleep.act
+sprite\effect\status_sleep.spr	sprite\effect\status-sleep.spr
+sprite\effect\status_stun.act	sprite\effect\status-stun.act
+sprite\effect\status_stun.spr	sprite\effect\status-stun.spr
+sprite\item\box_delivery.act	sprite\item\box-delivery.act
+sprite\item\box_delivery.spr	sprite\item\box-delivery.spr
+sprite\item\box_iron.act	sprite\item\box-iron.act
+sprite\item\box_iron.spr	sprite\item\box-iron.spr
+sprite\item\coupon_normal.act	sprite\item\coupon-normal.act
+sprite\item\coupon_normal.spr	sprite\item\coupon-normal.spr
+sprite\npc\npc_dbname_20040430.txt	sprite\npc\npc dbname_20040430.txt
+texture\effect\a_2.bmp	texture\effect\a-2.bmp
+texture\effect\aaa_copy.bmp	texture\effect\aaa copy.bmp
+texture\effect\blast_mine.str	texture\effect\blast mine.str
+texture\effect\blast_mine_clock.bmp	texture\effect\blast_mine##clock.bmp
+texture\effect\chemical_protection_armor.tga	texture\effect\chemical_protection[armor].tga
+texture\effect\chemical_protection_helm.tga	texture\effect\chemical_protection[helm].tga
+texture\effect\chemical_protection_shield.tga	texture\effect\chemical_protection[shield].tga
+texture\effect\chemical_protection_weapon.tga	texture\effect\chemical_protection[weapon].tga
+texture\effect\crash_earth.str	texture\effect\crash earth.str
+texture\effect\emp_shock.tga	texture\effect\emp shock.tga
+texture\effect\fire_dragon.str	texture\effect\fire dragon.str
+texture\effect\lord_blast_e_inbmp.bmp	texture\effect\lord_blast_e.inbmp.bmp
+texture\effect\maximize_power.str	texture\effect\maximize power.str
+texture\effect\prist_3.bmp	texture\effect\prist-3.bmp
+texture\effect\repair_weapon.str	texture\effect\repair weapon.str
+texture\effect\storm_gust.str	texture\effect\storm gust.str
+texture\effect\weapon_perfection.str	texture\effect\weapon perfection.str
+texture\field_ground\a_1.bmp	texture\field_ground\a-1.bmp
+texture\field_ground\a_2.bmp	texture\field_ground\a-2.bmp
+texture\field_ground\a_3.bmp	texture\field_ground\a-3.bmp
+texture\field_ground\a_4.bmp	texture\field_ground\a-4.bmp
+texture\field_ground\a_5.bmp	texture\field_ground\a-5.bmp
+texture\field_ground\abandoned_mine_dungeon_00.bmp	texture\field_ground\abandoned_mine_dungeon-00.bmp
+texture\field_ground\abandoned_mine_dungeon_01.bmp	texture\field_ground\abandoned_mine_dungeon-01.bmp
+texture\field_ground\abandoned_mine_dungeon_02.bmp	texture\field_ground\abandoned_mine_dungeon-02.bmp
+texture\field_ground\abandoned_mine_dungeon_03.bmp	texture\field_ground\abandoned_mine_dungeon-03.bmp
+texture\field_ground\abandoned_mine_dungeon_04.bmp	texture\field_ground\abandoned_mine_dungeon-04.bmp
+texture\field_ground\abandoned_mine_dungeon_05.bmp	texture\field_ground\abandoned_mine_dungeon-05.bmp
+texture\field_ground\abandoned_mine_dungeon_06.bmp	texture\field_ground\abandoned_mine_dungeon-06.bmp
+texture\field_ground\abandoned_mine_dungeon_07.bmp	texture\field_ground\abandoned_mine_dungeon-07.bmp
+texture\field_ground\abandoned_mine_dungeon_08.bmp	texture\field_ground\abandoned_mine_dungeon-08.bmp
+texture\field_ground\alberta_village_floor_00.bmp	texture\field_ground\alberta_village_floor-00.bmp
+texture\field_ground\alberta_village_floor_1.bmp	texture\field_ground\alberta_village_floor-1.bmp
+texture\field_ground\alberta_village_floor_2.bmp	texture\field_ground\alberta_village_floor-2.bmp
+texture\field_ground\aldebaran_connecting_floor01.bmp	texture\field_ground\aldebaran-connecting_floor01.bmp
+texture\field_ground\aldebaran_connecting_floor02.bmp	texture\field_ground\aldebaran-connecting_floor02.bmp
+texture\field_ground\aldebaran_floor_0.bmp	texture\field_ground\aldebaran_floor-0.bmp
+texture\field_ground\aldebaran_floor_1.bmp	texture\field_ground\aldebaran_floor-1.bmp
+texture\field_ground\aldebaran_floor_2.bmp	texture\field_ground\aldebaran_floor-2.bmp
+texture\field_ground\aldebaran_floor_3.bmp	texture\field_ground\aldebaran_floor-3.bmp
+texture\field_ground\aldebaran_floor_4.bmp	texture\field_ground\aldebaran_floor-4.bmp
+texture\field_ground\aldebaran_floor_5.bmp	texture\field_ground\aldebaran_floor-5.bmp
+texture\field_ground\aldebaran_floor2_0.bmp	texture\field_ground\aldebaran_floor2-0.bmp
+texture\field_ground\aldebaran_floor2_1.bmp	texture\field_ground\aldebaran_floor2-1.bmp
+texture\field_ground\aldebaran_floor2_2.bmp	texture\field_ground\aldebaran_floor2-2.bmp
+texture\field_ground\aldebaran_floor2_3.bmp	texture\field_ground\aldebaran_floor2-3.bmp
+texture\field_ground\aldebaran_floor2_4.bmp	texture\field_ground\aldebaran_floor2-4.bmp
+texture\field_ground\aldebaran_floor2_5.bmp	texture\field_ground\aldebaran_floor2-5.bmp
+texture\field_ground\aldebaran_floor2_6.bmp	texture\field_ground\aldebaran_floor2-6.bmp
+texture\field_ground\antflat_1.bmp	texture\field_ground\antflat-1.bmp
+texture\field_ground\antflat_2.bmp	texture\field_ground\antflat-2.bmp
+texture\field_ground\antflat_3.bmp	texture\field_ground\antflat-3.bmp
+texture\field_ground\antflat_4.bmp	texture\field_ground\antflat-4.bmp
+texture\field_ground\antlion_pit1_1.bmp	texture\field_ground\antlion_pit1-1.bmp
+texture\field_ground\antlion_pit2_1.bmp	texture\field_ground\antlion_pit2-1.bmp
+texture\field_ground\antlion_pit3_1.bmp	texture\field_ground\antlion_pit3-1.bmp
+texture\field_ground\antlion_pit4_1.bmp	texture\field_ground\antlion_pit4-1.bmp
+texture\field_ground\arena_floor_01.bmp	texture\field_ground\arena_floor-01.bmp
+texture\field_ground\arena_floor_02.bmp	texture\field_ground\arena_floor-02.bmp
+texture\field_ground\arena_floor_03.bmp	texture\field_ground\arena_floor-03.bmp
+texture\field_ground\arena_floor_04.bmp	texture\field_ground\arena_floor-04.bmp
+texture\field_ground\border_cliff01.bmp	texture\field_ground\border-cliff01.bmp
+texture\field_ground\border_cliff02.bmp	texture\field_ground\border-cliff02.bmp
+texture\field_ground\border_cliff03.bmp	texture\field_ground\border-cliff03.bmp
+texture\field_ground\border_cliff04.bmp	texture\field_ground\border-cliff04.bmp
+texture\field_ground\border_dirt_floor01.bmp	texture\field_ground\border-dirt_floor01.bmp
+texture\field_ground\border_dirt_floor02.bmp	texture\field_ground\border-dirt_floor02.bmp
+texture\field_ground\border_dirt_floor03.bmp	texture\field_ground\border-dirt_floor03.bmp
+texture\field_ground\border_dirt_floor04.bmp	texture\field_ground\border-dirt_floor04.bmp
+texture\field_ground\border_grass_floor01.bmp	texture\field_ground\border-grass_floor01.bmp
+texture\field_ground\border_grass_floor02.bmp	texture\field_ground\border-grass_floor02.bmp
+texture\field_ground\border_grass_floor03.bmp	texture\field_ground\border-grass_floor03.bmp
+texture\field_ground\border_grass_floor04.bmp	texture\field_ground\border-grass_floor04.bmp
+texture\field_ground\border_water_floor02.bmp	texture\field_ground\border-water_floor02.bmp
+texture\field_ground\border_water_floor03.bmp	texture\field_ground\border-water_floor03.bmp
+texture\field_ground\border_water_floor04.bmp	texture\field_ground\border-water_floor04.bmp
+texture\field_ground\clock_tower_dungeon_floor01_01.bmp	texture\field_ground\clock_tower_dungeon_floor01-01.bmp
+texture\field_ground\damp_cliff_1.bmp	texture\field_ground\damp_cliff-1.bmp
+texture\field_ground\damp_cliff_3.bmp	texture\field_ground\damp_cliff-3.bmp
+texture\field_ground\damp_cliff_6.bmp	texture\field_ground\damp_cliff-6.bmp
+texture\field_ground\damp_cliff_7.bmp	texture\field_ground\damp_cliff-7.bmp
+texture\field_ground\damp_cliff_8.bmp	texture\field_ground\damp_cliff-8.bmp
+texture\field_ground\damp_cliff_9.bmp	texture\field_ground\damp_cliff-9.bmp
+texture\field_ground\dong_ki.bmp	texture\field_ground\dong-ki.bmp
+texture\field_ground\dun_lin001.bmp	texture\field_ground\dun-lin001.bmp
+texture\field_ground\dun_lin002.bmp	texture\field_ground\dun-lin002.bmp
+texture\field_ground\dun_lin003.bmp	texture\field_ground\dun-lin003.bmp
+texture\field_ground\dun_lin004.bmp	texture\field_ground\dun-lin004.bmp
+texture\field_ground\dun_lin005.bmp	texture\field_ground\dun-lin005.bmp
+texture\field_ground\dun_lin006.bmp	texture\field_ground\dun-lin006.bmp
+texture\field_ground\dun_lin007.bmp	texture\field_ground\dun-lin007.bmp
+texture\field_ground\dun_lin008.bmp	texture\field_ground\dun-lin008.bmp
+texture\field_ground\dun_lin009.bmp	texture\field_ground\dun-lin009.bmp
+texture\field_ground\dun_lin010.bmp	texture\field_ground\dun-lin010.bmp
+texture\field_ground\dun_lin011.bmp	texture\field_ground\dun-lin011.bmp
+texture\field_ground\dun_lin012.bmp	texture\field_ground\dun-lin012.bmp
+texture\field_ground\dun_lin013.bmp	texture\field_ground\dun-lin013.bmp
+texture\field_ground\dun_lin014.bmp	texture\field_ground\dun-lin014.bmp
+texture\field_ground\dun_lin015.bmp	texture\field_ground\dun-lin015.bmp
+texture\field_ground\dun_lin016.bmp	texture\field_ground\dun-lin016.bmp
+texture\field_ground\dun_lin017.bmp	texture\field_ground\dun-lin017.bmp
+texture\field_ground\dun_lin018.bmp	texture\field_ground\dun-lin018.bmp
+texture\field_ground\dun_lin019.bmp	texture\field_ground\dun-lin019.bmp
+texture\field_ground\forest_floor_01.bmp	texture\field_ground\forest_floor-01.bmp
+texture\field_ground\forest_floor_02.bmp	texture\field_ground\forest_floor-02.bmp
+texture\field_ground\forest_floor_03.bmp	texture\field_ground\forest_floor-03.bmp
+texture\field_ground\forest_floor_04.bmp	texture\field_ground\forest_floor-04.bmp
+texture\field_ground\forest_floor_05.bmp	texture\field_ground\forest_floor-05.bmp
+texture\field_ground\forest_floor_06.bmp	texture\field_ground\forest_floor-06.bmp
+texture\field_ground\forest_floor_07.bmp	texture\field_ground\forest_floor-07.bmp
+texture\field_ground\forest_floor_08.bmp	texture\field_ground\forest_floor-08.bmp
+texture\field_ground\forest_floor_09.bmp	texture\field_ground\forest_floor-09.bmp
+texture\field_ground\forest_floor_10.bmp	texture\field_ground\forest_floor-10.bmp
+texture\field_ground\forest_floor_11.bmp	texture\field_ground\forest_floor-11.bmp
+texture\field_ground\forest_floor_cave.bmp	texture\field_ground\forest_floor-cave.bmp
+texture\field_ground\g_dun_0.bmp	texture\field_ground\g-dun-0.bmp
+texture\field_ground\g_dun_1.bmp	texture\field_ground\g-dun-1.bmp
+texture\field_ground\g_dun_2.bmp	texture\field_ground\g-dun-2.bmp
+texture\field_ground\g_dun_3.bmp	texture\field_ground\g-dun-3.bmp
+texture\field_ground\ge_flat1.bmp	texture\field_ground\ge-flat1.bmp
+texture\field_ground\ge_flat2.bmp	texture\field_ground\ge-flat2.bmp
+texture\field_ground\ge_flat3.bmp	texture\field_ground\ge-flat3.bmp
+texture\field_ground\ge_flat4.bmp	texture\field_ground\ge-flat4.bmp
+texture\field_ground\geffen_field_00.bmp	texture\field_ground\geffen_field-00.bmp
+texture\field_ground\geffen_field_01.bmp	texture\field_ground\geffen_field-01.bmp
+texture\field_ground\geffen_field_02.bmp	texture\field_ground\geffen_field-02.bmp
+texture\field_ground\geffen_field_03.bmp	texture\field_ground\geffen_field-03.bmp
+texture\field_ground\geffen_field_04.bmp	texture\field_ground\geffen_field-04.bmp
+texture\field_ground\geffen_field_05.bmp	texture\field_ground\geffen_field-05.bmp
+texture\field_ground\geffen_field_06.bmp	texture\field_ground\geffen_field-06.bmp
+texture\field_ground\geffen_field_07.bmp	texture\field_ground\geffen_field-07.bmp
+texture\field_ground\geffen_hill_08.bmp	texture\field_ground\geffen_hill-08.bmp
+texture\field_ground\geffen_hill_09.bmp	texture\field_ground\geffen_hill-09.bmp
+texture\field_ground\geffen_hill_10.bmp	texture\field_ground\geffen_hill-10.bmp
+texture\field_ground\geffen_hill_11.bmp	texture\field_ground\geffen_hill-11.bmp
+texture\field_ground\geffen_hill_12.bmp	texture\field_ground\geffen_hill-12.bmp
+texture\field_ground\geffen_hill_13.bmp	texture\field_ground\geffen_hill-13.bmp
+texture\field_ground\glst_cstle9.bmp	texture\field_ground\glst-cstle9.bmp
+texture\field_ground\gp_lostdun_g01.bmp	texture\field_ground\gp-lostdun_g01.bmp
+texture\field_ground\gp_lostdun_g02.bmp	texture\field_ground\gp-lostdun_g02.bmp
+texture\field_ground\gp_lostdun_g03.bmp	texture\field_ground\gp-lostdun_g03.bmp
+texture\field_ground\gp_lostdun_g04.bmp	texture\field_ground\gp-lostdun_g04.bmp
+texture\field_ground\gp_lostdun_g05.bmp	texture\field_ground\gp-lostdun_g05.bmp
+texture\field_ground\gp_lostdun_g06.bmp	texture\field_ground\gp-lostdun_g06.bmp
+texture\field_ground\gp_lostdun_g07.bmp	texture\field_ground\gp-lostdun_g07.bmp
+texture\field_ground\hot_1.bmp	texture\field_ground\hot-1.bmp
+texture\field_ground\hot_10.bmp	texture\field_ground\hot-10.bmp
+texture\field_ground\hot_2.bmp	texture\field_ground\hot-2.bmp
+texture\field_ground\hot_3.bmp	texture\field_ground\hot-3.bmp
+texture\field_ground\hot_4.bmp	texture\field_ground\hot-4.bmp
+texture\field_ground\hot_5.bmp	texture\field_ground\hot-5.bmp
+texture\field_ground\hot_6.bmp	texture\field_ground\hot-6.bmp
+texture\field_ground\hot_7.bmp	texture\field_ground\hot-7.bmp
+texture\field_ground\hot_8.bmp	texture\field_ground\hot-8.bmp
+texture\field_ground\hot_9.bmp	texture\field_ground\hot-9.bmp
+texture\field_ground\hugel_yuno_copy.bmp	texture\field_ground\hugel_yuno copy.bmp
+texture\field_ground\hugel_yuno2_copy.bmp	texture\field_ground\hugel_yuno2 copy.bmp
+texture\field_ground\hugel_yuno3_copy.bmp	texture\field_ground\hugel_yuno3 copy.bmp
+texture\field_ground\iz_00.bmp	texture\field_ground\iz-00.bmp
+texture\field_ground\iz_01.bmp	texture\field_ground\iz-01.bmp
+texture\field_ground\iz_02.bmp	texture\field_ground\iz-02.bmp
+texture\field_ground\iz_03.bmp	texture\field_ground\iz-03.bmp
+texture\field_ground\mjolnir_cliff_00.bmp	texture\field_ground\mjolnir_cliff-00.bmp
+texture\field_ground\mjolnir_cliff_001.bmp	texture\field_ground\mjolnir_cliff-001.bmp
+texture\field_ground\mjolnir_cliff_002.bmp	texture\field_ground\mjolnir_cliff-002.bmp
+texture\field_ground\mjolnir_cliff_003.bmp	texture\field_ground\mjolnir_cliff-003.bmp
+texture\field_ground\mjolnir_cliff_004.bmp	texture\field_ground\mjolnir_cliff-004.bmp
+texture\field_ground\mjolnir_cliff_005.bmp	texture\field_ground\mjolnir_cliff-005.bmp
+texture\field_ground\mjolnir_cliff_01.bmp	texture\field_ground\mjolnir_cliff-01.bmp
+texture\field_ground\mjolnir_cliff_02.bmp	texture\field_ground\mjolnir_cliff-02.bmp
+texture\field_ground\mjolnir_cliff_03.bmp	texture\field_ground\mjolnir_cliff-03.bmp
+texture\field_ground\mjolnir_cliff_04.bmp	texture\field_ground\mjolnir_cliff-04.bmp
+texture\field_ground\mjolnir_cliff_05.bmp	texture\field_ground\mjolnir_cliff-05.bmp
+texture\field_ground\mjolnir_cliff_06.bmp	texture\field_ground\mjolnir_cliff-06.bmp
+texture\field_ground\mjolnir_cliff_07.bmp	texture\field_ground\mjolnir_cliff-07.bmp
+texture\field_ground\mjolnir_floor_00.bmp	texture\field_ground\mjolnir_floor-00.bmp
+texture\field_ground\mjolnir_floor_01.bmp	texture\field_ground\mjolnir_floor-01.bmp
+texture\field_ground\mjolnir_floor_03.bmp	texture\field_ground\mjolnir_floor-03.bmp
+texture\field_ground\mjolnir_floor_04.bmp	texture\field_ground\mjolnir_floor-04.bmp
+texture\field_ground\mjolnir_grass_floor_00.bmp	texture\field_ground\mjolnir_grass_floor-00.bmp
+texture\field_ground\mjolnir_grass_floor_01.bmp	texture\field_ground\mjolnir_grass_floor-01.bmp
+texture\field_ground\mjolnir_grass_floor_03.bmp	texture\field_ground\mjolnir_grass_floor-03.bmp
+texture\field_ground\mjolnir_grass_floor_04.bmp	texture\field_ground\mjolnir_grass_floor-04.bmp
+texture\field_ground\mjolnir_water_floor_00.bmp	texture\field_ground\mjolnir_water_floor-00.bmp
+texture\field_ground\mjolnir_water_floor_01.bmp	texture\field_ground\mjolnir_water_floor-01.bmp
+texture\field_ground\mo_pyramid1_floor.bmp	texture\field_ground\mo-pyramid1-floor.bmp
+texture\field_ground\mo_pyramid1_wall1.bmp	texture\field_ground\mo-pyramid1-wall1.bmp
+texture\field_ground\mo_pyramid1_wall2.bmp	texture\field_ground\mo-pyramid1-wall2.bmp
+texture\field_ground\mo_pyramid1_wall3.bmp	texture\field_ground\mo-pyramid1-wall3.bmp
+texture\field_ground\mo_pyramid1_wall4.bmp	texture\field_ground\mo-pyramid1-wall4.bmp
+texture\field_ground\mo_pyramid3_floor1.bmp	texture\field_ground\mo-pyramid3-floor1.bmp
+texture\field_ground\mo_pyramid3_floor2.bmp	texture\field_ground\mo-pyramid3-floor2.bmp
+texture\field_ground\mo_wall_01.bmp	texture\field_ground\mo-wall-01.bmp
+texture\field_ground\mo_wall_02.bmp	texture\field_ground\mo-wall-02.bmp
+texture\field_ground\mo_wall_03.bmp	texture\field_ground\mo-wall-03.bmp
+texture\field_ground\mo_wall_04.bmp	texture\field_ground\mo-wall-04.bmp
+texture\field_ground\mo_wall_05.bmp	texture\field_ground\mo-wall-05.bmp
+texture\field_ground\mo_wall_06.bmp	texture\field_ground\mo-wall-06.bmp
+texture\field_ground\mo_wall_07.bmp	texture\field_ground\mo-wall-07.bmp
+texture\field_ground\mo_wall_08.bmp	texture\field_ground\mo-wall-08.bmp
+texture\field_ground\moc_assin_01.bmp	texture\field_ground\moc-assin_01.bmp
+texture\field_ground\moc_assin_02.bmp	texture\field_ground\moc-assin_02.bmp
+texture\field_ground\moc_assin_03.bmp	texture\field_ground\moc-assin_03.bmp
+texture\field_ground\moc_assin_04.bmp	texture\field_ground\moc-assin_04.bmp
+texture\field_ground\moc_assin_05.bmp	texture\field_ground\moc-assin_05.bmp
+texture\field_ground\payon_village_floor_02.bmp	texture\field_ground\payon_village_floor-02.bmp
+texture\field_ground\payon_village_floor_03.bmp	texture\field_ground\payon_village_floor-03.bmp
+texture\field_ground\pe_wall_001.bmp	texture\field_ground\pe-wall-001.bmp
+texture\field_ground\pe_wall_002.bmp	texture\field_ground\pe-wall-002.bmp
+texture\field_ground\pe_wall_003.bmp	texture\field_ground\pe-wall-003.bmp
+texture\field_ground\pe_wall_004.bmp	texture\field_ground\pe-wall-004.bmp
+texture\field_ground\pe_wall_005.bmp	texture\field_ground\pe-wall-005.bmp
+texture\field_ground\pe_wall_006.bmp	texture\field_ground\pe-wall-006.bmp
+texture\field_ground\pe_wall_007.bmp	texture\field_ground\pe-wall-007.bmp
+texture\field_ground\pe_wall_008.bmp	texture\field_ground\pe-wall-008.bmp
+texture\field_ground\pron_dun_02.bmp	texture\field_ground\pron-dun-02.bmp
+texture\field_ground\pron_dun_03.bmp	texture\field_ground\pron-dun-03.bmp
+texture\field_ground\pron_dun_04.bmp	texture\field_ground\pron-dun-04.bmp
+texture\field_ground\pron_dun_05.bmp	texture\field_ground\pron-dun-05.bmp
+texture\field_ground\pron_dun_06.bmp	texture\field_ground\pron-dun-06.bmp
+texture\field_ground\pron_dun_07.bmp	texture\field_ground\pron-dun-07.bmp
+texture\field_ground\pron_dun_08.bmp	texture\field_ground\pron-dun-08.bmp
+texture\field_ground\pron_dun_09.bmp	texture\field_ground\pron-dun-09.bmp
+texture\field_ground\pron_cliff_01.bmp	texture\field_ground\pron_cliff-01.bmp
+texture\field_ground\pron_cliff_02.bmp	texture\field_ground\pron_cliff-02.bmp
+texture\field_ground\pron_cliff_03.bmp	texture\field_ground\pron_cliff-03.bmp
+texture\field_ground\pron_cliff_04.bmp	texture\field_ground\pron_cliff-04.bmp
+texture\field_ground\pron_cliff_05.bmp	texture\field_ground\pron_cliff-05.bmp
+texture\field_ground\pron_cliff_06.bmp	texture\field_ground\pron_cliff-06.bmp
+texture\field_ground\prt_city05_1.bmp	texture\field_ground\prt_city05-1.bmp
+texture\field_ground\prt_soil02_3.bmp	texture\field_ground\prt_soil02-3.bmp
+texture\field_ground\whi_dunbadak1_copy.bmp	texture\field_ground\whi_dunbadak1 copy.bmp
+texture\geffenia\fie_v02.bmp	texture\geffenia\fie-v02.bmp
+texture\geffenia\ge_bloc.bmp	texture\geffenia\ge-bloc.bmp
+texture\geffenia\ge_f_1.bmp	texture\geffenia\ge-f-1.bmp
+texture\geffenia\ge_f.bmp	texture\geffenia\ge-f.bmp
+texture\geffenia\ge_mu_1.bmp	texture\geffenia\ge-mu-1.bmp
+texture\geffenia\ge_mu_2.bmp	texture\geffenia\ge-mu-2.bmp
+texture\geffenia\ge_mu_3.bmp	texture\geffenia\ge-mu-3.bmp
+texture\geffenia\ge_mu_4.bmp	texture\geffenia\ge-mu-4.bmp
+texture\geffenia\ge_mu_5.bmp	texture\geffenia\ge-mu-5.bmp
+texture\geffenia\ge_mu_6.bmp	texture\geffenia\ge-mu-6.bmp
+texture\geffenia\ge_mu_7.bmp	texture\geffenia\ge-mu-7.bmp
+texture\geffenia\ge_mu_8.bmp	texture\geffenia\ge-mu-8.bmp
+texture\geffenia\ge_mu.bmp	texture\geffenia\ge-mu.bmp
+texture\geffenia\gep_wp1.bmp	texture\geffenia\gep-wp1.bmp
+texture\geffenia\gep_wp2.bmp	texture\geffenia\gep-wp2.bmp
+texture\geffenia\gep_wp3.bmp	texture\geffenia\gep-wp3.bmp
+texture\geffenia\gep_wp4.bmp	texture\geffenia\gep-wp4.bmp
+texture\geffenia\gp_cr_b.bmp	texture\geffenia\gp-cr-b.bmp
+texture\geffenia\gp_cr.bmp	texture\geffenia\gp-cr.bmp
+texture\geffenia\gp_fge1.bmp	texture\geffenia\gp-fge1.bmp
+texture\geffenia\gp_fge2.bmp	texture\geffenia\gp-fge2.bmp
+texture\geffenia\gp_fge3.bmp	texture\geffenia\gp-fge3.bmp
+texture\geffenia\gp_fge4.bmp	texture\geffenia\gp-fge4.bmp
+texture\geffenia\gp_fge5.bmp	texture\geffenia\gp-fge5.bmp
+texture\geffenia\gp_magac1.bmp	texture\geffenia\gp-magac1.bmp
+texture\geffenia\gp_magac2.bmp	texture\geffenia\gp-magac2.bmp
+texture\geffenia\gp_magac3.bmp	texture\geffenia\gp-magac3.bmp
+texture\geffenia\gp_shop1.bmp	texture\geffenia\gp-shop1.bmp
+texture\geffenia\gp_shop2.bmp	texture\geffenia\gp-shop2.bmp
+texture\geffenia\gp_shop3.bmp	texture\geffenia\gp-shop3.bmp
+texture\geffenia\gp_shop4.bmp	texture\geffenia\gp-shop4.bmp
+texture\geffenia\gp_shop5.bmp	texture\geffenia\gp-shop5.bmp
+texture\geffen_interior\ge_in000.bmp	texture\geffen_interior\ge-in000.bmp
+texture\geffen_interior\ge_in001.bmp	texture\geffen_interior\ge-in001.bmp
+texture\geffen_interior\ge_incarpet1.bmp	texture\geffen_interior\ge-incarpet1.bmp
+texture\geffen_interior\ge_incarpet2.bmp	texture\geffen_interior\ge-incarpet2.bmp
+texture\geffen_interior\ge_inflat.bmp	texture\geffen_interior\ge-inflat.bmp
+texture\geffen_interior\ge_land_1.bmp	texture\geffen_interior\ge-land-1.bmp
+texture\geffen_interior\ge_land.bmp	texture\geffen_interior\ge-land.bmp
+texture\geffen_interior\ge_wall_00.bmp	texture\geffen_interior\ge-wall-00.bmp
+texture\geffen_interior\ge_wall_000.bmp	texture\geffen_interior\ge-wall-000.bmp
+texture\geffen_interior\ge_shop_tile_1.bmp	texture\geffen_interior\ge_shop_tile-1.bmp
+texture\interior_props\1gid_copy.bmp	texture\interior_props\1gid copy.bmp
+texture\interior_props\22guard_copy.bmp	texture\interior_props\22guard copy.bmp
+texture\interior_props\22guard2_copy.bmp	texture\interior_props\22guard2 copy.bmp
+texture\interior_props\22guard3_copy.bmp	texture\interior_props\22guard3 copy.bmp
+texture\interior_props\abi_dosul_copy.bmp	texture\interior_props\abi_dosul copy.bmp
+texture\interior_props\abi_dosul2_copy.bmp	texture\interior_props\abi_dosul2 copy.bmp
+texture\interior_props\al_cl_wheel.bmp	texture\interior_props\al-cl-wheel.bmp
+texture\interior_props\alde_in_mach01.bmp	texture\interior_props\alde-in-mach01.bmp
+texture\interior_props\alde_in_obj01.bmp	texture\interior_props\alde-in-obj01.bmp
+texture\interior_props\alde_in_obj02.bmp	texture\interior_props\alde-in-obj02.bmp
+texture\interior_props\alde_in_obj03.bmp	texture\interior_props\alde-in-obj03.bmp
+texture\interior_props\alde_inarch.bmp	texture\interior_props\alde-inarch.bmp
+texture\interior_props\alde_inbell1.bmp	texture\interior_props\alde-inbell1.bmp
+texture\interior_props\alde_inclb01.bmp	texture\interior_props\alde-inclb01.bmp
+texture\interior_props\alde_inclb02.bmp	texture\interior_props\alde-inclb02.bmp
+texture\interior_props\alde_inclb03.bmp	texture\interior_props\alde-inclb03.bmp
+texture\interior_props\alde_inclb05.bmp	texture\interior_props\alde-inclb05.bmp
+texture\interior_props\alde_inclok01.bmp	texture\interior_props\alde-inclok01.bmp
+texture\interior_props\alde_inclokt01.bmp	texture\interior_props\alde-inclokt01.bmp
+texture\interior_props\alde_inclokt02.bmp	texture\interior_props\alde-inclokt02.bmp
+texture\interior_props\alde_incol.bmp	texture\interior_props\alde-incol.bmp
+texture\interior_props\alde_incol2.bmp	texture\interior_props\alde-incol2.bmp
+texture\interior_props\alde_inirn01.bmp	texture\interior_props\alde-inirn01.bmp
+texture\interior_props\altar_can.bmp	texture\interior_props\altar can.bmp
+texture\interior_props\al_cl_ruin_clock.bmp	texture\interior_props\al_cl_ruin clock.bmp
+texture\interior_props\angel_arm_copy.bmp	texture\interior_props\angel_arm copy.bmp
+texture\interior_props\angel_body_copy.bmp	texture\interior_props\angel_body copy.bmp
+texture\interior_props\angel_face_copy.bmp	texture\interior_props\angel_face copy.bmp
+texture\interior_props\angel_leg_copy.bmp	texture\interior_props\angel_leg copy.bmp
+texture\interior_props\angel_wing1_copy.bmp	texture\interior_props\angel_wing1 copy.bmp
+texture\interior_props\angel_wing2_copy.bmp	texture\interior_props\angel_wing2 copy.bmp
+texture\interior_props\arena1_1.bmp	texture\interior_props\arena1-1.bmp
+texture\interior_props\arena1_2.bmp	texture\interior_props\arena1-2.bmp
+texture\interior_props\arena1_3.bmp	texture\interior_props\arena1-3.bmp
+texture\interior_props\arena1_4.bmp	texture\interior_props\arena1-4.bmp
+texture\interior_props\arena1_5.bmp	texture\interior_props\arena1-5.bmp
+texture\interior_props\arena1_6.bmp	texture\interior_props\arena1-6.bmp
+texture\interior_props\arena1_flag.bmp	texture\interior_props\arena1-flag.bmp
+texture\interior_props\beuk4_side1.bmp	texture\interior_props\beuk4-side1.bmp
+texture\interior_props\beuk4_side2.bmp	texture\interior_props\beuk4-side2.bmp
+texture\interior_props\beuk4_side3.bmp	texture\interior_props\beuk4-side3.bmp
+texture\interior_props\birdcase_copy.bmp	texture\interior_props\birdcase copy.bmp
+texture\interior_props\birdcase_1copy.bmp	texture\interior_props\birdcase-1copy.bmp
+texture\interior_props\book_00.bmp	texture\interior_props\book-00.bmp
+texture\interior_props\book_1.bmp	texture\interior_props\book-1.bmp
+texture\interior_props\book_side1.bmp	texture\interior_props\book-side1.bmp
+texture\interior_props\book_side2.bmp	texture\interior_props\book-side2.bmp
+texture\interior_props\book_side3.bmp	texture\interior_props\book-side3.bmp
+texture\interior_props\book_side4.bmp	texture\interior_props\book-side4.bmp
+texture\interior_props\box2_side.bmp	texture\interior_props\box2-side.bmp
+texture\interior_props\brest1_1_copy.bmp	texture\interior_props\brest1-1 copy.bmp
+texture\interior_props\brest2_1_copy.bmp	texture\interior_props\brest2-1 copy.bmp
+texture\interior_props\bs_side1.bmp	texture\interior_props\bs-side1.bmp
+texture\interior_props\bs_side2.bmp	texture\interior_props\bs-side2.bmp
+texture\interior_props\bs_side3.bmp	texture\interior_props\bs-side3.bmp
+texture\interior_props\bs_side4.bmp	texture\interior_props\bs-side4.bmp
+texture\interior_props\bs_side5.bmp	texture\interior_props\bs-side5.bmp
+texture\interior_props\bs_side6.bmp	texture\interior_props\bs-side6.bmp
+texture\interior_props\bu_side1.bmp	texture\interior_props\bu-side1.bmp
+texture\interior_props\bu_side2.bmp	texture\interior_props\bu-side2.bmp
+texture\interior_props\bu_side3.bmp	texture\interior_props\bu-side3.bmp
+texture\interior_props\bu_side4.bmp	texture\interior_props\bu-side4.bmp
+texture\interior_props\bu_side5.bmp	texture\interior_props\bu-side5.bmp
+texture\interior_props\bu_side6.bmp	texture\interior_props\bu-side6.bmp
+texture\interior_props\c_big_side.bmp	texture\interior_props\c-big(side).bmp
+texture\interior_props\c_big_up.bmp	texture\interior_props\c-big(up).bmp
+texture\interior_props\c_dari.bmp	texture\interior_props\c-dari.bmp
+texture\interior_props\c_gibon_side.bmp	texture\interior_props\c-gibon(side).bmp
+texture\interior_props\candlelight3_copy.bmp	texture\interior_props\candlelight3 copy.bmp
+texture\interior_props\candlelight5_copy.bmp	texture\interior_props\candlelight5 copy.bmp
+texture\interior_props\ceiling_lamp.bmp	texture\interior_props\ceiling lamp.bmp
+texture\interior_props\ch_side1.bmp	texture\interior_props\ch-side1.bmp
+texture\interior_props\ch_side2.bmp	texture\interior_props\ch-side2.bmp
+texture\interior_props\ch_side3.bmp	texture\interior_props\ch-side3.bmp
+texture\interior_props\ch2_side1.bmp	texture\interior_props\ch2-side1.bmp
+texture\interior_props\ch2_side2.bmp	texture\interior_props\ch2-side2.bmp
+texture\interior_props\ch2_side3.bmp	texture\interior_props\ch2-side3.bmp
+texture\interior_props\ch2_side5.bmp	texture\interior_props\ch2-side5.bmp
+texture\interior_props\ch2_side6.bmp	texture\interior_props\ch2-side6.bmp
+texture\interior_props\ch3_side1.bmp	texture\interior_props\ch3-side1.bmp
+texture\interior_props\ch3_side2.bmp	texture\interior_props\ch3-side2.bmp
+texture\interior_props\ch3_up.bmp	texture\interior_props\ch3-up.bmp
+texture\interior_props\ch4_side1.bmp	texture\interior_props\ch4-side1.bmp
+texture\interior_props\cha2_side1.bmp	texture\interior_props\cha2-side1.bmp
+texture\interior_props\cha2_side2.bmp	texture\interior_props\cha2-side2.bmp
+texture\interior_props\cha2_side3.bmp	texture\interior_props\cha2-side3.bmp
+texture\interior_props\chch_side1.bmp	texture\interior_props\chch-side1.bmp
+texture\interior_props\chun_side1.bmp	texture\interior_props\chun-side1.bmp
+texture\interior_props\chun_side2.bmp	texture\interior_props\chun-side2.bmp
+texture\interior_props\chun_side3.bmp	texture\interior_props\chun-side3.bmp
+texture\interior_props\ci_side2.bmp	texture\interior_props\ci-side2.bmp
+texture\interior_props\cim_side1.bmp	texture\interior_props\cim-side1.bmp
+texture\interior_props\cim_side2.bmp	texture\interior_props\cim-side2.bmp
+texture\interior_props\cim_side3.bmp	texture\interior_props\cim-side3.bmp
+texture\interior_props\cim_up.bmp	texture\interior_props\cim-up.bmp
+texture\interior_props\cl_copy.bmp	texture\interior_props\cl copy.bmp
+texture\interior_props\cl_side1.bmp	texture\interior_props\cl-side1.bmp
+texture\interior_props\cl1_copy.bmp	texture\interior_props\cl1 copy.bmp
+texture\interior_props\cl2_copy.bmp	texture\interior_props\cl2 copy.bmp
+texture\interior_props\clockt_back_pipe.bmp	texture\interior_props\clockt_back&pipe.bmp
+texture\interior_props\clockt_u_c_k.bmp	texture\interior_props\clockt_u&c&k.bmp
+texture\interior_props\cup_side1.bmp	texture\interior_props\cup-side1.bmp
+texture\interior_props\cup_side2.bmp	texture\interior_props\cup-side2.bmp
+texture\interior_props\cup1_side1.bmp	texture\interior_props\cup1-side1.bmp
+texture\interior_props\cup1_side2.bmp	texture\interior_props\cup1-side2.bmp
+texture\interior_props\cursed_body.bmp	texture\interior_props\cursed-body.bmp
+texture\interior_props\cursed_box.bmp	texture\interior_props\cursed-box.bmp
+texture\interior_props\cursed_chair.bmp	texture\interior_props\cursed-chair.bmp
+texture\interior_props\cursed_face1.bmp	texture\interior_props\cursed-face1.bmp
+texture\interior_props\cursed_furniture.bmp	texture\interior_props\cursed-furniture.bmp
+texture\interior_props\cursed_prop1.bmp	texture\interior_props\cursed-prop1.bmp
+texture\interior_props\cursed_wing.bmp	texture\interior_props\cursed-wing.bmp
+texture\interior_props\d_w.bmp	texture\interior_props\d-w.bmp
+texture\interior_props\de_side1.bmp	texture\interior_props\de-side1.bmp
+texture\interior_props\de_side2.bmp	texture\interior_props\de-side2.bmp
+texture\interior_props\de_side3.bmp	texture\interior_props\de-side3.bmp
+texture\interior_props\de_up.bmp	texture\interior_props\de-up.bmp
+texture\interior_props\death1_copy.bmp	texture\interior_props\death1 copy.bmp
+texture\interior_props\death2_copy.bmp	texture\interior_props\death2 copy.bmp
+texture\interior_props\desk2_side1.bmp	texture\interior_props\desk2-side1.bmp
+texture\interior_props\desk2_side2.bmp	texture\interior_props\desk2-side2.bmp
+texture\interior_props\desk2_side3.bmp	texture\interior_props\desk2-side3.bmp
+texture\interior_props\desk2_up.bmp	texture\interior_props\desk2-up.bmp
+texture\interior_props\devil_1.bmp	texture\interior_props\devil-1.bmp
+texture\interior_props\devil_2.bmp	texture\interior_props\devil-2.bmp
+texture\interior_props\devil_3.bmp	texture\interior_props\devil-3.bmp
+texture\interior_props\devil_4.bmp	texture\interior_props\devil-4.bmp
+texture\interior_props\devil_5.bmp	texture\interior_props\devil-5.bmp
+texture\interior_props\devil_6.bmp	texture\interior_props\devil-6.bmp
+texture\interior_props\devil_7.bmp	texture\interior_props\devil-7.bmp
+texture\interior_props\devil_8.bmp	texture\interior_props\devil-8.bmp
+texture\interior_props\drum_1.bmp	texture\interior_props\drum-1.bmp
+texture\interior_props\drum_2.bmp	texture\interior_props\drum-2.bmp
+texture\interior_props\dun_st1_1.bmp	texture\interior_props\dun-st1_1.bmp
+texture\interior_props\dun_st2_1.bmp	texture\interior_props\dun-st2_1.bmp
+texture\interior_props\dun_st2_2.bmp	texture\interior_props\dun-st2_2.bmp
+texture\interior_props\dun_st2_3.bmp	texture\interior_props\dun-st2_3.bmp
+texture\interior_props\dun_st3_1.bmp	texture\interior_props\dun-st3_1.bmp
+texture\interior_props\dun_st3_2.bmp	texture\interior_props\dun-st3_2.bmp
+texture\interior_props\durm_1.bmp	texture\interior_props\durm-1.bmp
+texture\interior_props\ear_side1.bmp	texture\interior_props\ear-side1.bmp
+texture\interior_props\ear_side2.bmp	texture\interior_props\ear-side2.bmp
+texture\interior_props\elecchair_copy.bmp	texture\interior_props\elecchair copy.bmp
+texture\interior_props\f_n1.bmp	texture\interior_props\f-n1.bmp
+texture\interior_props\f_nan1.bmp	texture\interior_props\f-nan1.bmp
+texture\interior_props\f_side1.bmp	texture\interior_props\f-side1.bmp
+texture\interior_props\f_up.bmp	texture\interior_props\f-up.bmp
+texture\interior_props\fangel_arm_copy.bmp	texture\interior_props\fangel_arm copy.bmp
+texture\interior_props\fangel_body_copy.bmp	texture\interior_props\fangel_body copy.bmp
+texture\interior_props\fangel_wing2_copy.bmp	texture\interior_props\fangel_wing2 copy.bmp
+texture\interior_props\g_jung1.bmp	texture\interior_props\g-jung1.bmp
+texture\interior_props\g_jung2.bmp	texture\interior_props\g-jung2.bmp
+texture\interior_props\gauge_board.bmp	texture\interior_props\gauge board.bmp
+texture\interior_props\gauge_wire.bmp	texture\interior_props\gauge wire.bmp
+texture\interior_props\gch_1_copy.bmp	texture\interior_props\gch-1 copy.bmp
+texture\interior_props\gch_2_copy.bmp	texture\interior_props\gch-2 copy.bmp
+texture\interior_props\ge_cloth.bmp	texture\interior_props\ge-cloth.bmp
+texture\interior_props\ge_fire.bmp	texture\interior_props\ge-fire.bmp
+texture\interior_props\ge_firelattice.bmp	texture\interior_props\ge-firelattice.bmp
+texture\interior_props\ge_firewall.bmp	texture\interior_props\ge-firewall.bmp
+texture\interior_props\ge_horn2.bmp	texture\interior_props\ge-horn2.bmp
+texture\interior_props\ge_log.bmp	texture\interior_props\ge-log.bmp
+texture\interior_props\gedan_side1.bmp	texture\interior_props\gedan-side1.bmp
+texture\interior_props\gedan_side2.bmp	texture\interior_props\gedan-side2.bmp
+texture\interior_props\gedan_side3.bmp	texture\interior_props\gedan-side3.bmp
+texture\interior_props\gedan_side4.bmp	texture\interior_props\gedan-side4.bmp
+texture\interior_props\gla_altar.bmp	texture\interior_props\gla-altar.bmp
+texture\interior_props\gla_arch1.bmp	texture\interior_props\gla-arch1.bmp
+texture\interior_props\gla_book1.bmp	texture\interior_props\gla-book1.bmp
+texture\interior_props\gla_book2.bmp	texture\interior_props\gla-book2.bmp
+texture\interior_props\gla_brechair.bmp	texture\interior_props\gla-brechair.bmp
+texture\interior_props\gla_case.bmp	texture\interior_props\gla-case.bmp
+texture\interior_props\gla_chair.bmp	texture\interior_props\gla-chair.bmp
+texture\interior_props\gla_chair01.bmp	texture\interior_props\gla-chair01.bmp
+texture\interior_props\gla_cloth.bmp	texture\interior_props\gla-cloth.bmp
+texture\interior_props\gla_cross.bmp	texture\interior_props\gla-cross.bmp
+texture\interior_props\gla_musical.bmp	texture\interior_props\gla-musical.bmp
+texture\interior_props\gla_platform.bmp	texture\interior_props\gla-platform.bmp
+texture\interior_props\gla_pole1.bmp	texture\interior_props\gla-pole1.bmp
+texture\interior_props\gla_pole2.bmp	texture\interior_props\gla-pole2.bmp
+texture\interior_props\gla_table.bmp	texture\interior_props\gla-table.bmp
+texture\interior_props\glast_box_copy.bmp	texture\interior_props\glast_box copy.bmp
+texture\interior_props\glast_donggul_copy.bmp	texture\interior_props\glast_donggul copy.bmp
+texture\interior_props\glast_g1_copy.bmp	texture\interior_props\glast_g1 copy.bmp
+texture\interior_props\glast_gidung2_copy.bmp	texture\interior_props\glast_gidung2 copy.bmp
+texture\interior_props\glast_gidung3_3_copy.bmp	texture\interior_props\glast_gidung3_3 copy.bmp
+texture\interior_props\glast_gidung5_copy.bmp	texture\interior_props\glast_gidung5 copy.bmp
+texture\interior_props\glast_jab_copy.bmp	texture\interior_props\glast_jab copy.bmp
+texture\interior_props\gla_door_copy.bmp	texture\interior_props\gla_door copy.bmp
+texture\interior_props\gla_jul_copy.bmp	texture\interior_props\gla_jul copy.bmp
+texture\interior_props\gl_arch_door.bmp	texture\interior_props\gl_arch door.bmp
+texture\interior_props\gl_bm_book_scoop.bmp	texture\interior_props\gl_bm_book&scoop.bmp
+texture\interior_props\gl_bm_magipot_mbook_plane.bmp	texture\interior_props\gl_bm_magipot&mbook&plane.bmp
+texture\interior_props\gl_bm_table_lamp_bead.bmp	texture\interior_props\gl_bm_table&lamp&bead.bmp
+texture\interior_props\gl_wall2_copy.bmp	texture\interior_props\gl_wall2 copy.bmp
+texture\interior_props\gp_lostdun01.bmp	texture\interior_props\gp-lostdun01.bmp
+texture\interior_props\gp_lostdun02.bmp	texture\interior_props\gp-lostdun02.bmp
+texture\interior_props\gp_lostdun03.bmp	texture\interior_props\gp-lostdun03.bmp
+texture\interior_props\gp_lostdun04.bmp	texture\interior_props\gp-lostdun04.bmp
+texture\interior_props\gp_lostdun05.bmp	texture\interior_props\gp-lostdun05.bmp
+texture\interior_props\gp_lostdun06.bmp	texture\interior_props\gp-lostdun06.bmp
+texture\interior_props\gp_lostdun07.bmp	texture\interior_props\gp-lostdun07.bmp
+texture\interior_props\gp_lostdun08.bmp	texture\interior_props\gp-lostdun08.bmp
+texture\interior_props\gp_lostdun09.bmp	texture\interior_props\gp-lostdun09.bmp
+texture\interior_props\gp_lostdun10.bmp	texture\interior_props\gp-lostdun10.bmp
+texture\interior_props\gp_lostdun11.bmp	texture\interior_props\gp-lostdun11.bmp
+texture\interior_props\gp_lostdun12.bmp	texture\interior_props\gp-lostdun12.bmp
+texture\interior_props\gp_lostdun13.bmp	texture\interior_props\gp-lostdun13.bmp
+texture\interior_props\gp_lostdun14.bmp	texture\interior_props\gp-lostdun14.bmp
+texture\interior_props\gp_lostdun15.bmp	texture\interior_props\gp-lostdun15.bmp
+texture\interior_props\ildesk_side1.bmp	texture\interior_props\ildesk-side1.bmp
+texture\interior_props\ildesk_side2.bmp	texture\interior_props\ildesk-side2.bmp
+texture\interior_props\ind_side2.bmp	texture\interior_props\ind-side2.bmp
+texture\interior_props\ind2_side1.bmp	texture\interior_props\ind2-side1.bmp
+texture\interior_props\ind3_side1.bmp	texture\interior_props\ind3-side1.bmp
+texture\interior_props\j_up.bmp	texture\interior_props\j-up.bmp
+texture\interior_props\ja_side1.bmp	texture\interior_props\ja-side1.bmp
+texture\interior_props\ja_side2.bmp	texture\interior_props\ja-side2.bmp
+texture\interior_props\ja4_side1.bmp	texture\interior_props\ja4-side1.bmp
+texture\interior_props\ja4_side2.bmp	texture\interior_props\ja4-side2.bmp
+texture\interior_props\ja5_side1.bmp	texture\interior_props\ja5-side1.bmp
+texture\interior_props\ja5_side2.bmp	texture\interior_props\ja5-side2.bmp
+texture\interior_props\ja7_side1.bmp	texture\interior_props\ja7-side1.bmp
+texture\interior_props\ja7_side2.bmp	texture\interior_props\ja7-side2.bmp
+texture\interior_props\ja8_side1.bmp	texture\interior_props\ja8-side1.bmp
+texture\interior_props\ja8_side2.bmp	texture\interior_props\ja8-side2.bmp
+texture\interior_props\ja9_side1.bmp	texture\interior_props\ja9-side1.bmp
+texture\interior_props\ja9_side2.bmp	texture\interior_props\ja9-side2.bmp
+texture\interior_props\jang_side1.bmp	texture\interior_props\jang-side1.bmp
+texture\interior_props\jang_side2.bmp	texture\interior_props\jang-side2.bmp
+texture\interior_props\jokse_copy.bmp	texture\interior_props\jokse copy.bmp
+texture\interior_props\ju_front.bmp	texture\interior_props\ju-front.bmp
+texture\interior_props\ju_side1.bmp	texture\interior_props\ju-side1.bmp
+texture\interior_props\ju_side2.bmp	texture\interior_props\ju-side2.bmp
+texture\interior_props\ju_side3.bmp	texture\interior_props\ju-side3.bmp
+texture\interior_props\ju_smallside1.bmp	texture\interior_props\ju-smallside1.bmp
+texture\interior_props\ju_up.bmp	texture\interior_props\ju-up.bmp
+texture\interior_props\knight_furni.bmp	texture\interior_props\knight-furni.bmp
+texture\interior_props\l_side1.bmp	texture\interior_props\l-side1.bmp
+texture\interior_props\l_side2.bmp	texture\interior_props\l-side2.bmp
+texture\interior_props\l_side3.bmp	texture\interior_props\l-side3.bmp
+texture\interior_props\l_side4.bmp	texture\interior_props\l-side4.bmp
+texture\interior_props\lac_copy.bmp	texture\interior_props\lac copy.bmp
+texture\interior_props\leg_1_copy.bmp	texture\interior_props\leg-1 copy.bmp
+texture\interior_props\lion_ring.bmp	texture\interior_props\lion ring.bmp
+texture\interior_props\m2_side1.bmp	texture\interior_props\m2-side1.bmp
+texture\interior_props\m2_side2.bmp	texture\interior_props\m2-side2.bmp
+texture\interior_props\maria_copy.bmp	texture\interior_props\maria copy.bmp
+texture\interior_props\mo_ba_ch.bmp	texture\interior_props\mo-ba-ch.bmp
+texture\interior_props\mo_ba_ch2.bmp	texture\interior_props\mo-ba-ch2.bmp
+texture\interior_props\mo_ba_desk1.bmp	texture\interior_props\mo-ba-desk1.bmp
+texture\interior_props\mo_bed.bmp	texture\interior_props\mo-bed.bmp
+texture\interior_props\mo_bed2.bmp	texture\interior_props\mo-bed2.bmp
+texture\interior_props\mo_c_col1.bmp	texture\interior_props\mo-c-col1.bmp
+texture\interior_props\mo_c_col2.bmp	texture\interior_props\mo-c-col2.bmp
+texture\interior_props\mo_castle_col1.bmp	texture\interior_props\mo-castle-col1.bmp
+texture\interior_props\mo_castle_col2.bmp	texture\interior_props\mo-castle-col2.bmp
+texture\interior_props\mo_castle_hr1.bmp	texture\interior_props\mo-castle-hr1.bmp
+texture\interior_props\mo_castle_hr2.bmp	texture\interior_props\mo-castle-hr2.bmp
+texture\interior_props\mo_castle_st1.bmp	texture\interior_props\mo-castle-st1.bmp
+texture\interior_props\mo_castle_st2.bmp	texture\interior_props\mo-castle-st2.bmp
+texture\interior_props\mo_cstl_bed1.bmp	texture\interior_props\mo-cstl-bed1.bmp
+texture\interior_props\mo_cstl_bed2.bmp	texture\interior_props\mo-cstl-bed2.bmp
+texture\interior_props\mo_f1.bmp	texture\interior_props\mo-f1.bmp
+texture\interior_props\mo_f2.bmp	texture\interior_props\mo-f2.bmp
+texture\interior_props\mo_fur1.bmp	texture\interior_props\mo-fur1.bmp
+texture\interior_props\mo_gcur1.bmp	texture\interior_props\mo-gcur1.bmp
+texture\interior_props\mo_gcur2.bmp	texture\interior_props\mo-gcur2.bmp
+texture\interior_props\mo_heat1.bmp	texture\interior_props\mo-heat1.bmp
+texture\interior_props\mo_heat2.bmp	texture\interior_props\mo-heat2.bmp
+texture\interior_props\mo_wallf1.bmp	texture\interior_props\mo-wallf1.bmp
+texture\interior_props\mo_wallf2.bmp	texture\interior_props\mo-wallf2.bmp
+texture\interior_props\moc_arena_01.bmp	texture\interior_props\moc-arena-01.bmp
+texture\interior_props\mu_side1.bmp	texture\interior_props\mu-side1.bmp
+texture\interior_props\mu_side2.bmp	texture\interior_props\mu-side2.bmp
+texture\interior_props\myo_mine4.bmp	texture\interior_props\myo-mine4.bmp
+texture\interior_props\nec_1_copy.bmp	texture\interior_props\nec-1 copy.bmp
+texture\interior_props\oc_1.bmp	texture\interior_props\oc-1.bmp
+texture\interior_props\oc_2.bmp	texture\interior_props\oc-2.bmp
+texture\interior_props\okbook_1.bmp	texture\interior_props\okbook-1.bmp
+texture\interior_props\okbook_2.bmp	texture\interior_props\okbook-2.bmp
+texture\interior_props\okbook_3.bmp	texture\interior_props\okbook-3.bmp
+texture\interior_props\okbook_4.bmp	texture\interior_props\okbook-4.bmp
+texture\interior_props\okbook_5.bmp	texture\interior_props\okbook-5.bmp
+texture\interior_props\okbook_6.bmp	texture\interior_props\okbook-6.bmp
+texture\interior_props\okff_1.bmp	texture\interior_props\okff-1.bmp
+texture\interior_props\okff_2.bmp	texture\interior_props\okff-2.bmp
+texture\interior_props\okff_3.bmp	texture\interior_props\okff-3.bmp
+texture\interior_props\okt_1.bmp	texture\interior_props\okt-1.bmp
+texture\interior_props\okt_2.bmp	texture\interior_props\okt-2.bmp
+texture\interior_props\okt_3.bmp	texture\interior_props\okt-3.bmp
+texture\interior_props\one_side1.bmp	texture\interior_props\one-side1.bmp
+texture\interior_props\one_side2.bmp	texture\interior_props\one-side2.bmp
+texture\interior_props\one_side3.bmp	texture\interior_props\one-side3.bmp
+texture\interior_props\orc_arrow.bmp	texture\interior_props\orc-arrow.bmp
+texture\interior_props\orc_chair1.bmp	texture\interior_props\orc-chair1.bmp
+texture\interior_props\orc_chair2.bmp	texture\interior_props\orc-chair2.bmp
+texture\interior_props\orc_chair3.bmp	texture\interior_props\orc-chair3.bmp
+texture\interior_props\orc_chair4.bmp	texture\interior_props\orc-chair4.bmp
+texture\interior_props\orc_chair5.bmp	texture\interior_props\orc-chair5.bmp
+texture\interior_props\orc_exit.bmp	texture\interior_props\orc-exit.bmp
+texture\interior_props\orc_skeleton.bmp	texture\interior_props\orc-skeleton.bmp
+texture\interior_props\pode_copy.bmp	texture\interior_props\pode copy.bmp
+texture\interior_props\pron_bri_1.bmp	texture\interior_props\pron-bri-1.bmp
+texture\interior_props\pron_bri.bmp	texture\interior_props\pron-bri.bmp
+texture\interior_props\pron_chang.bmp	texture\interior_props\pron-chang.bmp
+texture\interior_props\pron_hwang.bmp	texture\interior_props\pron-hwang.bmp
+texture\interior_props\pron_hwang1.bmp	texture\interior_props\pron-hwang1.bmp
+texture\interior_props\pron_hwang2.bmp	texture\interior_props\pron-hwang2.bmp
+texture\interior_props\pron_line.bmp	texture\interior_props\pron-line.bmp
+texture\interior_props\pron_line2.bmp	texture\interior_props\pron-line2.bmp
+texture\interior_props\pron_spai.bmp	texture\interior_props\pron-spai.bmp
+texture\interior_props\pron_kan2_01_copy.bmp	texture\interior_props\pron_kan2_01 copy.bmp
+texture\interior_props\prt_kbed_b.bmp	texture\interior_props\prt-kbed-b.bmp
+texture\interior_props\prt_kbed_b2.bmp	texture\interior_props\prt-kbed-b2.bmp
+texture\interior_props\prt_kbed_b3.bmp	texture\interior_props\prt-kbed-b3.bmp
+texture\interior_props\prt_kbed_c.bmp	texture\interior_props\prt-kbed-c.bmp
+texture\interior_props\prt_ksofa_01.bmp	texture\interior_props\prt-ksofa-01.bmp
+texture\interior_props\prt_ksofa_02.bmp	texture\interior_props\prt-ksofa-02.bmp
+texture\interior_props\prt_ksofa_03.bmp	texture\interior_props\prt-ksofa-03.bmp
+texture\interior_props\prt_ksofa_04.bmp	texture\interior_props\prt-ksofa-04.bmp
+texture\interior_props\russia_bed_copy.bmp	texture\interior_props\russia_bed copy.bmp
+texture\interior_props\russia_cat_copy.bmp	texture\interior_props\russia_cat copy.bmp
+texture\interior_props\russia_chair_copy.bmp	texture\interior_props\russia_chair copy.bmp
+texture\interior_props\russia_saen_copy.bmp	texture\interior_props\russia_saen copy.bmp
+texture\interior_props\russia_saen2_copy.bmp	texture\interior_props\russia_saen2 copy.bmp
+texture\interior_props\russia_table_copy.bmp	texture\interior_props\russia_table copy.bmp
+texture\interior_props\sa22_copy.bmp	texture\interior_props\sa22 copy.bmp
+texture\interior_props\samak_jap_copy.bmp	texture\interior_props\samak_jap copy.bmp
+texture\interior_props\samak_jap2_copy.bmp	texture\interior_props\samak_jap2 copy.bmp
+texture\interior_props\sangdl_copy.bmp	texture\interior_props\sangdl copy.bmp
+texture\interior_props\sasul_copy.bmp	texture\interior_props\sasul copy.bmp
+texture\interior_props\sa_chi_copy.bmp	texture\interior_props\sa_chi copy.bmp
+texture\interior_props\sa_ps_copy.bmp	texture\interior_props\sa_ps copy.bmp
+texture\interior_props\seokse_copy.bmp	texture\interior_props\seokse copy.bmp
+texture\interior_props\si_side1.bmp	texture\interior_props\si-side1.bmp
+texture\interior_props\si_side2.bmp	texture\interior_props\si-side2.bmp
+texture\interior_props\si_side3.bmp	texture\interior_props\si-side3.bmp
+texture\interior_props\sk_1_copy.bmp	texture\interior_props\sk-1 copy.bmp
+texture\interior_props\spbk_copy.bmp	texture\interior_props\spbk copy.bmp
+texture\interior_props\sure1256_copy.bmp	texture\interior_props\sure1256 copy.bmp
+texture\interior_props\sure2256_copy.bmp	texture\interior_props\sure2256 copy.bmp
+texture\interior_props\t_dari.bmp	texture\interior_props\t-dari.bmp
+texture\interior_props\t_side.bmp	texture\interior_props\t-side.bmp
+texture\interior_props\table_up.bmp	texture\interior_props\table-up.bmp
+texture\interior_props\tana_bat_copy.bmp	texture\interior_props\tana_bat copy.bmp
+texture\interior_props\tana_calcal_copy.bmp	texture\interior_props\tana_calcal copy.bmp
+texture\interior_props\tana_dong1_copy.bmp	texture\interior_props\tana_dong1 copy.bmp
+texture\interior_props\tana_dong2_copy.bmp	texture\interior_props\tana_dong2 copy.bmp
+texture\interior_props\tana_dong3_copy.bmp	texture\interior_props\tana_dong3 copy.bmp
+texture\interior_props\tana_sang2_copy.bmp	texture\interior_props\tana_sang2 copy.bmp
+texture\interior_props\tgijung1_copy.bmp	texture\interior_props\tgijung1 copy.bmp
+texture\interior_props\tgijung2_copy.bmp	texture\interior_props\tgijung2 copy.bmp
+texture\interior_props\tgijung3_copy.bmp	texture\interior_props\tgijung3 copy.bmp
+texture\interior_props\time_1.bmp	texture\interior_props\time-1.bmp
+texture\interior_props\tr_side1.bmp	texture\interior_props\tr-side1.bmp
+texture\interior_props\tr3_side1.bmp	texture\interior_props\tr3-side1.bmp
+texture\interior_props\trea_arch.bmp	texture\interior_props\trea-arch.bmp
+texture\interior_props\trea_bed.bmp	texture\interior_props\trea-bed.bmp
+texture\interior_props\trea_coral1.bmp	texture\interior_props\trea-coral1.bmp
+texture\interior_props\trea_coral2.bmp	texture\interior_props\trea-coral2.bmp
+texture\interior_props\trea_lder.bmp	texture\interior_props\trea-lder.bmp
+texture\interior_props\trea_table.bmp	texture\interior_props\trea-table.bmp
+texture\interior_props\trsship_sta1.bmp	texture\interior_props\trsship-sta1.bmp
+texture\interior_props\u_1.bmp	texture\interior_props\u-1.bmp
+texture\interior_props\u_side.bmp	texture\interior_props\u-side.bmp
+texture\interior_props\u_up.bmp	texture\interior_props\u-up.bmp
+texture\interior_props\untitled_3_copy.bmp	texture\interior_props\untitled-3 copy.bmp
+texture\interior_props\watch_worf1_copy.bmp	texture\interior_props\watch_worf1 copy.bmp
+texture\interior_props\watch_worf2_copy.bmp	texture\interior_props\watch_worf2 copy.bmp
+texture\interior_props\xmas_s1.bmp	texture\interior_props\xmas-s1.bmp
+texture\interior_props\xmas_s2.bmp	texture\interior_props\xmas-s2.bmp
+texture\interior_props\xmas_s3.bmp	texture\interior_props\xmas-s3.bmp
+texture\interior_props\xmas_s4.bmp	texture\interior_props\xmas-s4.bmp
+texture\interior_props\xmas_s5.bmp	texture\interior_props\xmas-s5.bmp
+texture\morocc\antegg_1.bmp	texture\morocc\antegg-1.bmp
+texture\morocc\antegg_2.bmp	texture\morocc\antegg-2.bmp
+texture\morocc\anttree_1.bmp	texture\morocc\anttree-1.bmp
+texture\morocc\anttree_2.bmp	texture\morocc\anttree-2.bmp
+texture\morocc\anttree_3.bmp	texture\morocc\anttree-3.bmp
+texture\morocc\anttree_4.bmp	texture\morocc\anttree-4.bmp
+texture\morocc\anttree_5.bmp	texture\morocc\anttree-5.bmp
+texture\morocc\ba_1.bmp	texture\morocc\ba-1.bmp
+texture\morocc\ba_2.bmp	texture\morocc\ba-2.bmp
+texture\morocc\ba_back.bmp	texture\morocc\ba-back.bmp
+texture\morocc\ba_line.bmp	texture\morocc\ba-line.bmp
+texture\morocc\ba_roof_1.bmp	texture\morocc\ba-roof-1.bmp
+texture\morocc\ba_roof_2.bmp	texture\morocc\ba-roof-2.bmp
+texture\morocc\ba_roof.bmp	texture\morocc\ba-roof.bmp
+texture\morocc\ba_said_1.bmp	texture\morocc\ba-said-1.bmp
+texture\morocc\ba_said_2.bmp	texture\morocc\ba-said-2.bmp
+texture\morocc\ba_said.bmp	texture\morocc\ba-said.bmp
+texture\morocc\ba_sun.bmp	texture\morocc\ba-sun.bmp
+texture\morocc\f2mo0_line.bmp	texture\morocc\f2mo0-line.bmp
+texture\morocc\fmo0_line.bmp	texture\morocc\fmo0-line.bmp
+texture\morocc\front_top01.bmp	texture\morocc\front top01.bmp
+texture\morocc\front_top02.bmp	texture\morocc\front top02.bmp
+texture\morocc\front_top03.bmp	texture\morocc\front top03.bmp
+texture\morocc\front_pillar01_base01.bmp	texture\morocc\front-pillar01&base01.bmp
+texture\morocc\inside_small01.bmp	texture\morocc\inside-small01.bmp
+texture\morocc\mo_castle_gate.bmp	texture\morocc\mo-castle-gate.bmp
+texture\morocc\mo_castle_gate2.bmp	texture\morocc\mo-castle-gate2.bmp
+texture\morocc\mo_castle_gr1.bmp	texture\morocc\mo-castle-gr1.bmp
+texture\morocc\mo_castle_gr2.bmp	texture\morocc\mo-castle-gr2.bmp
+texture\morocc\mo_castle_gw1.bmp	texture\morocc\mo-castle-gw1.bmp
+texture\morocc\mo_castle_gw2.bmp	texture\morocc\mo-castle-gw2.bmp
+texture\morocc\mo_castle_gw3.bmp	texture\morocc\mo-castle-gw3.bmp
+texture\morocc\mo_castle_roof1.bmp	texture\morocc\mo-castle-roof1.bmp
+texture\morocc\mo_castle_roof2.bmp	texture\morocc\mo-castle-roof2.bmp
+texture\morocc\mo_castle_w1.bmp	texture\morocc\mo-castle-w1.bmp
+texture\morocc\mo_castle_w2.bmp	texture\morocc\mo-castle-w2.bmp
+texture\morocc\mo_castle_w3.bmp	texture\morocc\mo-castle-w3+.bmp
+texture\morocc\mo_castle_w4.bmp	texture\morocc\mo-castle-w4.bmp
+texture\morocc\mo_castle_w5.bmp	texture\morocc\mo-castle-w5.bmp
+texture\morocc\mo_gate1.bmp	texture\morocc\mo-gate1.bmp
+texture\morocc\mo_gate2.bmp	texture\morocc\mo-gate2.bmp
+texture\morocc\mo_house_b.bmp	texture\morocc\mo-house-b.bmp
+texture\morocc\mo_house_f.bmp	texture\morocc\mo-house-f.bmp
+texture\morocc\mo_house_in.bmp	texture\morocc\mo-house-in.bmp
+texture\morocc\mo_house_l1.bmp	texture\morocc\mo-house-l1.bmp
+texture\morocc\mo_house_roof.bmp	texture\morocc\mo-house-roof.bmp
+texture\morocc\mo_house_wall1.bmp	texture\morocc\mo-house-wall1.bmp
+texture\morocc\mo_house_wall2.bmp	texture\morocc\mo-house-wall2.bmp
+texture\morocc\mo_house_wall3.bmp	texture\morocc\mo-house-wall3.bmp
+texture\morocc\mo_inn_roof1.bmp	texture\morocc\mo-inn-roof1.bmp
+texture\morocc\mo_inn_roof2.bmp	texture\morocc\mo-inn-roof2.bmp
+texture\morocc\mo_inn_wall1.bmp	texture\morocc\mo-inn-wall1.bmp
+texture\morocc\mo_inn_wall2.bmp	texture\morocc\mo-inn-wall2.bmp
+texture\morocc\mo_inn_wall3.bmp	texture\morocc\mo-inn-wall3.bmp
+texture\morocc\mo_inn_wall4.bmp	texture\morocc\mo-inn-wall4.bmp
+texture\morocc\mo_inn_wallin.bmp	texture\morocc\mo-inn-wallin.bmp
+texture\morocc\mo_sang_1.bmp	texture\morocc\mo-sang-1.bmp
+texture\morocc\mo_sang_2.bmp	texture\morocc\mo-sang-2.bmp
+texture\morocc\mo_sang_3.bmp	texture\morocc\mo-sang-3.bmp
+texture\morocc\mo_sang_4.bmp	texture\morocc\mo-sang-4.bmp
+texture\morocc\mo_sang_5.bmp	texture\morocc\mo-sang-5.bmp
+texture\morocc\mo_sang_6.bmp	texture\morocc\mo-sang-6.bmp
+texture\morocc\mo_sang_7.bmp	texture\morocc\mo-sang-7.bmp
+texture\morocc\mo_sang_roof_1.bmp	texture\morocc\mo-sang-roof-1.bmp
+texture\morocc\mo_sang_roof.bmp	texture\morocc\mo-sang-roof.bmp
+texture\morocc\mo_sang.bmp	texture\morocc\mo-sang.bmp
+texture\morocc\mo_shop1.bmp	texture\morocc\mo-shop1.bmp
+texture\morocc\mo_shop2.bmp	texture\morocc\mo-shop2.bmp
+texture\morocc\mo_shop3.bmp	texture\morocc\mo-shop3.bmp
+texture\morocc\mo_shop4.bmp	texture\morocc\mo-shop4.bmp
+texture\morocc\mo_solgd1.bmp	texture\morocc\mo-solgd1.bmp
+texture\morocc\mo_solgd2.bmp	texture\morocc\mo-solgd2.bmp
+texture\morocc\mo_solgd3.bmp	texture\morocc\mo-solgd3.bmp
+texture\morocc\moc_ant.bmp	texture\morocc\moc-ant.bmp
+texture\morocc\moc_assin1.bmp	texture\morocc\moc-assin1.bmp
+texture\morocc\moc_assin2.bmp	texture\morocc\moc-assin2.bmp
+texture\morocc\moc_assin3.bmp	texture\morocc\moc-assin3.bmp
+texture\morocc\moc_assin4.bmp	texture\morocc\moc-assin4.bmp
+texture\morocc\moc_assin5.bmp	texture\morocc\moc-assin5.bmp
+texture\morocc\moc_assin6.bmp	texture\morocc\moc-assin6.bmp
+texture\morocc\moc_assin7.bmp	texture\morocc\moc-assin7.bmp
+texture\morocc\moc_stone_copy.bmp	texture\morocc\moc_stone copy.bmp
+texture\morocc\moh2_in.bmp	texture\morocc\moh2-in.bmp
+texture\morocc\moh2_r.bmp	texture\morocc\moh2-r.bmp
+texture\morocc\moh2_w1.bmp	texture\morocc\moh2-w1.bmp
+texture\morocc\moh2_w2.bmp	texture\morocc\moh2-w2.bmp
+texture\morocc\moh2_w3.bmp	texture\morocc\moh2-w3.bmp
+texture\morocc\moh2_w4.bmp	texture\morocc\moh2-w4.bmp
+texture\morocc\moh2_w5.bmp	texture\morocc\moh2-w5.bmp
+texture\morocc\moh2_w6.bmp	texture\morocc\moh2-w6.bmp
+texture\morocc\morco_mo_ba_ch.bmp	texture\morocc\morco_mo-ba-ch.bmp
+texture\morocc\morc_mo_house_b.bmp	texture\morocc\morc_mo-house-b.bmp
+texture\morocc\morc_mo_house_f.bmp	texture\morocc\morc_mo-house-f.bmp
+texture\morocc\morc_mo_house_in.bmp	texture\morocc\morc_mo-house-in.bmp
+texture\morocc\morc_mo_house_l1.bmp	texture\morocc\morc_mo-house-l1.bmp
+texture\morocc\morc_mo_house_roof.bmp	texture\morocc\morc_mo-house-roof.bmp
+texture\morocc\morc_mo_house_wall1.bmp	texture\morocc\morc_mo-house-wall1.bmp
+texture\morocc\morc_mo_house_wall2.bmp	texture\morocc\morc_mo-house-wall2.bmp
+texture\morocc\morc_mo_house_wall3.bmp	texture\morocc\morc_mo-house-wall3.bmp
+texture\morocc\morc_mo_shop1.bmp	texture\morocc\morc_mo-shop1.bmp
+texture\morocc\morc_mo_shop2.bmp	texture\morocc\morc_mo-shop2.bmp
+texture\morocc\morc_mo_shop3.bmp	texture\morocc\morc_mo-shop3.bmp
+texture\morocc\morc_mo_shop5.bmp	texture\morocc\morc_mo-shop5.bmp
+texture\morocc\morc_moh2_r.bmp	texture\morocc\morc_moh2-r.bmp
+texture\morocc\morc_moh2_w3.bmp	texture\morocc\morc_moh2-w3.bmp
+texture\morocc\morc_moh2_w4.bmp	texture\morocc\morc_moh2-w4.bmp
+texture\morocc\morc_moh2_w5.bmp	texture\morocc\morc_moh2-w5.bmp
+texture\morocc\morocc_ruined_piece01.bmp	texture\morocc\morocc_ruined piece01.bmp
+texture\morocc\morocc_ruined_piece02.bmp	texture\morocc\morocc_ruined piece02.bmp
+texture\morocc\sp_bal_copy.bmp	texture\morocc\sp-bal copy.bmp
+texture\morocc\sp_body_copy.bmp	texture\morocc\sp-body copy.bmp
+texture\morocc\sp_gae_copy.bmp	texture\morocc\sp-gae copy.bmp
+texture\morocc\sp_head_copy.bmp	texture\morocc\sp-head copy.bmp
+texture\morocc\sp_pal_copy.bmp	texture\morocc\sp-pal copy.bmp
+texture\morocc\sp_shead_copy.bmp	texture\morocc\sp-shead copy.bmp
+texture\morocc\statue_map01.bmp	texture\morocc\statue-map01.bmp
+texture\morocc\statue_map02.bmp	texture\morocc\statue-map02.bmp
+texture\morocc\statue_map03.bmp	texture\morocc\statue-map03.bmp
+texture\morocc_interior\mo_castle_wall1.bmp	texture\morocc_interior\mo-castle-wall1.bmp
+texture\morocc_interior\mo_castle_wall2.bmp	texture\morocc_interior\mo-castle-wall2.bmp
+texture\morocc_interior\mo_cstlw1_1.bmp	texture\morocc_interior\mo-cstlw1-1.bmp
+texture\morocc_interior\mo_cstlw1_2.bmp	texture\morocc_interior\mo-cstlw1-2.bmp
+texture\morocc_interior\mo_cstlw2_1.bmp	texture\morocc_interior\mo-cstlw2-1.bmp
+texture\morocc_interior\mo_cstlw2_2.bmp	texture\morocc_interior\mo-cstlw2-2.bmp
+texture\morocc_interior\mo_pyra_c1.bmp	texture\morocc_interior\mo-pyra-c1.bmp
+texture\morocc_interior\mo_pyra_c2.bmp	texture\morocc_interior\mo-pyra-c2.bmp
+texture\morocc_interior\mo_pyra_f1.bmp	texture\morocc_interior\mo-pyra-f1.bmp
+texture\morocc_interior\mo_pyra_f2.bmp	texture\morocc_interior\mo-pyra-f2.bmp
+texture\morocc_interior\mo_pyra_tas1.bmp	texture\morocc_interior\mo-pyra-tas1.bmp
+texture\morocc_interior\mo_pyra_tas2.bmp	texture\morocc_interior\mo-pyra-tas2.bmp
+texture\morocc_interior\mo_tile_000.bmp	texture\morocc_interior\mo-tile-000.bmp
+texture\morocc_interior\moc_tile_00.bmp	texture\morocc_interior\moc_tile-00.bmp
+texture\morocc_interior\moc_tile_02.bmp	texture\morocc_interior\moc_tile-02.bmp
+texture\morocc_interior\morocc_castle_floor2.bmp	texture\morocc_interior\morocc_castle-floor2.bmp
+texture\morocc_interior\morocc_castle_floor3.bmp	texture\morocc_interior\morocc_castle-floor3.bmp
+texture\other_towns\1_copy.bmp	texture\other_towns\1 copy.bmp
+texture\other_towns\2_copy.bmp	texture\other_towns\2 copy.bmp
+texture\other_towns\3_copy.bmp	texture\other_towns\3 copy.bmp
+texture\other_towns\4_copy.bmp	texture\other_towns\4 copy.bmp
+texture\other_towns\5_copy.bmp	texture\other_towns\5 copy.bmp
+texture\other_towns\al_00.bmp	texture\other_towns\al-00.bmp
+texture\other_towns\al_01.bmp	texture\other_towns\al-01.bmp
+texture\other_towns\al_02.bmp	texture\other_towns\al-02.bmp
+texture\other_towns\al_03.bmp	texture\other_towns\al-03.bmp
+texture\other_towns\al_04.bmp	texture\other_towns\al-04.bmp
+texture\other_towns\al_05.bmp	texture\other_towns\al-05.bmp
+texture\other_towns\al_06.bmp	texture\other_towns\al-06.bmp
+texture\other_towns\al_a01.bmp	texture\other_towns\al-a01.bmp
+texture\other_towns\al_a02.bmp	texture\other_towns\al-a02.bmp
+texture\other_towns\al_a03.bmp	texture\other_towns\al-a03.bmp
+texture\other_towns\al_a04.bmp	texture\other_towns\al-a04.bmp
+texture\other_towns\al_a05.bmp	texture\other_towns\al-a05.bmp
+texture\other_towns\al_bar1.bmp	texture\other_towns\al-bar1.bmp
+texture\other_towns\al_bar2.bmp	texture\other_towns\al-bar2.bmp
+texture\other_towns\al_bar3.bmp	texture\other_towns\al-bar3.bmp
+texture\other_towns\al_bar4.bmp	texture\other_towns\al-bar4.bmp
+texture\other_towns\al_bar5.bmp	texture\other_towns\al-bar5.bmp
+texture\other_towns\al_bloc.bmp	texture\other_towns\al-bloc.bmp
+texture\other_towns\al_crn1.bmp	texture\other_towns\al-crn1.bmp
+texture\other_towns\al_crn2.bmp	texture\other_towns\al-crn2.bmp
+texture\other_towns\al_crn3.bmp	texture\other_towns\al-crn3.bmp
+texture\other_towns\al_do_11.bmp	texture\other_towns\al-do-11.bmp
+texture\other_towns\al_door.bmp	texture\other_towns\al-door.bmp
+texture\other_towns\al_fen.bmp	texture\other_towns\al-fen.bmp
+texture\other_towns\al_gypsy1.bmp	texture\other_towns\al-gypsy1.bmp
+texture\other_towns\al_gypsy2.bmp	texture\other_towns\al-gypsy2.bmp
+texture\other_towns\al_gypsy3.bmp	texture\other_towns\al-gypsy3.bmp
+texture\other_towns\al_h1_01.bmp	texture\other_towns\al-h1-01.bmp
+texture\other_towns\al_h1_02.bmp	texture\other_towns\al-h1-02.bmp
+texture\other_towns\al_h1_03.bmp	texture\other_towns\al-h1-03.bmp
+texture\other_towns\al_h2_r.bmp	texture\other_towns\al-h2-r.bmp
+texture\other_towns\al_h2_w1.bmp	texture\other_towns\al-h2-w1.bmp
+texture\other_towns\al_h2_w2.bmp	texture\other_towns\al-h2-w2.bmp
+texture\other_towns\al_inn_r.bmp	texture\other_towns\al-inn-r.bmp
+texture\other_towns\al_inn_w1.bmp	texture\other_towns\al-inn-w1.bmp
+texture\other_towns\al_inn_w2.bmp	texture\other_towns\al-inn-w2.bmp
+texture\other_towns\al_inn_w3.bmp	texture\other_towns\al-inn-w3.bmp
+texture\other_towns\al_lig_01.bmp	texture\other_towns\al-lig-01.bmp
+texture\other_towns\al_ship1.bmp	texture\other_towns\al-ship1.bmp
+texture\other_towns\al_ship2.bmp	texture\other_towns\al-ship2.bmp
+texture\other_towns\al_ship3.bmp	texture\other_towns\al-ship3.bmp
+texture\other_towns\al_ship4.bmp	texture\other_towns\al-ship4.bmp
+texture\other_towns\al_ship5.bmp	texture\other_towns\al-ship5.bmp
+texture\other_towns\al_ship6.bmp	texture\other_towns\al-ship6.bmp
+texture\other_towns\alb_a_g.bmp	texture\other_towns\alb-a-g.bmp
+texture\other_towns\alb_a_r1.bmp	texture\other_towns\alb-a-r1.bmp
+texture\other_towns\alb_a_w1.bmp	texture\other_towns\alb-a-w1.bmp
+texture\other_towns\alb_a_w2.bmp	texture\other_towns\alb-a-w2.bmp
+texture\other_towns\alb_a_w3.bmp	texture\other_towns\alb-a-w3.bmp
+texture\other_towns\alb_a_w4.bmp	texture\other_towns\alb-a-w4.bmp
+texture\other_towns\alb_a_w5.bmp	texture\other_towns\alb-a-w5.bmp
+texture\other_towns\albdo_01.bmp	texture\other_towns\albdo-01.bmp
+texture\other_towns\albdo_02.bmp	texture\other_towns\albdo-02.bmp
+texture\other_towns\albdo_03.bmp	texture\other_towns\albdo-03.bmp
+texture\other_towns\albdo_04.bmp	texture\other_towns\albdo-04.bmp
+texture\other_towns\albdo_05.bmp	texture\other_towns\albdo-05.bmp
+texture\other_towns\albdo_06.bmp	texture\other_towns\albdo-06.bmp
+texture\other_towns\alde_brg1.bmp	texture\other_towns\alde-brg1.bmp
+texture\other_towns\alde_brg2.bmp	texture\other_towns\alde-brg2.bmp
+texture\other_towns\alde_brg3.bmp	texture\other_towns\alde-brg3.bmp
+texture\other_towns\alde_brg4.bmp	texture\other_towns\alde-brg4.bmp
+texture\other_towns\alde_cafra1.bmp	texture\other_towns\alde-cafra1.bmp
+texture\other_towns\alde_cafra2.bmp	texture\other_towns\alde-cafra2.bmp
+texture\other_towns\alde_cafra3.bmp	texture\other_towns\alde-cafra3.bmp
+texture\other_towns\alde_cafra4.bmp	texture\other_towns\alde-cafra4.bmp
+texture\other_towns\alde_cafra5.bmp	texture\other_towns\alde-cafra5.bmp
+texture\other_towns\alde_cafra6.bmp	texture\other_towns\alde-cafra6.bmp
+texture\other_towns\alde_cafra7.bmp	texture\other_towns\alde-cafra7.bmp
+texture\other_towns\alde_cafra8.bmp	texture\other_towns\alde-cafra8.bmp
+texture\other_towns\alde_clock1.bmp	texture\other_towns\alde-clock1.bmp
+texture\other_towns\alde_clock10.bmp	texture\other_towns\alde-clock10.bmp
+texture\other_towns\alde_clock2.bmp	texture\other_towns\alde-clock2.bmp
+texture\other_towns\alde_clock3.bmp	texture\other_towns\alde-clock3.bmp
+texture\other_towns\alde_clock4.bmp	texture\other_towns\alde-clock4.bmp
+texture\other_towns\alde_clock5.bmp	texture\other_towns\alde-clock5.bmp
+texture\other_towns\alde_clock6.bmp	texture\other_towns\alde-clock6.bmp
+texture\other_towns\alde_clock7.bmp	texture\other_towns\alde-clock7.bmp
+texture\other_towns\alde_clock8.bmp	texture\other_towns\alde-clock8.bmp
+texture\other_towns\alde_clock9.bmp	texture\other_towns\alde-clock9.bmp
+texture\other_towns\alde_hous2_01.bmp	texture\other_towns\alde-hous2_01.bmp
+texture\other_towns\alde_hous2_02.bmp	texture\other_towns\alde-hous2_02.bmp
+texture\other_towns\alde_hous2_03.bmp	texture\other_towns\alde-hous2_03.bmp
+texture\other_towns\alde_hous2_04.bmp	texture\other_towns\alde-hous2_04.bmp
+texture\other_towns\alde_hous2_05.bmp	texture\other_towns\alde-hous2_05.bmp
+texture\other_towns\alde_hous2_06.bmp	texture\other_towns\alde-hous2_06.bmp
+texture\other_towns\alde_hous3_01.bmp	texture\other_towns\alde-hous3_01.bmp
+texture\other_towns\alde_hous3_02.bmp	texture\other_towns\alde-hous3_02.bmp
+texture\other_towns\alde_hous3_03.bmp	texture\other_towns\alde-hous3_03.bmp
+texture\other_towns\alde_hous3_04.bmp	texture\other_towns\alde-hous3_04.bmp
+texture\other_towns\alde_hous3_05.bmp	texture\other_towns\alde-hous3_05.bmp
+texture\other_towns\alde_hous3_06.bmp	texture\other_towns\alde-hous3_06.bmp
+texture\other_towns\alde_house1.bmp	texture\other_towns\alde-house1.bmp
+texture\other_towns\alde_house2.bmp	texture\other_towns\alde-house2.bmp
+texture\other_towns\alde_house3.bmp	texture\other_towns\alde-house3.bmp
+texture\other_towns\alde_house4.bmp	texture\other_towns\alde-house4.bmp
+texture\other_towns\alde_house5.bmp	texture\other_towns\alde-house5.bmp
+texture\other_towns\alde_house6.bmp	texture\other_towns\alde-house6.bmp
+texture\other_towns\ame_engine1_copy.bmp	texture\other_towns\ame_engine1 copy.bmp
+texture\other_towns\ame_engine2_copy.bmp	texture\other_towns\ame_engine2 copy.bmp
+texture\other_towns\ame_engine3_copy.bmp	texture\other_towns\ame_engine3 copy.bmp
+texture\other_towns\ame_engine4_copy.bmp	texture\other_towns\ame_engine4 copy.bmp
+texture\other_towns\ame_engine5_copy.bmp	texture\other_towns\ame_engine5 copy.bmp
+texture\other_towns\ame_engine6_copy.bmp	texture\other_towns\ame_engine6 copy.bmp
+texture\other_towns\bar_1_copy.bmp	texture\other_towns\bar-1 copy.bmp
+texture\other_towns\bar_2_copy.bmp	texture\other_towns\bar-2 copy.bmp
+texture\other_towns\bar_3_copy.bmp	texture\other_towns\bar-3 copy.bmp
+texture\other_towns\bar_4_copy.bmp	texture\other_towns\bar-4 copy.bmp
+texture\other_towns\bar_5_copy.bmp	texture\other_towns\bar-5 copy.bmp
+texture\other_towns\bar_6_copy.bmp	texture\other_towns\bar-6 copy.bmp
+texture\other_towns\beatch_ip1_copy.bmp	texture\other_towns\beatch_ip1 copy.bmp
+texture\other_towns\beatch_ip2_copy.bmp	texture\other_towns\beatch_ip2 copy.bmp
+texture\other_towns\beatch_ip3_copy.bmp	texture\other_towns\beatch_ip3 copy.bmp
+texture\other_towns\beatch_ip4_copy.bmp	texture\other_towns\beatch_ip4 copy.bmp
+texture\other_towns\beatch_ip5_copy.bmp	texture\other_towns\beatch_ip5 copy.bmp
+texture\other_towns\beatch_minga_copy.bmp	texture\other_towns\beatch_minga copy.bmp
+texture\other_towns\beatch_minga2_copy.bmp	texture\other_towns\beatch_minga2 copy.bmp
+texture\other_towns\beatch_minga3_copy.bmp	texture\other_towns\beatch_minga3 copy.bmp
+texture\other_towns\beatch_minga4_copy.bmp	texture\other_towns\beatch_minga4 copy.bmp
+texture\other_towns\cafra_copy.bmp	texture\other_towns\cafra copy.bmp
+texture\other_towns\cafra2_copy.bmp	texture\other_towns\cafra2 copy.bmp
+texture\other_towns\cafra3_copy.bmp	texture\other_towns\cafra3 copy.bmp
+texture\other_towns\cafra5_copy.bmp	texture\other_towns\cafra5 copy.bmp
+texture\other_towns\camagi_copy.bmp	texture\other_towns\camagi copy.bmp
+texture\other_towns\cc_castle01_a.bmp	texture\other_towns\cc_castle01-a.bmp
+texture\other_towns\cc_castle16_1.bmp	texture\other_towns\cc_castle16-1.bmp
+texture\other_towns\cc_castle16_2.bmp	texture\other_towns\cc_castle16-2.bmp
+texture\other_towns\cc_castle16_3.bmp	texture\other_towns\cc_castle16-3.bmp
+texture\other_towns\cc_castle16_4.bmp	texture\other_towns\cc_castle16-4.bmp
+texture\other_towns\center_copy.bmp	texture\other_towns\center copy.bmp
+texture\other_towns\chdn_d1_copy.bmp	texture\other_towns\chdn_d1 copy.bmp
+texture\other_towns\chdn_d2_copy.bmp	texture\other_towns\chdn_d2 copy.bmp
+texture\other_towns\chdn_d3_copy.bmp	texture\other_towns\chdn_d3 copy.bmp
+texture\other_towns\chdn_d4_copy.bmp	texture\other_towns\chdn_d4 copy.bmp
+texture\other_towns\chi_mu1_copy.bmp	texture\other_towns\chi_mu1 copy.bmp
+texture\other_towns\chi_mu2_copy.bmp	texture\other_towns\chi_mu2 copy.bmp
+texture\other_towns\chi_mu3_copy.bmp	texture\other_towns\chi_mu3 copy.bmp
+texture\other_towns\chi_mu4_copy.bmp	texture\other_towns\chi_mu4 copy.bmp
+texture\other_towns\chi_mu5_copy.bmp	texture\other_towns\chi_mu5 copy.bmp
+texture\other_towns\chi_mu6_copy.bmp	texture\other_towns\chi_mu6 copy.bmp
+texture\other_towns\chool_01.bmp	texture\other_towns\chool-01.bmp
+texture\other_towns\chool_02.bmp	texture\other_towns\chool-02.bmp
+texture\other_towns\chool_03.bmp	texture\other_towns\chool-03.bmp
+texture\other_towns\chool_04.bmp	texture\other_towns\chool-04.bmp
+texture\other_towns\com_bun1_copy.bmp	texture\other_towns\com_bun1 copy.bmp
+texture\other_towns\com_bun2_copy.bmp	texture\other_towns\com_bun2 copy.bmp
+texture\other_towns\com_bun3_copy.bmp	texture\other_towns\com_bun3 copy.bmp
+texture\other_towns\com_dom_copy.bmp	texture\other_towns\com_dom copy.bmp
+texture\other_towns\com_dom2_copy.bmp	texture\other_towns\com_dom2 copy.bmp
+texture\other_towns\com_dom3_copy.bmp	texture\other_towns\com_dom3 copy.bmp
+texture\other_towns\com_dom4_copy.bmp	texture\other_towns\com_dom4 copy.bmp
+texture\other_towns\com_min1_copy.bmp	texture\other_towns\com_min1 copy.bmp
+texture\other_towns\com_min10_copy.bmp	texture\other_towns\com_min10 copy.bmp
+texture\other_towns\com_min2_copy.bmp	texture\other_towns\com_min2 copy.bmp
+texture\other_towns\com_min3_copy.bmp	texture\other_towns\com_min3 copy.bmp
+texture\other_towns\com_min4_copy.bmp	texture\other_towns\com_min4 copy.bmp
+texture\other_towns\com_min5_copy.bmp	texture\other_towns\com_min5 copy.bmp
+texture\other_towns\com_min6_copy.bmp	texture\other_towns\com_min6 copy.bmp
+texture\other_towns\com_min7_copy.bmp	texture\other_towns\com_min7 copy.bmp
+texture\other_towns\com_min8_copy.bmp	texture\other_towns\com_min8 copy.bmp
+texture\other_towns\com_min9_copy.bmp	texture\other_towns\com_min9 copy.bmp
+texture\other_towns\com_mul1_copy.bmp	texture\other_towns\com_mul1 copy.bmp
+texture\other_towns\com_mul2_copy.bmp	texture\other_towns\com_mul2 copy.bmp
+texture\other_towns\com_mul3_copy.bmp	texture\other_towns\com_mul3 copy.bmp
+texture\other_towns\com_mul4_copy.bmp	texture\other_towns\com_mul4 copy.bmp
+texture\other_towns\com_mul5_copy.bmp	texture\other_towns\com_mul5 copy.bmp
+texture\other_towns\com_mul6_copy.bmp	texture\other_towns\com_mul6 copy.bmp
+texture\other_towns\com_nan_copy.bmp	texture\other_towns\com_nan copy.bmp
+texture\other_towns\com_sinho_copy.bmp	texture\other_towns\com_sinho copy.bmp
+texture\other_towns\com_sunsul1_copy.bmp	texture\other_towns\com_sunsul1 copy.bmp
+texture\other_towns\com_sunsul2_copy.bmp	texture\other_towns\com_sunsul2 copy.bmp
+texture\other_towns\com_sunsul3_copy.bmp	texture\other_towns\com_sunsul3 copy.bmp
+texture\other_towns\com_sunsul4_copy.bmp	texture\other_towns\com_sunsul4 copy.bmp
+texture\other_towns\com_sunsul5_copy.bmp	texture\other_towns\com_sunsul5 copy.bmp
+texture\other_towns\com_sunsul6_copy.bmp	texture\other_towns\com_sunsul6 copy.bmp
+texture\other_towns\com_tra1_copy.bmp	texture\other_towns\com_tra1 copy.bmp
+texture\other_towns\com_tra2_copy.bmp	texture\other_towns\com_tra2 copy.bmp
+texture\other_towns\com_tra3_copy.bmp	texture\other_towns\com_tra3 copy.bmp
+texture\other_towns\com_tra4_copy.bmp	texture\other_towns\com_tra4 copy.bmp
+texture\other_towns\com_tra5_copy.bmp	texture\other_towns\com_tra5 copy.bmp
+texture\other_towns\com_tra6_copy.bmp	texture\other_towns\com_tra6 copy.bmp
+texture\other_towns\com_tra7_copy.bmp	texture\other_towns\com_tra7 copy.bmp
+texture\other_towns\cursed_back.bmp	texture\other_towns\cursed-back.bmp
+texture\other_towns\cursed_face.bmp	texture\other_towns\cursed-face.bmp
+texture\other_towns\cursed_front.bmp	texture\other_towns\cursed-front.bmp
+texture\other_towns\cursed_prop.bmp	texture\other_towns\cursed-prop.bmp
+texture\other_towns\dari_copy.bmp	texture\other_towns\dari copy.bmp
+texture\other_towns\dong_copy.bmp	texture\other_towns\dong copy.bmp
+texture\other_towns\dong_body_copy.bmp	texture\other_towns\dong-body copy.bmp
+texture\other_towns\dong_under_copy.bmp	texture\other_towns\dong-under copy.bmp
+texture\other_towns\dong2_copy.bmp	texture\other_towns\dong2 copy.bmp
+texture\other_towns\doorside1_copy.bmp	texture\other_towns\doorside1 copy.bmp
+texture\other_towns\doorside2_copy.bmp	texture\other_towns\doorside2 copy.bmp
+texture\other_towns\doorside3_copy.bmp	texture\other_towns\doorside3 copy.bmp
+texture\other_towns\fa_min01.bmp	texture\other_towns\fa-min01.bmp
+texture\other_towns\fff_copy.bmp	texture\other_towns\fff copy.bmp
+texture\other_towns\g_bang_copy.bmp	texture\other_towns\g-bang copy.bmp
+texture\other_towns\ganpan_copy.bmp	texture\other_towns\ganpan copy.bmp
+texture\other_towns\gh_1.bmp	texture\other_towns\gh-1.bmp
+texture\other_towns\gh_2.bmp	texture\other_towns\gh-2.bmp
+texture\other_towns\gh_3.bmp	texture\other_towns\gh-3.bmp
+texture\other_towns\gh_4.bmp	texture\other_towns\gh-4.bmp
+texture\other_towns\gh_5.bmp	texture\other_towns\gh-5.bmp
+texture\other_towns\gh_6.bmp	texture\other_towns\gh-6.bmp
+texture\other_towns\git_copy.bmp	texture\other_towns\git copy.bmp
+texture\other_towns\git2_copy.bmp	texture\other_towns\git2 copy.bmp
+texture\other_towns\gten_1.bmp	texture\other_towns\gten-1.bmp
+texture\other_towns\gten_2.bmp	texture\other_towns\gten-2.bmp
+texture\other_towns\gten_3.bmp	texture\other_towns\gten-3.bmp
+texture\other_towns\guardian_copy.bmp	texture\other_towns\guardian copy.bmp
+texture\other_towns\guardian2_copy.bmp	texture\other_towns\guardian2 copy.bmp
+texture\other_towns\guardian3_copy.bmp	texture\other_towns\guardian3 copy.bmp
+texture\other_towns\guardian4_copy.bmp	texture\other_towns\guardian4 copy.bmp
+texture\other_towns\hu_doll_copy.bmp	texture\other_towns\hu_doll copy.bmp
+texture\other_towns\ig_1_copy.bmp	texture\other_towns\ig_1 copy.bmp
+texture\other_towns\ig_2_copy.bmp	texture\other_towns\ig_2 copy.bmp
+texture\other_towns\izld_br1.bmp	texture\other_towns\izld-br1.bmp
+texture\other_towns\izld_br2.bmp	texture\other_towns\izld-br2.bmp
+texture\other_towns\izld_br3.bmp	texture\other_towns\izld-br3.bmp
+texture\other_towns\izld_br4.bmp	texture\other_towns\izld-br4.bmp
+texture\other_towns\izld_br5.bmp	texture\other_towns\izld-br5.bmp
+texture\other_towns\jd_wumul_copy.bmp	texture\other_towns\jd_wumul copy.bmp
+texture\other_towns\jd_wumul2_copy.bmp	texture\other_towns\jd_wumul2 copy.bmp
+texture\other_towns\jogae_1_copy.bmp	texture\other_towns\jogae_1 copy.bmp
+texture\other_towns\jogae_2_copy.bmp	texture\other_towns\jogae_2 copy.bmp
+texture\other_towns\jogae_3_copy.bmp	texture\other_towns\jogae_3 copy.bmp
+texture\other_towns\jogae_6_copy.bmp	texture\other_towns\jogae_6 copy.bmp
+texture\other_towns\j_zip1_copy.bmp	texture\other_towns\j_zip1 copy.bmp
+texture\other_towns\j_zip2_copy.bmp	texture\other_towns\j_zip2 copy.bmp
+texture\other_towns\j_zip3_copy.bmp	texture\other_towns\j_zip3 copy.bmp
+texture\other_towns\j_zip4_copy.bmp	texture\other_towns\j_zip4 copy.bmp
+texture\other_towns\j_zip5_copy.bmp	texture\other_towns\j_zip5 copy.bmp
+texture\other_towns\kang_min1_copy.bmp	texture\other_towns\kang_min1 copy.bmp
+texture\other_towns\kang_min2_copy.bmp	texture\other_towns\kang_min2 copy.bmp
+texture\other_towns\kang_min3_copy.bmp	texture\other_towns\kang_min3 copy.bmp
+texture\other_towns\kang_min4_copy.bmp	texture\other_towns\kang_min4 copy.bmp
+texture\other_towns\kang_min5_copy.bmp	texture\other_towns\kang_min5 copy.bmp
+texture\other_towns\kang_min6_copy.bmp	texture\other_towns\kang_min6 copy.bmp
+texture\other_towns\kang_min7_copy.bmp	texture\other_towns\kang_min7 copy.bmp
+texture\other_towns\k_gesi_copy.bmp	texture\other_towns\k_gesi copy.bmp
+texture\other_towns\k_gesi2_copy.bmp	texture\other_towns\k_gesi2 copy.bmp
+texture\other_towns\menhol_00.bmp	texture\other_towns\menhol-00.bmp
+texture\other_towns\min2_1_copy.bmp	texture\other_towns\min2_1 copy.bmp
+texture\other_towns\min2_2_copy.bmp	texture\other_towns\min2_2 copy.bmp
+texture\other_towns\min2_3_copy.bmp	texture\other_towns\min2_3 copy.bmp
+texture\other_towns\min2_4_copy.bmp	texture\other_towns\min2_4 copy.bmp
+texture\other_towns\min2_5_copy.bmp	texture\other_towns\min2_5 copy.bmp
+texture\other_towns\min2_6_copy.bmp	texture\other_towns\min2_6 copy.bmp
+texture\other_towns\mnf1_copy.bmp	texture\other_towns\mnf1 copy.bmp
+texture\other_towns\mnf2_copy.bmp	texture\other_towns\mnf2 copy.bmp
+texture\other_towns\mnf3_copy.bmp	texture\other_towns\mnf3 copy.bmp
+texture\other_towns\mnf4_copy.bmp	texture\other_towns\mnf4 copy.bmp
+texture\other_towns\mo0_line2.bmp	texture\other_towns\mo0-line2.bmp
+texture\other_towns\nght_1.bmp	texture\other_towns\nght-1.bmp
+texture\other_towns\nght_2.bmp	texture\other_towns\nght-2.bmp
+texture\other_towns\nght_3.bmp	texture\other_towns\nght-3.bmp
+texture\other_towns\nght_4.bmp	texture\other_towns\nght-4.bmp
+texture\other_towns\npx_1_copy.bmp	texture\other_towns\npx_1 copy.bmp
+texture\other_towns\npx_2_copy.bmp	texture\other_towns\npx_2 copy.bmp
+texture\other_towns\npx_3_copy.bmp	texture\other_towns\npx_3 copy.bmp
+texture\other_towns\npx_4_copy.bmp	texture\other_towns\npx_4 copy.bmp
+texture\other_towns\npx_5_copy.bmp	texture\other_towns\npx_5 copy.bmp
+texture\other_towns\npx_6_copy.bmp	texture\other_towns\npx_6 copy.bmp
+texture\other_towns\npx_7_copy.bmp	texture\other_towns\npx_7 copy.bmp
+texture\other_towns\nx_1_copy.bmp	texture\other_towns\nx_1 copy.bmp
+texture\other_towns\nx_2_copy.bmp	texture\other_towns\nx_2 copy.bmp
+texture\other_towns\nx_3_copy.bmp	texture\other_towns\nx_3 copy.bmp
+texture\other_towns\nx_4_copy.bmp	texture\other_towns\nx_4 copy.bmp
+texture\other_towns\n_wd_copy.bmp	texture\other_towns\n_wd copy.bmp
+texture\other_towns\n_wd1_1_copy.bmp	texture\other_towns\n_wd1-1 copy.bmp
+texture\other_towns\n_wd1_2_copy.bmp	texture\other_towns\n_wd1-2 copy.bmp
+texture\other_towns\n_wd2_copy.bmp	texture\other_towns\n_wd2 copy.bmp
+texture\other_towns\pay_beer_copy.bmp	texture\other_towns\pay_beer copy.bmp
+texture\other_towns\pay_beer2_copy.bmp	texture\other_towns\pay_beer2 copy.bmp
+texture\other_towns\pay_beer3_copy.bmp	texture\other_towns\pay_beer3 copy.bmp
+texture\other_towns\pay_beer4_copy.bmp	texture\other_towns\pay_beer4 copy.bmp
+texture\other_towns\pay_beer5_copy.bmp	texture\other_towns\pay_beer5 copy.bmp
+texture\other_towns\pay_beer6_copy.bmp	texture\other_towns\pay_beer6 copy.bmp
+texture\other_towns\pay_bsang_copy.bmp	texture\other_towns\pay_bsang copy.bmp
+texture\other_towns\pay_dogg1_copy.bmp	texture\other_towns\pay_dogg1 copy.bmp
+texture\other_towns\pay_dogg2_copy.bmp	texture\other_towns\pay_dogg2 copy.bmp
+texture\other_towns\pay_dogg3_copy.bmp	texture\other_towns\pay_dogg3 copy.bmp
+texture\other_towns\pay_dogg4_copy.bmp	texture\other_towns\pay_dogg4 copy.bmp
+texture\other_towns\pay_dogg5_copy.bmp	texture\other_towns\pay_dogg5 copy.bmp
+texture\other_towns\pay_dogg6_copy.bmp	texture\other_towns\pay_dogg6 copy.bmp
+texture\other_towns\pay_dogg7_copy.bmp	texture\other_towns\pay_dogg7 copy.bmp
+texture\other_towns\pay_gan_copy.bmp	texture\other_towns\pay_gan copy.bmp
+texture\other_towns\pron_swman1.bmp	texture\other_towns\pron-swman1.bmp
+texture\other_towns\pron_swman2.bmp	texture\other_towns\pron-swman2.bmp
+texture\other_towns\pron_swman3.bmp	texture\other_towns\pron-swman3.bmp
+texture\other_towns\pron_swman4.bmp	texture\other_towns\pron-swman4.bmp
+texture\other_towns\pron_swman5.bmp	texture\other_towns\pron-swman5.bmp
+texture\other_towns\pron_swman6.bmp	texture\other_towns\pron-swman6.bmp
+texture\other_towns\russia_coll_copy.bmp	texture\other_towns\russia_coll copy.bmp
+texture\other_towns\russia_coll2_copy.bmp	texture\other_towns\russia_coll2 copy.bmp
+texture\other_towns\russia_coll3_copy.bmp	texture\other_towns\russia_coll3 copy.bmp
+texture\other_towns\russia_coll4_copy.bmp	texture\other_towns\russia_coll4 copy.bmp
+texture\other_towns\russia_coll44_copy.bmp	texture\other_towns\russia_coll44 copy.bmp
+texture\other_towns\russia_ipgu1_copy.bmp	texture\other_towns\russia_ipgu1 copy.bmp
+texture\other_towns\russia_ipgu10_copy.bmp	texture\other_towns\russia_ipgu10 copy.bmp
+texture\other_towns\russia_ipgu11_copy.bmp	texture\other_towns\russia_ipgu11 copy.bmp
+texture\other_towns\russia_ipgu12_copy.bmp	texture\other_towns\russia_ipgu12 copy.bmp
+texture\other_towns\russia_ipgu13_copy.bmp	texture\other_towns\russia_ipgu13 copy.bmp
+texture\other_towns\russia_ipgu2_copy.bmp	texture\other_towns\russia_ipgu2 copy.bmp
+texture\other_towns\russia_ipgu3_copy.bmp	texture\other_towns\russia_ipgu3 copy.bmp
+texture\other_towns\russia_ipgu4_copy.bmp	texture\other_towns\russia_ipgu4 copy.bmp
+texture\other_towns\russia_ipgu5_copy.bmp	texture\other_towns\russia_ipgu5 copy.bmp
+texture\other_towns\russia_ipgu6_copy.bmp	texture\other_towns\russia_ipgu6 copy.bmp
+texture\other_towns\russia_ipgu7_copy.bmp	texture\other_towns\russia_ipgu7 copy.bmp
+texture\other_towns\russia_ipgu8_copy.bmp	texture\other_towns\russia_ipgu8 copy.bmp
+texture\other_towns\russia_ipgu9_copy.bmp	texture\other_towns\russia_ipgu9 copy.bmp
+texture\other_towns\russi_swan_copy.bmp	texture\other_towns\russi_swan copy.bmp
+texture\other_towns\russi_white_copy.bmp	texture\other_towns\russi_white copy.bmp
+texture\other_towns\russi_white2_copy.bmp	texture\other_towns\russi_white2 copy.bmp
+texture\other_towns\sage__bronze1.bmp	texture\other_towns\sage_ bronze1.bmp
+texture\other_towns\sage__bronze2_1.bmp	texture\other_towns\sage_ bronze2-1.bmp
+texture\other_towns\sage__bronze2_2.bmp	texture\other_towns\sage_ bronze2-2.bmp
+texture\other_towns\sage_remains_b.bmp	texture\other_towns\sage_remains b.bmp
+texture\other_towns\sage_remains_b2.bmp	texture\other_towns\sage_remains b2.bmp
+texture\other_towns\sage_remains_b3.bmp	texture\other_towns\sage_remains b3.bmp
+texture\other_towns\sage_remains_face.bmp	texture\other_towns\sage_remains face.bmp
+texture\other_towns\sa_dol_copy.bmp	texture\other_towns\sa_dol copy.bmp
+texture\other_towns\sa_dol2_copy.bmp	texture\other_towns\sa_dol2 copy.bmp
+texture\other_towns\sea_door_copy.bmp	texture\other_towns\sea_door copy.bmp
+texture\other_towns\sea_door2_copy.bmp	texture\other_towns\sea_door2 copy.bmp
+texture\other_towns\shuv_alch1.bmp	texture\other_towns\shuv-alch1.bmp
+texture\other_towns\shuv_alch2.bmp	texture\other_towns\shuv-alch2.bmp
+texture\other_towns\shuv_alch3.bmp	texture\other_towns\shuv-alch3.bmp
+texture\other_towns\shuv_alch4.bmp	texture\other_towns\shuv-alch4.bmp
+texture\other_towns\shuv_alch5.bmp	texture\other_towns\shuv-alch5.bmp
+texture\other_towns\shuv_alch6.bmp	texture\other_towns\shuv-alch6.bmp
+texture\other_towns\shuv_alch7.bmp	texture\other_towns\shuv-alch7.bmp
+texture\other_towns\shuv_socer1.bmp	texture\other_towns\shuv-socer1.bmp
+texture\other_towns\shuv_socer2.bmp	texture\other_towns\shuv-socer2.bmp
+texture\other_towns\shuv_socer3.bmp	texture\other_towns\shuv-socer3.bmp
+texture\other_towns\shuv_socer4.bmp	texture\other_towns\shuv-socer4.bmp
+texture\other_towns\shuv_socer5.bmp	texture\other_towns\shuv-socer5.bmp
+texture\other_towns\shuv_socer6.bmp	texture\other_towns\shuv-socer6.bmp
+texture\other_towns\shuv_socer7.bmp	texture\other_towns\shuv-socer7.bmp
+texture\other_towns\shuv_socer8.bmp	texture\other_towns\shuv-socer8.bmp
+texture\other_towns\side_copy.bmp	texture\other_towns\side copy.bmp
+texture\other_towns\ss_izbal_copy.bmp	texture\other_towns\ss-izbal copy.bmp
+texture\other_towns\ss_izbung_copy.bmp	texture\other_towns\ss-izbung copy.bmp
+texture\other_towns\ss_izd_copy.bmp	texture\other_towns\ss-izd copy.bmp
+texture\other_towns\ss_izdansamng_copy.bmp	texture\other_towns\ss-izdansamng copy.bmp
+texture\other_towns\ss_izface_copy.bmp	texture\other_towns\ss-izface copy.bmp
+texture\other_towns\st_box_copy.bmp	texture\other_towns\st_box copy.bmp
+texture\other_towns\st_box2_copy.bmp	texture\other_towns\st_box2 copy.bmp
+texture\other_towns\st_boxx_copy.bmp	texture\other_towns\st_boxx copy.bmp
+texture\other_towns\st_bridge1_copy.bmp	texture\other_towns\st_bridge1 copy.bmp
+texture\other_towns\st_bridge2_copy.bmp	texture\other_towns\st_bridge2 copy.bmp
+texture\other_towns\st_bridge3_copy.bmp	texture\other_towns\st_bridge3 copy.bmp
+texture\other_towns\st_gzug1_copy.bmp	texture\other_towns\st_gzug1 copy.bmp
+texture\other_towns\st_gzug2_copy.bmp	texture\other_towns\st_gzug2 copy.bmp
+texture\other_towns\st_gzug3_copy.bmp	texture\other_towns\st_gzug3 copy.bmp
+texture\other_towns\st_gzug4_copy.bmp	texture\other_towns\st_gzug4 copy.bmp
+texture\other_towns\st_gzug5_copy.bmp	texture\other_towns\st_gzug5 copy.bmp
+texture\other_towns\st_jbuild1_copy.bmp	texture\other_towns\st_jbuild1 copy.bmp
+texture\other_towns\st_jbuild2_copy.bmp	texture\other_towns\st_jbuild2 copy.bmp
+texture\other_towns\st_jbuild3_copy.bmp	texture\other_towns\st_jbuild3 copy.bmp
+texture\other_towns\st_jbuild4_copy.bmp	texture\other_towns\st_jbuild4 copy.bmp
+texture\other_towns\st_jbuild5_copy.bmp	texture\other_towns\st_jbuild5 copy.bmp
+texture\other_towns\st_jbuild6_copy.bmp	texture\other_towns\st_jbuild6 copy.bmp
+texture\other_towns\st_jbuild7_copy.bmp	texture\other_towns\st_jbuild7 copy.bmp
+texture\other_towns\st_jbuild8_copy.bmp	texture\other_towns\st_jbuild8 copy.bmp
+texture\other_towns\st_knife_copy.bmp	texture\other_towns\st_knife copy.bmp
+texture\other_towns\st_prof_copy.bmp	texture\other_towns\st_prof copy.bmp
+texture\other_towns\st_su1_copy.bmp	texture\other_towns\st_su1 copy.bmp
+texture\other_towns\st_su2_copy.bmp	texture\other_towns\st_su2 copy.bmp
+texture\other_towns\st_su3_copy.bmp	texture\other_towns\st_su3 copy.bmp
+texture\other_towns\st_suob1_copy.bmp	texture\other_towns\st_suob1 copy.bmp
+texture\other_towns\st_suob2_copy.bmp	texture\other_towns\st_suob2 copy.bmp
+texture\other_towns\st_suri1_copy.bmp	texture\other_towns\st_suri1 copy.bmp
+texture\other_towns\st_suri2_copy.bmp	texture\other_towns\st_suri2 copy.bmp
+texture\other_towns\st_suri3_copy.bmp	texture\other_towns\st_suri3 copy.bmp
+texture\other_towns\st_suri4_copy.bmp	texture\other_towns\st_suri4 copy.bmp
+texture\other_towns\st_suri5_copy.bmp	texture\other_towns\st_suri5 copy.bmp
+texture\other_towns\st_suri6_copy.bmp	texture\other_towns\st_suri6 copy.bmp
+texture\other_towns\st_wheel_copy.bmp	texture\other_towns\st_wheel copy.bmp
+texture\other_towns\st_ydoor1_copy.bmp	texture\other_towns\st_ydoor1 copy.bmp
+texture\other_towns\st_ydoor2_copy.bmp	texture\other_towns\st_ydoor2 copy.bmp
+texture\other_towns\st_ydoor3_copy.bmp	texture\other_towns\st_ydoor3 copy.bmp
+texture\other_towns\st_ydoorr1_copy.bmp	texture\other_towns\st_ydoorr1 copy.bmp
+texture\other_towns\tai_bri_copy.bmp	texture\other_towns\tai_bri copy.bmp
+texture\other_towns\tai_bri2_copy.bmp	texture\other_towns\tai_bri2 copy.bmp
+texture\other_towns\tai_bri3_copy.bmp	texture\other_towns\tai_bri3 copy.bmp
+texture\other_towns\tai_brid_copy.bmp	texture\other_towns\tai_brid copy.bmp
+texture\other_towns\tai_bul_copy.bmp	texture\other_towns\tai_bul copy.bmp
+texture\other_towns\tai_bul2_copy.bmp	texture\other_towns\tai_bul2 copy.bmp
+texture\other_towns\tai_bul3_copy.bmp	texture\other_towns\tai_bul3 copy.bmp
+texture\other_towns\tai_bul4_copy.bmp	texture\other_towns\tai_bul4 copy.bmp
+texture\other_towns\tai_bul5_copy.bmp	texture\other_towns\tai_bul5 copy.bmp
+texture\other_towns\tai_bul6_copy.bmp	texture\other_towns\tai_bul6 copy.bmp
+texture\other_towns\tai_jangsk_copy.bmp	texture\other_towns\tai_jangsk copy.bmp
+texture\other_towns\tai_joo_copy.bmp	texture\other_towns\tai_joo copy.bmp
+texture\other_towns\tai_joo2_copy.bmp	texture\other_towns\tai_joo2 copy.bmp
+texture\other_towns\tai_kdong1_copy.bmp	texture\other_towns\tai_kdong1 copy.bmp
+texture\other_towns\tai_kdong2_copy.bmp	texture\other_towns\tai_kdong2 copy.bmp
+texture\other_towns\tai_kdong3_copy.bmp	texture\other_towns\tai_kdong3 copy.bmp
+texture\other_towns\tai_kdong4_copy.bmp	texture\other_towns\tai_kdong4 copy.bmp
+texture\other_towns\tai_kdong5_copy.bmp	texture\other_towns\tai_kdong5 copy.bmp
+texture\other_towns\tai_min_copy.bmp	texture\other_towns\tai_min copy.bmp
+texture\other_towns\tai_min2_copy.bmp	texture\other_towns\tai_min2 copy.bmp
+texture\other_towns\tai_min3_copy.bmp	texture\other_towns\tai_min3 copy.bmp
+texture\other_towns\tai_min4_copy.bmp	texture\other_towns\tai_min4 copy.bmp
+texture\other_towns\tai_sgi_copy.bmp	texture\other_towns\tai_sgi copy.bmp
+texture\other_towns\tai_tre1_copy.bmp	texture\other_towns\tai_tre1 copy.bmp
+texture\other_towns\tai_tre2_copy.bmp	texture\other_towns\tai_tre2 copy.bmp
+texture\other_towns\tor_door.bmp	texture\other_towns\tor-door.bmp
+texture\other_towns\tor_door2.bmp	texture\other_towns\tor-door2.bmp
+texture\other_towns\tor_door3.bmp	texture\other_towns\tor-door3.bmp
+texture\other_towns\tor_doorq1.bmp	texture\other_towns\tor-doorq1.bmp
+texture\other_towns\tor_doorq2.bmp	texture\other_towns\tor-doorq2.bmp
+texture\other_towns\tor_doorq3.bmp	texture\other_towns\tor-doorq3.bmp
+texture\other_towns\tor_doorq4.bmp	texture\other_towns\tor-doorq4.bmp
+texture\other_towns\tor_lg1.bmp	texture\other_towns\tor-lg1.bmp
+texture\other_towns\tor_lg2.bmp	texture\other_towns\tor-lg2.bmp
+texture\other_towns\tor_lg3.bmp	texture\other_towns\tor-lg3.bmp
+texture\other_towns\tor_lg4.bmp	texture\other_towns\tor-lg4.bmp
+texture\other_towns\trud_arm_copy.bmp	texture\other_towns\trud_arm copy.bmp
+texture\other_towns\trud_body_copy.bmp	texture\other_towns\trud_body copy.bmp
+texture\other_towns\trud_face_copy.bmp	texture\other_towns\trud_face copy.bmp
+texture\other_towns\trud_hair_copy.bmp	texture\other_towns\trud_hair copy.bmp
+texture\other_towns\trud_leg_copy.bmp	texture\other_towns\trud_leg copy.bmp
+texture\other_towns\trud_skirt_copy.bmp	texture\other_towns\trud_skirt copy.bmp
+texture\other_towns\tru_jap1_copy.bmp	texture\other_towns\tru_jap1 copy.bmp
+texture\other_towns\tru_jap2_copy.bmp	texture\other_towns\tru_jap2 copy.bmp
+texture\other_towns\tru_jap3_copy.bmp	texture\other_towns\tru_jap3 copy.bmp
+texture\other_towns\tru_jap4_copy.bmp	texture\other_towns\tru_jap4 copy.bmp
+texture\other_towns\tru_jap5_copy.bmp	texture\other_towns\tru_jap5 copy.bmp
+texture\other_towns\tru_mo1_copy.bmp	texture\other_towns\tru_mo1 copy.bmp
+texture\other_towns\tru_mo10_copy.bmp	texture\other_towns\tru_mo10 copy.bmp
+texture\other_towns\tru_mo11_copy.bmp	texture\other_towns\tru_mo11 copy.bmp
+texture\other_towns\tru_mo12_copy.bmp	texture\other_towns\tru_mo12 copy.bmp
+texture\other_towns\tru_mo13_copy.bmp	texture\other_towns\tru_mo13 copy.bmp
+texture\other_towns\tru_mo14_copy.bmp	texture\other_towns\tru_mo14 copy.bmp
+texture\other_towns\tru_mo15_copy.bmp	texture\other_towns\tru_mo15 copy.bmp
+texture\other_towns\tru_mo16_copy.bmp	texture\other_towns\tru_mo16 copy.bmp
+texture\other_towns\tru_mo2_copy.bmp	texture\other_towns\tru_mo2 copy.bmp
+texture\other_towns\tru_mo3_copy.bmp	texture\other_towns\tru_mo3 copy.bmp
+texture\other_towns\tru_mo4_copy.bmp	texture\other_towns\tru_mo4 copy.bmp
+texture\other_towns\tru_mo5_copy.bmp	texture\other_towns\tru_mo5 copy.bmp
+texture\other_towns\tru_mo6_copy.bmp	texture\other_towns\tru_mo6 copy.bmp
+texture\other_towns\tru_mo7_copy.bmp	texture\other_towns\tru_mo7 copy.bmp
+texture\other_towns\tru_mo8_copy.bmp	texture\other_towns\tru_mo8 copy.bmp
+texture\other_towns\tru_mo9_copy.bmp	texture\other_towns\tru_mo9 copy.bmp
+texture\other_towns\tru_sin1_copy.bmp	texture\other_towns\tru_sin1 copy.bmp
+texture\other_towns\tru_sin2_copy.bmp	texture\other_towns\tru_sin2 copy.bmp
+texture\other_towns\tru_sin3_copy.bmp	texture\other_towns\tru_sin3 copy.bmp
+texture\other_towns\tru_sin4_copy.bmp	texture\other_towns\tru_sin4 copy.bmp
+texture\other_towns\tru_sin5_copy.bmp	texture\other_towns\tru_sin5 copy.bmp
+texture\other_towns\tru_sin6_copy.bmp	texture\other_towns\tru_sin6 copy.bmp
+texture\other_towns\tru_wu1_copy.bmp	texture\other_towns\tru_wu1 copy.bmp
+texture\other_towns\tru_wu2_copy.bmp	texture\other_towns\tru_wu2 copy.bmp
+texture\other_towns\tru_wu3_copy.bmp	texture\other_towns\tru_wu3 copy.bmp
+texture\other_towns\tru_wu4_copy.bmp	texture\other_towns\tru_wu4 copy.bmp
+texture\other_towns\tru_wu5_copy.bmp	texture\other_towns\tru_wu5 copy.bmp
+texture\other_towns\tru_wu6_copy.bmp	texture\other_towns\tru_wu6 copy.bmp
+texture\other_towns\t_dansang_copy.bmp	texture\other_towns\t_dansang copy.bmp
+texture\other_towns\t_dansang2_copy.bmp	texture\other_towns\t_dansang2 copy.bmp
+texture\other_towns\um1_copy.bmp	texture\other_towns\um1 copy.bmp
+texture\other_towns\um2_copy.bmp	texture\other_towns\um2 copy.bmp
+texture\other_towns\um3_copy.bmp	texture\other_towns\um3 copy.bmp
+texture\other_towns\um4_copy.bmp	texture\other_towns\um4 copy.bmp
+texture\other_towns\un_ch_01.bmp	texture\other_towns\un-ch-01.bmp
+texture\other_towns\un_h_a00.bmp	texture\other_towns\un-h-a00.bmp
+texture\other_towns\un_h_a02.bmp	texture\other_towns\un-h-a02.bmp
+texture\other_towns\un_h_a03.bmp	texture\other_towns\un-h-a03.bmp
+texture\other_towns\uno_gongsung_copy.bmp	texture\other_towns\uno_gongsung copy.bmp
+texture\other_towns\wed_cu1_copy.bmp	texture\other_towns\wed_cu1 copy.bmp
+texture\other_towns\wed_cu2_copy.bmp	texture\other_towns\wed_cu2 copy.bmp
+texture\other_towns\wed_cu3_copy.bmp	texture\other_towns\wed_cu3 copy.bmp
+texture\other_towns\whi_dunbadak1_copy.bmp	texture\other_towns\whi_dunbadak1 copy.bmp
+texture\other_towns\whi_dunf4_copy.bmp	texture\other_towns\whi_dunf4 copy.bmp
+texture\other_towns\whi_garodung_copy.bmp	texture\other_towns\whi_garodung copy.bmp
+texture\other_towns\whi_gdun1_copy.bmp	texture\other_towns\whi_gdun1 copy.bmp
+texture\other_towns\whi_gdun10_copy.bmp	texture\other_towns\whi_gdun10 copy.bmp
+texture\other_towns\whi_gdun11_copy.bmp	texture\other_towns\whi_gdun11 copy.bmp
+texture\other_towns\whi_gdun12_copy.bmp	texture\other_towns\whi_gdun12 copy.bmp
+texture\other_towns\whi_gdun13_copy.bmp	texture\other_towns\whi_gdun13 copy.bmp
+texture\other_towns\whi_gdun2_copy.bmp	texture\other_towns\whi_gdun2 copy.bmp
+texture\other_towns\whi_gdun3_copy.bmp	texture\other_towns\whi_gdun3 copy.bmp
+texture\other_towns\whi_gdun4_copy.bmp	texture\other_towns\whi_gdun4 copy.bmp
+texture\other_towns\whi_gdun5_copy.bmp	texture\other_towns\whi_gdun5 copy.bmp
+texture\other_towns\whi_gdun6_copy.bmp	texture\other_towns\whi_gdun6 copy.bmp
+texture\other_towns\whi_gdun7_copy.bmp	texture\other_towns\whi_gdun7 copy.bmp
+texture\other_towns\whi_gdun9_copy.bmp	texture\other_towns\whi_gdun9 copy.bmp
+texture\other_towns\whi_jap1_copy.bmp	texture\other_towns\whi_jap1 copy.bmp
+texture\other_towns\whi_jap2_copy.bmp	texture\other_towns\whi_jap2 copy.bmp
+texture\other_towns\whi_jap3_copy.bmp	texture\other_towns\whi_jap3 copy.bmp
+texture\other_towns\whi_jap4_copy.bmp	texture\other_towns\whi_jap4 copy.bmp
+texture\other_towns\whi_jap5_copy.bmp	texture\other_towns\whi_jap5 copy.bmp
+texture\other_towns\whi_jap6_copy.bmp	texture\other_towns\whi_jap6 copy.bmp
+texture\other_towns\whi_jap7_copy.bmp	texture\other_towns\whi_jap7 copy.bmp
+texture\other_towns\whi_jap8_copy.bmp	texture\other_towns\whi_jap8 copy.bmp
+texture\other_towns\whi_ming1_copy.bmp	texture\other_towns\whi_ming1 copy.bmp
+texture\other_towns\whi_ming10_copy.bmp	texture\other_towns\whi_ming10 copy.bmp
+texture\other_towns\whi_ming11_copy.bmp	texture\other_towns\whi_ming11 copy.bmp
+texture\other_towns\whi_ming12_copy.bmp	texture\other_towns\whi_ming12 copy.bmp
+texture\other_towns\whi_ming2_copy.bmp	texture\other_towns\whi_ming2 copy.bmp
+texture\other_towns\whi_ming3_copy.bmp	texture\other_towns\whi_ming3 copy.bmp
+texture\other_towns\whi_ming4_copy.bmp	texture\other_towns\whi_ming4 copy.bmp
+texture\other_towns\whi_ming5_copy.bmp	texture\other_towns\whi_ming5 copy.bmp
+texture\other_towns\whi_ming6_copy.bmp	texture\other_towns\whi_ming6 copy.bmp
+texture\other_towns\whi_ming7_copy.bmp	texture\other_towns\whi_ming7 copy.bmp
+texture\other_towns\whi_ming8_copy.bmp	texture\other_towns\whi_ming8 copy.bmp
+texture\other_towns\whi_ming9_copy.bmp	texture\other_towns\whi_ming9 copy.bmp
+texture\other_towns\whi_mingrf1_copy.bmp	texture\other_towns\whi_mingrf1 copy.bmp
+texture\other_towns\whi_mingrf2_copy.bmp	texture\other_towns\whi_mingrf2 copy.bmp
+texture\other_towns\whi_mul1_copy.bmp	texture\other_towns\whi_mul1 copy.bmp
+texture\other_towns\whi_mul2_copy.bmp	texture\other_towns\whi_mul2 copy.bmp
+texture\other_towns\whi_mul3_copy.bmp	texture\other_towns\whi_mul3 copy.bmp
+texture\other_towns\whi_mul4_copy.bmp	texture\other_towns\whi_mul4 copy.bmp
+texture\other_towns\whi_tong1_copy.bmp	texture\other_towns\whi_tong1 copy.bmp
+texture\other_towns\whi_tong2_copy.bmp	texture\other_towns\whi_tong2 copy.bmp
+texture\other_towns\whi_tong3_copy.bmp	texture\other_towns\whi_tong3 copy.bmp
+texture\other_towns\whi_tong4_copy.bmp	texture\other_towns\whi_tong4 copy.bmp
+texture\other_towns\whi_tong5_copy.bmp	texture\other_towns\whi_tong5 copy.bmp
+texture\other_towns\whi_tong6_copy.bmp	texture\other_towns\whi_tong6 copy.bmp
+texture\other_towns\whi_tong7_copy.bmp	texture\other_towns\whi_tong7 copy.bmp
+texture\other_towns\whi_tong8_copy.bmp	texture\other_towns\whi_tong8 copy.bmp
+texture\other_towns\whi_wul_copy.bmp	texture\other_towns\whi_wul copy.bmp
+texture\other_towns\wild_boar.bmp	texture\other_towns\wild boar.bmp
+texture\other_towns_interior\alde_in_bar01.bmp	texture\other_towns_interior\alde-in-bar01.bmp
+texture\other_towns_interior\alde_in_blo01.bmp	texture\other_towns_interior\alde-in-blo01.bmp
+texture\other_towns_interior\alde_in_carpet.bmp	texture\other_towns_interior\alde-in-carpet.bmp
+texture\other_towns_interior\alde_in_house01.bmp	texture\other_towns_interior\alde-in-house01.bmp
+texture\other_towns_interior\alde_in_tool01.bmp	texture\other_towns_interior\alde-in-tool01.bmp
+texture\other_towns_interior\alde_in_wea01.bmp	texture\other_towns_interior\alde-in-wea01.bmp
+texture\other_towns_interior\alde_in_kap1.bmp	texture\other_towns_interior\alde-in_kap1.bmp
+texture\other_towns_interior\chapel_candle.bmp	texture\other_towns_interior\chapel candle.bmp
+texture\other_towns_interior\chapel_wall_1.bmp	texture\other_towns_interior\chapel wall-1.bmp
+texture\other_towns_interior\chapel_wall.bmp	texture\other_towns_interior\chapel wall.bmp
+texture\other_towns_interior\chi_ta_copy.bmp	texture\other_towns_interior\chi_ta copy.bmp
+texture\other_towns_interior\chpel_bottom.bmp	texture\other_towns_interior\chpel bottom.bmp
+texture\other_towns_interior\gla_carpet1.bmp	texture\other_towns_interior\gla-carpet1.bmp
+texture\other_towns_interior\gla_carpet2.bmp	texture\other_towns_interior\gla-carpet2.bmp
+texture\other_towns_interior\gla_carpet3.bmp	texture\other_towns_interior\gla-carpet3.bmp
+texture\other_towns_interior\gla_floor1.bmp	texture\other_towns_interior\gla-floor1.bmp
+texture\other_towns_interior\gla_floor2.bmp	texture\other_towns_interior\gla-floor2.bmp
+texture\other_towns_interior\gla_floor3.bmp	texture\other_towns_interior\gla-floor3.bmp
+texture\other_towns_interior\gla_chu1_1.bmp	texture\other_towns_interior\gla_chu1-1.bmp
+texture\other_towns_interior\gla_chu2_1.bmp	texture\other_towns_interior\gla_chu2-1.bmp
+texture\other_towns_interior\sag_mone_copy.bmp	texture\other_towns_interior\sag_mone copy.bmp
+texture\other_towns_interior\sag_mone02_copy.bmp	texture\other_towns_interior\sag_mone02 copy.bmp
+texture\other_towns_interior\sag_moneli_copy.bmp	texture\other_towns_interior\sag_moneli copy.bmp
+texture\other_towns_interior\tai_3set_copy.bmp	texture\other_towns_interior\tai_3set copy.bmp
+texture\other_towns_interior\tai_grset_copy.bmp	texture\other_towns_interior\tai_grset copy.bmp
+texture\other_towns_interior\tai_hwa_copy.bmp	texture\other_towns_interior\tai_hwa copy.bmp
+texture\other_towns_interior\tai_sinbal_copy.bmp	texture\other_towns_interior\tai_sinbal copy.bmp
+texture\other_towns_interior\tor_dra1_copy.bmp	texture\other_towns_interior\tor-dra1 copy.bmp
+texture\other_towns_interior\tor_dra2_copy.bmp	texture\other_towns_interior\tor-dra2 copy.bmp
+texture\other_towns_interior\tor_dra3_copy.bmp	texture\other_towns_interior\tor-dra3 copy.bmp
+texture\other_towns_interior\tor_dch_copy.bmp	texture\other_towns_interior\tor_dch copy.bmp
+texture\other_towns_interior\tru_alpha_copy.bmp	texture\other_towns_interior\tru_alpha copy.bmp
+texture\other_towns_interior\tru_alpha_copy.tga	texture\other_towns_interior\tru_alpha copy.tga
+texture\other_towns_interior\tru_mar_copy.bmp	texture\other_towns_interior\tru_mar copy.bmp
+texture\other_towns_interior\uno_gidung_copy.bmp	texture\other_towns_interior\uno_gidung copy.bmp
+texture\other_towns_interior\ve_shop_bottom.bmp	texture\other_towns_interior\ve_shop bottom.bmp
+texture\other_towns_interior\ve_weapon_shop.bmp	texture\other_towns_interior\ve_weapon shop.bmp
+texture\other_towns_interior\wed_jb_copy.bmp	texture\other_towns_interior\wed_jb copy.bmp
+texture\other_towns_interior\wed_jb2_copy.bmp	texture\other_towns_interior\wed_jb2 copy.bmp
+texture\other_towns_interior\wed_ya_copy.bmp	texture\other_towns_interior\wed_ya copy.bmp
+texture\other_towns_interior\whi_hwasalde_copy.bmp	texture\other_towns_interior\whi_hwasalde copy.bmp
+texture\other_towns_interior\whi_mugijang_copy.bmp	texture\other_towns_interior\whi_mugijang copy.bmp
+texture\other_towns_interior\xmas_ak.bmp	texture\other_towns_interior\xmas-ak.bmp
+texture\other_towns_interior\xmas_ak1.bmp	texture\other_towns_interior\xmas-ak1.bmp
+texture\other_towns_interior\xmas_ak2.bmp	texture\other_towns_interior\xmas-ak2.bmp
+texture\other_towns_interior\xmas_candy.bmp	texture\other_towns_interior\xmas-candy.bmp
+texture\other_towns_interior\xmas_dak.bmp	texture\other_towns_interior\xmas-dak.bmp
+texture\other_towns_interior\xmas_dak2.bmp	texture\other_towns_interior\xmas-dak2.bmp
+texture\other_towns_interior\xmas_dak3.bmp	texture\other_towns_interior\xmas-dak3.bmp
+texture\other_towns_interior\xmas_lroof.bmp	texture\other_towns_interior\xmas-lroof.bmp
+texture\other_towns_interior\xmas_roof.bmp	texture\other_towns_interior\xmas-roof.bmp
+texture\other_towns_interior\xmas_roof01.bmp	texture\other_towns_interior\xmas-roof01.bmp
+texture\other_towns_interior\xmas_roof02.bmp	texture\other_towns_interior\xmas-roof02.bmp
+texture\other_towns_interior\xmas_star.bmp	texture\other_towns_interior\xmas-star.bmp
+texture\other_towns_interior\xmas_table.bmp	texture\other_towns_interior\xmas-table.bmp
+texture\other_towns_interior\xmas_w.bmp	texture\other_towns_interior\xmas-w.bmp
+texture\other_towns_interior\xmas_w2.bmp	texture\other_towns_interior\xmas-w2.bmp
+texture\other_towns_interior\xmas_w3.bmp	texture\other_towns_interior\xmas-w3.bmp
+texture\outdoor_props\12_sang_copy.bmp	texture\outdoor_props\12-sang copy.bmp
+texture\outdoor_props\abi_bbul_copy.bmp	texture\outdoor_props\abi_bbul copy.bmp
+texture\outdoor_props\abi_duninp1_copy.bmp	texture\outdoor_props\abi_duninp1 copy.bmp
+texture\outdoor_props\abi_duninp2_copy.bmp	texture\outdoor_props\abi_duninp2 copy.bmp
+texture\outdoor_props\abi_duninp3_copy.bmp	texture\outdoor_props\abi_duninp3 copy.bmp
+texture\outdoor_props\abi_duninp4_copy.bmp	texture\outdoor_props\abi_duninp4 copy.bmp
+texture\outdoor_props\abi_duninp5_copy.bmp	texture\outdoor_props\abi_duninp5 copy.bmp
+texture\outdoor_props\abi_nung_copy.bmp	texture\outdoor_props\abi_nung copy.bmp
+texture\outdoor_props\box256_copy.bmp	texture\outdoor_props\box256 copy.bmp
+texture\outdoor_props\boxup256_copy.bmp	texture\outdoor_props\boxup256 copy.bmp
+texture\outdoor_props\cra_copy.bmp	texture\outdoor_props\cra copy.bmp
+texture\outdoor_props\du_ston_00.bmp	texture\outdoor_props\du-ston-00.bmp
+texture\outdoor_props\du_ston.bmp	texture\outdoor_props\du-ston.bmp
+texture\outdoor_props\dwd_1.bmp	texture\outdoor_props\dwd-1.bmp
+texture\outdoor_props\dwd_2.bmp	texture\outdoor_props\dwd-2.bmp
+texture\outdoor_props\dwd_3.bmp	texture\outdoor_props\dwd-3.bmp
+texture\outdoor_props\dwd_4.bmp	texture\outdoor_props\dwd-4.bmp
+texture\outdoor_props\dwd_5.bmp	texture\outdoor_props\dwd-5.bmp
+texture\outdoor_props\dwd_6.bmp	texture\outdoor_props\dwd-6.bmp
+texture\outdoor_props\fie_01.bmp	texture\outdoor_props\fie-01.bmp
+texture\outdoor_props\fie_02.bmp	texture\outdoor_props\fie-02.bmp
+texture\outdoor_props\fie_03.bmp	texture\outdoor_props\fie-03.bmp
+texture\outdoor_props\fie_04.bmp	texture\outdoor_props\fie-04.bmp
+texture\outdoor_props\fie_05.bmp	texture\outdoor_props\fie-05.bmp
+texture\outdoor_props\fie_v01.bmp	texture\outdoor_props\fie-v01.bmp
+texture\outdoor_props\fie_v02.bmp	texture\outdoor_props\fie-v02.bmp
+texture\outdoor_props\fil_well.bmp	texture\outdoor_props\fil-well.bmp
+texture\outdoor_props\fil_well2.bmp	texture\outdoor_props\fil-well2.bmp
+texture\outdoor_props\gef_tlsc1.bmp	texture\outdoor_props\gef-tlsc1.bmp
+texture\outdoor_props\gef_tlsc2.bmp	texture\outdoor_props\gef-tlsc2.bmp
+texture\outdoor_props\gef_tlsc3.bmp	texture\outdoor_props\gef-tlsc3.bmp
+texture\outdoor_props\gef_tlsc4.bmp	texture\outdoor_props\gef-tlsc4.bmp
+texture\outdoor_props\gef_tlsc5.bmp	texture\outdoor_props\gef-tlsc5.bmp
+texture\outdoor_props\gef_tlsc6.bmp	texture\outdoor_props\gef-tlsc6.bmp
+texture\outdoor_props\gef_tlsc7.bmp	texture\outdoor_props\gef-tlsc7.bmp
+texture\outdoor_props\gef_tlsc8.bmp	texture\outdoor_props\gef-tlsc8.bmp
+texture\outdoor_props\gef_tlsc9.bmp	texture\outdoor_props\gef-tlsc9.bmp
+texture\outdoor_props\gep_br1.bmp	texture\outdoor_props\gep-br1.bmp
+texture\outdoor_props\gep_br2.bmp	texture\outdoor_props\gep-br2.bmp
+texture\outdoor_props\gep_br3.bmp	texture\outdoor_props\gep-br3.bmp
+texture\outdoor_props\gep_br4.bmp	texture\outdoor_props\gep-br4.bmp
+texture\outdoor_props\gep_br5.bmp	texture\outdoor_props\gep-br5.bmp
+texture\outdoor_props\gep_br6.bmp	texture\outdoor_props\gep-br6.bmp
+texture\outdoor_props\ghso_1.bmp	texture\outdoor_props\ghso-1.bmp
+texture\outdoor_props\gla_grave1.bmp	texture\outdoor_props\gla-grave1.bmp
+texture\outdoor_props\gla_grave2.bmp	texture\outdoor_props\gla-grave2.bmp
+texture\outdoor_props\gla_latpole.bmp	texture\outdoor_props\gla-latpole.bmp
+texture\outdoor_props\gla_lattice.bmp	texture\outdoor_props\gla-lattice.bmp
+texture\outdoor_props\gla_stake.bmp	texture\outdoor_props\gla-stake.bmp
+texture\outdoor_props\gla_wall.bmp	texture\outdoor_props\gla-wall.bmp
+texture\outdoor_props\glast_heim_1floor_level_wall.bmp	texture\outdoor_props\glast_heim-1floor_level_wall.bmp
+texture\outdoor_props\glst_brdg1.bmp	texture\outdoor_props\glst-brdg1.bmp
+texture\outdoor_props\glst_brdg2.bmp	texture\outdoor_props\glst-brdg2.bmp
+texture\outdoor_props\glst_cstle1.bmp	texture\outdoor_props\glst-cstle1.bmp
+texture\outdoor_props\glst_cstle12.bmp	texture\outdoor_props\glst-cstle12.bmp
+texture\outdoor_props\glst_cstle13.bmp	texture\outdoor_props\glst-cstle13.bmp
+texture\outdoor_props\glst_cstle2.bmp	texture\outdoor_props\glst-cstle2.bmp
+texture\outdoor_props\glst_cstle3.bmp	texture\outdoor_props\glst-cstle3.bmp
+texture\outdoor_props\glst_cstle4.bmp	texture\outdoor_props\glst-cstle4.bmp
+texture\outdoor_props\glst_cstle5.bmp	texture\outdoor_props\glst-cstle5.bmp
+texture\outdoor_props\glst_cstle6.bmp	texture\outdoor_props\glst-cstle6.bmp
+texture\outdoor_props\glst_cstle6_1.bmp	texture\outdoor_props\glst-cstle6_1.bmp
+texture\outdoor_props\glst_cstle7.bmp	texture\outdoor_props\glst-cstle7.bmp
+texture\outdoor_props\glst_cstle7_1.bmp	texture\outdoor_props\glst-cstle7_1.bmp
+texture\outdoor_props\glst_cstle8.bmp	texture\outdoor_props\glst-cstle8.bmp
+texture\outdoor_props\glst_dom01.bmp	texture\outdoor_props\glst-dom01.bmp
+texture\outdoor_props\glst_dom02.bmp	texture\outdoor_props\glst-dom02.bmp
+texture\outdoor_props\gwb_1.bmp	texture\outdoor_props\gwb-1.bmp
+texture\outdoor_props\izld_market1.bmp	texture\outdoor_props\izld-market1.bmp
+texture\outdoor_props\izld_market2.bmp	texture\outdoor_props\izld-market2.bmp
+texture\outdoor_props\izld_market3.bmp	texture\outdoor_props\izld-market3.bmp
+texture\outdoor_props\izld_market4.bmp	texture\outdoor_props\izld-market4.bmp
+texture\outdoor_props\izld_market5.bmp	texture\outdoor_props\izld-market5.bmp
+texture\outdoor_props\izld_market6.bmp	texture\outdoor_props\izld-market6.bmp
+texture\outdoor_props\izld_market7.bmp	texture\outdoor_props\izld-market7.bmp
+texture\outdoor_props\lamp2256_copy.bmp	texture\outdoor_props\lamp2256 copy.bmp
+texture\outdoor_props\lampjul256_copy.bmp	texture\outdoor_props\lampjul256 copy.bmp
+texture\outdoor_props\mo_btr_00.bmp	texture\outdoor_props\mo-btr-00.bmp
+texture\outdoor_props\mo_btr_02.bmp	texture\outdoor_props\mo-btr-02.bmp
+texture\outdoor_props\mo_btr.bmp	texture\outdoor_props\mo-btr.bmp
+texture\outdoor_props\mo_fie_bone2.bmp	texture\outdoor_props\mo-fie-bone2.bmp
+texture\outdoor_props\mo_fie_bone3.bmp	texture\outdoor_props\mo-fie-bone3.bmp
+texture\outdoor_props\mo_fie01.bmp	texture\outdoor_props\mo-fie01.bmp
+texture\outdoor_props\mo_fie02.bmp	texture\outdoor_props\mo-fie02.bmp
+texture\outdoor_props\mo_fie03.bmp	texture\outdoor_props\mo-fie03.bmp
+texture\outdoor_props\mo_fie04.bmp	texture\outdoor_props\mo-fie04.bmp
+texture\outdoor_props\mo_fie05.bmp	texture\outdoor_props\mo-fie05.bmp
+texture\outdoor_props\mo_pyramid1_floor.bmp	texture\outdoor_props\mo-pyramid1-floor.bmp
+texture\outdoor_props\mo_tr3_1.bmp	texture\outdoor_props\mo-tr3_1.bmp
+texture\outdoor_props\mo_tr3_2.bmp	texture\outdoor_props\mo-tr3_2.bmp
+texture\outdoor_props\mo0_line.bmp	texture\outdoor_props\mo0-line.bmp
+texture\outdoor_props\mon_tree1.bmp	texture\outdoor_props\mon-tree1.bmp
+texture\outdoor_props\mon_tree2.bmp	texture\outdoor_props\mon-tree2.bmp
+texture\outdoor_props\mon_tree3.bmp	texture\outdoor_props\mon-tree3.bmp
+texture\outdoor_props\mon_tree4.bmp	texture\outdoor_props\mon-tree4.bmp
+texture\outdoor_props\myo_brd1.bmp	texture\outdoor_props\myo-brd1.bmp
+texture\outdoor_props\myo_fire1.bmp	texture\outdoor_props\myo-fire1.bmp
+texture\outdoor_props\myo_fire2.bmp	texture\outdoor_props\myo-fire2.bmp
+texture\outdoor_props\myo_fire3.bmp	texture\outdoor_props\myo-fire3.bmp
+texture\outdoor_props\myo_fire4.bmp	texture\outdoor_props\myo-fire4.bmp
+texture\outdoor_props\myo_mine1.bmp	texture\outdoor_props\myo-mine1.bmp
+texture\outdoor_props\myo_mine2.bmp	texture\outdoor_props\myo-mine2.bmp
+texture\outdoor_props\myo_mine3.bmp	texture\outdoor_props\myo-mine3.bmp
+texture\outdoor_props\myo_msign1.bmp	texture\outdoor_props\myo-msign1.bmp
+texture\outdoor_props\myo_orc1.bmp	texture\outdoor_props\myo-orc1.bmp
+texture\outdoor_props\myo_orc2.bmp	texture\outdoor_props\myo-orc2.bmp
+texture\outdoor_props\myo_orc3.bmp	texture\outdoor_props\myo-orc3.bmp
+texture\outdoor_props\myo_orc4.bmp	texture\outdoor_props\myo-orc4.bmp
+texture\outdoor_props\myo_orc5.bmp	texture\outdoor_props\myo-orc5.bmp
+texture\outdoor_props\myo_orc6.bmp	texture\outdoor_props\myo-orc6.bmp
+texture\outdoor_props\myo_orc7.bmp	texture\outdoor_props\myo-orc7.bmp
+texture\outdoor_props\myo_orc8.bmp	texture\outdoor_props\myo-orc8.bmp
+texture\outdoor_props\myo_orc9.bmp	texture\outdoor_props\myo-orc9.bmp
+texture\outdoor_props\onet_l_copy.bmp	texture\outdoor_props\onet l copy.bmp
+texture\outdoor_props\onetblue_copy.bmp	texture\outdoor_props\onetblue copy.bmp
+texture\outdoor_props\onetyel_copy.bmp	texture\outdoor_props\onetyel copy.bmp
+texture\outdoor_props\pay_dhous1.bmp	texture\outdoor_props\pay-dhous1.bmp
+texture\outdoor_props\pay_dhous2.bmp	texture\outdoor_props\pay-dhous2.bmp
+texture\outdoor_props\pron_b_01.bmp	texture\outdoor_props\pron-b-01.bmp
+texture\outdoor_props\pron_b_02.bmp	texture\outdoor_props\pron-b-02.bmp
+texture\outdoor_props\pron_b.bmp	texture\outdoor_props\pron-b.bmp
+texture\outdoor_props\pron_bench1.bmp	texture\outdoor_props\pron-bench1.bmp
+texture\outdoor_props\pron_bench2.bmp	texture\outdoor_props\pron-bench2.bmp
+texture\outdoor_props\pron_bench3.bmp	texture\outdoor_props\pron-bench3.bmp
+texture\outdoor_props\pron_fcave1.bmp	texture\outdoor_props\pron-fcave1.bmp
+texture\outdoor_props\pron_fcave2.bmp	texture\outdoor_props\pron-fcave2.bmp
+texture\outdoor_props\pron_mon1.bmp	texture\outdoor_props\pron-mon1.bmp
+texture\outdoor_props\pron_mon2.bmp	texture\outdoor_props\pron-mon2.bmp
+texture\outdoor_props\pron_mon3.bmp	texture\outdoor_props\pron-mon3.bmp
+texture\outdoor_props\pron_mon4.bmp	texture\outdoor_props\pron-mon4.bmp
+texture\outdoor_props\pron_mon5.bmp	texture\outdoor_props\pron-mon5.bmp
+texture\outdoor_props\pron_mon6.bmp	texture\outdoor_props\pron-mon6.bmp
+texture\outdoor_props\pron_mon7.bmp	texture\outdoor_props\pron-mon7.bmp
+texture\outdoor_props\pron_point_1.bmp	texture\outdoor_props\pron-point-1.bmp
+texture\outdoor_props\pron_point_2.bmp	texture\outdoor_props\pron-point-2.bmp
+texture\outdoor_props\pron_point_3.bmp	texture\outdoor_props\pron-point-3.bmp
+texture\outdoor_props\pron_point.bmp	texture\outdoor_props\pron-point.bmp
+texture\outdoor_props\pron_wag1.bmp	texture\outdoor_props\pron-wag1.bmp
+texture\outdoor_props\pron_wag2.bmp	texture\outdoor_props\pron-wag2.bmp
+texture\outdoor_props\pron_wag3.bmp	texture\outdoor_props\pron-wag3.bmp
+texture\outdoor_props\prt_bri_00.bmp	texture\outdoor_props\prt-bri-00.bmp
+texture\outdoor_props\prt_bri_02.bmp	texture\outdoor_props\prt-bri-02.bmp
+texture\outdoor_props\prt_fie_h1.bmp	texture\outdoor_props\prt-fie-h1.bmp
+texture\outdoor_props\prt_fie_h2.bmp	texture\outdoor_props\prt-fie-h2.bmp
+texture\outdoor_props\prt_fie_hb.bmp	texture\outdoor_props\prt-fie-hb.bmp
+texture\outdoor_props\prt_fie_wall.bmp	texture\outdoor_props\prt-fie-wall.bmp
+texture\outdoor_props\prt_fie_wall2.bmp	texture\outdoor_props\prt-fie-wall2.bmp
+texture\outdoor_props\samak_jul_copy.bmp	texture\outdoor_props\samak_jul copy.bmp
+texture\outdoor_props\skel_1.bmp	texture\outdoor_props\skel-1.bmp
+texture\outdoor_props\skel_2.bmp	texture\outdoor_props\skel-2.bmp
+texture\outdoor_props\skel_3.bmp	texture\outdoor_props\skel-3.bmp
+texture\outdoor_props\skel_4.bmp	texture\outdoor_props\skel-4.bmp
+texture\outdoor_props\statue_support.bmp	texture\outdoor_props\statue-support.bmp
+texture\outdoor_props\tana_dari1_copy.bmp	texture\outdoor_props\tana_dari1 copy.bmp
+texture\outdoor_props\tana_dari2_copy.bmp	texture\outdoor_props\tana_dari2 copy.bmp
+texture\outdoor_props\totempole01_1.bmp	texture\outdoor_props\totempole01-1.bmp
+texture\outdoor_props\wind_ccopy.tga	texture\outdoor_props\wind ccopy.tga
+texture\outdoor_props\wind2_copy.tga	texture\outdoor_props\wind2 copy.tga
+texture\outdoor_props\xmas_flow.bmp	texture\outdoor_props\xmas-flow.bmp
+texture\outdoor_props\xmas_flow2.bmp	texture\outdoor_props\xmas-flow2.bmp
+texture\outdoor_props\xmas_flow_2.bmp	texture\outdoor_props\xmas-flow_2.bmp
+texture\payon_alt\bbul3_copy.bmp	texture\payon_alt\bbul3 copy.bmp
+texture\payon_alt\board_prop.bmp	texture\payon_alt\board&prop.bmp
+texture\payon_alt\bodydown_copy.bmp	texture\payon_alt\bodydown copy.bmp
+texture\payon_alt\bodyup_copy.bmp	texture\payon_alt\bodyup copy.bmp
+texture\payon_alt\ge_mo_1.bmp	texture\payon_alt\ge-mo-1.bmp
+texture\payon_alt\ge_mo_2.bmp	texture\payon_alt\ge-mo-2.bmp
+texture\payon_alt\ge_mo_3.bmp	texture\payon_alt\ge-mo-3.bmp
+texture\payon_alt\ge_mo_4.bmp	texture\payon_alt\ge-mo-4.bmp
+texture\payon_alt\ge_mo_5.bmp	texture\payon_alt\ge-mo-5.bmp
+texture\payon_alt\gp_e_b.bmp	texture\payon_alt\gp-e-b.bmp
+texture\payon_alt\gp_e_r1.bmp	texture\payon_alt\gp-e-r1.bmp
+texture\payon_alt\gp_e_w1.bmp	texture\payon_alt\gp-e-w1.bmp
+texture\payon_alt\gp_gate_door.bmp	texture\payon_alt\gp-gate-door.bmp
+texture\payon_alt\gp_gate_r1.bmp	texture\payon_alt\gp-gate-r1.bmp
+texture\payon_alt\gp_gate_r2.bmp	texture\payon_alt\gp-gate-r2.bmp
+texture\payon_alt\gp_gate_side.bmp	texture\payon_alt\gp-gate-side.bmp
+texture\payon_alt\gp_st1.bmp	texture\payon_alt\gp-st1.bmp
+texture\payon_alt\ipal_copy.bmp	texture\payon_alt\ipal copy.bmp
+texture\payon_alt\pe_bri_00.bmp	texture\payon_alt\pe-bri-00.bmp
+texture\payon_alt\pe_bri_02.bmp	texture\payon_alt\pe-bri-02.bmp
+texture\payon_alt\ru_badak_board.bmp	texture\payon_alt\ru_badak&board.bmp
+texture\payon_alt\ru_fr_roof_stair.bmp	texture\payon_alt\ru_fr_roof&stair.bmp
+texture\payon_alt\ru_handrail_deco.bmp	texture\payon_alt\ru_handrail&deco.bmp
+texture\payon_alt\ru_wall_back.bmp	texture\payon_alt\ru_wall&back.bmp
+texture\payon_alt\ss_hrubang_copy.bmp	texture\payon_alt\ss-hrubang copy.bmp
+texture\payon_alt\ss_hrubang2_copy.bmp	texture\payon_alt\ss-hrubang2 copy.bmp
+texture\payon_alt\ss_jang_copy.bmp	texture\payon_alt\ss-jang copy.bmp
+texture\payon_alt\ss_jang2_copy.bmp	texture\payon_alt\ss-jang2 copy.bmp
+texture\payon_alt\ss_jang211_copy.bmp	texture\payon_alt\ss-jang211 copy.bmp
+texture\payon_alt\ss_jang2222_copy.bmp	texture\payon_alt\ss-jang2222 copy.bmp
+texture\payon_alt\ss_janggirl_copy.bmp	texture\payon_alt\ss-janggirl copy.bmp
+texture\prontera\al_hou_r1.bmp	texture\prontera\al-hou-r1.bmp
+texture\prontera\al_hou_sw1.bmp	texture\prontera\al-hou-sw1.bmp
+texture\prontera\al_hou_w1.bmp	texture\prontera\al-hou-w1.bmp
+texture\prontera\al_hou_w2.bmp	texture\prontera\al-hou-w2.bmp
+texture\prontera\al_hou_w3.bmp	texture\prontera\al-hou-w3.bmp
+texture\prontera\al_hou_w4.bmp	texture\prontera\al-hou-w4.bmp
+texture\prontera\bri_1.bmp	texture\prontera\bri-1.bmp
+texture\prontera\bri_2.bmp	texture\prontera\bri-2.bmp
+texture\prontera\bri_3.bmp	texture\prontera\bri-3.bmp
+texture\prontera\d_side.bmp	texture\prontera\d-side.bmp
+texture\prontera\dong_d_1.bmp	texture\prontera\dong-d-1.bmp
+texture\prontera\dong_d_2.bmp	texture\prontera\dong-d-2.bmp
+texture\prontera\dong_d_3.bmp	texture\prontera\dong-d-3.bmp
+texture\prontera\dong_d_4.bmp	texture\prontera\dong-d-4.bmp
+texture\prontera\dong_d_5.bmp	texture\prontera\dong-d-5.bmp
+texture\prontera\dong_ho.bmp	texture\prontera\dong-ho.bmp
+texture\prontera\dong_land.bmp	texture\prontera\dong-land.bmp
+texture\prontera\gid_side.bmp	texture\prontera\gid..(side).bmp
+texture\prontera\gid_down_side.bmp	texture\prontera\gid..down(side).bmp
+texture\prontera\go_1.bmp	texture\prontera\go-1.bmp
+texture\prontera\go_2.bmp	texture\prontera\go-2.bmp
+texture\prontera\go_3.bmp	texture\prontera\go-3.bmp
+texture\prontera\go_roof.bmp	texture\prontera\go-roof.bmp
+texture\prontera\ho_roof_1.bmp	texture\prontera\ho-roof-1.bmp
+texture\prontera\ho_roof.bmp	texture\prontera\ho-roof.bmp
+texture\prontera\ho_wall_1.bmp	texture\prontera\ho-wall-1.bmp
+texture\prontera\ho_wall_2.bmp	texture\prontera\ho-wall-2.bmp
+texture\prontera\ho_wall_3.bmp	texture\prontera\ho-wall-3.bmp
+texture\prontera\ho_wall_4.bmp	texture\prontera\ho-wall-4.bmp
+texture\prontera\ho_wall_b_1.bmp	texture\prontera\ho-wall-b-1.bmp
+texture\prontera\ho_wall_b.bmp	texture\prontera\ho-wall-b.bmp
+texture\prontera\ho_wall.bmp	texture\prontera\ho-wall.bmp
+texture\prontera\jop_f.bmp	texture\prontera\jop-f.bmp
+texture\prontera\jop_open.bmp	texture\prontera\jop-open.bmp
+texture\prontera\jop_roof_1.bmp	texture\prontera\jop-roof-1.bmp
+texture\prontera\jop_roof.bmp	texture\prontera\jop-roof.bmp
+texture\prontera\jop_wall_1.bmp	texture\prontera\jop-wall-1.bmp
+texture\prontera\jop_wall_2.bmp	texture\prontera\jop-wall-2.bmp
+texture\prontera\jop_wall_3.bmp	texture\prontera\jop-wall-3.bmp
+texture\prontera\jop_wall_4.bmp	texture\prontera\jop-wall-4.bmp
+texture\prontera\jop_wall_5.bmp	texture\prontera\jop-wall-5.bmp
+texture\prontera\jop_wall.bmp	texture\prontera\jop-wall.bmp
+texture\prontera\pron_bak1.bmp	texture\prontera\pron-bak1.bmp
+texture\prontera\pron_bak2.bmp	texture\prontera\pron-bak2.bmp
+texture\prontera\pron_bgate1.bmp	texture\prontera\pron-bgate1.bmp
+texture\prontera\pron_bgate2.bmp	texture\prontera\pron-bgate2.bmp
+texture\prontera\pron_bgate3.bmp	texture\prontera\pron-bgate3.bmp
+texture\prontera\pron_castle_2.bmp	texture\prontera\pron-castle-2.bmp
+texture\prontera\pron_castle1.bmp	texture\prontera\pron-castle1.bmp
+texture\prontera\pron_castle2.bmp	texture\prontera\pron-castle2.bmp
+texture\prontera\pron_castle3.bmp	texture\prontera\pron-castle3.bmp
+texture\prontera\pron_castle4.bmp	texture\prontera\pron-castle4.bmp
+texture\prontera\pron_castle5.bmp	texture\prontera\pron-castle5.bmp
+texture\prontera\pron_castle6.bmp	texture\prontera\pron-castle6.bmp
+texture\prontera\pron_castle7.bmp	texture\prontera\pron-castle7.bmp
+texture\prontera\pron_ctwr1.bmp	texture\prontera\pron-ctwr1.bmp
+texture\prontera\pron_ctwr2.bmp	texture\prontera\pron-ctwr2.bmp
+texture\prontera\pron_ctwr3.bmp	texture\prontera\pron-ctwr3.bmp
+texture\prontera\pron_ctwr4.bmp	texture\prontera\pron-ctwr4.bmp
+texture\prontera\pron_fishm1.bmp	texture\prontera\pron-fishm1.bmp
+texture\prontera\pron_fishm2.bmp	texture\prontera\pron-fishm2.bmp
+texture\prontera\pron_flo_bloc.bmp	texture\prontera\pron-flo-bloc.bmp
+texture\prontera\pron_flo_f.bmp	texture\prontera\pron-flo-f.bmp
+texture\prontera\pron_floshp1.bmp	texture\prontera\pron-floshp1.bmp
+texture\prontera\pron_floshp2.bmp	texture\prontera\pron-floshp2.bmp
+texture\prontera\pron_floshp3.bmp	texture\prontera\pron-floshp3.bmp
+texture\prontera\pron_floshp4.bmp	texture\prontera\pron-floshp4.bmp
+texture\prontera\pron_frm1.bmp	texture\prontera\pron-frm1.bmp
+texture\prontera\pron_frm2.bmp	texture\prontera\pron-frm2.bmp
+texture\prontera\pron_guar.bmp	texture\prontera\pron-guar.bmp
+texture\prontera\pron_guaw1.bmp	texture\prontera\pron-guaw1.bmp
+texture\prontera\pron_house_1.bmp	texture\prontera\pron-house-1.bmp
+texture\prontera\pron_house_2.bmp	texture\prontera\pron-house-2.bmp
+texture\prontera\pron_house_3.bmp	texture\prontera\pron-house-3.bmp
+texture\prontera\pron_house_4.bmp	texture\prontera\pron-house-4.bmp
+texture\prontera\pron_house_5.bmp	texture\prontera\pron-house-5.bmp
+texture\prontera\pron_house_roof_2.bmp	texture\prontera\pron-house-roof-2.bmp
+texture\prontera\pron_house_roof.bmp	texture\prontera\pron-house-roof.bmp
+texture\prontera\pron_house.bmp	texture\prontera\pron-house.bmp
+texture\prontera\pron_hr1.bmp	texture\prontera\pron-hr1.bmp
+texture\prontera\pron_hrcol1.bmp	texture\prontera\pron-hrcol1.bmp
+texture\prontera\pron_hrcol2.bmp	texture\prontera\pron-hrcol2.bmp
+texture\prontera\pron_ju_roof_1.bmp	texture\prontera\pron-ju-roof-1.bmp
+texture\prontera\pron_ju_roof.bmp	texture\prontera\pron-ju-roof.bmp
+texture\prontera\pron_ju_wall_1.bmp	texture\prontera\pron-ju-wall-1.bmp
+texture\prontera\pron_ju_wall_2.bmp	texture\prontera\pron-ju-wall-2.bmp
+texture\prontera\pron_ju_wall_4.bmp	texture\prontera\pron-ju-wall-4.bmp
+texture\prontera\pron_ju_wall_5.bmp	texture\prontera\pron-ju-wall-5.bmp
+texture\prontera\pron_ju_wall_6.bmp	texture\prontera\pron-ju-wall-6.bmp
+texture\prontera\pron_ju_wall_7.bmp	texture\prontera\pron-ju-wall-7.bmp
+texture\prontera\pron_ju_wall_8.bmp	texture\prontera\pron-ju-wall-8.bmp
+texture\prontera\pron_ju_wall.bmp	texture\prontera\pron-ju-wall.bmp
+texture\prontera\pron_lamp1.bmp	texture\prontera\pron-lamp1.bmp
+texture\prontera\pron_lamp2.bmp	texture\prontera\pron-lamp2.bmp
+texture\prontera\pron_lamp3.bmp	texture\prontera\pron-lamp3.bmp
+texture\prontera\pron_lib_r.bmp	texture\prontera\pron-lib-r.bmp
+texture\prontera\pron_lib_w1.bmp	texture\prontera\pron-lib-w1.bmp
+texture\prontera\pron_lib_w2.bmp	texture\prontera\pron-lib-w2.bmp
+texture\prontera\pron_lib_w3.bmp	texture\prontera\pron-lib-w3.bmp
+texture\prontera\pron_meatm1.bmp	texture\prontera\pron-meatm1.bmp
+texture\prontera\pron_meatm2.bmp	texture\prontera\pron-meatm2.bmp
+texture\prontera\pron_nai_1.bmp	texture\prontera\pron-nai-1.bmp
+texture\prontera\pron_nai_roof_1.bmp	texture\prontera\pron-nai-roof-1.bmp
+texture\prontera\pron_nai_roof_2.bmp	texture\prontera\pron-nai-roof-2.bmp
+texture\prontera\pron_nai_roof.bmp	texture\prontera\pron-nai-roof.bmp
+texture\prontera\pron_nai_wall_1.bmp	texture\prontera\pron-nai-wall-1.bmp
+texture\prontera\pron_nai_wall_2.bmp	texture\prontera\pron-nai-wall-2.bmp
+texture\prontera\pron_nai_wall_3.bmp	texture\prontera\pron-nai-wall-3.bmp
+texture\prontera\pron_nai_wall_4.bmp	texture\prontera\pron-nai-wall-4.bmp
+texture\prontera\pron_nai_wall_5.bmp	texture\prontera\pron-nai-wall-5.bmp
+texture\prontera\pron_nai_wall.bmp	texture\prontera\pron-nai-wall.bmp
+texture\prontera\pron_nai.bmp	texture\prontera\pron-nai.bmp
+texture\prontera\pron_newcastle_1.bmp	texture\prontera\pron-newcastle-1.bmp
+texture\prontera\pron_newcastle_2.bmp	texture\prontera\pron-newcastle-2.bmp
+texture\prontera\pron_newcastle_4.bmp	texture\prontera\pron-newcastle-4.bmp
+texture\prontera\pron_newcastle_5.bmp	texture\prontera\pron-newcastle-5.bmp
+texture\prontera\pron_newcastle_6.bmp	texture\prontera\pron-newcastle-6.bmp
+texture\prontera\pron_newcastle_7.bmp	texture\prontera\pron-newcastle-7.bmp
+texture\prontera\pron_newcastle_8.bmp	texture\prontera\pron-newcastle-8.bmp
+texture\prontera\pron_newcastle_9.bmp	texture\prontera\pron-newcastle-9.bmp
+texture\prontera\pron_newcastle_roof.bmp	texture\prontera\pron-newcastle-roof.bmp
+texture\prontera\pron_newcastle.bmp	texture\prontera\pron-newcastle.bmp
+texture\prontera\pron_tl1.bmp	texture\prontera\pron-tl1.bmp
+texture\prontera\pron_tl2.bmp	texture\prontera\pron-tl2.bmp
+texture\prontera\pron_tl3.bmp	texture\prontera\pron-tl3.bmp
+texture\prontera\pron_tl4.bmp	texture\prontera\pron-tl4.bmp
+texture\prontera\pron_trader1.bmp	texture\prontera\pron-trader1.bmp
+texture\prontera\pron_tradew1.bmp	texture\prontera\pron-tradew1.bmp
+texture\prontera\pron_tradew2.bmp	texture\prontera\pron-tradew2.bmp
+texture\prontera\pron_tradew3.bmp	texture\prontera\pron-tradew3.bmp
+texture\prontera\pron_zang.bmp	texture\prontera\pron-zang.bmp
+texture\prontera\stone_down.bmp	texture\prontera\stone-down.bmp
+texture\prontera\stone_up.bmp	texture\prontera\stone-up.bmp
+texture\prontera\tomb_side1.bmp	texture\prontera\tomb(side1).bmp
+texture\prontera\tomb_side2.bmp	texture\prontera\tomb(side2).bmp
+texture\prontera\tomb_stone_up.bmp	texture\prontera\tomb(stone)up.bmp
+texture\prontera\wepon_roof.bmp	texture\prontera\wepon-roof.bmp
+texture\prontera\wepon_wall_1.bmp	texture\prontera\wepon-wall-1.bmp
+texture\prontera\wepon_wall_2.bmp	texture\prontera\wepon-wall-2.bmp
+texture\prontera\wepon_wall_3.bmp	texture\prontera\wepon-wall-3.bmp
+texture\prontera\wepon_wall_4.bmp	texture\prontera\wepon-wall-4.bmp
+texture\prontera\wepon_wall_5.bmp	texture\prontera\wepon-wall-5.bmp
+texture\prontera\wepon_wall_6.bmp	texture\prontera\wepon-wall-6.bmp
+texture\prontera\wepon_wall_7.bmp	texture\prontera\wepon-wall-7.bmp
+texture\prontera\wepon_wall.bmp	texture\prontera\wepon-wall.bmp
+texture\prontera_interior\book_1.bmp	texture\prontera_interior\book-1.bmp
+texture\prontera_interior\h1_door.bmp	texture\prontera_interior\h1-door.bmp
+texture\prontera_interior\h2_door.bmp	texture\prontera_interior\h2-door.bmp
+texture\prontera_interior\h3_door.bmp	texture\prontera_interior\h3-door.bmp
+texture\prontera_interior\in_prt_c_01.bmp	texture\prontera_interior\in prt_c_01.bmp
+texture\prontera_interior\pron_church_floor.bmp	texture\prontera_interior\pron-church_floor.bmp
+texture\prontera_interior\pron_tile_00.bmp	texture\prontera_interior\pron_tile-00.bmp
+texture\prontera_interior\prt_shop_tile04_1.bmp	texture\prontera_interior\prt_shop_tile04-1.bmp
+texture\prontera_interior\rpr_ak_copy.bmp	texture\prontera_interior\rpr-ak copy.bmp
+texture\prontera_interior\rpr_bat.bmp	texture\prontera_interior\rpr-bat.bmp
+texture\prontera_interior\rpr_ccur2_copy.bmp	texture\prontera_interior\rpr-ccur2 copy.bmp
+texture\prontera_interior\rpr_ccur22_copy.bmp	texture\prontera_interior\rpr-ccur22 copy.bmp
+texture\prontera_interior\rpr_cho_copy.bmp	texture\prontera_interior\rpr-cho copy.bmp
+texture\prontera_interior\rpr_cur_copy.bmp	texture\prontera_interior\rpr-cur copy.bmp
+texture\prontera_interior\rpr_byo_copy.bmp	texture\prontera_interior\rpr_byo copy.bmp
+texture\prontera_interior\rpr_tavle_copy.bmp	texture\prontera_interior\rpr_tavle copy.bmp
+texture\prontera_interior\sgid2_side2.bmp	texture\prontera_interior\sgid2-side2.bmp
+texture\prontera_interior\sgid3_side1.bmp	texture\prontera_interior\sgid3-side1.bmp
+texture\prontera_interior\sgid3_side2.bmp	texture\prontera_interior\sgid3-side2.bmp
+texture\prontera_interior\wa_line_1.bmp	texture\prontera_interior\wa-line-1.bmp
+texture\prontera_interior\wa_line.bmp	texture\prontera_interior\wa-line.bmp
+texture\trees_weeds_flowers\alde_tree01.bmp	texture\trees_weeds_flowers\alde-tree01.bmp
+texture\trees_weeds_flowers\alde_tree02.bmp	texture\trees_weeds_flowers\alde-tree02.bmp
+texture\trees_weeds_flowers\co_frog.bmp	texture\trees_weeds_flowers\co-frog.bmp
+texture\trees_weeds_flowers\co_yon.bmp	texture\trees_weeds_flowers\co-yon.bmp
+texture\trees_weeds_flowers\co_yon2.bmp	texture\trees_weeds_flowers\co-yon2.bmp
+texture\trees_weeds_flowers\co_yon3.bmp	texture\trees_weeds_flowers\co-yon3.bmp
+texture\trees_weeds_flowers\co_yon4.bmp	texture\trees_weeds_flowers\co-yon4.bmp
+texture\trees_weeds_flowers\du_treeside1.bmp	texture\trees_weeds_flowers\du-treeside1.bmp
+texture\trees_weeds_flowers\fie_leav1.bmp	texture\trees_weeds_flowers\fie-leav1.bmp
+texture\trees_weeds_flowers\gajinamu_copy.bmp	texture\trees_weeds_flowers\gajinamu copy.bmp
+texture\trees_weeds_flowers\gajinamu1_copy.bmp	texture\trees_weeds_flowers\gajinamu1 copy.bmp
+texture\trees_weeds_flowers\gl_di_tree_01.bmp	texture\trees_weeds_flowers\gl_di_tree.01.bmp
+texture\trees_weeds_flowers\gl_di_tree_02.bmp	texture\trees_weeds_flowers\gl_di_tree.02.bmp
+texture\trees_weeds_flowers\mo_leaves1.bmp	texture\trees_weeds_flowers\mo-leaves1.bmp
+texture\trees_weeds_flowers\mo_leaves1_2.bmp	texture\trees_weeds_flowers\mo-leaves1_2.bmp
+texture\trees_weeds_flowers\mo_leaves2.bmp	texture\trees_weeds_flowers\mo-leaves2.bmp
+texture\trees_weeds_flowers\mo_leaves3.bmp	texture\trees_weeds_flowers\mo-leaves3.bmp
+texture\trees_weeds_flowers\mo_tree_block.bmp	texture\trees_weeds_flowers\mo-tree-block.bmp
+texture\trees_weeds_flowers\mo_tree_leaf.bmp	texture\trees_weeds_flowers\mo-tree-leaf.bmp
+texture\trees_weeds_flowers\mo_tree.bmp	texture\trees_weeds_flowers\mo-tree.bmp
+texture\trees_weeds_flowers\mo_tree1.bmp	texture\trees_weeds_flowers\mo-tree1.bmp
+texture\trees_weeds_flowers\mo_tree2.bmp	texture\trees_weeds_flowers\mo-tree2.bmp
+texture\trees_weeds_flowers\mo_v_1.bmp	texture\trees_weeds_flowers\mo-v-1.bmp
+texture\trees_weeds_flowers\mo_v_2.bmp	texture\trees_weeds_flowers\mo-v-2.bmp
+texture\trees_weeds_flowers\mo_v_3.bmp	texture\trees_weeds_flowers\mo-v-3.bmp
+texture\trees_weeds_flowers\myo_contree1.bmp	texture\trees_weeds_flowers\myo-contree1.bmp
+texture\trees_weeds_flowers\myo_contree2.bmp	texture\trees_weeds_flowers\myo-contree2.bmp
+texture\trees_weeds_flowers\myo_fleaf1.bmp	texture\trees_weeds_flowers\myo-fleaf1.bmp
+texture\trees_weeds_flowers\myo_fleaf2.bmp	texture\trees_weeds_flowers\myo-fleaf2.bmp
+texture\trees_weeds_flowers\myo_fleaf3.bmp	texture\trees_weeds_flowers\myo-fleaf3.bmp
+texture\trees_weeds_flowers\myo_fleaf4.bmp	texture\trees_weeds_flowers\myo-fleaf4.bmp
+texture\trees_weeds_flowers\myo_fleaf5.bmp	texture\trees_weeds_flowers\myo-fleaf5.bmp
+texture\trees_weeds_flowers\myo_grs1.bmp	texture\trees_weeds_flowers\myo-grs1.bmp
+texture\trees_weeds_flowers\myo_grs2.bmp	texture\trees_weeds_flowers\myo-grs2.bmp
+texture\trees_weeds_flowers\myo_hn1.bmp	texture\trees_weeds_flowers\myo-hn1.bmp
+texture\trees_weeds_flowers\myo_hn2.bmp	texture\trees_weeds_flowers\myo-hn2.bmp
+texture\trees_weeds_flowers\myo_leaf1.bmp	texture\trees_weeds_flowers\myo-leaf1.bmp
+texture\trees_weeds_flowers\myo_leaf2.bmp	texture\trees_weeds_flowers\myo-leaf2.bmp
+texture\trees_weeds_flowers\myo_leaf3.bmp	texture\trees_weeds_flowers\myo-leaf3.bmp
+texture\trees_weeds_flowers\myo_leaf4.bmp	texture\trees_weeds_flowers\myo-leaf4.bmp
+texture\trees_weeds_flowers\myo_leaf5.bmp	texture\trees_weeds_flowers\myo-leaf5.bmp
+texture\trees_weeds_flowers\myo_leaf6.bmp	texture\trees_weeds_flowers\myo-leaf6.bmp
+texture\trees_weeds_flowers\myo_leaf7.bmp	texture\trees_weeds_flowers\myo-leaf7.bmp
+texture\trees_weeds_flowers\myo_tho1.bmp	texture\trees_weeds_flowers\myo-tho1.bmp
+texture\trees_weeds_flowers\myo_tree1.bmp	texture\trees_weeds_flowers\myo-tree1.bmp
+texture\trees_weeds_flowers\p_ba.bmp	texture\trees_weeds_flowers\p-ba.bmp
+texture\trees_weeds_flowers\pay_bamboo1.bmp	texture\trees_weeds_flowers\pay-bamboo1.bmp
+texture\trees_weeds_flowers\pay_bamboo2.bmp	texture\trees_weeds_flowers\pay-bamboo2.bmp
+texture\trees_weeds_flowers\pay_bamboo3.bmp	texture\trees_weeds_flowers\pay-bamboo3.bmp
+texture\trees_weeds_flowers\pe_leaf_001.bmp	texture\trees_weeds_flowers\pe-leaf_001.bmp
+texture\trees_weeds_flowers\pron_fpot1.bmp	texture\trees_weeds_flowers\pron-fpot1.bmp
+texture\trees_weeds_flowers\pron_fpot2.bmp	texture\trees_weeds_flowers\pron-fpot2.bmp
+texture\trees_weeds_flowers\pron_fpot3_t.bmp	texture\trees_weeds_flowers\pron-fpot3-t.bmp
+texture\trees_weeds_flowers\pron_fpot3.bmp	texture\trees_weeds_flowers\pron-fpot3.bmp
+texture\trees_weeds_flowers\pron_leaf_1.bmp	texture\trees_weeds_flowers\pron-leaf_1.bmp
+texture\trees_weeds_flowers\pron_leaf_2.bmp	texture\trees_weeds_flowers\pron-leaf_2.bmp
+texture\trees_weeds_flowers\prt_fie_tree1.bmp	texture\trees_weeds_flowers\prt-fie-tree1.bmp
+texture\trees_weeds_flowers\prt_fie_tree2.bmp	texture\trees_weeds_flowers\prt-fie-tree2.bmp
+texture\trees_weeds_flowers\prt_fie_tree3.bmp	texture\trees_weeds_flowers\prt-fie-tree3.bmp
+texture\trees_weeds_flowers\prt_leaf1.bmp	texture\trees_weeds_flowers\prt-leaf1.bmp
+texture\trees_weeds_flowers\prt_leaf2.bmp	texture\trees_weeds_flowers\prt-leaf2.bmp
+texture\trees_weeds_flowers\ston_1.bmp	texture\trees_weeds_flowers\ston-1.bmp
+texture\trees_weeds_flowers\sun_1.bmp	texture\trees_weeds_flowers\sun-1.bmp
+texture\trees_weeds_flowers\sun_2.bmp	texture\trees_weeds_flowers\sun-2.bmp
+texture\trees_weeds_flowers\weedstick_copy.bmp	texture\trees_weeds_flowers\weedstick copy.bmp
+texture\user_interface\1_nyd.bmp	texture\user_interface\1@nyd.bmp
+texture\user_interface\2_nyd.bmp	texture\user_interface\2@nyd.bmp
+texture\user_interface\arw_agi0.bmp	texture\user_interface\arw-agi0.bmp
+texture\user_interface\arw_agi1.bmp	texture\user_interface\arw-agi1.bmp
+texture\user_interface\arw_dex0.bmp	texture\user_interface\arw-dex0.bmp
+texture\user_interface\arw_dex1.bmp	texture\user_interface\arw-dex1.bmp
+texture\user_interface\arw_int0.bmp	texture\user_interface\arw-int0.bmp
+texture\user_interface\arw_int1.bmp	texture\user_interface\arw-int1.bmp
+texture\user_interface\arw_luk0.bmp	texture\user_interface\arw-luk0.bmp
+texture\user_interface\arw_luk1.bmp	texture\user_interface\arw-luk1.bmp
+texture\user_interface\arw_str0.bmp	texture\user_interface\arw-str0.bmp
+texture\user_interface\arw_str1.bmp	texture\user_interface\arw-str1.bmp
+texture\user_interface\arw_vit0.bmp	texture\user_interface\arw-vit0.bmp
+texture\user_interface\arw_vit1.bmp	texture\user_interface\arw-vit1.bmp
+texture\user_interface\btn_emotion__a.bmp	texture\user_interface\btn_emotion _a.bmp
+texture\user_interface\btn_emotion__b.bmp	texture\user_interface\btn_emotion _b.bmp
+texture\user_interface\star_gladiator_female.jpg	texture\user_interface\star_gladiator(female).jpg
+texture\user_interface\star_gladiator_male.jpg	texture\user_interface\star_gladiator(male).jpg
+texture\user_interface\t1_character1_1.tga	texture\user_interface\t1_character1-1.tga
+texture\user_interface\t1_character1_2.tga	texture\user_interface\t1_character1-2.tga
+texture\user_interface\t1_character1_3.tga	texture\user_interface\t1_character1-3.tga
+texture\user_interface\t1_character2_1.tga	texture\user_interface\t1_character2-1.tga
+texture\user_interface\t1_character2_2.tga	texture\user_interface\t1_character2-2.tga
+texture\user_interface\t1_character2_3.tga	texture\user_interface\t1_character2-3.tga
+texture\user_interface\t1_character3_1.tga	texture\user_interface\t1_character3-1.tga
+texture\user_interface\t1_character3_2.tga	texture\user_interface\t1_character3-2.tga
+texture\user_interface\t1_character3_3.tga	texture\user_interface\t1_character3-3.tga
+texture\user_interface\t2_background1_1.bmp	texture\user_interface\t2_background1-1.bmp
+texture\user_interface\t2_background1_2.bmp	texture\user_interface\t2_background1-2.bmp
+texture\user_interface\t2_background1_3.bmp	texture\user_interface\t2_background1-3.bmp
+texture\user_interface\t2_background1_4.bmp	texture\user_interface\t2_background1-4.bmp
+texture\user_interface\t2_background2_1.bmp	texture\user_interface\t2_background2-1.bmp
+texture\user_interface\t2_background2_2.bmp	texture\user_interface\t2_background2-2.bmp
+texture\user_interface\t2_background2_3.bmp	texture\user_interface\t2_background2-3.bmp
+texture\user_interface\t2_background2_4.bmp	texture\user_interface\t2_background2-4.bmp
+texture\user_interface\t2_background3_1.bmp	texture\user_interface\t2_background3-1.bmp
+texture\user_interface\t2_background3_2.bmp	texture\user_interface\t2_background3-2.bmp
+texture\user_interface\t2_background3_3.bmp	texture\user_interface\t2_background3-3.bmp
+texture\user_interface\t2_background3_4.bmp	texture\user_interface\t2_background3-4.bmp
+texture\user_interface\t2_character1_1.tga	texture\user_interface\t2_character1-1.tga
+texture\user_interface\t2_character1_2.tga	texture\user_interface\t2_character1-2.tga
+texture\user_interface\t2_character1_3.tga	texture\user_interface\t2_character1-3.tga
+texture\user_interface\t2_character2_1.tga	texture\user_interface\t2_character2-1.tga
+texture\user_interface\t2_character2_2.tga	texture\user_interface\t2_character2-2.tga
+texture\user_interface\t2_character2_3.tga	texture\user_interface\t2_character2-3.tga
+texture\user_interface\t2_character3_1.tga	texture\user_interface\t2_character3-1.tga
+texture\user_interface\t2_character3_2.tga	texture\user_interface\t2_character3-2.tga
+texture\user_interface\t2_character3_3.tga	texture\user_interface\t2_character3-3.tga
+texture\user_interface\t3_background1_1.bmp	texture\user_interface\t3_background1-1.bmp
+texture\user_interface\t3_background1_2.bmp	texture\user_interface\t3_background1-2.bmp
+texture\user_interface\t3_background1_3.bmp	texture\user_interface\t3_background1-3.bmp
+texture\user_interface\t3_background1_4.bmp	texture\user_interface\t3_background1-4.bmp
+texture\user_interface\t3_background2_1.bmp	texture\user_interface\t3_background2-1.bmp
+texture\user_interface\t3_background2_2.bmp	texture\user_interface\t3_background2-2.bmp
+texture\user_interface\t3_background2_3.bmp	texture\user_interface\t3_background2-3.bmp
+texture\user_interface\t3_background2_4.bmp	texture\user_interface\t3_background2-4.bmp
+texture\user_interface\t3_background3_1.bmp	texture\user_interface\t3_background3-1.bmp
+texture\user_interface\t3_background3_2.bmp	texture\user_interface\t3_background3-2.bmp
+texture\user_interface\t3_background3_3.bmp	texture\user_interface\t3_background3-3.bmp
+texture\user_interface\t3_background3_4.bmp	texture\user_interface\t3_background3-4.bmp
+texture\user_interface\t4_background1_1.bmp	texture\user_interface\t4_background1-1.bmp
+texture\user_interface\t4_background1_2.bmp	texture\user_interface\t4_background1-2.bmp
+texture\user_interface\t4_background1_3.bmp	texture\user_interface\t4_background1-3.bmp
+texture\user_interface\t4_background1_4.bmp	texture\user_interface\t4_background1-4.bmp
+texture\user_interface\t4_background2_1.bmp	texture\user_interface\t4_background2-1.bmp
+texture\user_interface\t4_background2_2.bmp	texture\user_interface\t4_background2-2.bmp
+texture\user_interface\t4_background2_3.bmp	texture\user_interface\t4_background2-3.bmp
+texture\user_interface\t4_background2_4.bmp	texture\user_interface\t4_background2-4.bmp
+texture\user_interface\t4_background3_1.bmp	texture\user_interface\t4_background3-1.bmp
+texture\user_interface\t4_background3_2.bmp	texture\user_interface\t4_background3-2.bmp
+texture\user_interface\t4_background3_3.bmp	texture\user_interface\t4_background3-3.bmp
+texture\user_interface\t4_background3_4.bmp	texture\user_interface\t4_background3-4.bmp
+texture\user_interface\t_background1_1.bmp	texture\user_interface\t_background1-1.bmp
+texture\user_interface\t_background1_1.tga	texture\user_interface\t_background1-1.tga
+texture\user_interface\t_background1_2.bmp	texture\user_interface\t_background1-2.bmp
+texture\user_interface\t_background1_2.tga	texture\user_interface\t_background1-2.tga
+texture\user_interface\t_background1_3.bmp	texture\user_interface\t_background1-3.bmp
+texture\user_interface\t_background1_3.tga	texture\user_interface\t_background1-3.tga
+texture\user_interface\t_background1_4.bmp	texture\user_interface\t_background1-4.bmp
+texture\user_interface\t_background1_4.tga	texture\user_interface\t_background1-4.tga
+texture\user_interface\t_background2_1.bmp	texture\user_interface\t_background2-1.bmp
+texture\user_interface\t_background2_1.tga	texture\user_interface\t_background2-1.tga
+texture\user_interface\t_background2_2.bmp	texture\user_interface\t_background2-2.bmp
+texture\user_interface\t_background2_2.tga	texture\user_interface\t_background2-2.tga
+texture\user_interface\t_background2_3.bmp	texture\user_interface\t_background2-3.bmp
+texture\user_interface\t_background2_3.tga	texture\user_interface\t_background2-3.tga
+texture\user_interface\t_background2_4.bmp	texture\user_interface\t_background2-4.bmp
+texture\user_interface\t_background2_4.tga	texture\user_interface\t_background2-4.tga
+texture\user_interface\t_background3_1.bmp	texture\user_interface\t_background3-1.bmp
+texture\user_interface\t_background3_1.tga	texture\user_interface\t_background3-1.tga
+texture\user_interface\t_background3_2.bmp	texture\user_interface\t_background3-2.bmp
+texture\user_interface\t_background3_2.tga	texture\user_interface\t_background3-2.tga
+texture\user_interface\t_background3_3.bmp	texture\user_interface\t_background3-3.bmp
+texture\user_interface\t_background3_3.tga	texture\user_interface\t_background3-3.tga
+texture\user_interface\t_background3_4.bmp	texture\user_interface\t_background3-4.bmp
+texture\user_interface\t_background3_4.tga	texture\user_interface\t_background3-4.tga
+texture\user_interface\t_character1_2.tga	texture\user_interface\t_character1-2.tga
+texture\user_interface\t_character1_3.tga	texture\user_interface\t_character1-3.tga
+texture\user_interface\t_character2_1.tga	texture\user_interface\t_character2-1.tga
+texture\user_interface\t_character2_2.tga	texture\user_interface\t_character2-2.tga
+texture\user_interface\t_character2_3.tga	texture\user_interface\t_character2-3.tga
+texture\user_interface\t_character3_1.tga	texture\user_interface\t_character3-1.tga
+texture\user_interface\t_character3_2.tga	texture\user_interface\t_character3-2.tga
+texture\user_interface\t_character3_3.tga	texture\user_interface\t_character3-3.tga
+wav\effect\cru_grand_cross.wav	wav\effect\cru_grand cross.wav
+wav\effect\cru_holy_cross.wav	wav\effect\cru_holy cross.wav
+wav\effect\cru_shield_boomerang.wav	wav\effect\cru_shield boomerang.wav
+wav\effect\rog_back_stap.wav	wav\effect\rog_back stap.wav
+wav\effect\rog_steal_coin.wav	wav\effect\rog_steal coin.wav
+wav\effect\sage_magic_rod.wav	wav\effect\sage_magic rod.wav
+wav\effect\sage_spell_breake.wav	wav\effect\sage_spell breake.wav
+wav\effect\track_55.mp3	wav\effect\track 55.mp3
+luafiles514\lua_files	luafiles514\lua files
+texture\chch2_side1.bmp	texture\chch2-side1.bmp
+texture\chdesk_side1.bmp	texture\chdesk-side1.bmp
+texture\chdesk_side2.bmp	texture\chdesk-side2.bmp
+texture\chdesk_side3.bmp	texture\chdesk-side3.bmp
+texture\de_001copy.bmp	texture\de-001copy.bmp
+texture\ge_bed.bmp	texture\ge-bed.bmp
+texture\ge_bed2.bmp	texture\ge-bed2.bmp
+texture\ge_f_00.bmp	texture\ge-f-00.bmp
+texture\ge_f_01.bmp	texture\ge-f-01.bmp
+texture\ge_ki_01.bmp	texture\ge-ki-01.bmp
+texture\mo_castle_hr_1.bmp	texture\mo-castle-hr-1.bmp
+texture\mo_castle_hr2.bmp	texture\mo-castle-hr2.bmp
+texture\p_de_00_copy.bmp	texture\p-de-00 copy.bmp
+texture\p_de_01.bmp	texture\p-de-01.bmp
+texture\pe_nong_01_copy.bmp	texture\pe_nong_01 copy.bmp
+texture\pe_r_01_copy.bmp	texture\pe_r_01 copy.bmp
+texture\pe_r_02_copy.bmp	texture\pe_r_02 copy.bmp
+texture\piano_side1.bmp	texture\piano-side1.bmp
+texture\piano_side2.bmp	texture\piano-side2.bmp
+texture\piano_side3.bmp	texture\piano-side3.bmp
+texture\pron_bed.bmp	texture\pron-bed.bmp
+texture\pron_bed2.bmp	texture\pron-bed2.bmp
+texture\pron_ch1.bmp	texture\pron-ch1.bmp
+texture\pron_ch2.bmp	texture\pron-ch2.bmp
+texture\pron_ch3.bmp	texture\pron-ch3.bmp
+texture\pron_ch4.bmp	texture\pron-ch4.bmp
+texture\pron_ch5.bmp	texture\pron-ch5.bmp
+texture\pron_ch6.bmp	texture\pron-ch6.bmp
+texture\pron_ch7.bmp	texture\pron-ch7.bmp
+texture\pron_ch8.bmp	texture\pron-ch8.bmp
+texture\pron_ch9.bmp	texture\pron-ch9.bmp
+texture\trea_mchain1.bmp	texture\trea-mchain1.bmp
+wav\se_prtchbell_01.wav	wav\se-prtchbell_01.wav
+1_cata.gat	1@cata.gat
+1_cata.gnd	1@cata.gnd
+1_cata.rsw	1@cata.rsw
+1_mist.gat	1@mist.gat
+1_mist.gnd	1@mist.gnd
+1_mist.rsw	1@mist.rsw
+1_nyd.gat	1@nyd.gat
+1_nyd.gnd	1@nyd.gnd
+1_nyd.rsw	1@nyd.rsw
+1_orcs.gat	1@orcs.gat
+1_orcs.gnd	1@orcs.gnd
+1_orcs.rsw	1@orcs.rsw
+1_tower.gat	1@tower.gat
+1_tower.gnd	1@tower.gnd
+1_tower.rsw	1@tower.rsw
+2_cata.gat	2@cata.gat
+2_cata.gnd	2@cata.gnd
+2_cata.rsw	2@cata.rsw
+2_nyd.gat	2@nyd.gat
+2_nyd.gnd	2@nyd.gnd
+2_nyd.rsw	2@nyd.rsw
+2_orcs.gat	2@orcs.gat
+2_orcs.gnd	2@orcs.gnd
+2_orcs.rsw	2@orcs.rsw
+2_tower.gat	2@tower.gat
+2_tower.gnd	2@tower.gnd
+2_tower.rsw	2@tower.rsw
+3_tower.gat	3@tower.gat
+3_tower.gnd	3@tower.gnd
+3_tower.rsw	3@tower.rsw
+4_tower.gat	4@tower.gat
+4_tower.gnd	4@tower.gnd
+4_tower.rsw	4@tower.rsw
+5_tower.gat	5@tower.gat
+5_tower.gnd	5@tower.gnd
+5_tower.rsw	5@tower.rsw
+6_tower.gat	6@tower.gat
+6_tower.gnd	6@tower.gnd
+6_tower.rsw	6@tower.rsw
+force_1_1.gat	force_1-1.gat
+force_1_1.gnd	force_1-1.gnd
+force_1_1.rsw	force_1-1.rsw
+force_1_2.gat	force_1-2.gat
+force_1_2.gnd	force_1-2.gnd
+force_1_2.rsw	force_1-2.rsw
+new_1_1.gat	new_1-1.gat
+new_1_1.gnd	new_1-1.gnd
+new_1_1.rsw	new_1-1.rsw
+new_1_2.gat	new_1-2.gat
+new_1_2.gnd	new_1-2.gnd
+new_1_2.rsw	new_1-2.rsw
+new_1_3.gat	new_1-3.gat
+new_1_3.gnd	new_1-3.gnd
+new_1_3.rsw	new_1-3.rsw
+new_1_4.gat	new_1-4.gat
+new_1_4.gnd	new_1-4.gnd
+new_1_4.rsw	new_1-4.rsw
+pvp_n_1_2.gat	pvp_n_1-2.gat
+pvp_n_1_2.gnd	pvp_n_1-2.gnd
+pvp_n_1_2.rsw	pvp_n_1-2.rsw
+pvp_n_1_3.gat	pvp_n_1-3.gat
+pvp_n_1_3.gnd	pvp_n_1-3.gnd
+pvp_n_1_3.rsw	pvp_n_1-3.rsw
+pvp_n_1_4.gat	pvp_n_1-4.gat
+pvp_n_1_4.gnd	pvp_n_1-4.gnd
+pvp_n_1_4.rsw	pvp_n_1-4.rsw
+pvp_n_1_5.gat	pvp_n_1-5.gat
+pvp_n_1_5.gnd	pvp_n_1-5.gnd
+pvp_n_1_5.rsw	pvp_n_1-5.rsw
+skilldesctable_txt.bak	skilldesctable.txt.bak
+star_gladiator_female.jpg	star_gladiator(female).jpg
+star_gladiator_male.jpg	star_gladiator(male).jpg

@@ -35,7 +35,7 @@ fn main() {
             "ice",
             "sand1",
             "misc/",
-            "이팩트",
+            "effect",
             "effect/",
         ];
         for probe in probes {

@@ -53,22 +53,22 @@ mod tests {
     #[test]
     fn get_returns_entry() {
         let mut entries = HashMap::new();
-        entries.insert(4001, "카드일러스트1".to_string());
-        entries.insert(4002, "카드일러스트2".to_string());
+        entries.insert(4001, "card_illustration1".to_string());
+        entries.insert(4002, "card_illustration2".to_string());
         let table = CardIllustrationTable::from_entries(entries);
-        assert_eq!(table.get(4001), Some("카드일러스트1"));
-        assert_eq!(table.get(4002), Some("카드일러스트2"));
+        assert_eq!(table.get(4001), Some("card_illustration1"));
+        assert_eq!(table.get(4002), Some("card_illustration2"));
         assert_eq!(table.get(9999), None);
     }
 
     #[test]
     fn illustration_path_constructs_correct_grf_path() {
         let mut entries = HashMap::new();
-        entries.insert(4001, "카드일러스트1".to_string());
+        entries.insert(4001, "card_illustration1".to_string());
         let table = CardIllustrationTable::from_entries(entries);
         assert_eq!(
             table.illustration_path(4001),
-            Some("data/texture/유저인터페이스/cardbmp/카드일러스트1.bmp".to_string()),
+            Some("data/texture/user_interface/cardbmp/card_illustration1.bmp".to_string()),
         );
         assert_eq!(table.illustration_path(9999), None);
     }

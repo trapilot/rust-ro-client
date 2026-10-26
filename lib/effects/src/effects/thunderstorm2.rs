@@ -7,14 +7,14 @@
 //! additive and drawn with no depth check. The sprite/act are absent from
 //! the GRF, but its
 //! constituent textures survive: four jagged bolt segments
-//! (`썬더스톰1..4.tga`, 128×128) and one radial impact flash
-//! (`썬더스톰파티클.tga`, 64×64). We replay the sprite by compositing those
+//! (`thunder_storm1..4.tga`, 128×128) and one radial impact flash
+//! (`thunder_storm_particle.tga`, 64×64). We replay the sprite by compositing those
 //! directly.
 //!
 //! The bolt segments tile vertically — each carries the jagged streak across
 //! both its top and bottom edge, so stacking them forms one continuous bolt.
 //! The original sprite chains them: a fixed top segment (`1`), a middle segment
-//! that animates through `2→3→4`, and the radial flash (`파티클`) at the base.
+//! that animates through `2→3→4`, and the radial flash (`particle`) at the base.
 //!
 //! The original-game gif (ground truth) shows the bolt flickering: each strike
 //! snaps on at full brightness, then fades, dark between strikes, a new one
@@ -37,18 +37,22 @@ const DURATION_FRAMES: f32 = 200.0;
 pub const TOTAL_DURATION_MS: u32 = (DURATION_FRAMES / FRAMES_PER_SECOND * 1000.0) as u32;
 
 /// Fixed top bolt segment.
-pub const TOP_TEXTURE: &str = "썬더스톰1.tga";
+pub const TOP_TEXTURE: &str = "thunder_storm1.tga";
 /// Middle bolt segment, animated one frame per strike.
-pub const MIDDLE_TEXTURES: &[&str] = &["썬더스톰2.tga", "썬더스톰3.tga", "썬더스톰4.tga"];
+pub const MIDDLE_TEXTURES: &[&str] = &[
+    "thunder_storm2.tga",
+    "thunder_storm3.tga",
+    "thunder_storm4.tga",
+];
 /// Radial impact flash at the bolt base.
-pub const STAR_TEXTURE: &str = "썬더스톰파티클.tga";
+pub const STAR_TEXTURE: &str = "thunder_storm_particle.tga";
 
 pub const TEXTURES: &[&str] = &[
-    "썬더스톰1.tga",
-    "썬더스톰2.tga",
-    "썬더스톰3.tga",
-    "썬더스톰4.tga",
-    "썬더스톰파티클.tga",
+    "thunder_storm1.tga",
+    "thunder_storm2.tga",
+    "thunder_storm3.tga",
+    "thunder_storm4.tga",
+    "thunder_storm_particle.tga",
 ];
 
 /// Square side of one stacked bolt segment (world units). Two segments chain
