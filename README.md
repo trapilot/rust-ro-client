@@ -68,6 +68,86 @@ flowchart LR
     config[config.json] -->|settings| client
 ```
 
+## Layout of `data/extracted` (debug reference)
+
+Local `config.json` sets `"data_dir": "data/extracted"`, so every file below **overrides** the same path in the GRFs. When a resource renders wrong, check here first: a stale or broken loose file wins over the archive. The folder is git-ignored. Its full sorted file list (43,715 files, 4.8 GB, snapshot from 2026-11-10) is in [docs/extracted-files.txt](docs/extracted-files.txt). Each path in that list maps to `data/<path>` inside the GRF.
+
+Regenerate the list after changing the folder:
+
+```bash
+(cd data/extracted && LC_ALL=C find . -type f | sed 's|^\./||' | LC_ALL=C sort) > docs/extracted-files.txt
+```
+
+### Root (1,793 files): maps and data tables
+
+| Pattern | Count | What it is |
+| --- | --- | --- |
+| `<map>.rsw` | 580 | Map scene: object placement (RSM models), lights, sounds, water, and the names of the `.gnd`/`.gat` files. |
+| `<map>.gnd` | 580 | Ground mesh: heights and texture tiles (textures come from `texture/`). |
+| `<map>.gat` | 580 | Walkability and altitude grid used for movement and clicks. |
+| `*nametable.txt`, `num2*`/`idnum2*` | ~20 | ID-to-name tables: items (identified and unidentified names, descriptions, sprite res names), cards (`cardprefix`/`cardpostfix`), skills (`skillnametable`, `skilldesctable*`), maps (`mapnametable`), BGM per map (`mp3nametable`), and `resnametable.txt` (path aliasing/redirect). |
+| `itemslot*.txt`, `itemparamtable.txt`, `itemmoveinfov5.txt`, `buyingstoreitemlist.txt`, `metalprocess*.txt` | 7 | Item metadata: slot counts, equip params, trade/move restrictions, buying-store and refine lists. |
+| `questid2display.txt`, `questmission.txt` | 2 | Quest log text. |
+| `msgstringtable.txt` | 1 | All client UI message strings, by line index. |
+| `indoorrswtable.txt`, `fogparametertable.txt`, `mapobjlighttable.txt`, `exceptionminimapnametable.txt`, `viewpointtable.txt`, `mappostable.txt`, `mapinfotable.scp` | 7 | Per-map rendering hints: indoor camera, fog, object lights, minimap exceptions, camera viewpoints. |
+| `leveluseskillspamount.txt`, `skilltreeview.txt`, `jobinheritlist.txt` | 3 | Skill SP cost per level, skill tree layout, job inheritance. |
+| `*.xml` (`monstertalktable`, `monster_talk_table`, `pettalktable`, `monsterskillinfo`, `clientinfo`) | 5 | Monster/pet chat lines, monster skill info, and `clientinfo.xml` (server list of the original client, not used by us; we read `config.json`). |
+| `chatwndinfo.lua`, `recvpackets.txt`, `manner.txt`, `etcinfo.txt`, `ba_frostjoke.txt`, `dc_scream.txt` | 6 | Chat window config, packet length table, chat profanity filter, misc, and random lines for the Frost Joke/Scream skills. |
+| Leftovers: `skilldesctable.txt.bak`, `iz_dun02.bmp`, `권성(남/여).jpg` (Star Gladiator art), `클라이언트 패치방법.txt` ("how to patch the client") | 5 | Not read by the client. Safe to ignore. |
+
+### Subfolders
+
+| Folder | Files | Size | What it is |
+| --- | --- | --- | --- |
+| `sprite/` | 16,997 | 468 MB | `.spr` (images) + `.act` (animations), always in pairs. See below. |
+| `texture/` | 17,935 | 1.0 GB | `.bmp`/`.tga`/`.jpg` textures, plus 261 effect `.str` files in `texture/effect/`. |
+| `model/` | 3,404 | 39 MB | 3,380 RSM map models grouped by area, plus GR2 models in `3dmob/` and `3dmob_bone/` (guardians, guild flag, Emperium). |
+| `wav/` | 2,082 | 148 MB | Sound effects: job attack/hit sounds at the root (`_acolyte_attack.wav`), skill sounds in `wav/effect/` (411). |
+| `palette/` | 1,142 | 4.5 MB | `.pal` recolours: `몸/` (body, 620, `<job>_<sex>_<n>.pal`) and `머리/` (hair, 522, `머리<style>_<sex>_<n>.pal`). |
+| `imf/` | 220 | 2.4 MB | `<job>_<sex>.imf` layer order (head over/under body per frame). 23 `.fna` files sit alongside them and are unused. |
+| `luafiles514/lua files/` | 86 | 6.4 MB | Compiled `.lub` data tables. The client parses data from them; it does not run Lua. `datainfo/` (job names, NPC identity, accessory ids/names, robe sprites, pet info), `skillinfoz/`, `stateicon/`, `quest/`, `navigation/`, `skilleffectinfo/`, `spreditinfo/`, `emotion/`, and others. |
+| `book/` | 40 | 272 KB | Readable book contents, by item id (`7144.txt`) or title (`프론테라전집01.txt` = "Prontera collection 01"). |
+| `ai/` | 3 | 24 KB | Original homunculus AI scripts (`ai.lua`, `const.lua`, `util.lua`). Not used: our AI is in Rust (see [AI](#ai)). |
+| `table/` | 1 | 12 KB | `entryqueue.bex`. |
+| `유저인터페이스/` ("user interface") | 12 | 48 KB | Only `basic_interface/`. Most UI art is in `texture/유저인터페이스/`. |
+
+#### `sprite/`
+
+| Path | Files | Contents |
+| --- | --- | --- |
+| `sprite/*` (root) | 13 | `cursors`, `shadow`, `count`, slot machine sprites. |
+| `sprite/인간족/` ("human race") | 4,678 | Player sprites. `몸통/{남,여}/` = body per job (남 = male, 여 = female), `머리통/{남,여}/` = heads. Job folders (`검사` Swordman, `마법사` Mage, `궁수` Archer, `성직자` Acolyte, `상인` Merchant, `도둑` Thief, `초보자` Novice, `기사` Knight, `크루세이더` Crusader, `어세신` Assassin, `몽크` Monk, `헌터` Hunter, `바드` Bard, `무희` Dancer, `세이지` Sage, `위저드` Wizard, `제철공` Blacksmith, `연금술사` Alchemist, `건너` Gunslinger, `닌자` Ninja, `슈퍼노비스` Super Novice, `운영자` GM, ...) hold **weapon** sprites per job. `신페코크루세이더`/`구페코크루세이더` are the new and old Peco Crusader mounts. |
+| `sprite/몬스터/` ("monster") | 1,369 | Monsters. |
+| `sprite/npc/` | 1,374 | NPCs. |
+| `sprite/아이템/` ("item") | 7,137 | Drop and ground icons of items, named by the Korean res name from `idnum2itemresnametable.txt`. |
+| `sprite/악세사리/{남,여}/` ("accessory") | 1,956 | Headgear per sex. |
+| `sprite/방패/<job>/` ("shield") | 152 | Shields per job. |
+| `sprite/이팩트/` ("effect") | 273 | Sprite-based effects. |
+| `sprite/homun/`, `sprite/book/`, `sprite/여/` | 43 | Homunculus, book, misc. |
+
+Junk you can ignore: `thumbs.db`, `memleaks.log` (left by the original tools).
+
+#### `texture/`
+
+| Path | Contents |
+| --- | --- |
+| `texture/유저인터페이스/` ("user interface", 9,447) | All UI art: windows, buttons, `make_character/`, `collection/` (2,722 item collection images), and minimap images (`<map>.bmp`). |
+| `texture/userinterface/illust/` (31) | NPC illustrations (lowercase duplicate tree). |
+| `texture/effect/` (1,039) | Effect textures and `.str` effect files. |
+| `texture/워터/` ("water", 289) | Animated water frames. |
+| `texture/필드바닥/` ("field floor", 1,007) | Ground tiles for fields. |
+| Area folders: `프론테라` Prontera, `페이욘` Payon, `모로코` Morroc, `게페니아` Geffenia, `기타마을` other towns (2,407), `*내부` "interior" variants, `내부소품`/`외부소품` interior/exterior props, `나무잡초꽃` trees/weeds/flowers, plus `dicastes`, `manuk`, `splen`, `brasilis`, `bifrost`, `nydhogg`, `camp`, `event`, `fild02`, `npc` | Map and model textures. |
+
+#### `model/`
+
+RSM models grouped by area. Korean folder names are towns and dungeons, for example `프론테라` Prontera, `알데바란` Aldebaran, `유노` Juno, `아인브로크` Einbroch, `리히타르젠` Lighthalzen, `휘겔` Hugel, `라헬` Rachel, `니플헤임` Niflheim, `길드전` WoE castles, `전장` battlegrounds, `내부소품`/`외부소품` interior/exterior props. `3dmob/` and `3dmob_bone/` hold the GR2 models and their animations.
+
+### Debug tips
+
+- To find a resource by path (case-insensitive, like the client): `grep -i 'prontera' docs/extracted-files.txt`.
+- If a sprite, texture or map looks wrong, rename or move the loose file to compare it with the GRF version, or set `data_dir` to `null` to bypass the folder entirely.
+- File names are Korean and stored in UTF-8 on disk, while the GRF stores them in CP949. If a loose file is never picked up, check that its name is the right Korean name and not mojibake.
+
 # Build
 
 Build every crate from the repository root.
