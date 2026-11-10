@@ -142,11 +142,15 @@ Junk you can ignore: `thumbs.db`, `memleaks.log` (left by the original tools).
 
 RSM models grouped by area. Korean folder names are towns and dungeons, for example `프론테라` Prontera, `알데바란` Aldebaran, `유노` Juno, `아인브로크` Einbroch, `리히타르젠` Lighthalzen, `휘겔` Hugel, `라헬` Rachel, `니플헤임` Niflheim, `길드전` WoE castles, `전장` battlegrounds, `내부소품`/`외부소품` interior/exterior props. `3dmob/` and `3dmob_bone/` hold the GR2 models and their animations.
 
+> **Known issue:** 36,539 of these files have Korean names stored on disk in Unicode NFD. The client looks paths up in NFC, so it never finds them and silently reads the GRF copy instead. Only ASCII-named files actually override the archive. See [docs/login-loaded-files.md](docs/login-loaded-files.md#known-issue-korean-named-files-in-dataextracted-are-never-used).
+
+[docs/login-loaded-files.md](docs/login-loaded-files.md) lists every file read when a character logs in, and whether each one comes from `data/extracted` or from the GRF.
+
 ### Debug tips
 
 - To find a resource by path (case-insensitive, like the client): `grep -i 'prontera' docs/extracted-files.txt`.
 - If a sprite, texture or map looks wrong, rename or move the loose file to compare it with the GRF version, or set `data_dir` to `null` to bypass the folder entirely.
-- File names are Korean and stored in UTF-8 on disk, while the GRF stores them in CP949. If a loose file is never picked up, check that its name is the right Korean name and not mojibake.
+- If a Korean-named loose file is never picked up, check its Unicode normalization: `python3 -c "import unicodedata as u,sys; n=sys.argv[1]; print(n==u.normalize('NFC',n))" <name>` must print `True`. The client looks names up in NFC (see the known issue above).
 
 # Build
 
