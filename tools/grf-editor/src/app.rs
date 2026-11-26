@@ -882,4 +882,75 @@ mod tests {
 
         let _ = std::fs::remove_dir_all(&work);
     }
+
+    /// zlib stream made of one stored (uncompressed) deflate block.
+    fn zlib_stored(data: &[u8]) -> Vec<u8> {
+        let len = data.len() as u16;
+        let mut out = vec![0x78, 0x01, 0x01];
+        out.extend_from_slice(&len.to_le_bytes());
+        out.extend_from_slice(&(!len).to_le_bytes());
+        out.extend_from_slice(data);
+        let (mut a, mut b) = (1u32, 0u32);
+        for &byte in data {
+            a = (a + byte as u32) % 65521;
+            b = (b + a) % 65521;
+        }
+        out.extend_from_slice(&((b << 16) | a).to_be_bytes());
+        out
+    }
+
+    /// Real v2 GRFs built by GRF Builder-style tools carry directory entries
+    /// (flag bit 0x01 clear, libgrf sentinel sizes/offset). They hold no data,
+    /// so extracting them must neither count as a failure nor write anything.
+    #[test]
+    fn extract_files_ignores_v2_directory_entries() {
+        let work = scratch_dir("direntry");
+        let payload = zlib_stored(b"HELLO");
+
+        let mut table = Vec::new();
+        let mut push_entry =
+            |name: &str, csize: u32, aligned: u32, usize_: u32, flags: u8, offset: u32| {
+                table.extend_from_slice(name.as_bytes());
+                table.push(0);
+                table.extend_from_slice(&csize.to_le_bytes());
+                table.extend_from_slice(&aligned.to_le_bytes());
+                table.extend_from_slice(&usize_.to_le_bytes());
+                table.push(flags);
+                table.extend_from_slice(&offset.to_le_bytes());
+            };
+        push_entry("data\\sub", 1449, 1449, 1372, 0x00, 1418);
+        let n = payload.len() as u32;
+        push_entry("data\\sub\\x.txt", n, n, 5, 0x01, 0);
+        let table_z = zlib_stored(&table);
+
+        let mut grf = Vec::new();
+        grf.extend_from_slice(b"Master of Magic\0");
+        grf.extend_from_slice(&[0u8; 14]);
+        grf.extend_from_slice(&n.to_le_bytes()); // file table offset
+        grf.extend_from_slice(&0u32.to_le_bytes()); // reserved
+        grf.extend_from_slice(&(2u32 + 7).to_le_bytes()); // file count
+        grf.extend_from_slice(&0x200u32.to_le_bytes());
+        grf.extend_from_slice(&payload);
+        grf.extend_from_slice(&(table_z.len() as u32).to_le_bytes());
+        grf.extend_from_slice(&(table.len() as u32).to_le_bytes());
+        grf.extend_from_slice(&table_z);
+        let grf_path = work.join("dir.grf");
+        std::fs::write(&grf_path, grf).unwrap();
+
+        let archive = GrfArchive::open(&grf_path).unwrap();
+        let list = archive.file_list();
+        let names: Vec<&str> = list.iter().map(|f| f.name.as_str()).collect();
+        let out = work.join("out");
+        let report = extract_files(&archive, &names, &out);
+
+        assert_eq!(std::fs::read(out.join("data/sub/x.txt")).unwrap(), b"HELLO");
+        assert!(
+            report.failed.is_empty(),
+            "directory entry reported as failure: {:?}",
+            report.failed
+        );
+        assert_eq!(report.ok, 1);
+
+        let _ = std::fs::remove_dir_all(&work);
+    }
 }
