@@ -26,7 +26,7 @@ impl From<io::Error> for ConnectionError {
 fn is_muted_packet(name: &str) -> bool {
     matches!(
         name,
-        "PacketCzRequestTime" | "PacketCzPing" | "PacketZcNotifyTime"
+        "PacketCzRequestTime" | "PacketPing" | "PacketZcNotifyTime"
     )
 }
 

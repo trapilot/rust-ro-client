@@ -231,3 +231,14 @@ offsets. Verify with the offset-map method, fix the `#V RANGE` bands in
 `packets_db`, regenerate, and confirm the sent length matches the server. Do not
 seed junk-era bands from Hercules `packets.hpp`; it tracks the RagexeRE line.
 Post-2010 bands are canonical and shared across implementations; leave them alone.
+
+## One id, one definition
+
+`parse()` tries the versioned ids first (newest band first), then the
+unversioned ids in `packets_db` file order, and returns the first match. A
+second struct that re-declares an id already claimed for the same packetver is
+never produced by the parser: code that downcasts to it never fires. To give a
+packet a different name or direction, use the struct the parser already yields
+(for example `0x0187` is `PACKET_PING` both ways) instead of adding an alias.
+Bands have no upper bound in `parse()`: an id assigned at `0x....:V` keeps
+matching for every packetver `>= V` unless a newer band reuses it.
