@@ -612,6 +612,11 @@ fn parse_v2_entries(
         let offset = u32::from_le_bytes(table[pos + 13..pos + 17].try_into().unwrap());
         pos += 17;
 
+        // Directory entries (bit 0x01 clear) carry no file data; skip them like the v1 parser.
+        if flags & 0x01 == 0 {
+            continue;
+        }
+
         entries.insert(
             name,
             GrfEntry {

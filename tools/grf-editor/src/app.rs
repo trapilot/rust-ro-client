@@ -158,15 +158,22 @@ fn extract_with_dialog(archive: &GrfArchive, names: &[&str]) -> Option<(PathBuf,
 }
 
 impl GrfEditorApp {
+    /// Reports an error; drops the stale extract summary so the two never disagree.
+    fn set_error(&mut self, msg: String) {
+        self.status_msg = None;
+        self.error_msg = Some(msg);
+    }
+
     pub fn open_grf(&mut self, path: &Path) {
         match GrfArchive::open_rw(path) {
             Ok(archive) => {
                 self.archives.push(LoadedGrf::new(archive));
                 self.active_tab = self.archives.len() - 1;
                 self.error_msg = None;
+                self.status_msg = None;
             }
             Err(e) => {
-                self.error_msg = Some(format!("Failed to open {}: {e}", path.display()));
+                self.set_error(format!("Failed to open {}: {e}", path.display()));
             }
         }
     }
@@ -179,15 +186,16 @@ impl GrfEditorApp {
             match GrfArchive::create(&path) {
                 Ok(mut archive) => {
                     if let Err(e) = archive.save() {
-                        self.error_msg = Some(format!("Failed to save new GRF: {e}"));
+                        self.set_error(format!("Failed to save new GRF: {e}"));
                         return;
                     }
                     self.archives.push(LoadedGrf::new(archive));
                     self.active_tab = self.archives.len() - 1;
                     self.error_msg = None;
+                    self.status_msg = None;
                 }
                 Err(e) => {
-                    self.error_msg = Some(format!("Failed to create GRF: {e}"));
+                    self.set_error(format!("Failed to create GRF: {e}"));
                 }
             }
         }
@@ -222,12 +230,12 @@ impl GrfEditorApp {
                 match std::fs::read(&path) {
                     Ok(data) => {
                         if let Err(e) = grf.archive.add_file(&grf_path, &data) {
-                            self.error_msg = Some(format!("Failed to add {basename}: {e}"));
+                            self.set_error(format!("Failed to add {basename}: {e}"));
                             return;
                         }
                     }
                     Err(e) => {
-                        self.error_msg = Some(format!("Failed to read {basename}: {e}"));
+                        self.set_error(format!("Failed to read {basename}: {e}"));
                         return;
                     }
                 }
@@ -249,7 +257,7 @@ impl GrfEditorApp {
                 self.error_msg = None;
             }
             Err(e) => {
-                self.error_msg = Some(format!("Save failed: {e}"));
+                self.set_error(format!("Save failed: {e}"));
             }
         }
     }
@@ -336,7 +344,7 @@ impl GrfEditorApp {
         match grf.archive.remove_file(&filename) {
             Ok(_) => {
                 if let Err(e) = grf.archive.save() {
-                    self.error_msg = Some(format!("Failed to save after remove: {e}"));
+                    self.set_error(format!("Failed to save after remove: {e}"));
                     return;
                 }
                 grf.dirty = false;
@@ -344,7 +352,7 @@ impl GrfEditorApp {
                 self.error_msg = None;
             }
             Err(e) => {
-                self.error_msg = Some(format!("Failed to remove: {e}"));
+                self.set_error(format!("Failed to remove: {e}"));
             }
         }
         self.confirm_delete = None;
@@ -362,7 +370,7 @@ impl GrfEditorApp {
                 self.error_msg = None;
             }
             Err(e) => {
-                self.error_msg = Some(format!("Repack failed: {e}"));
+                self.set_error(format!("Repack failed: {e}"));
             }
         }
     }
@@ -492,6 +500,9 @@ impl GrfEditorApp {
                 };
                 let response = ui.selectable_label(selected, &label);
                 if response.clicked() {
+                    if self.active_tab != i {
+                        self.status_msg = None;
+                    }
                     self.active_tab = i;
                 }
                 if ui.small_button("x").clicked() {
@@ -507,6 +518,7 @@ impl GrfEditorApp {
 
         if let Some(idx) = close_tab {
             self.archives.remove(idx);
+            self.status_msg = None;
             if self.active_tab >= self.archives.len() && !self.archives.is_empty() {
                 self.active_tab = self.archives.len() - 1;
             }
