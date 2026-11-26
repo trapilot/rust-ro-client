@@ -859,4 +859,27 @@ mod tests {
 
         let _ = std::fs::remove_dir_all(&work);
     }
+
+    #[test]
+    fn extract_files_file_dir_clash_fails_one_and_keeps_going() {
+        let work = scratch_dir("clash");
+        let grf_path = work.join("clash.grf");
+        let mut archive = GrfArchive::create(&grf_path).unwrap();
+        archive.add_file("data/a", b"FILE").unwrap();
+        archive.add_file("data/a/b.txt", b"NESTED").unwrap();
+        archive.add_file("data/c.txt", b"C").unwrap();
+        archive.save().unwrap();
+
+        let out = work.join("out");
+        let report = extract_files(&archive, &["data/a", "data/a/b.txt", "data/c.txt"], &out);
+
+        assert_eq!(report.ok, 2);
+        assert_eq!(report.skipped_unsafe, 0);
+        assert_eq!(report.failed.len(), 1);
+        assert_eq!(report.failed[0].0, "data/a/b.txt");
+        assert_eq!(std::fs::read(out.join("data/a")).unwrap(), b"FILE");
+        assert_eq!(std::fs::read(out.join("data/c.txt")).unwrap(), b"C");
+
+        let _ = std::fs::remove_dir_all(&work);
+    }
 }

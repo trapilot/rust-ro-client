@@ -317,4 +317,32 @@ mod tests {
         assert_eq!(safe_extract_path(root, "c:/x"), None);
         assert_eq!(safe_extract_path(root, "data/a:b"), None);
     }
+
+    #[test]
+    fn safe_extract_path_never_leaves_root() {
+        use std::path::Component;
+        let root = Path::new("out");
+        let hostile = [
+            "..",
+            "/",
+            "data/..",
+            "a/../../b",
+            "//server/share/x",
+            "c:x",
+            "\\\\server\\share",
+            "data/.../x",
+            "data/x ",
+            "data/\u{0}x",
+            "\u{2025}/x",
+        ];
+        for name in hostile {
+            if let Some(path) = safe_extract_path(root, name) {
+                let rel = path.strip_prefix(root).unwrap();
+                assert!(
+                    rel.components().all(|c| matches!(c, Component::Normal(_))),
+                    "{name:?} mapped to {path:?}"
+                );
+            }
+        }
+    }
 }
