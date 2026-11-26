@@ -1,3 +1,5 @@
+use std::path::{Path, PathBuf};
+
 use eframe::egui;
 use ragnarok_formats::grf::GrfFileInfo;
 
@@ -31,6 +33,23 @@ pub fn compute_visible_files(
         })
         .map(|(i, _)| i)
         .collect()
+}
+
+/// Maps a GRF entry name (lowercase, `/`-separated) to a path under `dest_root`.
+/// Returns `None` for names that could escape `dest_root` or are not portable:
+/// leading `/`, empty / `.` / `..` components, or any `:` or `\\`.
+pub fn safe_extract_path(dest_root: &Path, name: &str) -> Option<PathBuf> {
+    if name.is_empty() || name.contains(':') || name.contains('\\') {
+        return None;
+    }
+    let mut path = dest_root.to_path_buf();
+    for part in name.split('/') {
+        if part.is_empty() || part == "." || part == ".." {
+            return None;
+        }
+        path.push(part);
+    }
+    Some(path)
 }
 
 /// Returns the file index that should be selected after an arrow key press.
@@ -250,5 +269,52 @@ mod tests {
         let files = vec![make_file_info("data/texture/SKY.BMP")];
         let visible = compute_visible_files(&files, "", "sky");
         assert_eq!(visible, vec![0]);
+    }
+
+    #[test]
+    fn safe_extract_path_accepts_normal_names() {
+        let root = Path::new("out");
+        assert_eq!(
+            safe_extract_path(root, "data/sprite/a.spr"),
+            Some(root.join("data").join("sprite").join("a.spr"))
+        );
+        assert_eq!(
+            safe_extract_path(root, "file.txt"),
+            Some(root.join("file.txt"))
+        );
+        // Non-ASCII (Korean) names are valid.
+        assert!(safe_extract_path(root, "data/texture/유저인터페이스/a.bmp").is_some());
+    }
+
+    #[test]
+    fn safe_extract_path_rejects_parent_and_dot_components() {
+        let root = Path::new("out");
+        assert_eq!(safe_extract_path(root, "../x"), None);
+        assert_eq!(safe_extract_path(root, "data/../../x"), None);
+        assert_eq!(safe_extract_path(root, "data/./x"), None);
+        assert_eq!(safe_extract_path(root, "."), None);
+    }
+
+    #[test]
+    fn safe_extract_path_rejects_empty() {
+        let root = Path::new("out");
+        assert_eq!(safe_extract_path(root, ""), None);
+        assert_eq!(safe_extract_path(root, "data//x"), None);
+        assert_eq!(safe_extract_path(root, "data/"), None);
+    }
+
+    #[test]
+    fn safe_extract_path_rejects_leading_slash() {
+        let root = Path::new("out");
+        assert_eq!(safe_extract_path(root, "/etc/x"), None);
+    }
+
+    #[test]
+    fn safe_extract_path_rejects_backslash_and_colon() {
+        let root = Path::new("out");
+        assert_eq!(safe_extract_path(root, "data\\x"), None);
+        assert_eq!(safe_extract_path(root, "..\\x"), None);
+        assert_eq!(safe_extract_path(root, "c:/x"), None);
+        assert_eq!(safe_extract_path(root, "data/a:b"), None);
     }
 }

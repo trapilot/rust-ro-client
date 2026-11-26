@@ -1,4 +1,4 @@
-use std::path::Path;
+use std::path::{Path, PathBuf};
 
 use eframe::egui;
 use egui_ltreeview::{Action, TreeView, TreeViewState};
@@ -88,11 +88,13 @@ impl LoadedGrf {
 }
 
 const DEFAULT_VOLUME: f32 = 0.8;
+const MAX_REPORTED_FAILURES: usize = 5;
 
 pub struct GrfEditorApp {
     archives: Vec<LoadedGrf>,
     active_tab: usize,
     error_msg: Option<String>,
+    status_msg: Option<String>,
     confirm_delete: Option<usize>,
     sound: SoundManager,
     volume: f32,
@@ -105,12 +107,54 @@ impl Default for GrfEditorApp {
             archives: Vec::new(),
             active_tab: 0,
             error_msg: None,
+            status_msg: None,
             confirm_delete: None,
             sound: SoundManager::new(0.0, DEFAULT_VOLUME),
             volume: DEFAULT_VOLUME,
             autoplayed: None,
         }
     }
+}
+
+#[derive(Debug, Default)]
+struct ExtractReport {
+    ok: usize,
+    skipped_unsafe: usize,
+    failed: Vec<(String, String)>,
+}
+
+/// Extracts `names` from `archive` under `dir`, keeping the GRF directory layout.
+/// Unsafe entry names are skipped and a failure on one file does not stop the rest.
+fn extract_files(archive: &GrfArchive, names: &[&str], dir: &Path) -> ExtractReport {
+    let mut report = ExtractReport::default();
+    for &name in names {
+        let Some(dest) = file_list::safe_extract_path(dir, name) else {
+            report.skipped_unsafe += 1;
+            continue;
+        };
+        let result = (|| -> Result<(), String> {
+            if let Some(parent) = dest.parent() {
+                std::fs::create_dir_all(parent).map_err(|e| format!("create directories: {e}"))?;
+            }
+            let data = archive
+                .read_file(name)
+                .map_err(|e| format!("read from GRF: {e}"))?;
+            std::fs::write(&dest, data).map_err(|e| format!("write file: {e}"))
+        })();
+        match result {
+            Ok(()) => report.ok += 1,
+            Err(e) => report.failed.push((name.to_string(), e)),
+        }
+    }
+    report
+}
+
+/// Asks for a destination folder and extracts `names` into it.
+/// Returns `None` when the dialog is cancelled.
+fn extract_with_dialog(archive: &GrfArchive, names: &[&str]) -> Option<(PathBuf, ExtractReport)> {
+    let dir = rfd::FileDialog::new().pick_folder()?;
+    let report = extract_files(archive, names, &dir);
+    Some((dir, report))
 }
 
 impl GrfEditorApp {
@@ -211,40 +255,72 @@ impl GrfEditorApp {
     }
 
     fn action_extract(&mut self) {
-        let grf = match self.archives.get(self.active_tab) {
-            Some(g) => g,
-            None => return,
+        let Some(grf) = self.archives.get(self.active_tab) else {
+            return;
         };
-        let file_idx = match grf.selected_file {
-            Some(i) => i,
-            None => return,
+        let Some(file) = grf.selected_file.and_then(|i| grf.file_list.get(i)) else {
+            return;
         };
-        let filename = &grf.file_list[file_idx].name;
+        let outcome = extract_with_dialog(&grf.archive, &[file.name.as_str()]);
+        self.show_extract_outcome(outcome);
+    }
 
-        if let Some(dir) = rfd::FileDialog::new().pick_folder() {
-            let dest = dir.join(filename);
-            match grf.archive.read_file(filename) {
-                Ok(data) => {
-                    if let Some(parent) = dest.parent() {
-                        if let Err(e) = std::fs::create_dir_all(parent) {
-                            self.error_msg = Some(format!("Failed to create directories: {e}"));
-                            return;
-                        }
-                    }
-                    match std::fs::write(&dest, &data) {
-                        Ok(()) => {
-                            self.error_msg = None;
-                        }
-                        Err(e) => {
-                            self.error_msg = Some(format!("Failed to write file: {e}"));
-                        }
-                    }
-                }
-                Err(e) => {
-                    self.error_msg = Some(format!("Failed to read from GRF: {e}"));
-                }
-            }
+    fn action_extract_visible(&mut self) {
+        let Some(grf) = self.archives.get(self.active_tab) else {
+            return;
+        };
+        let names: Vec<&str> = grf
+            .visible_files
+            .iter()
+            .filter_map(|&i| grf.file_list.get(i))
+            .map(|f| f.name.as_str())
+            .collect();
+        let outcome = extract_with_dialog(&grf.archive, &names);
+        self.show_extract_outcome(outcome);
+    }
+
+    fn action_extract_all(&mut self) {
+        let Some(grf) = self.archives.get(self.active_tab) else {
+            return;
+        };
+        let names: Vec<&str> = grf.file_list.iter().map(|f| f.name.as_str()).collect();
+        let outcome = extract_with_dialog(&grf.archive, &names);
+        self.show_extract_outcome(outcome);
+    }
+
+    fn show_extract_outcome(&mut self, outcome: Option<(PathBuf, ExtractReport)>) {
+        let Some((dir, report)) = outcome else {
+            return;
+        };
+        let mut status = format!("Extracted {} files to {}", report.ok, dir.display());
+        if report.skipped_unsafe > 0 {
+            status.push_str(&format!(
+                ", {} skipped (unsafe path)",
+                report.skipped_unsafe
+            ));
         }
+        if !report.failed.is_empty() {
+            status.push_str(&format!(", {} failed", report.failed.len()));
+        }
+        self.status_msg = Some(status);
+        self.error_msg = if report.failed.is_empty() {
+            None
+        } else {
+            let mut msg = report
+                .failed
+                .iter()
+                .take(MAX_REPORTED_FAILURES)
+                .map(|(name, e)| format!("{name}: {e}"))
+                .collect::<Vec<_>>()
+                .join("; ");
+            if report.failed.len() > MAX_REPORTED_FAILURES {
+                msg.push_str(&format!(
+                    "; ... and {} more",
+                    report.failed.len() - MAX_REPORTED_FAILURES
+                ));
+            }
+            Some(msg)
+        };
     }
 
     fn action_remove(&mut self) {
@@ -311,6 +387,11 @@ impl GrfEditorApp {
                 .get(self.active_tab)
                 .is_some_and(|g| g.selected_file.is_some());
 
+            let has_visible = self
+                .archives
+                .get(self.active_tab)
+                .is_some_and(|g| !g.visible_files.is_empty());
+
             ui.separator();
 
             if ui
@@ -324,6 +405,20 @@ impl GrfEditorApp {
                 .clicked()
             {
                 self.action_extract();
+            }
+            if ui
+                .add_enabled(has_visible, egui::Button::new("Extract Visible"))
+                .on_hover_text("Extract every file in the selected folder / current filter")
+                .clicked()
+            {
+                self.action_extract_visible();
+            }
+            if ui
+                .add_enabled(has_grf, egui::Button::new("Extract All"))
+                .on_hover_text("Extract every file in this GRF")
+                .clicked()
+            {
+                self.action_extract_all();
             }
             if ui
                 .add_enabled(has_selection && is_writable, egui::Button::new("Remove"))
@@ -530,6 +625,10 @@ impl GrfEditorApp {
             } else {
                 ui.label("No file open");
             }
+            if let Some(msg) = &self.status_msg {
+                ui.separator();
+                ui.label(msg);
+            }
             if let Some(err) = &self.error_msg {
                 ui.separator();
                 ui.colored_label(egui::Color32::RED, err);
@@ -708,5 +807,56 @@ impl eframe::App for GrfEditorApp {
         egui::CentralPanel::default().show(ctx, |ui| {
             self.show_file_panel(ui);
         });
+    }
+}
+
+#[cfg(test)]
+mod tests {
+    use super::*;
+
+    fn scratch_dir(tag: &str) -> PathBuf {
+        let dir = std::env::temp_dir().join(format!("grf_editor_{tag}_{}", std::process::id()));
+        let _ = std::fs::remove_dir_all(&dir);
+        std::fs::create_dir_all(&dir).unwrap();
+        dir
+    }
+
+    #[test]
+    fn extract_files_keeps_layout_skips_unsafe_and_continues_on_failure() {
+        let work = scratch_dir("extract");
+        let grf_path = work.join("test.grf");
+        let mut archive = GrfArchive::create(&grf_path).unwrap();
+        archive.add_file("data/sprite/a.spr", b"AAA").unwrap();
+        archive.add_file("data/b.txt", b"BB").unwrap();
+        archive.save().unwrap();
+
+        let out = work.join("out");
+        let names = [
+            "data/sprite/a.spr",
+            "../escape.txt",
+            "/etc/escape.txt",
+            "data/missing.txt",
+            "data/b.txt",
+        ];
+        let report = extract_files(&archive, &names, &out);
+
+        assert_eq!(report.ok, 2);
+        assert_eq!(report.skipped_unsafe, 2);
+        assert_eq!(report.failed.len(), 1);
+        assert_eq!(report.failed[0].0, "data/missing.txt");
+        assert_eq!(
+            std::fs::read(out.join("data/sprite/a.spr")).unwrap(),
+            b"AAA"
+        );
+        assert_eq!(std::fs::read(out.join("data/b.txt")).unwrap(), b"BB");
+        assert!(!work.join("escape.txt").exists());
+
+        // Existing files are overwritten.
+        std::fs::write(out.join("data/b.txt"), b"old").unwrap();
+        let report = extract_files(&archive, &["data/b.txt"], &out);
+        assert_eq!(report.ok, 1);
+        assert_eq!(std::fs::read(out.join("data/b.txt")).unwrap(), b"BB");
+
+        let _ = std::fs::remove_dir_all(&work);
     }
 }
