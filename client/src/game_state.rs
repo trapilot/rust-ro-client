@@ -282,7 +282,7 @@ pub struct PendingCasts {
     /// server's broken-item list can be attributed back to that player.
     pub pending_repair_target: Option<u32>,
     pub pending_pickup_item_id: Option<u32>,
-    /// Shop title submitted with CZ_REQ_OPENSTORE2; applied to our own entity on
+    /// Shop title submitted with CZ_REQ_OPEN_STORE; applied to our own entity on
     /// open since the server sends ZC_STORE_ENTRY to everyone but us.
     pub pending_shop_name: Option<String>,
     /// Armed by ZC_START_COUPLE: the next click on another player proposes

@@ -1,4 +1,4 @@
-/// Monster info the server packs into the party name field of `ZC_ACK_REQNAMEALL`.
+/// Monster info the server packs into the party name field of `ZC_ACK_REQ_NAME_ALL`.
 /// The field is 24 bytes, so a string carrying several segments arrives truncated;
 /// segments that do not parse in full are dropped.
 #[derive(Debug, Clone, Default, PartialEq)]

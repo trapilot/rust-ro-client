@@ -257,7 +257,7 @@ impl App {
         }
 
         // The begin-cast glyph is NOT fired here: the server sends
-        // `ZC_USESKILL_ACK` for every skill use (even instant ones), so it
+        // `ZC_USE_SKILL_ACK` for every skill use (even instant ones), so it
         // already fired from `spawn_skill_begin_cast` at cast start. Firing it
         // again at the damage moment would double the cast circle.
         if !splash_victim {
@@ -335,7 +335,7 @@ impl App {
         }
 
         // Ground-cast skills (Storm Gust, Thunderstorm, …) launch their
-        // `cast`/`on_target` slots once from `ZC_NOTIFY_GROUNDSKILL` (placed at
+        // `cast`/`on_target` slots once from `ZC_NOTIFY_GROUND_SKILL` (placed at
         // the cell), matching the original's split between the ground packet
         // and the damage packet. The damage path here plays only the per-hit
         // spark for them, so skip the use-time slots.
@@ -491,7 +491,7 @@ impl App {
     }
 
     /// Begin-cast glyph on the caster — the begin-spell cast circle fired at
-    /// `ZC_USESKILL_ACK` (cast starts), suppressed for skills that hide their
+    /// `ZC_USE_SKILL_ACK` (cast starts), suppressed for skills that hide their
     /// cast aura (Bowling Bash, Brandish, Spiral Pierce).
     ///
     /// `cast_ms` is the cast time from the packet; the cast circle's lifetime is
@@ -786,7 +786,7 @@ impl App {
     }
 
     /// WE_CALLPARTNER ("I miss You") balloon uses the couple name stored from
-    /// ZC_COUPLENAME.
+    /// ZC_COUPLE_NAME.
     pub(super) fn spawn_call_partner_balloon(&mut self, src_gid: u32) {
         let partner = self.game.character.partner_name.clone();
         if partner.is_empty() {

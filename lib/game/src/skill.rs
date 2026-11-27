@@ -121,7 +121,7 @@ impl SkillData {
 }
 
 /// Cast metadata for a skill granted by a consumable, learned from
-/// ZC_AUTORUN_SKILL rather than from the character's skill list. Kept apart from
+/// ZC_AUTO_RUN_SKILL rather than from the character's skill list. Kept apart from
 /// [`SkillList`] so it never shows up in the skill window.
 #[derive(Debug, Clone, PartialEq)]
 pub struct ItemSkill {

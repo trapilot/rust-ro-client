@@ -3,7 +3,7 @@ use std::collections::HashMap;
 /// Re-requesting the same char id is throttled to this interval.
 const REQUEST_INTERVAL_MS: u64 = 2500;
 
-/// Names resolved from a char id (CZ_REQNAME_BYGID). Forged and created items
+/// Names resolved from a char id (CZ_REQ_NAME_BY_GID). Forged and created items
 /// carry their maker's char id in their card slots, and that char is usually
 /// not on the map, so the entity list cannot answer for them.
 #[derive(Debug, Default)]

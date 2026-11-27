@@ -1,4 +1,4 @@
-//! `ZC_SKILLMSG`: a fixed set of skill notices, not a message-table id. The
+//! `ZC_SKILL_MSG`: a fixed set of skill notices, not a message-table id. The
 //! server picks one of the Gospel results or the Full Strip failure.
 
 pub const SKILL_MSG_COLOR: [f32; 4] = [1.0, 0.608, 0.608, 1.0];
