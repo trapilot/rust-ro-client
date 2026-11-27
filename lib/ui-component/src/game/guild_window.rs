@@ -1202,7 +1202,7 @@ impl GuildWindow {
             if apply.clicked() {
                 for (skill, n) in self.skill_pending.drain(..) {
                     for _ in 0..n {
-                        events.push(GameEvent::RequestUpgradeGuildSkill { skill });
+                        events.push(GameEvent::RequestSkillLevelUp { skill });
                     }
                 }
             }
@@ -1469,7 +1469,7 @@ mod tests {
         assert!(
             events.iter().any(|e| matches!(
                 e,
-                GameEvent::RequestUpgradeGuildSkill {
+                GameEvent::RequestSkillLevelUp {
                     skill: SkillEnum::GdApproval
                 }
             )),

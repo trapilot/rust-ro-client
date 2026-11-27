@@ -2033,10 +2033,6 @@ impl App {
                     self.channel
                         .send_packet(build_req_disconnect_packet(self.active_packetver));
                 }
-                GameEvent::RequestNpcContact { npc_id } => {
-                    self.channel
-                        .send_packet(build_contact_npc_packet(npc_id, self.active_packetver));
-                }
                 GameEvent::RequestNpcNext { npc_id } => {
                     self.channel
                         .send_packet(build_npc_next_packet(npc_id, self.active_packetver));
@@ -2055,10 +2051,6 @@ impl App {
                         choice,
                         self.active_packetver,
                     ));
-                }
-                GameEvent::RequestJoinChatRoom { room_id } => {
-                    self.channel
-                        .send_packet(build_req_enter_room_packet(room_id, self.active_packetver));
                 }
                 GameEvent::ToggleChatRoomCreate => {
                     self.windows.chat_room_create_window.toggle();
@@ -2424,17 +2416,9 @@ impl App {
                         self.active_packetver,
                     ));
                 }
-                GameEvent::RequestCartOff => {
-                    self.channel
-                        .send_packet(build_cartoff_packet(self.active_packetver));
-                }
                 GameEvent::RequestChangeCart { num } => {
                     self.channel
                         .send_packet(build_change_cart_packet(num, self.active_packetver));
-                }
-                GameEvent::RequestSetCartPick { .. } => {}
-                GameEvent::ToggleCart => {
-                    self.game.character.cart.toggle();
                 }
                 GameEvent::RequestSkillLevelUp { skill } => {
                     self.channel
@@ -2444,35 +2428,6 @@ impl App {
                     self.channel.send_packet(build_stat_change_packet(
                         status_id,
                         amount,
-                        self.active_packetver,
-                    ));
-                }
-                GameEvent::RequestCompanionMove { gid, x, y } => {
-                    self.channel.send_packet(build_companion_move_packet(
-                        gid,
-                        x as u16,
-                        y as u16,
-                        self.active_packetver,
-                    ));
-                }
-                GameEvent::RequestCompanionAttack { gid, target_gid } => {
-                    self.channel.send_packet(build_companion_attack_packet(
-                        gid,
-                        target_gid,
-                        self.active_packetver,
-                    ));
-                }
-                GameEvent::RequestCompanionMoveToOwner { gid } => {
-                    self.channel
-                        .send_packet(build_companion_move_to_owner_packet(
-                            gid,
-                            self.active_packetver,
-                        ));
-                }
-                GameEvent::RequestSetConfig { kind, enabled } => {
-                    self.channel.send_packet(build_config_packet(
-                        kind.config_id(),
-                        enabled as i32,
                         self.active_packetver,
                     ));
                 }
@@ -2608,10 +2563,6 @@ impl App {
                 } => {
                     self.handle_request_companion_use_skill(is_mercenary, skill, level);
                 }
-                GameEvent::RequestPickupItem { id } => {
-                    self.channel
-                        .send_packet(build_pickup_item_packet(id, self.active_packetver));
-                }
                 GameEvent::RequestCardInsertList { card_index } => {
                     self.game.pending_casts.pending_card_composition_index = Some(card_index);
                     self.channel.send_packet(build_card_composition_list_packet(
@@ -2682,10 +2633,6 @@ impl App {
                 GameEvent::RequestCloseStore => {
                     self.close_own_shop();
                 }
-                GameEvent::RequestBuyFromVendor { aid } => {
-                    self.channel
-                        .send_packet(build_req_buy_frommc_packet(aid, self.active_packetver));
-                }
                 GameEvent::RequestPurchaseFromVendor {
                     aid,
                     unique_id,
@@ -2719,9 +2666,6 @@ impl App {
                 }
                 GameEvent::ShortcutBindingsChanged(commands) => {
                     self.config.shortcut_commands = commands;
-                }
-                GameEvent::ToggleQuestWindow => {
-                    self.windows.quest_window.toggle();
                 }
                 GameEvent::OpenQuestDetail { quest_id } => {
                     self.windows.quest_detail_window.open(quest_id);
@@ -2838,9 +2782,6 @@ impl App {
                 GameEvent::TogglePartyWindow => {
                     self.windows.party_friends_window.open_party_tab();
                 }
-                GameEvent::ToggleFriendWindow => {
-                    self.windows.party_friends_window.open_friend_tab();
-                }
                 GameEvent::RequestPartyInvite { target_aid } => {
                     let pv = self.active_packetver;
                     if self.game.party.is_none() {
@@ -2914,10 +2855,6 @@ impl App {
                             exp_share as u32,
                             self.active_packetver,
                         ));
-                }
-                GameEvent::SendPartyChat { message } => {
-                    self.channel
-                        .send_packet(build_party_chat_packet(&message, self.active_packetver));
                 }
                 GameEvent::ShowPartyHelper { mode } => {
                     let local_aid = self
@@ -3084,10 +3021,6 @@ impl App {
                             self.active_packetver,
                         ));
                 }
-                GameEvent::RequestUpgradeGuildSkill { skill } => {
-                    self.channel
-                        .send_packet(build_upgrade_skill_packet(skill, self.active_packetver));
-                }
                 GameEvent::RequestGuildInvite { target_aid } => {
                     let (my_aid, my_gid) = self.local_aid_gid();
                     self.channel.send_packet(build_req_join_guild(
@@ -3246,9 +3179,6 @@ impl App {
                         "Are you sure you want to feed your pet?",
                         |accept| accept.then_some(GameEvent::RequestPetCommand { csub: 1 }),
                     );
-                }
-                GameEvent::TogglePetWindow => {
-                    self.windows.pet_window.toggle();
                 }
                 _ => {}
             }

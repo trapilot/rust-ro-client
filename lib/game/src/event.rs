@@ -130,10 +130,6 @@ pub enum GameEvent {
         gid: u32,
         result: u32,
     },
-    RequestMove {
-        x: u16,
-        y: u16,
-    },
     PlayerMoved {
         start_x: u16,
         start_y: u16,
@@ -483,9 +479,6 @@ pub enum GameEvent {
     NpcDealTypeSelect {
         npc_id: u32,
     },
-    RequestNpcContact {
-        npc_id: u32,
-    },
     RequestNpcNext {
         npc_id: u32,
     },
@@ -569,9 +562,6 @@ pub enum GameEvent {
     },
     ChatRoomOwnerChanged {
         name: String,
-    },
-    RequestJoinChatRoom {
-        room_id: u32,
     },
     ToggleChatRoomCreate,
     RequestCreateChatRoom {
@@ -860,16 +850,9 @@ pub enum GameEvent {
         index: u16,
         count: i16,
     },
-    RequestCartOff,
-    RequestSetCartPick {
-        pick_equip: bool,
-        pick_usable: bool,
-        pick_etc: bool,
-    },
     RequestChangeCart {
         num: i16,
     },
-    ToggleCart,
     RequestCardInsertList {
         card_index: u16,
     },
@@ -898,9 +881,6 @@ pub enum GameEvent {
         is_falling: bool,
     },
     FloorItemDisappeared {
-        id: u32,
-    },
-    RequestPickupItem {
         id: u32,
     },
     SkillListReceived {
@@ -1137,10 +1117,6 @@ pub enum GameEvent {
         kind: SelfConfigKind,
         enabled: bool,
     },
-    RequestSetConfig {
-        kind: SelfConfigKind,
-        enabled: bool,
-    },
     PartyChatMessage {
         aid: u32,
         message: String,
@@ -1174,9 +1150,6 @@ pub enum GameEvent {
     },
     RequestPartyExpOption {
         exp_share: bool,
-    },
-    SendPartyChat {
-        message: String,
     },
     RequestPartyCreate {
         name: String,
@@ -1218,7 +1191,6 @@ pub enum GameEvent {
         req_gid: u32,
         name: String,
     },
-    ToggleFriendWindow,
     RequestAddFriend {
         name: String,
     },
@@ -1392,9 +1364,6 @@ pub enum GameEvent {
     RequestChangePositionInfo {
         positions: Vec<GuildPosition>,
     },
-    RequestUpgradeGuildSkill {
-        skill: SkillEnum,
-    },
     RequestGuildInvite {
         target_aid: u32,
     },
@@ -1531,9 +1500,6 @@ pub enum GameEvent {
     VendingBoardHidden {
         aid: u32,
     },
-    RequestBuyFromVendor {
-        aid: u32,
-    },
     VendingShopList {
         aid: u32,
         unique_id: u32,
@@ -1602,18 +1568,6 @@ pub enum GameEvent {
         sp_cost: i16,
         attack_range: i16,
         upgradable: bool,
-    },
-    RequestCompanionMove {
-        gid: u32,
-        x: i32,
-        y: i32,
-    },
-    RequestCompanionAttack {
-        gid: u32,
-        target_gid: u32,
-    },
-    RequestCompanionMoveToOwner {
-        gid: u32,
     },
     /// 0 = info, 1 = feed, 2 = delete (permanent).
     RequestHomunMenu {
@@ -1701,7 +1655,6 @@ pub enum GameEvent {
     },
     /// Feed command chosen: opens the confirm dialog before sending cSub=1.
     RequestPetFeed,
-    TogglePetWindow,
 
     // --- Quest ---
     /// 0x2b1: full quest list (id + active flag). Clears the log first.
@@ -1746,7 +1699,6 @@ pub enum GameEvent {
     OpenQuestDetail {
         quest_id: u32,
     },
-    ToggleQuestWindow,
 
     // --- Marriage ---
     /// 0x1e6: partner's name (empty = no partner), broadcast when someone finishes
