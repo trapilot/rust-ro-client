@@ -380,7 +380,7 @@ pub fn build_solve_char_name_packet(char_id: u32, packetver: u32) -> Vec<u8> {
 }
 
 pub fn build_char_ping_packet(account_id: u32, packetver: u32) -> Vec<u8> {
-    let mut pkt = PacketCzPing::new(packetver);
+    let mut pkt = PacketPing::new(packetver);
     pkt.set_aid(account_id);
     pkt.fill_raw();
     pkt.raw
@@ -1357,7 +1357,7 @@ pub fn build_purchase_frommc_dispatch(
     }
 }
 
-pub fn build_purchase_frommc_packet(aid: u32, items: &[(i16, i16)], packetver: u32) -> Vec<u8> {
+fn build_purchase_frommc_packet(aid: u32, items: &[(i16, i16)], packetver: u32) -> Vec<u8> {
     let mut pkt = PacketCzPcPurchaseItemlistFrommc::new(packetver);
     pkt.set_aid(aid);
     let item_list: Vec<CzPurchaseItemFrommc> = items
@@ -1377,7 +1377,7 @@ pub fn build_purchase_frommc_packet(aid: u32, items: &[(i16, i16)], packetver: u
     pkt.raw
 }
 
-pub fn build_purchase_frommc2_packet(
+fn build_purchase_frommc2_packet(
     aid: u32,
     unique_id: u32,
     items: &[(i16, i16)],
