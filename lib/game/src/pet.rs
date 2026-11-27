@@ -1,7 +1,7 @@
 use ragnarok_formats::act::ActFile;
 
 /// Owner-side view of the player's active pet. Populated from ZC_PROPERTY_PET
-/// (0x1a2) and the ZC_CHANGESTATE_PET (0x1a4) state stream.
+/// (0x1a2) and the ZC_CHANGE_STATE_PET (0x1a4) state stream.
 #[derive(Debug, Clone, Default)]
 pub struct PetState {
     pub gid: Option<u32>,
@@ -130,7 +130,7 @@ pub enum RouletteState {
 pub struct PetRoulette {
     pub target_gid: u32,
     pub state: RouletteState,
-    /// CZ_TRYCAPTURE_MONSTER already sent for this target.
+    /// CZ_TRY_CAPTURE_MONSTER already sent for this target.
     pub sent: bool,
     /// Capture result once ZC_TRYCAPTURE arrives.
     pub result: Option<bool>,
@@ -267,7 +267,7 @@ pub fn decode_pet_talk(data: i32) -> Option<PetTalkCode> {
     })
 }
 
-/// ZC_CHANGESTATE_PET (0x1a4) `atype` values.
+/// ZC_CHANGE_STATE_PET (0x1a4) `atype` values.
 pub const PET_STATE_INIT: i8 = 0;
 pub const PET_STATE_INTIMACY: i8 = 1;
 pub const PET_STATE_HUNGER: i8 = 2;
@@ -290,7 +290,7 @@ impl PetState {
         self.job = p.job;
     }
 
-    /// Applies the pure-state part of ZC_CHANGESTATE_PET. Entity-side effects
+    /// Applies the pure-state part of ZC_CHANGE_STATE_PET. Entity-side effects
     /// (marker / accessory ACT swap / performance) are handled by the caller.
     pub fn apply_state_changed(&mut self, ty: i8, gid: u32, data: i32) {
         match ty {

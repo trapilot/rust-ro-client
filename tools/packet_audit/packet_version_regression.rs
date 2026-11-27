@@ -11,9 +11,9 @@ use ragnarok_game::event::GameEvent;
 
 #[test]
 fn req_wear_equip_ack_view_id_gated() {
-    assert_eq!(PacketZcReqWearEquipAck::base_len(20101122), 7);
-    assert_eq!(PacketZcReqWearEquipAck::base_len(20101123), 9);
-    assert_eq!(PacketZcReqWearEquipAck::base_len(20120307), 9);
+    assert_eq!(PacketZcReqWearEquipAckLegacy::base_len(20101122), 7);
+    assert_eq!(PacketZcReqWearEquipAckLegacy::base_len(20101123), 9);
+    assert_eq!(PacketZcReqWearEquipAckLegacy::base_len(20120307), 9);
 }
 
 #[test]
@@ -32,8 +32,8 @@ fn quest_and_shortcut_nested_array_lengths() {
     // 17 header + 3 * 30 (MISSION_HUNT)
     assert_eq!(PacketZcAddQuest::base_len(20120307), 107);
     // 2 header + 27/38 * 7 (ShortCutKey)
-    assert_eq!(PacketZcShortcutKeyList::base_len(20120307), 191);
-    assert_eq!(PacketZcShortcutKeyListV2::base_len(20120307), 268);
+    assert_eq!(PacketZcShortcutKeyListFewerSlots::base_len(20120307), 191);
+    assert_eq!(PacketZcShortcutKeyList::base_len(20120307), 268);
 }
 
 // ---- Tier D: MoveEntry family ----
@@ -42,11 +42,11 @@ fn quest_and_shortcut_nested_array_lengths() {
 
 #[test]
 fn moveentry_movedata_and_objecttype_lengths() {
-    assert_eq!(PacketZcNotifyMoveentry::base_len(20120307), 60);
-    assert_eq!(PacketZcNotifyMoveentry2::base_len(20120307), 60);
-    assert_eq!(PacketZcNotifyMoveentry3::base_len(20070212), 64);
-    assert_eq!(PacketZcNotifyMoveentry3::base_len(20071106), 65);
-    assert_eq!(PacketZcNotifyMoveentry4::base_len(20080827), 67);
+    assert_eq!(PacketZcNotifyMoveEntrySplitWeapon::base_len(20120307), 60);
+    assert_eq!(PacketZcNotifyMoveEntryShortEffect::base_len(20120307), 60);
+    assert_eq!(PacketZcNotifyMoveEntryNoFont::base_len(20070212), 64);
+    assert_eq!(PacketZcNotifyMoveEntryNoFont::base_len(20071106), 65);
+    assert_eq!(PacketZcNotifyMoveEntryFixedLength::base_len(20080827), 67);
 }
 
 // ---- [20101124, 20120221) entry variants (0x856/0x857/0x858) ----
@@ -55,8 +55,8 @@ fn moveentry_movedata_and_objecttype_lengths() {
 #[test]
 fn entry_variants_20101124_dispatch_and_robe() {
     assert_eq!(
-        PacketZcNotifyMoveentry7::base_len(20101123) + 2,
-        PacketZcNotifyMoveentry7::base_len(20101124),
+        PacketZcNotifyMoveEntryNoHp::base_len(20101123) + 2,
+        PacketZcNotifyMoveEntryNoHp::base_len(20101124),
         "robe must appear at 20101124"
     );
     let ver = 20111102;

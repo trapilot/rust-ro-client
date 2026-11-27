@@ -113,7 +113,7 @@ pub fn dispatch_packet(packet: &dyn Packet, packetver: u32) -> Vec<GameEvent> {
             error_code: p.error_code,
         }];
     }
-    if let Some(p) = any.downcast_ref::<PacketAcRefuseLoginR2>() {
+    if let Some(p) = any.downcast_ref::<PacketAcRefuseLoginIntCode>() {
         return vec![GameEvent::LoginRefused {
             error_code: p.error_code as u8,
         }];
@@ -140,7 +140,7 @@ pub fn dispatch_packet(packet: &dyn Packet, packetver: u32) -> Vec<GameEvent> {
             .collect();
         return vec![GameEvent::CharacterListReceived { characters }];
     }
-    if let Some(p) = any.downcast_ref::<PacketHcNotifyZonesvr>() {
+    if let Some(p) = any.downcast_ref::<PacketHcNotifyZoneSvr>() {
         let map_name: String = p.map_name.iter().take_while(|c| **c != '\0').collect();
         return vec![GameEvent::ZoneServerConnectInfo {
             char_id: p.gid,
@@ -149,7 +149,7 @@ pub fn dispatch_packet(packet: &dyn Packet, packetver: u32) -> Vec<GameEvent> {
             port: p.addr.port,
         }];
     }
-    if let Some(p) = any.downcast_ref::<PacketHcNotifyAccessibleMapname>() {
+    if let Some(p) = any.downcast_ref::<PacketHcNotifyAccessibleMapName>() {
         let maps = p
             .maps
             .iter()
@@ -160,43 +160,43 @@ pub fn dispatch_packet(packet: &dyn Packet, packetver: u32) -> Vec<GameEvent> {
             .collect();
         return vec![GameEvent::AccessibleMapsReceived { maps }];
     }
-    if let Some(p) = any.downcast_ref::<PacketHcAcceptMakecharNeoUnion>() {
+    if let Some(p) = any.downcast_ref::<PacketHcAcceptMakeCharNeoUnion>() {
         let character = character_info_from_neo_union(&p.charinfo, packetver);
         return vec![GameEvent::CharacterCreated { character }];
     }
-    if let Some(p) = any.downcast_ref::<PacketHcRefuseMakechar>() {
+    if let Some(p) = any.downcast_ref::<PacketHcRefuseMakeChar>() {
         return vec![GameEvent::CharacterCreateFailed {
             error_code: p.error_code,
         }];
     }
-    if let Some(p) = any.downcast_ref::<PacketHcDeleteChar3Reserved>() {
+    if let Some(p) = any.downcast_ref::<PacketHcDeleteCharReserved>() {
         return vec![GameEvent::CharacterDeleteReserved {
             gid: p.gid,
             result: p.result as u32,
             delete_reserved_date: p.delete_reserved_date,
         }];
     }
-    if let Some(p) = any.downcast_ref::<PacketHcDeleteChar3>() {
+    if let Some(p) = any.downcast_ref::<PacketHcDeleteCharAccept>() {
         return vec![GameEvent::CharacterDeleted {
             gid: p.gid,
             result: p.result as u32,
         }];
     }
-    if let Some(p) = any.downcast_ref::<PacketHcDeleteChar3Cancel>() {
+    if let Some(p) = any.downcast_ref::<PacketHcDeleteCharCancel>() {
         return vec![GameEvent::CharacterDeleteCancelled {
             gid: p.gid,
             result: p.result as u32,
         }];
     }
-    if any.downcast_ref::<PacketHcAcceptDeletechar>().is_some() {
+    if any.downcast_ref::<PacketHcAcceptDeleteChar>().is_some() {
         return vec![GameEvent::CharacterDeleteAccepted];
     }
-    if let Some(p) = any.downcast_ref::<PacketHcRefuseDeletechar>() {
+    if let Some(p) = any.downcast_ref::<PacketHcRefuseDeleteChar>() {
         return vec![GameEvent::CharacterDeleteRefused {
             error_code: p.error_code,
         }];
     }
-    if let Some(p) = any.downcast_ref::<PacketZcAcceptEnter>() {
+    if let Some(p) = any.downcast_ref::<PacketZcAcceptEnterNoFont>() {
         let (x, y, dir) = decode_pos(&p.pos_dir);
         return vec![GameEvent::MapEntered {
             x,
@@ -205,7 +205,7 @@ pub fn dispatch_packet(packet: &dyn Packet, packetver: u32) -> Vec<GameEvent> {
             tick: p.start_time,
         }];
     }
-    if let Some(p) = any.downcast_ref::<PacketZcAcceptEnter2>() {
+    if let Some(p) = any.downcast_ref::<PacketZcAcceptEnter>() {
         let (x, y, dir) = decode_pos(&p.pos_dir);
         return vec![GameEvent::MapEntered {
             x,
@@ -222,7 +222,7 @@ pub fn dispatch_packet(packet: &dyn Packet, packetver: u32) -> Vec<GameEvent> {
             allowed: p.result == 0,
         }];
     }
-    if let Some(p) = any.downcast_ref::<PacketZcNpcackMapmove>() {
+    if let Some(p) = any.downcast_ref::<PacketZcNpcAckMapMove>() {
         let map_name: String = p.map_name.iter().take_while(|c| **c != '\0').collect();
         return vec![GameEvent::MapChanged {
             map_name,
@@ -230,7 +230,7 @@ pub fn dispatch_packet(packet: &dyn Packet, packetver: u32) -> Vec<GameEvent> {
             y: p.y_pos,
         }];
     }
-    if let Some(p) = any.downcast_ref::<PacketZcNpcackServermove>() {
+    if let Some(p) = any.downcast_ref::<PacketZcNpcAckServerMove>() {
         let map_name: String = p.map_name.iter().take_while(|c| **c != '\0').collect();
         return vec![GameEvent::ZoneServerChanged {
             map_name,
@@ -238,7 +238,7 @@ pub fn dispatch_packet(packet: &dyn Packet, packetver: u32) -> Vec<GameEvent> {
             port: p.addr.port,
         }];
     }
-    if let Some(p) = any.downcast_ref::<PacketZcNotifyPlayermove>() {
+    if let Some(p) = any.downcast_ref::<PacketZcNotifyPlayerMove>() {
         let (x1, y1, x2, y2) = decode_pos2(&p.move_data);
         return vec![GameEvent::PlayerMoved {
             start_x: x1,
@@ -254,7 +254,7 @@ pub fn dispatch_packet(packet: &dyn Packet, packetver: u32) -> Vec<GameEvent> {
             local_send_time_ms: 0,
         }];
     }
-    if let Some(p) = any.downcast_ref::<PacketZcHighjump>() {
+    if let Some(p) = any.downcast_ref::<PacketZcHighJump>() {
         return vec![GameEvent::EntityHighJumped {
             gid: p.aid,
             x: p.x_pos as u16,
@@ -262,7 +262,7 @@ pub fn dispatch_packet(packet: &dyn Packet, packetver: u32) -> Vec<GameEvent> {
         }];
     }
 
-    if let Some(p) = any.downcast_ref::<PacketZcNotifyStandentry7>() {
+    if let Some(p) = any.downcast_ref::<PacketZcNotifyStandEntry>() {
         let (x, y, dir) = decode_pos(&p.pos_dir);
         let mut events = vec![GameEvent::EntitySpawned {
             gid: p.gid,
@@ -299,7 +299,7 @@ pub fn dispatch_packet(packet: &dyn Packet, packetver: u32) -> Vec<GameEvent> {
         );
         return events;
     }
-    if let Some(p) = any.downcast_ref::<PacketZcNotifyNewentry7>() {
+    if let Some(p) = any.downcast_ref::<PacketZcNotifyNewEntry>() {
         let (x, y, dir) = decode_pos(&p.pos_dir);
         let mut events = vec![GameEvent::EntitySpawned {
             gid: p.gid,
@@ -336,7 +336,7 @@ pub fn dispatch_packet(packet: &dyn Packet, packetver: u32) -> Vec<GameEvent> {
         );
         return events;
     }
-    if let Some(p) = any.downcast_ref::<PacketZcNotifyStandentry>() {
+    if let Some(p) = any.downcast_ref::<PacketZcNotifyStandEntrySplitWeapon>() {
         let (x, y, dir) = decode_pos(&p.pos_dir);
         let mut events = vec![GameEvent::EntitySpawned {
             gid: p.gid,
@@ -373,7 +373,7 @@ pub fn dispatch_packet(packet: &dyn Packet, packetver: u32) -> Vec<GameEvent> {
         );
         return events;
     }
-    if let Some(p) = any.downcast_ref::<PacketZcNotifyNewentry>() {
+    if let Some(p) = any.downcast_ref::<PacketZcNotifyNewEntrySplitWeapon>() {
         let (x, y, dir) = decode_pos(&p.pos_dir);
         let mut events = vec![GameEvent::EntitySpawned {
             gid: p.gid,
@@ -410,7 +410,7 @@ pub fn dispatch_packet(packet: &dyn Packet, packetver: u32) -> Vec<GameEvent> {
         );
         return events;
     }
-    if let Some(p) = any.downcast_ref::<PacketZcNotifyMoveentry8>() {
+    if let Some(p) = any.downcast_ref::<PacketZcNotifyMoveEntryWithName>() {
         let (x, y, dir) = decode_pos(&p.pos_dir);
         let mut events = vec![GameEvent::EntitySpawned {
             gid: p.gid,
@@ -447,7 +447,7 @@ pub fn dispatch_packet(packet: &dyn Packet, packetver: u32) -> Vec<GameEvent> {
         );
         return events;
     }
-    if let Some(p) = any.downcast_ref::<PacketZcNotifyMoveentry9>() {
+    if let Some(p) = any.downcast_ref::<PacketZcNotifyMoveEntry>() {
         let (x1, y1, x2, y2) = decode_pos2(&p.move_data);
         let direction =
             ragnarok_game::movement::direction_from_positions(x1, y1, x2, y2).unwrap_or(0);
@@ -538,10 +538,10 @@ pub fn dispatch_packet(packet: &dyn Packet, packetver: u32) -> Vec<GameEvent> {
             }
         };
     }
-    standentry_spawn!(PacketZcNotifyStandentry2);
-    standentry_spawn!(PacketZcNotifyStandentry3);
-    standentry_spawn!(PacketZcNotifyStandentry4);
-    standentry_spawn!(PacketZcNotifyStandentry5);
+    standentry_spawn!(PacketZcNotifyStandEntryShortEffect);
+    standentry_spawn!(PacketZcNotifyStandEntryNoFont);
+    standentry_spawn!(PacketZcNotifyStandEntryFixedLength);
+    standentry_spawn!(PacketZcNotifyStandEntryNoHp);
 
     macro_rules! newentry_spawn {
         ($t:ty) => {
@@ -584,12 +584,12 @@ pub fn dispatch_packet(packet: &dyn Packet, packetver: u32) -> Vec<GameEvent> {
             }
         };
     }
-    newentry_spawn!(PacketZcNotifyNewentry2);
-    newentry_spawn!(PacketZcNotifyNewentry3);
-    newentry_spawn!(PacketZcNotifyNewentry4);
-    newentry_spawn!(PacketZcNotifyNewentry5);
+    newentry_spawn!(PacketZcNotifyNewEntryShortEffect);
+    newentry_spawn!(PacketZcNotifyNewEntryNoFont);
+    newentry_spawn!(PacketZcNotifyNewEntryFixedLength);
+    newentry_spawn!(PacketZcNotifyNewEntryNoHp);
 
-    if let Some(p) = any.downcast_ref::<PacketZcNotifyStandentry6>() {
+    if let Some(p) = any.downcast_ref::<PacketZcNotifyStandEntryWithName>() {
         let (x, y, dir) = decode_pos(&p.pos_dir);
         let mut events = vec![GameEvent::EntitySpawned {
             gid: p.gid,
@@ -680,11 +680,11 @@ pub fn dispatch_packet(packet: &dyn Packet, packetver: u32) -> Vec<GameEvent> {
             }
         };
     }
-    moveentry_spawn!(PacketZcNotifyMoveentry);
-    moveentry_spawn!(PacketZcNotifyMoveentry2);
-    moveentry_spawn!(PacketZcNotifyMoveentry3);
-    moveentry_spawn!(PacketZcNotifyMoveentry4);
-    moveentry_spawn!(PacketZcNotifyMoveentry7);
+    moveentry_spawn!(PacketZcNotifyMoveEntrySplitWeapon);
+    moveentry_spawn!(PacketZcNotifyMoveEntryShortEffect);
+    moveentry_spawn!(PacketZcNotifyMoveEntryNoFont);
+    moveentry_spawn!(PacketZcNotifyMoveEntryFixedLength);
+    moveentry_spawn!(PacketZcNotifyMoveEntryNoHp);
 
     if let Some(p) = any.downcast_ref::<PacketZcNotifyMove>() {
         let (x1, y1, x2, y2) = decode_pos2(&p.move_data);
@@ -697,14 +697,14 @@ pub fn dispatch_packet(packet: &dyn Packet, packetver: u32) -> Vec<GameEvent> {
             start_time: p.move_start_time,
         }];
     }
-    if let Some(p) = any.downcast_ref::<PacketZcStopmove>() {
+    if let Some(p) = any.downcast_ref::<PacketZcStopMove>() {
         return vec![GameEvent::EntityStopMove {
             gid: p.aid,
             x: p.x_pos as u16,
             y: p.y_pos as u16,
         }];
     }
-    if let Some(p) = any.downcast_ref::<PacketZcFastmove>() {
+    if let Some(p) = any.downcast_ref::<PacketZcFastMove>() {
         return vec![GameEvent::EntityStopMove {
             gid: p.aid,
             x: p.x_pos as u16,
@@ -712,7 +712,7 @@ pub fn dispatch_packet(packet: &dyn Packet, packetver: u32) -> Vec<GameEvent> {
         }];
     }
 
-    if let Some(p) = any.downcast_ref::<PacketZcNotifyAct>() {
+    if let Some(p) = any.downcast_ref::<PacketZcNotifyActShortDamage>() {
         return vec![GameEvent::EntityAction {
             gid: p.gid,
             target_gid: p.target_gid,
@@ -725,7 +725,7 @@ pub fn dispatch_packet(packet: &dyn Packet, packetver: u32) -> Vec<GameEvent> {
             count: p.count,
         }];
     }
-    if let Some(p) = any.downcast_ref::<PacketZcNotifyAct2>() {
+    if let Some(p) = any.downcast_ref::<PacketZcNotifyAct>() {
         return vec![GameEvent::EntityAction {
             gid: p.gid,
             target_gid: p.target_gid,
@@ -738,7 +738,7 @@ pub fn dispatch_packet(packet: &dyn Packet, packetver: u32) -> Vec<GameEvent> {
             count: p.count,
         }];
     }
-    if let Some(p) = any.downcast_ref::<PacketZcNotifyAct3>() {
+    if let Some(p) = any.downcast_ref::<PacketZcNotifyActSpDamage>() {
         return vec![GameEvent::EntityAction {
             gid: p.gid,
             target_gid: p.target_gid,
@@ -767,7 +767,7 @@ pub fn dispatch_packet(packet: &dyn Packet, packetver: u32) -> Vec<GameEvent> {
             message,
         }];
     }
-    if let Some(p) = any.downcast_ref::<PacketZcNotifyPlayerchat>() {
+    if let Some(p) = any.downcast_ref::<PacketZcNotifyPlayerChat>() {
         let message: String = p.msg.chars().take_while(|c| *c != '\0').collect();
         return vec![GameEvent::OwnChatMessage { message }];
     }
@@ -799,7 +799,7 @@ pub fn dispatch_packet(packet: &dyn Packet, packetver: u32) -> Vec<GameEvent> {
             banner,
         }];
     }
-    if let Some(p) = any.downcast_ref::<PacketZcBroadcast2>() {
+    if let Some(p) = any.downcast_ref::<PacketZcBroadcastStyled>() {
         let message: String = p.msg.chars().take_while(|c| *c != '\0').collect();
         return vec![GameEvent::BroadcastMessage {
             message,
@@ -808,7 +808,7 @@ pub fn dispatch_packet(packet: &dyn Packet, packetver: u32) -> Vec<GameEvent> {
         }];
     }
 
-    if let Some(p) = any.downcast_ref::<PacketZcStarskill>() {
+    if let Some(p) = any.downcast_ref::<PacketZcStarSkill>() {
         return vec![GameEvent::StarSkillNotice {
             map_name: p.map_name.iter().take_while(|c| **c != '\0').collect(),
             monster_id: p.monster_id,
@@ -817,16 +817,16 @@ pub fn dispatch_packet(packet: &dyn Packet, packetver: u32) -> Vec<GameEvent> {
         }];
     }
 
-    if let Some(p) = any.downcast_ref::<PacketZcStarplace>() {
+    if let Some(p) = any.downcast_ref::<PacketZcStarPlace>() {
         return vec![GameEvent::StarPlaceRequest { which: p.which }];
     }
 
-    if let Some(p) = any.downcast_ref::<PacketZcAckReqname>() {
+    if let Some(p) = any.downcast_ref::<PacketZcAckReqName>() {
         let name: String = p.cname.iter().take_while(|c| **c != '\0').collect();
         return vec![GameEvent::EntityNameReceived { gid: p.aid, name }];
     }
 
-    if let Some(p) = any.downcast_ref::<PacketZcAckReqnameBygid>() {
+    if let Some(p) = any.downcast_ref::<PacketZcAckReqNameByGid>() {
         let name: String = p.cname.iter().take_while(|c| **c != '\0').collect();
         return vec![
             GameEvent::CharNameReceived {
@@ -837,7 +837,7 @@ pub fn dispatch_packet(packet: &dyn Packet, packetver: u32) -> Vec<GameEvent> {
         ];
     }
 
-    if let Some(p) = any.downcast_ref::<PacketZcAckReqnameall>() {
+    if let Some(p) = any.downcast_ref::<PacketZcAckReqNameAll>() {
         let name: String = p.cname.iter().take_while(|c| **c != '\0').collect();
         let party_name: String = p.pname.iter().take_while(|c| **c != '\0').collect();
         let guild_name: String = p.gname.iter().take_while(|c| **c != '\0').collect();
@@ -858,14 +858,14 @@ pub fn dispatch_packet(packet: &dyn Packet, packetver: u32) -> Vec<GameEvent> {
         }];
     }
 
-    if let Some(p) = any.downcast_ref::<PacketZcNotifyEffect2>() {
+    if let Some(p) = any.downcast_ref::<PacketZcNotifyEffectSpecial>() {
         return vec![GameEvent::PlayEffectOnEntity {
             gid: p.aid,
             effect_id: p.effect_id,
             value: None,
         }];
     }
-    if let Some(p) = any.downcast_ref::<PacketZcNotifyEffect3>() {
+    if let Some(p) = any.downcast_ref::<PacketZcNotifyEffectWithNum>() {
         return vec![GameEvent::PlayEffectOnEntity {
             gid: p.aid,
             effect_id: p.effect_id,
@@ -891,7 +891,7 @@ pub fn dispatch_packet(packet: &dyn Packet, packetver: u32) -> Vec<GameEvent> {
             count: p.num.max(0) as u8,
         }];
     }
-    if let Some(p) = any.downcast_ref::<PacketZcSpirits2>() {
+    if let Some(p) = any.downcast_ref::<PacketZcSpiritsSingle>() {
         return vec![GameEvent::SpiritsChanged {
             gid: p.aid,
             count: p.num.max(0) as u8,
@@ -935,7 +935,7 @@ pub fn dispatch_packet(packet: &dyn Packet, packetver: u32) -> Vec<GameEvent> {
             kind: MvpFeedbackKind::Exp { exp: p.exp },
         }];
     }
-    if any.downcast_ref::<PacketZcThrowMvpitem>().is_some() {
+    if any.downcast_ref::<PacketZcThrowMvpItem>().is_some() {
         return vec![GameEvent::MvpFeedback {
             kind: MvpFeedbackKind::ItemDropped,
         }];
@@ -961,7 +961,7 @@ pub fn dispatch_packet(packet: &dyn Packet, packetver: u32) -> Vec<GameEvent> {
             total: p.total_point,
         }];
     }
-    if let Some(p) = any.downcast_ref::<PacketZcAckPvppoint>() {
+    if let Some(p) = any.downcast_ref::<PacketZcAckPvpPoint>() {
         return vec![GameEvent::PvpPointsReceived {
             win: p.pvp.win_point,
             lose: p.pvp.lose_point,
@@ -969,7 +969,7 @@ pub fn dispatch_packet(packet: &dyn Packet, packetver: u32) -> Vec<GameEvent> {
         }];
     }
 
-    if let Some(p) = any.downcast_ref::<PacketZcCouplename>() {
+    if let Some(p) = any.downcast_ref::<PacketZcCoupleName>() {
         let name: String = p.couple_name.iter().take_while(|c| **c != '\0').collect();
         return vec![GameEvent::CoupleNameReceived { name }];
     }
@@ -991,7 +991,7 @@ pub fn dispatch_packet(packet: &dyn Packet, packetver: u32) -> Vec<GameEvent> {
         let name: String = p.name.iter().take_while(|c| **c != '\0').collect();
         return vec![GameEvent::Divorced { name }];
     }
-    if let Some(p) = any.downcast_ref::<PacketZcShowImage2>() {
+    if let Some(p) = any.downcast_ref::<PacketZcShowImage>() {
         let image: String = p.image_name.iter().take_while(|c| **c != '\0').collect();
         return vec![GameEvent::NpcCutin {
             image,
@@ -1007,7 +1007,7 @@ pub fn dispatch_packet(packet: &dyn Packet, packetver: u32) -> Vec<GameEvent> {
             name,
         }];
     }
-    if let Some(p) = any.downcast_ref::<PacketZcBabymsg>() {
+    if let Some(p) = any.downcast_ref::<PacketZcBabyMsg>() {
         return vec![GameEvent::AdoptionMessage { msg_no: p.msg_no }];
     }
 
@@ -1017,7 +1017,7 @@ pub fn dispatch_packet(packet: &dyn Packet, packetver: u32) -> Vec<GameEvent> {
             value: p.count,
         }];
     }
-    if let Some(p) = any.downcast_ref::<PacketZcLongparChange>() {
+    if let Some(p) = any.downcast_ref::<PacketZcLongParChange>() {
         return vec![GameEvent::ParameterChanged {
             var_id: p.var_id,
             value: p.amount,
@@ -1087,7 +1087,7 @@ pub fn dispatch_packet(packet: &dyn Packet, packetver: u32) -> Vec<GameEvent> {
             range: p.current_att_range,
         }];
     }
-    if let Some(p) = any.downcast_ref::<PacketZcSpriteChange2>() {
+    if let Some(p) = any.downcast_ref::<PacketZcSpriteChange>() {
         return vec![GameEvent::EntitySpriteChanged {
             gid: p.gid,
             sprite_type: p.atype,
@@ -1095,7 +1095,7 @@ pub fn dispatch_packet(packet: &dyn Packet, packetver: u32) -> Vec<GameEvent> {
             value2: p.value2,
         }];
     }
-    if let Some(p) = any.downcast_ref::<PacketZcSpriteChange>() {
+    if let Some(p) = any.downcast_ref::<PacketZcSpriteChangeByteValue>() {
         return vec![GameEvent::EntitySpriteChanged {
             gid: p.gid,
             sprite_type: p.atype,
@@ -1103,7 +1103,7 @@ pub fn dispatch_packet(packet: &dyn Packet, packetver: u32) -> Vec<GameEvent> {
             value2: 0,
         }];
     }
-    if let Some(p) = any.downcast_ref::<PacketZcNpcspriteChange>() {
+    if let Some(p) = any.downcast_ref::<PacketZcNpcSpriteChange>() {
         return vec![GameEvent::EntitySpriteChanged {
             gid: p.gid,
             sprite_type: 0,
@@ -1112,7 +1112,7 @@ pub fn dispatch_packet(packet: &dyn Packet, packetver: u32) -> Vec<GameEvent> {
         }];
     }
 
-    if let Some(p) = any.downcast_ref::<PacketZcUseskillAck2>() {
+    if let Some(p) = any.downcast_ref::<PacketZcUseSkillAck>() {
         return vec![GameEvent::SkillCasting {
             gid: p.aid,
             target_gid: p.target_id,
@@ -1123,7 +1123,7 @@ pub fn dispatch_packet(packet: &dyn Packet, packetver: u32) -> Vec<GameEvent> {
             y: p.y_pos,
         }];
     }
-    if let Some(p) = any.downcast_ref::<PacketZcUseskillAck>() {
+    if let Some(p) = any.downcast_ref::<PacketZcUseSkillAckNoDisposable>() {
         return vec![GameEvent::SkillCasting {
             gid: p.aid,
             target_gid: p.target_id,
@@ -1134,7 +1134,7 @@ pub fn dispatch_packet(packet: &dyn Packet, packetver: u32) -> Vec<GameEvent> {
             y: p.y_pos,
         }];
     }
-    if let Some(p) = any.downcast_ref::<PacketZcAckTouseskill>() {
+    if let Some(p) = any.downcast_ref::<PacketZcAckToUseSkill>() {
         if !p.result {
             return vec![GameEvent::SkillFailed {
                 skill: (p.skid != 0).then(|| SkillEnum::from_id(p.skid as u32)),
@@ -1144,13 +1144,13 @@ pub fn dispatch_packet(packet: &dyn Packet, packetver: u32) -> Vec<GameEvent> {
         }
         return vec![GameEvent::Acknowledged];
     }
-    if let Some(p) = any.downcast_ref::<PacketZcSkillPostdelay>() {
+    if let Some(p) = any.downcast_ref::<PacketZcSkillPostDelay>() {
         return vec![GameEvent::SkillPostDelay {
             skill: SkillEnum::from_id(p.skid as u32),
             delay_ms: p.delay_tm,
         }];
     }
-    if let Some(p) = any.downcast_ref::<PacketZcMsgStateChange2>() {
+    if let Some(p) = any.downcast_ref::<PacketZcMsgStateChange>() {
         if p.index == 46 && p.state {
             return vec![GameEvent::AfterCastDelay {
                 delay_ms: p.remain_ms,
@@ -1165,7 +1165,7 @@ pub fn dispatch_packet(packet: &dyn Packet, packetver: u32) -> Vec<GameEvent> {
         }];
     }
     // 0x196: always the status-OFF packet (flag=0); without this arm buffs never clear on early removal.
-    if let Some(p) = any.downcast_ref::<PacketZcMsgStateChange>() {
+    if let Some(p) = any.downcast_ref::<PacketZcMsgStateChangeNoTimer>() {
         return vec![GameEvent::StatusEffectChanged {
             gid: p.aid,
             efst: p.index,
@@ -1174,7 +1174,7 @@ pub fn dispatch_packet(packet: &dyn Packet, packetver: u32) -> Vec<GameEvent> {
             val1: 0,
         }];
     }
-    if let Some(p) = any.downcast_ref::<PacketZcNpcShowefstUpdate>() {
+    if let Some(p) = any.downcast_ref::<PacketZcNpcShowEfstUpdate>() {
         return vec![GameEvent::EntityOpt3Changed {
             gid: p.aid,
             effect_state: p.effect_state,
@@ -1182,7 +1182,7 @@ pub fn dispatch_packet(packet: &dyn Packet, packetver: u32) -> Vec<GameEvent> {
             opt3: p.show_efst,
         }];
     }
-    if let Some(p) = any.downcast_ref::<PacketZcStateChange3>() {
+    if let Some(p) = any.downcast_ref::<PacketZcStateChange>() {
         return vec![GameEvent::EntityOptionChanged {
             gid: p.aid,
             body_state: p.body_state,
@@ -1190,7 +1190,7 @@ pub fn dispatch_packet(packet: &dyn Packet, packetver: u32) -> Vec<GameEvent> {
             effect_state: p.effect_state,
         }];
     }
-    if let Some(p) = any.downcast_ref::<PacketZcStateChange>() {
+    if let Some(p) = any.downcast_ref::<PacketZcStateChangeShortEffect>() {
         return vec![GameEvent::EntityOptionChanged {
             gid: p.aid,
             body_state: p.body_state,
@@ -1198,7 +1198,7 @@ pub fn dispatch_packet(packet: &dyn Packet, packetver: u32) -> Vec<GameEvent> {
             effect_state: p.effect_state as i32,
         }];
     }
-    if let Some(p) = any.downcast_ref::<PacketZcNotifySkill>() {
+    if let Some(p) = any.downcast_ref::<PacketZcNotifySkillShortDamage>() {
         return vec![GameEvent::SkillDamage {
             skill: SkillEnum::from_id(p.skid as u32),
             src_gid: p.aid,
@@ -1212,7 +1212,7 @@ pub fn dispatch_packet(packet: &dyn Packet, packetver: u32) -> Vec<GameEvent> {
             start_time: p.start_time,
         }];
     }
-    if let Some(p) = any.downcast_ref::<PacketZcNotifySkill2>() {
+    if let Some(p) = any.downcast_ref::<PacketZcNotifySkill>() {
         return vec![GameEvent::SkillDamage {
             skill: SkillEnum::from_id(p.skid as u32),
             src_gid: p.aid,
@@ -1273,25 +1273,25 @@ pub fn dispatch_packet(packet: &dyn Packet, packetver: u32) -> Vec<GameEvent> {
             }),
         }];
     }
-    if let Some(p) = any.downcast_ref::<PacketZcAckAccountname>() {
+    if let Some(p) = any.downcast_ref::<PacketZcAckAccountName>() {
         return vec![GameEvent::AccountNameReceived {
             aid: p.aid,
             name: raw_euc_kr(&p.name_raw),
         }];
     }
-    if let Some(p) = any.downcast_ref::<PacketZcSkillmsg>() {
+    if let Some(p) = any.downcast_ref::<PacketZcSkillMsg>() {
         return vec![GameEvent::SkillMsg { msg_no: p.msg_no }];
     }
     if let Some(p) = any.downcast_ref::<PacketZcNotifyBindOnEquip>() {
         return vec![GameEvent::BindOnEquipNotice { index: p.index }];
     }
-    if let Some(p) = any.downcast_ref::<PacketZcTalkboxChatcontents>() {
+    if let Some(p) = any.downcast_ref::<PacketZcTalkBoxChatContents>() {
         return vec![GameEvent::TalkboxContents {
             aid: p.aid,
             message: raw_euc_kr(&p.contents_raw),
         }];
     }
-    if let Some(p) = any.downcast_ref::<PacketZcShowdigit>() {
+    if let Some(p) = any.downcast_ref::<PacketZcShowDigit>() {
         let Some(mode) = ShowDigitMode::from_packet(p.atype) else {
             return vec![];
         };
@@ -1335,12 +1335,12 @@ pub fn dispatch_packet(packet: &dyn Packet, packetver: u32) -> Vec<GameEvent> {
             all: true,
         }];
     }
-    if let Some(p) = any.downcast_ref::<PacketZcAckRememberWarppoint>() {
+    if let Some(p) = any.downcast_ref::<PacketZcAckRememberWarpPoint>() {
         return vec![GameEvent::MemoResult {
             result: p.error_code,
         }];
     }
-    if let Some(p) = any.downcast_ref::<PacketZcNotifyMapinfo>() {
+    if let Some(p) = any.downcast_ref::<PacketZcNotifyMapInfo>() {
         return vec![GameEvent::MapInfoNotice { atype: p.atype }];
     }
     if let Some(p) = any.downcast_ref::<PacketZcNpcChat>() {
@@ -1364,7 +1364,7 @@ pub fn dispatch_packet(packet: &dyn Packet, packetver: u32) -> Vec<GameEvent> {
         }
         return vec![GameEvent::Acknowledged];
     }
-    if let Some(p) = any.downcast_ref::<PacketZcNotifyGroundskill>() {
+    if let Some(p) = any.downcast_ref::<PacketZcNotifyGroundSkill>() {
         return vec![GameEvent::GroundSkill {
             skill: SkillEnum::from_id(p.skid as u32),
             src_gid: p.aid,
@@ -1402,7 +1402,7 @@ pub fn dispatch_packet(packet: &dyn Packet, packetver: u32) -> Vec<GameEvent> {
             is_visible: p.is_visible,
         }];
     }
-    if let Some(p) = any.downcast_ref::<PacketZcSkillEntry2>() {
+    if let Some(p) = any.downcast_ref::<PacketZcSkillEntryWithMsg>() {
         if p.is_contens {
             return vec![GameEvent::GraffitiEntered {
                 aid: p.aid,
@@ -1421,7 +1421,7 @@ pub fn dispatch_packet(packet: &dyn Packet, packetver: u32) -> Vec<GameEvent> {
             is_visible: p.is_visible,
         }];
     }
-    if let Some(p) = any.downcast_ref::<PacketZcUpdateMapinfo>() {
+    if let Some(p) = any.downcast_ref::<PacketZcUpdateMapInfo>() {
         return vec![GameEvent::MapCellChanged {
             x: p.x_pos,
             y: p.y_pos,
@@ -1441,7 +1441,7 @@ pub fn dispatch_packet(packet: &dyn Packet, packetver: u32) -> Vec<GameEvent> {
         }];
     }
 
-    if let Some(p) = any.downcast_ref::<PacketZcNotifyHpToGroupm>() {
+    if let Some(p) = any.downcast_ref::<PacketZcNotifyHpToGroupMemberShortHp>() {
         return vec![
             GameEvent::EntityHpChanged {
                 gid: p.aid,
@@ -1455,7 +1455,7 @@ pub fn dispatch_packet(packet: &dyn Packet, packetver: u32) -> Vec<GameEvent> {
             },
         ];
     }
-    if let Some(p) = any.downcast_ref::<PacketZcNotifyHpToGroupmR2>() {
+    if let Some(p) = any.downcast_ref::<PacketZcNotifyHpToGroupMember>() {
         return vec![
             GameEvent::EntityHpChanged {
                 gid: p.aid,
@@ -1469,14 +1469,14 @@ pub fn dispatch_packet(packet: &dyn Packet, packetver: u32) -> Vec<GameEvent> {
             },
         ];
     }
-    if let Some(p) = any.downcast_ref::<PacketZcNotifyPositionToGroupm>() {
+    if let Some(p) = any.downcast_ref::<PacketZcNotifyPositionToGroupMember>() {
         return vec![GameEvent::PartyMemberPosition {
             aid: p.aid,
             x: p.x_pos,
             y: p.y_pos,
         }];
     }
-    if let Some(p) = any.downcast_ref::<PacketZcNotifyPositionToGuildm>() {
+    if let Some(p) = any.downcast_ref::<PacketZcNotifyPositionToGuildMember>() {
         return vec![GameEvent::GuildMemberPosition {
             aid: p.aid,
             x: p.x_pos,
@@ -1517,7 +1517,7 @@ pub fn dispatch_packet(packet: &dyn Packet, packetver: u32) -> Vec<GameEvent> {
             .collect();
         return vec![GameEvent::PartyMemberList { name, members }];
     }
-    if let Some(p) = any.downcast_ref::<PacketZcAddMemberToGroup2>() {
+    if let Some(p) = any.downcast_ref::<PacketZcAddMemberToGroup>() {
         let name: String = p
             .character_name
             .iter()
@@ -1534,7 +1534,7 @@ pub fn dispatch_packet(packet: &dyn Packet, packetver: u32) -> Vec<GameEvent> {
             y: p.y_pos as u16,
         }];
     }
-    if let Some(p) = any.downcast_ref::<PacketZcAddMemberToGroup>() {
+    if let Some(p) = any.downcast_ref::<PacketZcAddMemberToGroupNoRules>() {
         let name: String = p
             .character_name
             .iter()
@@ -1627,19 +1627,19 @@ pub fn dispatch_packet(packet: &dyn Packet, packetver: u32) -> Vec<GameEvent> {
             answer: p.answer,
         }];
     }
-    if let Some(p) = any.downcast_ref::<PacketZcGroupinfoChange>() {
+    if let Some(p) = any.downcast_ref::<PacketZcGroupInfoChange>() {
         return vec![GameEvent::PartyExpOptionChanged {
             exp_option: p.exp_option,
         }];
     }
-    if let Some(p) = any.downcast_ref::<PacketZcReqGroupinfoChangeV2>() {
+    if let Some(p) = any.downcast_ref::<PacketZcReqGroupInfoChange>() {
         return vec![GameEvent::PartyConfigChanged {
             exp_option: p.exp_option,
             item_pickup_rule: p.item_pickup_rule,
             item_division_rule: p.item_division_rule,
         }];
     }
-    if let Some(p) = any.downcast_ref::<PacketScNotifyBan>() {
+    if let Some(p) = any.downcast_ref::<PacketZcNotifyBan>() {
         let reason = match p.error_code {
             1 => "Server closed the connection.",
             2 => "Someone else has logged in with your account.",
@@ -1673,27 +1673,9 @@ pub fn dispatch_packet(packet: &dyn Packet, packetver: u32) -> Vec<GameEvent> {
         return vec![GameEvent::WhisperAck { result: p.result }];
     }
 
-    if let Some(p) = any.downcast_ref::<PacketZcAckGuildMenuinterface>() {
+    if let Some(p) = any.downcast_ref::<PacketZcAckGuildMenuInterface>() {
         return vec![GameEvent::GuildMenuFlag {
             flag: p.guild_memu_flag,
-        }];
-    }
-    if let Some(p) = any.downcast_ref::<PacketZcGuildInfo2>() {
-        return vec![GameEvent::GuildInfo {
-            gdid: p.gdid as u32,
-            name: cstr(&p.guildname),
-            level: p.level,
-            exp: p.exp,
-            max_exp: p.max_exp,
-            member_num: p.user_num,
-            max_member_num: p.max_user_num,
-            avg_level: p.user_average_level,
-            point: p.point,
-            honor: p.honor,
-            virtue: p.virtue,
-            master_name: cstr(&p.master_name),
-            manage_land: cstr(&p.manage_land),
-            emblem_version: p.emblem_version,
         }];
     }
     if let Some(p) = any.downcast_ref::<PacketZcGuildInfo>() {
@@ -1714,7 +1696,25 @@ pub fn dispatch_packet(packet: &dyn Packet, packetver: u32) -> Vec<GameEvent> {
             emblem_version: p.emblem_version,
         }];
     }
-    if let Some(p) = any.downcast_ref::<PacketZcMembermgrInfo>() {
+    if let Some(p) = any.downcast_ref::<PacketZcGuildInfoNoZeny>() {
+        return vec![GameEvent::GuildInfo {
+            gdid: p.gdid as u32,
+            name: cstr(&p.guildname),
+            level: p.level,
+            exp: p.exp,
+            max_exp: p.max_exp,
+            member_num: p.user_num,
+            max_member_num: p.max_user_num,
+            avg_level: p.user_average_level,
+            point: p.point,
+            honor: p.honor,
+            virtue: p.virtue,
+            master_name: cstr(&p.master_name),
+            manage_land: cstr(&p.manage_land),
+            emblem_version: p.emblem_version,
+        }];
+    }
+    if let Some(p) = any.downcast_ref::<PacketZcMemberMgrInfo>() {
         let members = p
             .member_info
             .iter()
@@ -1741,7 +1741,7 @@ pub fn dispatch_packet(packet: &dyn Packet, packetver: u32) -> Vec<GameEvent> {
             .collect();
         return vec![GameEvent::GuildMembers { members }];
     }
-    if let Some(p) = any.downcast_ref::<PacketZcUpdateCharstat>() {
+    if let Some(p) = any.downcast_ref::<PacketZcUpdateCharStatStatusOnly>() {
         return vec![GameEvent::GuildMemberOnline {
             aid: p.aid,
             gid: p.gid,
@@ -1749,7 +1749,7 @@ pub fn dispatch_packet(packet: &dyn Packet, packetver: u32) -> Vec<GameEvent> {
             appearance: None,
         }];
     }
-    if let Some(p) = any.downcast_ref::<PacketZcUpdateCharstat2>() {
+    if let Some(p) = any.downcast_ref::<PacketZcUpdateCharStat>() {
         return vec![GameEvent::GuildMemberOnline {
             aid: p.aid,
             gid: p.gid,
@@ -1775,7 +1775,7 @@ pub fn dispatch_packet(packet: &dyn Packet, packetver: u32) -> Vec<GameEvent> {
             .collect();
         return vec![GameEvent::GuildPositions { positions }];
     }
-    if let Some(p) = any.downcast_ref::<PacketZcAckChangeGuildPositioninfo>() {
+    if let Some(p) = any.downcast_ref::<PacketZcAckChangeGuildPositionInfo>() {
         let positions = p
             .member_list
             .iter()
@@ -1813,7 +1813,7 @@ pub fn dispatch_packet(packet: &dyn Packet, packetver: u32) -> Vec<GameEvent> {
             .collect();
         return vec![GameEvent::GuildPositionNames { names }];
     }
-    if let Some(p) = any.downcast_ref::<PacketZcGuildSkillinfo>() {
+    if let Some(p) = any.downcast_ref::<PacketZcGuildSkillInfo>() {
         let skills = parse_skill_info_list(&p.skill_list)
             .into_iter()
             .map(|s| GuildSkill {
@@ -1861,7 +1861,7 @@ pub fn dispatch_packet(packet: &dyn Packet, packetver: u32) -> Vec<GameEvent> {
             .collect();
         return vec![GameEvent::GuildOtherList { guilds }];
     }
-    if let Some(p) = any.downcast_ref::<PacketZcMyguildBasicInfo>() {
+    if let Some(p) = any.downcast_ref::<PacketZcMyGuildBasicInfo>() {
         let relations = p
             .related_guild_list
             .iter()
@@ -1981,7 +1981,7 @@ pub fn dispatch_packet(packet: &dyn Packet, packetver: u32) -> Vec<GameEvent> {
             items,
         }];
     }
-    if let Some(p) = any.downcast_ref::<PacketZcRoomNewentry>() {
+    if let Some(p) = any.downcast_ref::<PacketZcRoomNewEntry>() {
         let title: String = p.title.chars().take_while(|c| *c != '\0').collect();
         return vec![GameEvent::ChatRoomUpsert {
             owner_aid: p.aid,
@@ -1992,7 +1992,7 @@ pub fn dispatch_packet(packet: &dyn Packet, packetver: u32) -> Vec<GameEvent> {
             title,
         }];
     }
-    if let Some(p) = any.downcast_ref::<PacketZcChangeChatroom>() {
+    if let Some(p) = any.downcast_ref::<PacketZcChangeChatRoom>() {
         let title: String = p.title.chars().take_while(|c| *c != '\0').collect();
         return vec![GameEvent::ChatRoomUpsert {
             owner_aid: p.aid,
@@ -2023,10 +2023,10 @@ pub fn dispatch_packet(packet: &dyn Packet, packetver: u32) -> Vec<GameEvent> {
     if let Some(p) = any.downcast_ref::<PacketZcRefuseEnterRoom>() {
         return vec![GameEvent::ChatRoomJoinRefused { result: p.result }];
     }
-    if let Some(p) = any.downcast_ref::<PacketZcAckCreateChatroom>() {
+    if let Some(p) = any.downcast_ref::<PacketZcAckCreateChatRoom>() {
         return vec![GameEvent::ChatRoomCreateResult { flag: p.result }];
     }
-    if let Some(p) = any.downcast_ref::<PacketZcMemberNewentry>() {
+    if let Some(p) = any.downcast_ref::<PacketZcMemberNewEntry>() {
         let name: String = p.name.iter().take_while(|c| **c != '\0').collect();
         return vec![GameEvent::ChatRoomMemberJoined {
             name,
@@ -2045,7 +2045,7 @@ pub fn dispatch_packet(packet: &dyn Packet, packetver: u32) -> Vec<GameEvent> {
         let name: String = p.name.iter().take_while(|c| **c != '\0').collect();
         return vec![GameEvent::ChatRoomOwnerChanged { name }];
     }
-    if let Some(p) = any.downcast_ref::<PacketZcWarplist>() {
+    if let Some(p) = any.downcast_ref::<PacketZcWarpList>() {
         // Parse raw to stay independent of the generated array field shape: id(2)+SKID(2)+4×16 bytes.
         let raw = p.raw();
         let mut destinations = Vec::new();
@@ -2071,17 +2071,17 @@ pub fn dispatch_packet(packet: &dyn Packet, packetver: u32) -> Vec<GameEvent> {
             destinations,
         }];
     }
-    if let Some(p) = any.downcast_ref::<PacketZcOpenEditdlg>() {
+    if let Some(p) = any.downcast_ref::<PacketZcOpenEditDlg>() {
         return vec![GameEvent::NpcInputNumber { npc_id: p.naid }];
     }
-    if let Some(p) = any.downcast_ref::<PacketZcOpenEditdlgstr>() {
+    if let Some(p) = any.downcast_ref::<PacketZcOpenEditDlgStr>() {
         return vec![GameEvent::NpcInputString { npc_id: p.naid }];
     }
-    if let Some(p) = any.downcast_ref::<PacketZcSelectDealtype>() {
+    if let Some(p) = any.downcast_ref::<PacketZcSelectDealType>() {
         return vec![GameEvent::NpcDealTypeSelect { npc_id: p.naid }];
     }
 
-    if let Some(p) = any.downcast_ref::<PacketZcPcPurchaseItemlist>() {
+    if let Some(p) = any.downcast_ref::<PacketZcPcPurchaseItemList>() {
         let items = p
             .item_list
             .iter()
@@ -2089,7 +2089,7 @@ pub fn dispatch_packet(packet: &dyn Packet, packetver: u32) -> Vec<GameEvent> {
             .collect();
         return vec![GameEvent::NpcShopBuyList { npc_id: 0, items }];
     }
-    if let Some(p) = any.downcast_ref::<PacketZcPcSellItemlist>() {
+    if let Some(p) = any.downcast_ref::<PacketZcPcSellItemList>() {
         let items = p
             .item_list
             .iter()
@@ -2104,7 +2104,7 @@ pub fn dispatch_packet(packet: &dyn Packet, packetver: u32) -> Vec<GameEvent> {
         return vec![GameEvent::NpcShopSellResult { result: p.result }];
     }
 
-    if let Some(p) = any.downcast_ref::<PacketZcNormalItemlist>() {
+    if let Some(p) = any.downcast_ref::<PacketZcNormalItemListNoCards>() {
         let items = p
             .item_info
             .iter()
@@ -2120,7 +2120,7 @@ pub fn dispatch_packet(packet: &dyn Packet, packetver: u32) -> Vec<GameEvent> {
             .collect();
         return vec![GameEvent::InventoryNormalItems { items }];
     }
-    if let Some(p) = any.downcast_ref::<PacketZcEquipmentItemlist>() {
+    if let Some(p) = any.downcast_ref::<PacketZcEquipmentItemListNoExpire>() {
         let items = p
             .item_info
             .iter()
@@ -2137,6 +2137,34 @@ pub fn dispatch_packet(packet: &dyn Packet, packetver: u32) -> Vec<GameEvent> {
             })
             .collect();
         return vec![GameEvent::InventoryEquipmentItems { items }];
+    }
+    if let Some(p) = any.downcast_ref::<PacketZcItemPickupAckNoExpire>() {
+        return vec![GameEvent::InventoryItemPickup {
+            index: p.index,
+            item_id: p.itid,
+            count: p.count,
+            item_type: p.atype,
+            is_identified: p.is_identified,
+            is_damaged: p.is_damaged,
+            refining_level: p.refining_level,
+            slot: [p.slot.card1, p.slot.card2, p.slot.card3, p.slot.card4],
+            location: p.location,
+            result: p.result,
+        }];
+    }
+    if let Some(p) = any.downcast_ref::<PacketZcItemPickupAckNoBind>() {
+        return vec![GameEvent::InventoryItemPickup {
+            index: p.index,
+            item_id: p.itid,
+            count: p.count,
+            item_type: p.atype,
+            is_identified: p.is_identified,
+            is_damaged: p.is_damaged,
+            refining_level: p.refining_level,
+            slot: [p.slot.card1, p.slot.card2, p.slot.card3, p.slot.card4],
+            location: p.location,
+            result: p.result,
+        }];
     }
     if let Some(p) = any.downcast_ref::<PacketZcItemPickupAck>() {
         return vec![GameEvent::InventoryItemPickup {
@@ -2152,35 +2180,7 @@ pub fn dispatch_packet(packet: &dyn Packet, packetver: u32) -> Vec<GameEvent> {
             result: p.result,
         }];
     }
-    if let Some(p) = any.downcast_ref::<PacketZcItemPickupAck2>() {
-        return vec![GameEvent::InventoryItemPickup {
-            index: p.index,
-            item_id: p.itid,
-            count: p.count,
-            item_type: p.atype,
-            is_identified: p.is_identified,
-            is_damaged: p.is_damaged,
-            refining_level: p.refining_level,
-            slot: [p.slot.card1, p.slot.card2, p.slot.card3, p.slot.card4],
-            location: p.location,
-            result: p.result,
-        }];
-    }
-    if let Some(p) = any.downcast_ref::<PacketZcItemPickupAck3>() {
-        return vec![GameEvent::InventoryItemPickup {
-            index: p.index,
-            item_id: p.itid,
-            count: p.count,
-            item_type: p.atype,
-            is_identified: p.is_identified,
-            is_damaged: p.is_damaged,
-            refining_level: p.refining_level,
-            slot: [p.slot.card1, p.slot.card2, p.slot.card3, p.slot.card4],
-            location: p.location,
-            result: p.result,
-        }];
-    }
-    if let Some(p) = any.downcast_ref::<PacketZcNormalItemlist2>() {
+    if let Some(p) = any.downcast_ref::<PacketZcNormalItemListNoExpire>() {
         let items = p
             .item_info
             .iter()
@@ -2196,7 +2196,7 @@ pub fn dispatch_packet(packet: &dyn Packet, packetver: u32) -> Vec<GameEvent> {
             .collect();
         return vec![GameEvent::InventoryNormalItems { items }];
     }
-    if let Some(p) = any.downcast_ref::<PacketZcNormalItemlist3>() {
+    if let Some(p) = any.downcast_ref::<PacketZcNormalItemList>() {
         let items = p
             .item_info
             .iter()
@@ -2212,7 +2212,7 @@ pub fn dispatch_packet(packet: &dyn Packet, packetver: u32) -> Vec<GameEvent> {
             .collect();
         return vec![GameEvent::InventoryNormalItems { items }];
     }
-    if let Some(p) = any.downcast_ref::<PacketZcEquipmentItemlist2>() {
+    if let Some(p) = any.downcast_ref::<PacketZcEquipmentItemListNoBind>() {
         let items = p
             .item_info
             .iter()
@@ -2230,7 +2230,7 @@ pub fn dispatch_packet(packet: &dyn Packet, packetver: u32) -> Vec<GameEvent> {
             .collect();
         return vec![GameEvent::InventoryEquipmentItems { items }];
     }
-    if let Some(p) = any.downcast_ref::<PacketZcEquipmentItemlist3>() {
+    if let Some(p) = any.downcast_ref::<PacketZcEquipmentItemList>() {
         let items = p
             .item_info
             .iter()
@@ -2248,14 +2248,14 @@ pub fn dispatch_packet(packet: &dyn Packet, packetver: u32) -> Vec<GameEvent> {
             .collect();
         return vec![GameEvent::InventoryEquipmentItems { items }];
     }
-    if let Some(p) = any.downcast_ref::<PacketZcUseItemAck>() {
+    if let Some(p) = any.downcast_ref::<PacketZcUseItemAckNoAid>() {
         return vec![GameEvent::InventoryUseItemResult {
             index: p.index,
             count: p.count,
             success: p.result,
         }];
     }
-    if let Some(p) = any.downcast_ref::<PacketZcUseItemAck2>() {
+    if let Some(p) = any.downcast_ref::<PacketZcUseItemAck>() {
         return vec![GameEvent::InventoryUseItemResult {
             index: p.index,
             count: p.count,
@@ -2267,7 +2267,7 @@ pub fn dispatch_packet(packet: &dyn Packet, packetver: u32) -> Vec<GameEvent> {
             index: p.index as u16,
         }];
     }
-    if let Some(p) = any.downcast_ref::<PacketZcReqWearEquipAck>() {
+    if let Some(p) = any.downcast_ref::<PacketZcReqWearEquipAckLegacy>() {
         // This id reports success as 1 while its successor reports it as 0, and
         // servers do mix the two up. The position is unambiguous: it is only
         // filled in when the item went on.
@@ -2278,7 +2278,7 @@ pub fn dispatch_packet(packet: &dyn Packet, packetver: u32) -> Vec<GameEvent> {
             success: p.wear_location != 0,
         }];
     }
-    if let Some(p) = any.downcast_ref::<PacketZcReqWearEquipAck2>() {
+    if let Some(p) = any.downcast_ref::<PacketZcReqWearEquipAck>() {
         return vec![GameEvent::InventoryEquipResult {
             index: p.index,
             wear_location: p.wear_location,
@@ -2286,14 +2286,14 @@ pub fn dispatch_packet(packet: &dyn Packet, packetver: u32) -> Vec<GameEvent> {
             success: p.result == 0,
         }];
     }
-    if let Some(p) = any.downcast_ref::<PacketZcReqTakeoffEquipAck>() {
+    if let Some(p) = any.downcast_ref::<PacketZcReqTakeoffEquipAckLegacy>() {
         return vec![GameEvent::InventoryUnequipResult {
             index: p.index,
             wear_location: p.wear_location,
             success: p.result == 0,
         }];
     }
-    if let Some(p) = any.downcast_ref::<PacketZcReqTakeoffEquipAck2>() {
+    if let Some(p) = any.downcast_ref::<PacketZcReqTakeoffEquipAck>() {
         return vec![GameEvent::InventoryUnequipResult {
             index: p.index,
             wear_location: p.wear_location,
@@ -2369,25 +2369,25 @@ pub fn dispatch_packet(packet: &dyn Packet, packetver: u32) -> Vec<GameEvent> {
             return vec![GameEvent::CartEquipmentItems { items }];
         }};
     }
-    if let Some(p) = any.downcast_ref::<PacketZcCartNormalItemlist>() {
+    if let Some(p) = any.downcast_ref::<PacketZcCartNormalItemListNoCards>() {
         cart_normal_items!(p);
     }
-    if let Some(p) = any.downcast_ref::<PacketZcCartNormalItemlist2>() {
+    if let Some(p) = any.downcast_ref::<PacketZcCartNormalItemListNoExpire>() {
         cart_normal_items_slotted!(p);
     }
-    if let Some(p) = any.downcast_ref::<PacketZcCartNormalItemlist3>() {
+    if let Some(p) = any.downcast_ref::<PacketZcCartNormalItemList>() {
         cart_normal_items_slotted!(p);
     }
-    if let Some(p) = any.downcast_ref::<PacketZcCartEquipmentItemlist>() {
+    if let Some(p) = any.downcast_ref::<PacketZcCartEquipmentItemListNoExpire>() {
         cart_equip_items!(p);
     }
-    if let Some(p) = any.downcast_ref::<PacketZcCartEquipmentItemlist2>() {
+    if let Some(p) = any.downcast_ref::<PacketZcCartEquipmentItemListNoBind>() {
         cart_equip_items!(p);
     }
-    if let Some(p) = any.downcast_ref::<PacketZcCartEquipmentItemlist3>() {
+    if let Some(p) = any.downcast_ref::<PacketZcCartEquipmentItemList>() {
         cart_equip_items!(p);
     }
-    if let Some(p) = any.downcast_ref::<PacketZcAddItemToCart2>() {
+    if let Some(p) = any.downcast_ref::<PacketZcAddItemToCart>() {
         return vec![GameEvent::CartItemAdded {
             index: p.index as u16,
             item_id: p.itid,
@@ -2399,7 +2399,7 @@ pub fn dispatch_packet(packet: &dyn Packet, packetver: u32) -> Vec<GameEvent> {
             slot: [p.slot.card1, p.slot.card2, p.slot.card3, p.slot.card4],
         }];
     }
-    if let Some(p) = any.downcast_ref::<PacketZcAddItemToCart>() {
+    if let Some(p) = any.downcast_ref::<PacketZcAddItemToCartNoType>() {
         return vec![GameEvent::CartItemAdded {
             index: p.index as u16,
             item_id: p.itid,
@@ -2417,7 +2417,7 @@ pub fn dispatch_packet(packet: &dyn Packet, packetver: u32) -> Vec<GameEvent> {
             count: p.count as i16,
         }];
     }
-    if let Some(p) = any.downcast_ref::<PacketZcNotifyCartitemCountinfo>() {
+    if let Some(p) = any.downcast_ref::<PacketZcNotifyCartItemCountInfo>() {
         return vec![GameEvent::CartCountInfo {
             cur_weight: p.cur_weight,
             max_weight: p.max_weight,
@@ -2425,11 +2425,11 @@ pub fn dispatch_packet(packet: &dyn Packet, packetver: u32) -> Vec<GameEvent> {
             max_count: p.max_count,
         }];
     }
-    if any.downcast_ref::<PacketZcCartoff>().is_some() {
+    if any.downcast_ref::<PacketZcCartOff>().is_some() {
         return vec![GameEvent::CartOff];
     }
 
-    if let Some(p) = any.downcast_ref::<PacketZcStoreNormalItemlist3>() {
+    if let Some(p) = any.downcast_ref::<PacketZcStoreNormalItemList>() {
         let items = p
             .item_info
             .iter()
@@ -2485,9 +2485,9 @@ pub fn dispatch_packet(packet: &dyn Packet, packetver: u32) -> Vec<GameEvent> {
             }
         };
     }
-    store_normal_items!(PacketZcStoreNormalItemlist);
-    store_normal_items_slotted!(PacketZcStoreNormalItemlist2);
-    if let Some(p) = any.downcast_ref::<PacketZcStoreEquipmentItemlist3>() {
+    store_normal_items!(PacketZcStoreNormalItemListNoCards);
+    store_normal_items_slotted!(PacketZcStoreNormalItemListNoExpire);
+    if let Some(p) = any.downcast_ref::<PacketZcStoreEquipmentItemList>() {
         let items = p
             .item_info
             .iter()
@@ -2527,15 +2527,15 @@ pub fn dispatch_packet(packet: &dyn Packet, packetver: u32) -> Vec<GameEvent> {
             }
         };
     }
-    store_equip_items!(PacketZcStoreEquipmentItemlist);
-    store_equip_items!(PacketZcStoreEquipmentItemlist2);
-    if let Some(p) = any.downcast_ref::<PacketZcNotifyStoreitemCountinfo>() {
+    store_equip_items!(PacketZcStoreEquipmentItemListNoExpire);
+    store_equip_items!(PacketZcStoreEquipmentItemListNoBind);
+    if let Some(p) = any.downcast_ref::<PacketZcNotifyStoreItemCountInfo>() {
         return vec![GameEvent::StorageOpened {
             cur: p.cur_count,
             max: p.max_count,
         }];
     }
-    if let Some(p) = any.downcast_ref::<PacketZcAddItemToStore2>() {
+    if let Some(p) = any.downcast_ref::<PacketZcAddItemToStore>() {
         return vec![GameEvent::StorageItemAdded {
             index: p.index as u16,
             item_id: p.itid,
@@ -2547,7 +2547,7 @@ pub fn dispatch_packet(packet: &dyn Packet, packetver: u32) -> Vec<GameEvent> {
             slot: [p.slot.card1, p.slot.card2, p.slot.card3, p.slot.card4],
         }];
     }
-    if let Some(p) = any.downcast_ref::<PacketZcAddItemToStore>() {
+    if let Some(p) = any.downcast_ref::<PacketZcAddItemToStoreNoType>() {
         return vec![GameEvent::StorageItemAdded {
             index: p.index as u16,
             item_id: p.itid,
@@ -2584,7 +2584,7 @@ pub fn dispatch_packet(packet: &dyn Packet, packetver: u32) -> Vec<GameEvent> {
             .collect();
     }
 
-    if let Some(p) = any.downcast_ref::<PacketZcReqExchangeItem2>() {
+    if let Some(p) = any.downcast_ref::<PacketZcReqExchangeItem>() {
         let name: String = p.name.iter().take_while(|c| **c != '\0').collect();
         return vec![GameEvent::ExchangeRequested {
             name,
@@ -2592,7 +2592,7 @@ pub fn dispatch_packet(packet: &dyn Packet, packetver: u32) -> Vec<GameEvent> {
             level: p.level,
         }];
     }
-    if let Some(p) = any.downcast_ref::<PacketZcReqExchangeItem>() {
+    if let Some(p) = any.downcast_ref::<PacketZcReqExchangeItemNoLevel>() {
         let name: String = p.name.iter().take_while(|c| **c != '\0').collect();
         return vec![GameEvent::ExchangeRequested {
             name,
@@ -2600,19 +2600,19 @@ pub fn dispatch_packet(packet: &dyn Packet, packetver: u32) -> Vec<GameEvent> {
             level: 0,
         }];
     }
-    if let Some(p) = any.downcast_ref::<PacketZcAckExchangeItem2>() {
+    if let Some(p) = any.downcast_ref::<PacketZcAckExchangeItem>() {
         return vec![GameEvent::ExchangeAckResult {
             result: p.result,
             level: p.level,
         }];
     }
-    if let Some(p) = any.downcast_ref::<PacketZcAckExchangeItem>() {
+    if let Some(p) = any.downcast_ref::<PacketZcAckExchangeItemNoLevel>() {
         return vec![GameEvent::ExchangeAckResult {
             result: p.result,
             level: 0,
         }];
     }
-    if let Some(p) = any.downcast_ref::<PacketZcAddExchangeItem2>() {
+    if let Some(p) = any.downcast_ref::<PacketZcAddExchangeItem>() {
         return vec![GameEvent::ExchangeItemAdded {
             item_id: p.itid,
             item_type: p.atype,
@@ -2623,7 +2623,7 @@ pub fn dispatch_packet(packet: &dyn Packet, packetver: u32) -> Vec<GameEvent> {
             slot: [p.slot.card1, p.slot.card2, p.slot.card3, p.slot.card4],
         }];
     }
-    if let Some(p) = any.downcast_ref::<PacketZcAddExchangeItem>() {
+    if let Some(p) = any.downcast_ref::<PacketZcAddExchangeItemNoType>() {
         return vec![GameEvent::ExchangeItemAdded {
             item_id: p.itid,
             item_type: 0,
@@ -2649,7 +2649,7 @@ pub fn dispatch_packet(packet: &dyn Packet, packetver: u32) -> Vec<GameEvent> {
     if let Some(p) = any.downcast_ref::<PacketZcExecExchangeItem>() {
         return vec![GameEvent::ExchangeCompleted { result: p.result }];
     }
-    if any.downcast_ref::<PacketZcExchangeitemUndo>().is_some() {
+    if any.downcast_ref::<PacketZcExchangeItemUndo>().is_some() {
         return vec![GameEvent::ExchangeUndo];
     }
 
@@ -2729,13 +2729,13 @@ pub fn dispatch_packet(packet: &dyn Packet, packetver: u32) -> Vec<GameEvent> {
         }];
     }
 
-    if let Some(p) = any.downcast_ref::<PacketZcItemcompositionList>() {
+    if let Some(p) = any.downcast_ref::<PacketZcItemCompositionList>() {
         return vec![GameEvent::CardInsertItemList {
             card_index: 0,
             equip_indices: p.itidlist.clone(),
         }];
     }
-    if let Some(p) = any.downcast_ref::<PacketZcAckItemcomposition>() {
+    if let Some(p) = any.downcast_ref::<PacketZcAckItemComposition>() {
         return vec![GameEvent::CardInsertResult {
             equip_index: p.equip_index as u16,
             card_index: p.card_index as u16,
@@ -2780,7 +2780,7 @@ pub fn dispatch_packet(packet: &dyn Packet, packetver: u32) -> Vec<GameEvent> {
     if any.downcast_ref::<PacketHcBlockCharacter>().is_some() {
         return vec![GameEvent::Acknowledged];
     }
-    if any.downcast_ref::<PacketPincodeLoginstate>().is_some() {
+    if any.downcast_ref::<PacketHcPincodeLoginState>().is_some() {
         return vec![GameEvent::Acknowledged];
     }
     if let Some(p) = any.downcast_ref::<PacketZcFriendsList>() {
@@ -2826,12 +2826,12 @@ pub fn dispatch_packet(packet: &dyn Packet, packetver: u32) -> Vec<GameEvent> {
             gid: p.gid,
         }];
     }
-    if let Some(p) = any.downcast_ref::<PacketZcSkillinfoList>() {
+    if let Some(p) = any.downcast_ref::<PacketZcSkillInfoList>() {
         return vec![GameEvent::SkillListReceived {
             skills: parse_skill_info_list(&p.skill_list),
         }];
     }
-    if let Some(p) = any.downcast_ref::<PacketZcSkillinfoUpdate>() {
+    if let Some(p) = any.downcast_ref::<PacketZcSkillInfoUpdate>() {
         return vec![GameEvent::SkillUpdated {
             skill: SkillEnum::from_id(p.skid as u32),
             level: p.level,
@@ -2840,7 +2840,7 @@ pub fn dispatch_packet(packet: &dyn Packet, packetver: u32) -> Vec<GameEvent> {
             upgradable: p.upgradable,
         }];
     }
-    if let Some(p) = any.downcast_ref::<PacketZcSkillinfoUpdate2>() {
+    if let Some(p) = any.downcast_ref::<PacketZcSkillInfoUpdateWithType>() {
         return vec![GameEvent::SkillUpdated {
             skill: SkillEnum::from_id(p.skid as u32),
             level: p.level,
@@ -2861,7 +2861,7 @@ pub fn dispatch_packet(packet: &dyn Packet, packetver: u32) -> Vec<GameEvent> {
             },
         }];
     }
-    if let Some(p) = any.downcast_ref::<PacketZcShortcutKeyListV2>() {
+    if let Some(p) = any.downcast_ref::<PacketZcShortcutKeyList>() {
         let slots: Vec<(i8, u32, i16)> = p
             .short_cut_key
             .iter()
@@ -2869,7 +2869,7 @@ pub fn dispatch_packet(packet: &dyn Packet, packetver: u32) -> Vec<GameEvent> {
             .collect();
         return vec![GameEvent::HotkeyListReceived { slots }];
     }
-    if let Some(p) = any.downcast_ref::<PacketZcShortcutKeyList>() {
+    if let Some(p) = any.downcast_ref::<PacketZcShortcutKeyListFewerSlots>() {
         let slots: Vec<(i8, u32, i16)> = p
             .short_cut_key
             .iter()
@@ -2882,13 +2882,13 @@ pub fn dispatch_packet(packet: &dyn Packet, packetver: u32) -> Vec<GameEvent> {
             error_code: p.error_code,
         }];
     }
-    if let Some(p) = any.downcast_ref::<PacketZcNotifyMapproperty>() {
+    if let Some(p) = any.downcast_ref::<PacketZcNotifyMapProperty>() {
         let kind = MapKind::from_property(p.atype);
         return vec![GameEvent::MapPropertyChanged(MapProperties::from_kind(
             kind,
         ))];
     }
-    if let Some(p) = any.downcast_ref::<PacketZcNotifyMapproperty2>() {
+    if let Some(p) = any.downcast_ref::<PacketZcNotifyMapPropertyWithFlags>() {
         let kind = MapKind::from_property(p.atype);
         return vec![GameEvent::MapPropertyChanged(MapProperties::with_flags(
             kind,
@@ -2896,7 +2896,7 @@ pub fn dispatch_packet(packet: &dyn Packet, packetver: u32) -> Vec<GameEvent> {
         ))];
     }
 
-    if let Some(p) = any.downcast_ref::<PacketZcAutorunSkill>() {
+    if let Some(p) = any.downcast_ref::<PacketZcAutoRunSkill>() {
         return vec![GameEvent::AutoCastSkill {
             skill: SkillEnum::from_id(p.data.skid as u32),
             level: p.data.level,
@@ -2905,56 +2905,56 @@ pub fn dispatch_packet(packet: &dyn Packet, packetver: u32) -> Vec<GameEvent> {
             skill_target_type: SkillTargetType::from_value(p.data.atype as usize),
         }];
     }
-    if let Some(p) = any.downcast_ref::<PacketZcItemidentifyList>() {
+    if let Some(p) = any.downcast_ref::<PacketZcItemIdentifyList>() {
         return vec![GameEvent::ItemIdentifyList {
             indices: p.itidlist.clone(),
         }];
     }
-    if let Some(p) = any.downcast_ref::<PacketZcAckItemidentify>() {
+    if let Some(p) = any.downcast_ref::<PacketZcAckItemIdentify>() {
         return vec![GameEvent::ItemIdentifyResult {
             index: p.index,
             ok: p.result == 0,
         }];
     }
-    if let Some(p) = any.downcast_ref::<PacketZcMakingarrowList>() {
+    if let Some(p) = any.downcast_ref::<PacketZcMakingArrowList>() {
         let item_ids = p.arrow_list.iter().map(|a| a.index as u16).collect();
         return vec![GameEvent::MakingArrowList { item_ids }];
     }
-    if let Some(p) = any.downcast_ref::<PacketZcMakableitemlist>() {
+    if let Some(p) = any.downcast_ref::<PacketZcMakableItemList>() {
         let item_ids = p.info.iter().map(|e| e.itid).collect();
         return vec![GameEvent::MakableItemList { item_ids }];
     }
-    if let Some(p) = any.downcast_ref::<PacketZcAckReqmakingitem>() {
+    if let Some(p) = any.downcast_ref::<PacketZcAckReqMakingItem>() {
         return vec![GameEvent::MakingItemResult { result: p.result }];
     }
-    if let Some(p) = any.downcast_ref::<PacketZcNotifyWeaponitemlist>() {
+    if let Some(p) = any.downcast_ref::<PacketZcNotifyWeaponItemList>() {
         let items = p.item_list.iter().map(refine_row_from).collect();
         return vec![GameEvent::WeaponRefineList { items }];
     }
-    if let Some(p) = any.downcast_ref::<PacketZcAckWeaponrefine>() {
+    if let Some(p) = any.downcast_ref::<PacketZcAckWeaponRefine>() {
         return vec![GameEvent::WeaponRefineResult {
             result: p.msg,
             item_id: p.itid,
         }];
     }
-    if let Some(p) = any.downcast_ref::<PacketZcAckItemrefining>() {
+    if let Some(p) = any.downcast_ref::<PacketZcAckItemRefining>() {
         return vec![GameEvent::ItemRefiningResult {
             index: p.item_index as u16,
             refine: p.refining_level as u8,
             result: p.result,
         }];
     }
-    if let Some(p) = any.downcast_ref::<PacketZcRepairitemlist>() {
+    if let Some(p) = any.downcast_ref::<PacketZcRepairItemList>() {
         let items = p.item_list.iter().map(refine_row_from).collect();
         return vec![GameEvent::RepairItemList { items }];
     }
-    if let Some(p) = any.downcast_ref::<PacketZcAckItemrepair>() {
+    if let Some(p) = any.downcast_ref::<PacketZcAckItemRepair>() {
         return vec![GameEvent::RepairItemResult {
             index: p.index,
             ok: p.result == 0,
         }];
     }
-    if let Some(p) = any.downcast_ref::<PacketZcAutospelllist>() {
+    if let Some(p) = any.downcast_ref::<PacketZcAutoSpellList>() {
         let skills = p
             .skid
             .iter()
@@ -2964,12 +2964,12 @@ pub fn dispatch_packet(packet: &dyn Packet, packetver: u32) -> Vec<GameEvent> {
         return vec![GameEvent::AutoSpellList { skills }];
     }
 
-    if let Some(p) = any.downcast_ref::<PacketZcOpenstore>() {
+    if let Some(p) = any.downcast_ref::<PacketZcOpenStore>() {
         return vec![GameEvent::OpenVendingSetup {
             max_items: p.itemcount,
         }];
     }
-    if let Some(p) = any.downcast_ref::<PacketZcAckOpenstore2>() {
+    if let Some(p) = any.downcast_ref::<PacketZcAckOpenStore>() {
         return vec![GameEvent::VendingOpenResult { result: p.result }];
     }
     if let Some(p) = any.downcast_ref::<PacketZcStoreEntry>() {
@@ -2982,7 +2982,7 @@ pub fn dispatch_packet(packet: &dyn Packet, packetver: u32) -> Vec<GameEvent> {
     if let Some(p) = any.downcast_ref::<PacketZcDisappearEntry>() {
         return vec![GameEvent::VendingBoardHidden { aid: p.maker_aid }];
     }
-    if let Some(p) = any.downcast_ref::<PacketZcPcPurchaseItemlistFrommc2>() {
+    if let Some(p) = any.downcast_ref::<PacketZcPcPurchaseItemListFromMc>() {
         let items = p
             .item_list
             .iter()
@@ -3003,7 +3003,7 @@ pub fn dispatch_packet(packet: &dyn Packet, packetver: u32) -> Vec<GameEvent> {
             items,
         }];
     }
-    if let Some(p) = any.downcast_ref::<PacketZcPcPurchaseMyitemlist>() {
+    if let Some(p) = any.downcast_ref::<PacketZcPcPurchaseMyItemList>() {
         let items = p
             .item_list
             .iter()
@@ -3020,14 +3020,14 @@ pub fn dispatch_packet(packet: &dyn Packet, packetver: u32) -> Vec<GameEvent> {
             .collect();
         return vec![GameEvent::VendingOwnStock { items }];
     }
-    if let Some(p) = any.downcast_ref::<PacketZcPcPurchaseResultFrommc>() {
+    if let Some(p) = any.downcast_ref::<PacketZcPcPurchaseResultFromMc>() {
         return vec![GameEvent::VendingPurchaseResult {
             index: p.index,
             curcount: p.curcount,
             result: p.result,
         }];
     }
-    if let Some(p) = any.downcast_ref::<PacketZcDeleteitemFromMcstore>() {
+    if let Some(p) = any.downcast_ref::<PacketZcDeleteItemFromMcStore>() {
         return vec![GameEvent::VendingStockDecrement {
             index: p.index,
             count: p.count,
@@ -3064,7 +3064,7 @@ pub fn dispatch_packet(packet: &dyn Packet, packetver: u32) -> Vec<GameEvent> {
             },
         }];
     }
-    if let Some(p) = any.downcast_ref::<PacketZcChangestateMer>() {
+    if let Some(p) = any.downcast_ref::<PacketZcChangeStateMer>() {
         return vec![GameEvent::CompanionStateChanged {
             state: p.state,
             gid: p.gid as u32,
@@ -3145,12 +3145,12 @@ pub fn dispatch_packet(packet: &dyn Packet, packetver: u32) -> Vec<GameEvent> {
             value: p.value,
         }];
     }
-    if let Some(p) = any.downcast_ref::<PacketZcHoskillinfoList>() {
+    if let Some(p) = any.downcast_ref::<PacketZcHoSkillInfoList>() {
         return vec![GameEvent::HomunSkillList {
             skills: parse_skill_info_list(&p.skill_list),
         }];
     }
-    if let Some(p) = any.downcast_ref::<PacketZcHoskillinfoUpdate>() {
+    if let Some(p) = any.downcast_ref::<PacketZcHoSkillInfoUpdate>() {
         return vec![GameEvent::HomunSkillUpdate {
             skill: SkillEnum::from_id(p.skid as u32),
             level: p.level,
@@ -3159,12 +3159,12 @@ pub fn dispatch_packet(packet: &dyn Packet, packetver: u32) -> Vec<GameEvent> {
             upgradable: p.upgradable,
         }];
     }
-    if let Some(p) = any.downcast_ref::<PacketZcMerSkillinfoList>() {
+    if let Some(p) = any.downcast_ref::<PacketZcMerSkillInfoList>() {
         return vec![GameEvent::MercenarySkillList {
             skills: parse_skill_info_list(&p.skill_list),
         }];
     }
-    if let Some(p) = any.downcast_ref::<PacketZcMerSkillinfoUpdate>() {
+    if let Some(p) = any.downcast_ref::<PacketZcMerSkillInfoUpdate>() {
         return vec![GameEvent::MercenarySkillUpdate {
             skill: SkillEnum::from_id(p.skid as u32),
             level: p.level,
@@ -3177,7 +3177,7 @@ pub fn dispatch_packet(packet: &dyn Packet, packetver: u32) -> Vec<GameEvent> {
     if any.downcast_ref::<PacketZcStartCapture>().is_some() {
         return vec![GameEvent::PetCaptureStart];
     }
-    if let Some(p) = any.downcast_ref::<PacketZcTrycaptureMonster>() {
+    if let Some(p) = any.downcast_ref::<PacketZcTryCaptureMonster>() {
         return vec![GameEvent::PetCaptureResult { ok: p.result != 0 }];
     }
     if let Some(p) = any.downcast_ref::<PacketZcPropertyPet>() {
@@ -3200,14 +3200,14 @@ pub fn dispatch_packet(packet: &dyn Packet, packetver: u32) -> Vec<GameEvent> {
             food_item_id: p.itid,
         }];
     }
-    if let Some(p) = any.downcast_ref::<PacketZcChangestatePet>() {
+    if let Some(p) = any.downcast_ref::<PacketZcChangeStatePet>() {
         return vec![GameEvent::PetStateChanged {
             ty: p.atype,
             gid: p.gid as u32,
             data: p.data,
         }];
     }
-    if let Some(p) = any.downcast_ref::<PacketZcPeteggList>() {
+    if let Some(p) = any.downcast_ref::<PacketZcPetEggList>() {
         let indices = p.egg_list.iter().map(|e| e.index as u16).collect();
         return vec![GameEvent::PetEggList { indices }];
     }
@@ -3445,7 +3445,7 @@ mod tests {
         let len = wire.len() as i16;
         wire[2..4].copy_from_slice(&len.to_le_bytes());
 
-        let pkt = PacketZcSkillinfoList::from(&wire, packetver);
+        let pkt = PacketZcSkillInfoList::from(&wire, packetver);
         let events = dispatch_packet(&pkt, packetver);
         let GameEvent::SkillListReceived { skills } = &events[0] else {
             panic!("expected SkillListReceived, got {events:?}");
@@ -3531,7 +3531,7 @@ mod tests {
     fn dispatch_broadcast_packets_carry_message_and_color() {
         let packetver = 20120307;
 
-        let mut styled = PacketZcBroadcast2::new(packetver);
+        let mut styled = PacketZcBroadcastStyled::new(packetver);
         styled.set_font_color(0x00ff00);
         styled.set_msg("Server restart soon".to_string());
         styled.fill_raw();
@@ -3637,7 +3637,7 @@ mod tests {
     #[test]
     fn dispatch_map_property_agitzone_is_siege() {
         let packetver = 20120307;
-        let mut agit = PacketZcNotifyMapproperty::new(packetver);
+        let mut agit = PacketZcNotifyMapProperty::new(packetver);
         agit.set_atype(3);
         let agit_events = dispatch_packet(&agit, packetver);
         let [GameEvent::MapPropertyChanged(props)] = agit_events.as_slice() else {
@@ -3645,7 +3645,7 @@ mod tests {
         };
         assert!(props.is_siege());
 
-        let mut normal = PacketZcNotifyMapproperty::new(packetver);
+        let mut normal = PacketZcNotifyMapProperty::new(packetver);
         normal.set_atype(0);
         let normal_events = dispatch_packet(&normal, packetver);
         let [GameEvent::MapPropertyChanged(props)] = normal_events.as_slice() else {
@@ -3658,7 +3658,7 @@ mod tests {
     fn dispatch_pvp_ranking_on_a_free_pvp_map() {
         let packetver = 20120307;
 
-        let mut map = PacketZcNotifyMapproperty::new(packetver);
+        let mut map = PacketZcNotifyMapProperty::new(packetver);
         map.set_atype(1);
         let map_events = dispatch_packet(&map, packetver);
         let [GameEvent::MapPropertyChanged(props)] = map_events.as_slice() else {
@@ -3713,7 +3713,7 @@ mod tests {
     #[test]
     fn dispatch_cart_normal_itemlist3_yields_cart_items() {
         let packetver = 20120307;
-        let mut pkt = PacketZcCartNormalItemlist3::new(packetver);
+        let mut pkt = PacketZcCartNormalItemList::new(packetver);
         pkt.fill_raw();
         let result = dispatch_packet(&pkt, packetver);
         assert!(matches!(
@@ -3726,7 +3726,7 @@ mod tests {
     fn dispatch_storage_open_add_remove_close() {
         let packetver = 20120307;
 
-        let mut count_info = PacketZcNotifyStoreitemCountinfo::new(packetver);
+        let mut count_info = PacketZcNotifyStoreItemCountInfo::new(packetver);
         count_info.set_cur_count(42);
         count_info.set_max_count(600);
         count_info.fill_raw();
@@ -3735,7 +3735,7 @@ mod tests {
             [GameEvent::StorageOpened { cur: 42, max: 600 }]
         ));
 
-        let mut add = PacketZcAddItemToStore2::new(packetver);
+        let mut add = PacketZcAddItemToStore::new(packetver);
         add.set_index(5);
         add.set_count(3);
         add.set_itid(501);
@@ -3890,7 +3890,7 @@ mod tests {
         let parsed = packets::packets_parser::parse(&raw, packetver);
         let p = parsed
             .as_any()
-            .downcast_ref::<PacketCzReqChangecart>()
+            .downcast_ref::<PacketCzReqChangeCart>()
             .expect("parsed as change-cart request");
         assert_eq!(p.num, 3);
     }
@@ -4043,7 +4043,7 @@ mod tests {
         assert_eq!(
             parsed
                 .as_any()
-                .downcast_ref::<PacketCzReqItemidentify>()
+                .downcast_ref::<PacketCzReqItemIdentify>()
                 .unwrap()
                 .index,
             7
@@ -4054,7 +4054,7 @@ mod tests {
         assert_eq!(
             parsed
                 .as_any()
-                .downcast_ref::<PacketCzReqMakingarrow>()
+                .downcast_ref::<PacketCzReqMakingArrow>()
                 .unwrap()
                 .id,
             1750
@@ -4065,7 +4065,7 @@ mod tests {
         assert_eq!(
             parsed
                 .as_any()
-                .downcast_ref::<PacketCzReqWeaponrefine>()
+                .downcast_ref::<PacketCzReqWeaponRefine>()
                 .unwrap()
                 .index,
             42
@@ -4075,7 +4075,7 @@ mod tests {
         let parsed = packets::packets_parser::parse(&raw, packetver);
         let p = parsed
             .as_any()
-            .downcast_ref::<PacketCzReqItemrepair>()
+            .downcast_ref::<PacketCzReqItemRepair>()
             .unwrap();
         assert_eq!(p.target_item_info.index, 3);
         assert_eq!(p.target_item_info.itid, 1201);
@@ -4083,7 +4083,7 @@ mod tests {
         assert_eq!(p.target_item_info.slot.card1, 10);
     }
 
-    // CZ_REQMAKINGITEM (0x018e): the generated `MakableitemInfo` parser is
+    // CZ_REQ_MAKING_ITEM (0x018e): the generated `MakableitemInfo` parser is
     // internally inconsistent (base_len 5 vs an 8-byte body), so re-parsing panics.
     // Assert the outgoing wire bytes directly: id.W, itid.W, mat[3].W = 10 bytes.
     #[test]
@@ -4112,7 +4112,7 @@ mod tests {
         let parsed = packets::packets_parser::parse(&raw, packetver);
         let p = parsed
             .as_any()
-            .downcast_ref::<PacketCzReqOpenstore2>()
+            .downcast_ref::<PacketCzReqOpenStore>()
             .unwrap();
         assert_eq!(p.store_list.len(), 2);
         assert_eq!(p.store_list[0].price, 1000);
@@ -4127,7 +4127,7 @@ mod tests {
         let parsed = packets::packets_parser::parse(&raw, packetver);
         let p = parsed
             .as_any()
-            .downcast_ref::<PacketCzReqOpenstore2>()
+            .downcast_ref::<PacketCzReqOpenStore>()
             .unwrap();
         assert!(!p.result);
         assert!(p.store_list.is_empty());
@@ -4205,7 +4205,7 @@ mod tests {
     #[test]
     fn dispatch_refuse_login_r2_returns_error_code() {
         let packetver = 20120307;
-        let mut pkt = PacketAcRefuseLoginR2::new(packetver);
+        let mut pkt = PacketAcRefuseLoginIntCode::new(packetver);
         pkt.set_error_code(6);
         pkt.fill_raw();
         let result = dispatch_packet(&pkt, packetver);
@@ -4219,7 +4219,7 @@ mod tests {
     #[test]
     fn dispatch_mapmove_returns_map_changed() {
         let packetver = 20120307;
-        let mut pkt = PacketZcNpcackMapmove::new(packetver);
+        let mut pkt = PacketZcNpcAckMapMove::new(packetver);
         let mut map_name = [0 as char; 16];
         for (i, c) in "prt_fild08.gat".chars().enumerate() {
             map_name[i] = c;
@@ -4243,7 +4243,7 @@ mod tests {
     #[test]
     fn dispatch_notify_playermove_decodes_positions() {
         let packetver = 20120307;
-        let mut pkt = PacketZcNotifyPlayermove::new(packetver);
+        let mut pkt = PacketZcNotifyPlayerMove::new(packetver);
         pkt.set_move_start_time(5000);
         let x1: u16 = 100;
         let y1: u16 = 200;
@@ -4278,7 +4278,7 @@ mod tests {
     #[test]
     fn dispatch_accept_enter_decodes_position() {
         let packetver = 20120307;
-        let mut pkt = PacketZcAcceptEnter::new(packetver);
+        let mut pkt = PacketZcAcceptEnterNoFont::new(packetver);
         pkt.set_start_time(1000);
         let encoded = crate::helpers::encode_pos(100, 200, 3);
         pkt.set_pos_dir(encoded);
@@ -4296,7 +4296,7 @@ mod tests {
     #[test]
     fn dispatch_spawn_unit_returns_standing_entity_spawn() {
         let packetver = 20120307;
-        let mut pkt = PacketZcNotifyNewentry7::new(packetver);
+        let mut pkt = PacketZcNotifyNewEntry::new(packetver);
         pkt.set_gid(123456);
         pkt.set_job(1002);
         pkt.set_pos_dir(crate::helpers::encode_pos(100, 200, 3));
@@ -4327,7 +4327,7 @@ mod tests {
     #[test]
     fn dispatch_standentry_is_not_a_new_entry() {
         let packetver = 20120307;
-        let mut pkt = PacketZcNotifyStandentry7::new(packetver);
+        let mut pkt = PacketZcNotifyStandEntry::new(packetver);
         pkt.set_gid(123456);
         pkt.set_job(1002);
         pkt.set_pos_dir(crate::helpers::encode_pos(100, 200, 3));
@@ -4409,7 +4409,7 @@ mod tests {
         for skill_id in [11i32, 14, 19, 20, 0, 0, 0] {
             wire.extend_from_slice(&skill_id.to_le_bytes());
         }
-        let pkt = PacketZcAutospelllist::from(&wire, packetver);
+        let pkt = PacketZcAutoSpellList::from(&wire, packetver);
         let events = dispatch_packet(&pkt, packetver);
         match &events[0] {
             GameEvent::AutoSpellList { skills } => assert_eq!(
@@ -4428,7 +4428,7 @@ mod tests {
     #[test]
     fn dispatch_stopmove_returns_entity_stop_move() {
         let packetver = 20120307;
-        let mut pkt = PacketZcStopmove::new(packetver);
+        let mut pkt = PacketZcStopMove::new(packetver);
         pkt.set_aid(77);
         pkt.set_x_pos(120);
         pkt.set_y_pos(130);
@@ -4447,7 +4447,7 @@ mod tests {
     #[test]
     fn dispatch_notify_act_returns_entity_action() {
         let packetver = 20120307;
-        let mut pkt = PacketZcNotifyAct::new(packetver);
+        let mut pkt = PacketZcNotifyActShortDamage::new(packetver);
         pkt.set_gid(50);
         pkt.set_target_gid(99);
         pkt.set_action(8);
@@ -4520,7 +4520,7 @@ mod tests {
     #[test]
     fn dispatch_notify_playerchat_returns_own_chat() {
         let packetver = 20120307;
-        let mut pkt = PacketZcNotifyPlayerchat::new(packetver);
+        let mut pkt = PacketZcNotifyPlayerChat::new(packetver);
         pkt.set_msg("Me : Hi there".to_string());
         pkt.set_msg_raw("Me : Hi there".as_bytes().to_vec());
         pkt.fill_raw();
@@ -4604,7 +4604,7 @@ mod tests {
     #[test]
     fn dispatch_ack_reqname_returns_entity_name_received() {
         let packetver = 20120307;
-        let mut pkt = PacketZcAckReqname::new(packetver);
+        let mut pkt = PacketZcAckReqName::new(packetver);
         pkt.set_aid(42);
         let mut name = ['\0'; 24];
         for (i, c) in "Poring".chars().enumerate() {
@@ -4626,7 +4626,7 @@ mod tests {
     #[test]
     fn dispatch_ack_reqname_bygid_returns_char_and_entity_name() {
         let packetver = 20120307;
-        let mut pkt = PacketZcAckReqnameBygid::new(packetver);
+        let mut pkt = PacketZcAckReqNameByGid::new(packetver);
         pkt.set_gid(77);
         let mut name = ['\0'; 24];
         for (i, c) in "Lidia".chars().enumerate() {
@@ -4652,7 +4652,7 @@ mod tests {
     #[test]
     fn dispatch_ack_reqnameall_returns_entity_names_received() {
         let packetver = 20120307;
-        let mut pkt = PacketZcAckReqnameall::new(packetver);
+        let mut pkt = PacketZcAckReqNameAll::new(packetver);
         pkt.set_aid(42);
         let fill = |s: &str| {
             let mut buf = ['\0'; 24];
@@ -4766,7 +4766,7 @@ mod tests {
     #[test]
     fn dispatch_sprite_change2_returns_entity_sprite_changed() {
         let packetver = 20120307;
-        let mut pkt = PacketZcSpriteChange2::new(packetver);
+        let mut pkt = PacketZcSpriteChange::new(packetver);
         pkt.set_gid(150000);
         pkt.set_atype(2);
         pkt.set_value(1);
@@ -4821,7 +4821,7 @@ mod tests {
     #[test]
     fn dispatch_npcsprite_change_returns_class_sprite_change() {
         let packetver = 20120307;
-        let mut pkt = PacketZcNpcspriteChange::new(packetver);
+        let mut pkt = PacketZcNpcSpriteChange::new(packetver);
         pkt.set_gid(150000);
         pkt.set_atype(0);
         pkt.set_value(1160);
@@ -4847,7 +4847,7 @@ mod tests {
     #[test]
     fn dispatch_ack_itemrefining_returns_item_refining_result() {
         let packetver = 20120307;
-        let mut pkt = PacketZcAckItemrefining::new(packetver);
+        let mut pkt = PacketZcAckItemRefining::new(packetver);
         pkt.set_result(1);
         pkt.set_item_index(7);
         pkt.set_refining_level(4);
@@ -4868,7 +4868,7 @@ mod tests {
     #[test]
     fn dispatch_notify_effect2_returns_play_effect_on_entity() {
         let packetver = 20120307;
-        let mut pkt = PacketZcNotifyEffect2::new(packetver);
+        let mut pkt = PacketZcNotifyEffectSpecial::new(packetver);
         pkt.set_aid(150000);
         pkt.set_effect_id(28);
         let result = dispatch_packet(&pkt, packetver);
@@ -5002,7 +5002,7 @@ mod tests {
             other => panic!("expected MvpFeedback exp, got {other:?}"),
         }
 
-        let thrown = PacketZcThrowMvpitem::new(packetver);
+        let thrown = PacketZcThrowMvpItem::new(packetver);
         match &dispatch_packet(&thrown, packetver)[0] {
             GameEvent::MvpFeedback {
                 kind: MvpFeedbackKind::ItemDropped,
@@ -5010,7 +5010,7 @@ mod tests {
             other => panic!("expected MvpFeedback dropped, got {other:?}"),
         }
 
-        let mut pvp = PacketZcAckPvppoint::new(packetver);
+        let mut pvp = PacketZcAckPvpPoint::new(packetver);
         let mut info = PVPINFO::new(packetver);
         info.set_win_point(7);
         info.set_lose_point(2);
@@ -5027,7 +5027,7 @@ mod tests {
     #[test]
     fn skillmsg_resolves_known_ids_and_stays_silent_otherwise() {
         let packetver = 20120307;
-        let mut pkt = PacketZcSkillmsg::new(packetver);
+        let mut pkt = PacketZcSkillMsg::new(packetver);
         pkt.set_msg_no(0x17);
         match &dispatch_packet(&pkt, packetver)[0] {
             GameEvent::SkillMsg { msg_no } => assert_eq!(
@@ -5049,7 +5049,7 @@ mod tests {
     #[test]
     fn talkbox_contents_trim_at_the_first_nul_and_decode_euc_kr() {
         let packetver = 20120307;
-        let mut pkt = PacketZcTalkboxChatcontents::new(packetver);
+        let mut pkt = PacketZcTalkBoxChatContents::new(packetver);
         pkt.set_aid(4000);
         let mut contents = [0xffu8; 80];
         // "프론테라" followed by a NUL and trailing junk.
@@ -5071,7 +5071,7 @@ mod tests {
     #[test]
     fn showdigit_and_boss_info_reject_unknown_types() {
         let packetver = 20120307;
-        let mut digit = PacketZcShowdigit::new(packetver);
+        let mut digit = PacketZcShowDigit::new(packetver);
         digit.set_atype(3);
         digit.set_value(60);
         match &dispatch_packet(&digit, packetver)[0] {
@@ -5298,7 +5298,7 @@ mod tests {
     #[test]
     fn dispatch_useskill_ack2_returns_skill_casting() {
         let packetver = 20120307;
-        let mut pkt = PacketZcUseskillAck2::new(packetver);
+        let mut pkt = PacketZcUseSkillAck::new(packetver);
         pkt.set_aid(150000);
         pkt.set_target_id(200000);
         pkt.set_skid(10);
@@ -5331,7 +5331,7 @@ mod tests {
     #[test]
     fn dispatch_notify_hp_to_groupm_returns_entity_hp_changed() {
         let packetver = 20120307;
-        let mut pkt = PacketZcNotifyHpToGroupm::new(packetver);
+        let mut pkt = PacketZcNotifyHpToGroupMemberShortHp::new(packetver);
         pkt.set_aid(42);
         pkt.set_hp(350);
         pkt.set_maxhp(500);
@@ -5356,7 +5356,7 @@ mod tests {
     #[test]
     fn dispatch_autorun_skill_returns_auto_cast() {
         let packetver = 20120307;
-        let mut pkt = PacketZcAutorunSkill::new(packetver);
+        let mut pkt = PacketZcAutoRunSkill::new(packetver);
         pkt.data.skid = SkillEnum::AllResurrection.id() as i16;
         pkt.data.level = 1;
         pkt.data.atype = SkillTargetType::Friend.value() as i32;
@@ -5476,8 +5476,8 @@ mod tests {
         raw.push(2);
         let parsed = packets::packets_parser::parse(&raw, packetver);
         assert!(
-            parsed.as_any().is::<PacketZcShowImage2>(),
-            "0x01b3 must parse as ZC_SHOW_IMAGE2, got {}",
+            parsed.as_any().is::<PacketZcShowImage>(),
+            "0x01b3 must parse as ZC_SHOW_IMAGE, got {}",
             parsed.name()
         );
         match dispatch_packet(parsed.as_ref(), packetver).as_slice() {
@@ -5496,8 +5496,8 @@ mod tests {
         raw.extend_from_slice(&110002361u32.to_le_bytes());
         let parsed = packets::packets_parser::parse(&raw, packetver);
         assert!(
-            parsed.as_any().is::<PacketZcOpenEditdlgstr>(),
-            "0x01d4 must parse as ZC_OPEN_EDITDLGSTR, got {}",
+            parsed.as_any().is::<PacketZcOpenEditDlgStr>(),
+            "0x01d4 must parse as ZC_OPEN_EDIT_DLG_STR, got {}",
             parsed.name()
         );
         match dispatch_packet(parsed.as_ref(), packetver).as_slice() {
@@ -5509,7 +5509,7 @@ mod tests {
     #[test]
     fn dispatch_state_change3_returns_entity_option_changed() {
         let packetver = 20120307;
-        let mut pkt = PacketZcStateChange3::new(packetver);
+        let mut pkt = PacketZcStateChange::new(packetver);
         pkt.set_aid(150000);
         pkt.set_body_state(3);
         pkt.set_health_state(0x1);
@@ -5537,7 +5537,7 @@ mod tests {
     #[test]
     fn a_walking_actor_entering_sight_carries_its_opt3_buffs() {
         let packetver = 20120307;
-        let mut pkt = PacketZcNotifyMoveentry9::new(packetver);
+        let mut pkt = PacketZcNotifyMoveEntry::new(packetver);
         pkt.set_gid(150000);
         pkt.set_clevel(88);
         pkt.set_virtue(ragnarok_game::effect::opt3::OPT3_BERSERK);
@@ -5566,7 +5566,7 @@ mod tests {
     fn skill_entry2_splits_graffiti_from_ordinary_ground_units() {
         let packetver = 20120307;
 
-        let mut graffiti = PacketZcSkillEntry2::new(packetver);
+        let mut graffiti = PacketZcSkillEntryWithMsg::new(packetver);
         graffiti.set_aid(4000);
         graffiti.set_creator_aid(150000);
         graffiti.set_x_pos(120);
@@ -5597,7 +5597,7 @@ mod tests {
             other => panic!("expected GraffitiEntered, got {other:?}"),
         }
 
-        let mut unit = PacketZcSkillEntry2::new(packetver);
+        let mut unit = PacketZcSkillEntryWithMsg::new(packetver);
         unit.set_aid(4001);
         unit.set_job(0x7f);
         unit.set_is_visible(true);
@@ -5635,7 +5635,7 @@ mod tests {
             other => panic!("expected WhisperSettingResult, got {other:?}"),
         }
 
-        let mut memo = PacketZcAckRememberWarppoint::new(packetver);
+        let mut memo = PacketZcAckRememberWarpPoint::new(packetver);
         memo.set_error_code(1);
         memo.fill_raw();
         match dispatch_packet(&memo, packetver).as_slice() {
@@ -5657,7 +5657,7 @@ mod tests {
     fn refusal_replies_carry_their_reason_to_the_game() {
         let packetver = 20120307;
 
-        let mut mapinfo = PacketZcNotifyMapinfo::new(packetver);
+        let mut mapinfo = PacketZcNotifyMapInfo::new(packetver);
         mapinfo.set_atype(2);
         mapinfo.fill_raw();
         match dispatch_packet(&mapinfo, packetver).as_slice() {
@@ -5673,7 +5673,7 @@ mod tests {
             other => panic!("expected ActionFailure, got {other:?}"),
         }
 
-        let mut fail = PacketZcAckTouseskill::new(packetver);
+        let mut fail = PacketZcAckToUseSkill::new(packetver);
         fail.set_skid(SkillEnum::AcDouble.id() as u16);
         fail.set_num(0x0499_0002);
         fail.set_result(false);
@@ -5689,7 +5689,7 @@ mod tests {
             other => panic!("expected SkillFailed, got {other:?}"),
         }
 
-        let mut no_bullet = PacketZcAckTouseskill::new(packetver);
+        let mut no_bullet = PacketZcAckToUseSkill::new(packetver);
         no_bullet.set_skid(0);
         no_bullet.set_num(0);
         no_bullet.set_result(false);
@@ -5725,7 +5725,7 @@ mod tests {
     #[test]
     fn update_mapinfo_reports_the_new_cell_type() {
         let packetver = 20120307;
-        let mut pkt = PacketZcUpdateMapinfo::new(packetver);
+        let mut pkt = PacketZcUpdateMapInfo::new(packetver);
         pkt.set_x_pos(55);
         pkt.set_y_pos(66);
         pkt.set_atype(5);
@@ -5742,7 +5742,7 @@ mod tests {
     fn guild_member_status_packets_both_report_online() {
         let packetver = 20120307;
 
-        let mut bulk = PacketZcUpdateCharstat::new(packetver);
+        let mut bulk = PacketZcUpdateCharStatStatusOnly::new(packetver);
         bulk.set_aid(2000000);
         bulk.set_gid(150000);
         bulk.set_status(1);
@@ -5763,7 +5763,7 @@ mod tests {
             other => panic!("expected GuildMemberOnline, got {other:?}"),
         }
 
-        let mut notify = PacketZcUpdateCharstat2::new(packetver);
+        let mut notify = PacketZcUpdateCharStat::new(packetver);
         notify.set_aid(2000000);
         notify.set_gid(150000);
         notify.set_status(0);
@@ -5810,7 +5810,7 @@ mod tests {
     #[test]
     fn dispatch_npc_showefst_update_returns_opt3() {
         let packetver = 20120307;
-        let mut pkt = PacketZcNpcShowefstUpdate::new(packetver);
+        let mut pkt = PacketZcNpcShowEfstUpdate::new(packetver);
         pkt.set_aid(150000);
         pkt.set_effect_state(0x20);
         pkt.set_clevel(88);
@@ -5838,7 +5838,7 @@ mod tests {
     fn dispatch_msg_state_change_routes_buff_and_keeps_postdelay() {
         let packetver = 20120307;
 
-        let mut pkt = PacketZcMsgStateChange2::new(packetver);
+        let mut pkt = PacketZcMsgStateChange::new(packetver);
         pkt.set_index(192);
         pkt.set_aid(150000);
         pkt.set_state(true);
@@ -5862,7 +5862,7 @@ mod tests {
             other => panic!("expected StatusEffectChanged, got {other:?}"),
         }
 
-        let mut pkt = PacketZcMsgStateChange2::new(packetver);
+        let mut pkt = PacketZcMsgStateChange::new(packetver);
         pkt.set_index(46);
         pkt.set_aid(150000);
         pkt.set_state(true);
@@ -5874,7 +5874,7 @@ mod tests {
             GameEvent::AfterCastDelay { delay_ms: 500 }
         ));
 
-        let mut pkt = PacketZcMsgStateChange::new(packetver);
+        let mut pkt = PacketZcMsgStateChangeNoTimer::new(packetver);
         pkt.set_index(192);
         pkt.set_aid(150000);
         pkt.set_state(false);
@@ -5951,7 +5951,7 @@ mod tests {
     #[test]
     fn dispatch_room_newentry_returns_chat_room_upsert() {
         let packetver = 20120307;
-        let mut pkt = PacketZcRoomNewentry::new(packetver);
+        let mut pkt = PacketZcRoomNewEntry::new(packetver);
         pkt.set_aid(150000);
         pkt.set_room_id(7);
         pkt.set_maxcount(20);
@@ -5999,7 +5999,7 @@ mod tests {
         assert_eq!(&raw[7..13], b"secret");
         assert_eq!(&raw[15..], b"Trade"); // title, not null-terminated
 
-        let mut ack = PacketZcAckCreateChatroom::new(packetver);
+        let mut ack = PacketZcAckCreateChatRoom::new(packetver);
         ack.set_result(0);
         ack.fill_raw();
         assert!(matches!(
@@ -6181,20 +6181,20 @@ mod tests {
             other => panic!("unexpected pet event: {other:?}"),
         };
 
-        let mut init = PacketZcChangestatePet::new(packetver);
+        let mut init = PacketZcChangeStatePet::new(packetver);
         init.set_atype(0);
         init.set_gid(pet_gid as i32);
         init.fill_raw();
         apply(&mut pet, &init);
 
-        let mut marker = PacketZcChangestatePet::new(packetver);
+        let mut marker = PacketZcChangeStatePet::new(packetver);
         marker.set_atype(5);
         marker.set_gid(pet_gid as i32);
         marker.set_data(100);
         marker.fill_raw();
         apply(&mut pet, &marker);
 
-        let mut accessory = PacketZcChangestatePet::new(packetver);
+        let mut accessory = PacketZcChangeStatePet::new(packetver);
         accessory.set_atype(3);
         accessory.set_gid(pet_gid as i32);
         accessory.set_data(accessory_view);
@@ -6242,7 +6242,7 @@ mod tests {
         let mut e1 = PeteggitemInfo::new(packetver);
         e1.set_index(9);
         e1.fill_raw();
-        let mut pkt = PacketZcPeteggList::new(packetver);
+        let mut pkt = PacketZcPetEggList::new(packetver);
         pkt.set_packet_length(4 + 4);
         pkt.set_egg_list(vec![e0, e1]);
         pkt.fill_raw();
@@ -6419,7 +6419,7 @@ mod tests {
             b.map(|c| c as char)
         };
 
-        let mut couple = PacketZcCouplename::new(packetver);
+        let mut couple = PacketZcCoupleName::new(packetver);
         couple.set_couple_name(name24("Juliet"));
         couple.fill_raw();
         assert!(matches!(

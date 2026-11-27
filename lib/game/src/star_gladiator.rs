@@ -30,7 +30,7 @@ pub struct StarNotice {
     pub chime: bool,
 }
 
-/// Target HP readout, the one ZC_STARSKILL notice with no msgstringtable entry.
+/// Target HP readout, the one ZC_STAR_SKILL notice with no msgstringtable entry.
 pub const TARGET_HP_RESULT: u8 = 40;
 
 pub fn star_notice(result: u8, star: u8) -> Option<StarNotice> {

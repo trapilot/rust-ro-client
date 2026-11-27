@@ -119,10 +119,10 @@ pub enum GameEvent {
         result: u32,
     },
     /// The account password was accepted and the character was queued for
-    /// deletion (classic `PacketHcAcceptDeletechar`, 0x6F00).
+    /// deletion (classic `PacketHcAcceptDeleteChar`, 0x6F00).
     CharacterDeleteAccepted,
     /// The deletion was refused; `error_code` is the classic refuse reason
-    /// (`PacketHcRefuseDeletechar`, 0x7000).
+    /// (`PacketHcRefuseDeleteChar`, 0x7000).
     CharacterDeleteRefused {
         error_code: u8,
     },

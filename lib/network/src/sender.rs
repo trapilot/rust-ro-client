@@ -41,7 +41,7 @@ pub fn build_select_char_packet(slot: u8, packetver: u32) -> Vec<u8> {
 }
 
 pub fn build_select_accessible_map_packet(slot: u8, map_index: u8, packetver: u32) -> Vec<u8> {
-    let mut pkt = PacketChSelectAccessibleMapname::new(packetver);
+    let mut pkt = PacketChSelectAccessibleMapName::new(packetver);
     pkt.set_char_num(slot);
     pkt.set_map_list_num(map_index);
     pkt.fill_raw();
@@ -55,7 +55,7 @@ pub fn build_make_char_packet(
     hair_color: u16,
     packetver: u32,
 ) -> Vec<u8> {
-    let mut pkt = PacketChMakeChar2::new(packetver);
+    let mut pkt = PacketChMakeCharNoStats::new(packetver);
     pkt.set_name(name_to_char24(name));
     pkt.set_char_num(slot);
     pkt.set_head_pal(hair_color as i16);
@@ -88,7 +88,7 @@ pub fn build_make_char_with_stats_packet(
 }
 
 pub fn build_delete_char_reserve_packet(gid: u32, packetver: u32) -> Vec<u8> {
-    let mut pkt = PacketChDeleteChar3Reserved::new(packetver);
+    let mut pkt = PacketChDeleteCharReserved::new(packetver);
     pkt.set_gid(gid);
     pkt.fill_raw();
     pkt.raw
@@ -109,7 +109,7 @@ pub fn build_delete_char_confirm_packet(gid: u32, password: &str, packetver: u32
 }
 
 pub fn build_delete_char_cancel_packet(gid: u32, packetver: u32) -> Vec<u8> {
-    let mut pkt = PacketChDeleteChar3Cancel::new(packetver);
+    let mut pkt = PacketChDeleteCharCancel::new(packetver);
     pkt.set_gid(gid);
     pkt.fill_raw();
     pkt.raw
@@ -123,7 +123,7 @@ pub fn build_request_move_packet(dest_x: u16, dest_y: u16, packetver: u32) -> Ve
 }
 
 pub fn build_map_loaded_packet(packetver: u32) -> Vec<u8> {
-    let mut pkt = PacketCzNotifyActorinit::new(packetver);
+    let mut pkt = PacketCzNotifyActorInit::new(packetver);
     pkt.fill_raw();
     pkt.raw
 }
@@ -298,8 +298,8 @@ mod tests {
         let parsed = packets::packets_parser::parse(&raw, 20111102);
         let pkt = parsed
             .as_any()
-            .downcast_ref::<PacketCzUseSkillTogroundWithtalkbox>()
-            .expect("expected PacketCzUseSkillTogroundWithtalkbox");
+            .downcast_ref::<PacketCzUseSkillToGroundWithTalkBox>()
+            .expect("expected PacketCzUseSkillToGroundWithTalkBox");
         assert_eq!(pkt.skid, SkillEnum::RgGraffiti.id() as u16);
         assert_eq!(pkt.selected_level, 1);
         assert_eq!((pkt.x_pos, pkt.y_pos), (155, 182));
@@ -309,7 +309,7 @@ mod tests {
 }
 
 pub fn build_zone_enter_packet(session: &Session) -> Vec<u8> {
-    let mut pkt = PacketCzEnter2::new(session.packetver);
+    let mut pkt = PacketCzEnter::new(session.packetver);
     pkt.set_aid(session.account_id);
     pkt.set_gid(session.char_id);
     pkt.set_auth_code(session.login_id1);
@@ -340,7 +340,7 @@ pub fn build_progress_done_packet(packetver: u32) -> Vec<u8> {
 }
 
 pub fn build_cancel_lockon_packet(packetver: u32) -> Vec<u8> {
-    let mut pkt = PacketCzCancelLockon::new(packetver);
+    let mut pkt = PacketCzCancelLockOn::new(packetver);
     pkt.fill_raw();
     pkt.raw
 }
@@ -366,28 +366,28 @@ pub fn build_request_time_packet(client_time: u32, packetver: u32) -> Vec<u8> {
 }
 
 pub fn build_reqname_packet(entity_id: u32, packetver: u32) -> Vec<u8> {
-    let mut pkt = PacketCzReqname::new(packetver);
+    let mut pkt = PacketCzReqName::new(packetver);
     pkt.set_aid(entity_id);
     pkt.fill_raw_with_packetver(Some(packetver));
     pkt.raw
 }
 
 pub fn build_solve_char_name_packet(char_id: u32, packetver: u32) -> Vec<u8> {
-    let mut pkt = PacketCzReqnameBygid::new(packetver);
+    let mut pkt = PacketCzReqNameByGid::new(packetver);
     pkt.set_gid(char_id);
     pkt.fill_raw_with_packetver(Some(packetver));
     pkt.raw
 }
 
 pub fn build_char_ping_packet(account_id: u32, packetver: u32) -> Vec<u8> {
-    let mut pkt = PacketPing::new(packetver);
+    let mut pkt = PacketBiPing::new(packetver);
     pkt.set_aid(account_id);
     pkt.fill_raw();
     pkt.raw
 }
 
 pub fn build_contact_npc_packet(npc_id: u32, packetver: u32) -> Vec<u8> {
-    let mut pkt = PacketCzContactnpc::new(packetver);
+    let mut pkt = PacketCzContactNpc::new(packetver);
     pkt.set_naid(npc_id);
     pkt.set_atype(1);
     pkt.fill_raw();
@@ -417,7 +417,7 @@ pub fn build_npc_menu_select_packet(npc_id: u32, choice: u8, packetver: u32) -> 
 }
 
 pub fn build_npc_input_number_packet(npc_id: u32, value: i32, packetver: u32) -> Vec<u8> {
-    let mut pkt = PacketCzInputEditdlg::new(packetver);
+    let mut pkt = PacketCzInputEditDlg::new(packetver);
     pkt.set_naid(npc_id);
     pkt.set_value(value);
     pkt.fill_raw();
@@ -425,7 +425,7 @@ pub fn build_npc_input_number_packet(npc_id: u32, value: i32, packetver: u32) ->
 }
 
 pub fn build_npc_input_string_packet(npc_id: u32, text: &str, packetver: u32) -> Vec<u8> {
-    let mut pkt = PacketCzInputEditdlgstr::new(packetver);
+    let mut pkt = PacketCzInputEditDlgStr::new(packetver);
     let msg = format!("{text}\0");
     pkt.set_packet_length((8 + msg.len()) as i16);
     pkt.set_naid(npc_id);
@@ -435,7 +435,7 @@ pub fn build_npc_input_string_packet(npc_id: u32, text: &str, packetver: u32) ->
 }
 
 pub fn build_npc_deal_type_packet(npc_id: u32, deal_type: u8, packetver: u32) -> Vec<u8> {
-    let mut pkt = PacketCzAckSelectDealtype::new(packetver);
+    let mut pkt = PacketCzAckSelectDealType::new(packetver);
     pkt.set_naid(npc_id);
     pkt.set_atype(deal_type);
     pkt.fill_raw();
@@ -465,7 +465,7 @@ pub fn build_create_chatroom_packet(
     password: &str,
     packetver: u32,
 ) -> Vec<u8> {
-    let mut pkt = PacketCzCreateChatroom::new(packetver);
+    let mut pkt = PacketCzCreateChatRoom::new(packetver);
     pkt.set_packet_length((15 + title.len()) as i16);
     pkt.set_size(limit);
     pkt.set_atype(public as u8);
@@ -482,7 +482,7 @@ pub fn build_change_chatroom_packet(
     password: &str,
     packetver: u32,
 ) -> Vec<u8> {
-    let mut pkt = PacketCzChangeChatroom::new(packetver);
+    let mut pkt = PacketCzChangeChatRoom::new(packetver);
     pkt.set_packet_length((15 + title.len()) as i16);
     pkt.set_size(limit);
     pkt.set_atype(public as u8);
@@ -522,13 +522,13 @@ pub fn build_exit_room_packet(packetver: u32) -> Vec<u8> {
 }
 
 pub fn build_remember_warppoint_packet(packetver: u32) -> Vec<u8> {
-    let mut pkt = PacketCzRememberWarppoint::new(packetver);
+    let mut pkt = PacketCzRememberWarpPoint::new(packetver);
     pkt.fill_raw();
     pkt.raw
 }
 
 pub fn build_lesseffect_packet(is_less: bool, packetver: u32) -> Vec<u8> {
-    let mut pkt = PacketCzLesseffect::new(packetver);
+    let mut pkt = PacketCzLessEffect::new(packetver);
     pkt.set_is_less(is_less as i32);
     pkt.fill_raw();
     pkt.raw
@@ -559,7 +559,7 @@ pub fn build_give_manner_point_packet(
 }
 
 pub fn build_give_manner_byname_packet(name: &str, packetver: u32) -> Vec<u8> {
-    let mut pkt = PacketCzReqGiveMannerByname::new(packetver);
+    let mut pkt = PacketCzReqGiveMannerByName::new(packetver);
     pkt.set_char_name(name_to_char24(name));
     pkt.fill_raw();
     pkt.raw
@@ -573,7 +573,7 @@ pub fn build_status_gm_packet(name: &str, packetver: u32) -> Vec<u8> {
 }
 
 pub fn build_account_name_packet(aid: u32, packetver: u32) -> Vec<u8> {
-    let mut pkt = PacketCzReqAccountname::new(packetver);
+    let mut pkt = PacketCzReqAccountName::new(packetver);
     pkt.set_aid(aid);
     pkt.fill_raw();
     pkt.raw
@@ -636,7 +636,7 @@ pub fn build_setting_whisper_state_packet(block_all: bool, packetver: u32) -> Ve
 }
 
 pub fn build_purchase_item_list_packet(items: &[(i16, u16)], packetver: u32) -> Vec<u8> {
-    let mut pkt = PacketCzPcPurchaseItemlist::new(packetver);
+    let mut pkt = PacketCzPcPurchaseItemList::new(packetver);
     let item_list: Vec<CzPurchaseItem> = items
         .iter()
         .map(|(count, item_id)| {
@@ -654,7 +654,7 @@ pub fn build_purchase_item_list_packet(items: &[(i16, u16)], packetver: u32) -> 
 }
 
 pub fn build_sell_item_list_packet(items: &[(i16, i16)], packetver: u32) -> Vec<u8> {
-    let mut pkt = PacketCzPcSellItemlist::new(packetver);
+    let mut pkt = PacketCzPcSellItemList::new(packetver);
     let item_list: Vec<CzSellItem> = items
         .iter()
         .map(|(index, count)| {
@@ -909,20 +909,20 @@ pub fn build_mail_send_packet(to: &str, title: &str, body: &str, _packetver: u32
 }
 
 pub fn build_cartoff_packet(packetver: u32) -> Vec<u8> {
-    let mut pkt = PacketCzReqCartoff::new(packetver);
+    let mut pkt = PacketCzReqCartOff::new(packetver);
     pkt.fill_raw();
     pkt.raw
 }
 
 pub fn build_change_cart_packet(num: i16, packetver: u32) -> Vec<u8> {
-    let mut pkt = PacketCzReqChangecart::new(packetver);
+    let mut pkt = PacketCzReqChangeCart::new(packetver);
     pkt.set_num(num);
     pkt.fill_raw();
     pkt.raw
 }
 
 pub fn build_upgrade_skill_packet(skill: SkillEnum, packetver: u32) -> Vec<u8> {
-    let mut pkt = PacketCzUpgradeSkilllevel::new(packetver);
+    let mut pkt = PacketCzUpgradeSkillLevel::new(packetver);
     pkt.set_skid(skill.id() as u16);
     pkt.fill_raw();
     pkt.raw
@@ -956,14 +956,14 @@ pub fn build_shortcut_key_change_packet(
 }
 
 pub fn build_card_composition_list_packet(card_index: u16, packetver: u32) -> Vec<u8> {
-    let mut pkt = PacketCzReqItemcompositionList::new(packetver);
+    let mut pkt = PacketCzReqItemCompositionList::new(packetver);
     pkt.set_card_index(card_index as i16);
     pkt.fill_raw();
     pkt.raw
 }
 
 pub fn build_card_composition_packet(card_index: u16, equip_index: u16, packetver: u32) -> Vec<u8> {
-    let mut pkt = PacketCzReqItemcomposition::new(packetver);
+    let mut pkt = PacketCzReqItemComposition::new(packetver);
     pkt.set_card_index(card_index as i16);
     pkt.set_equip_index(equip_index as i16);
     pkt.fill_raw();
@@ -991,7 +991,7 @@ pub fn build_use_skill_to_ground_packet(
     y: i16,
     packetver: u32,
 ) -> Vec<u8> {
-    let mut pkt = PacketCzUseSkillToground::new(packetver);
+    let mut pkt = PacketCzUseSkillToGround::new(packetver);
     pkt.set_selected_level(level);
     pkt.set_skid(skill.id() as u16);
     pkt.set_x_pos(x);
@@ -1008,7 +1008,7 @@ pub fn build_use_skill_to_ground_with_talkbox_packet(
     message: &str,
     packetver: u32,
 ) -> Vec<u8> {
-    let mut pkt = PacketCzUseSkillTogroundWithtalkbox::new(packetver);
+    let mut pkt = PacketCzUseSkillToGroundWithTalkBox::new(packetver);
     pkt.set_selected_level(level);
     pkt.set_skid(skill.id() as u16);
     pkt.set_x_pos(x);
@@ -1023,7 +1023,7 @@ pub fn build_use_skill_to_ground_with_talkbox_packet(
 }
 
 pub fn build_select_warppoint_packet(skill: SkillEnum, map_name: &str, packetver: u32) -> Vec<u8> {
-    let mut pkt = PacketCzSelectWarppoint::new(packetver);
+    let mut pkt = PacketCzSelectWarpPoint::new(packetver);
     pkt.set_skid(skill.id() as u16);
     let mut bytes = [0u8; 16];
     let src = map_name.as_bytes();
@@ -1035,7 +1035,7 @@ pub fn build_select_warppoint_packet(skill: SkillEnum, map_name: &str, packetver
 }
 
 pub fn build_remove_option_packet(packetver: u32) -> Vec<u8> {
-    let mut pkt = PacketCzReqCartoff::new(packetver);
+    let mut pkt = PacketCzReqCartOff::new(packetver);
     pkt.fill_raw();
     pkt.raw
 }
@@ -1055,7 +1055,7 @@ fn name_to_char24(name: &str) -> [char; 24] {
 }
 
 pub fn build_make_party_packet(name: &str, packetver: u32) -> Vec<u8> {
-    let mut pkt = PacketCzMakeGroup::new(packetver);
+    let mut pkt = PacketCzMakeGroupNoRules::new(packetver);
     pkt.set_group_name(name_to_char24(name));
     pkt.fill_raw();
     pkt.raw
@@ -1133,7 +1133,7 @@ pub fn build_expel_party_member_packet(aid: u32, name: &str, packetver: u32) -> 
 }
 
 pub fn build_change_party_exp_option_packet(exp_option: u32, packetver: u32) -> Vec<u8> {
-    let mut pkt = PacketCzChangeGroupexpoption::new(packetver);
+    let mut pkt = PacketCzChangeGroupExpOption::new(packetver);
     pkt.set_exp_option(exp_option);
     pkt.fill_raw();
     pkt.raw
@@ -1145,7 +1145,7 @@ pub fn build_make_party2_packet(
     item_division_rule: u8,
     packetver: u32,
 ) -> Vec<u8> {
-    let mut pkt = PacketCzMakeGroup2::new(packetver);
+    let mut pkt = PacketCzMakeGroup::new(packetver);
     pkt.set_group_name(name_to_char24(name));
     pkt.set_item_pickup_rule(item_pickup_rule);
     pkt.set_item_division_rule(item_division_rule);
@@ -1189,7 +1189,7 @@ pub fn build_ack_add_friend_packet(
 }
 
 pub fn build_agree_star_place_packet(which: i8, packetver: u32) -> Vec<u8> {
-    let mut pkt = PacketCzAgreeStarplace::new(packetver);
+    let mut pkt = PacketCzAgreeStarPlace::new(packetver);
     pkt.set_which(which);
     pkt.fill_raw();
     pkt.raw
@@ -1215,21 +1215,21 @@ pub fn build_party_chat_packet(msg: &str, packetver: u32) -> Vec<u8> {
 // --- Skill-triggered production / selection windows ---
 
 pub fn build_req_itemidentify_packet(index: i16, packetver: u32) -> Vec<u8> {
-    let mut pkt = PacketCzReqItemidentify::new(packetver);
+    let mut pkt = PacketCzReqItemIdentify::new(packetver);
     pkt.set_index(index);
     pkt.fill_raw();
     pkt.raw
 }
 
 pub fn build_req_makingarrow_packet(item_id: u16, packetver: u32) -> Vec<u8> {
-    let mut pkt = PacketCzReqMakingarrow::new(packetver);
+    let mut pkt = PacketCzReqMakingArrow::new(packetver);
     pkt.set_id(item_id);
     pkt.fill_raw();
     pkt.raw
 }
 
 pub fn build_req_makingitem_packet(item_id: u16, materials: [u16; 3], packetver: u32) -> Vec<u8> {
-    let mut pkt = PacketCzReqmakingitem::new(packetver);
+    let mut pkt = PacketCzReqMakingItem::new(packetver);
     let mut info = MakableitemInfo::new(packetver);
     info.set_itid(item_id);
     // The generated `fill_raw` serializes `material_id_raw` (not `material_id`),
@@ -1247,7 +1247,7 @@ pub fn build_req_makingitem_packet(item_id: u16, materials: [u16; 3], packetver:
 }
 
 pub fn build_req_weaponrefine_packet(index: i32, packetver: u32) -> Vec<u8> {
-    let mut pkt = PacketCzReqWeaponrefine::new(packetver);
+    let mut pkt = PacketCzReqWeaponRefine::new(packetver);
     pkt.set_index(index);
     pkt.fill_raw();
     pkt.raw
@@ -1260,7 +1260,7 @@ pub fn build_req_itemrepair_packet(
     cards: [u16; 4],
     packetver: u32,
 ) -> Vec<u8> {
-    let mut pkt = PacketCzReqItemrepair::new(packetver);
+    let mut pkt = PacketCzReqItemRepair::new(packetver);
     let mut info = RepairitemInfo::new(packetver);
     info.set_index(index);
     info.set_itid(item_id);
@@ -1280,7 +1280,7 @@ pub fn build_req_itemrepair_packet(
 
 /// `None` is the list's cancel, which the server reads as skill id 0.
 pub fn build_select_autospell_packet(skill: Option<SkillEnum>, packetver: u32) -> Vec<u8> {
-    let mut pkt = PacketCzSelectautospell::new(packetver);
+    let mut pkt = PacketCzSelectAutoSpell::new(packetver);
     pkt.set_skid(skill.map_or(0, |s| s.id() as i32));
     pkt.fill_raw();
     pkt.raw
@@ -1293,7 +1293,7 @@ pub fn build_req_openstore2_packet(
     items: &[(i16, i16, i32)],
     packetver: u32,
 ) -> Vec<u8> {
-    let mut pkt = PacketCzReqOpenstore2::new(packetver);
+    let mut pkt = PacketCzReqOpenStore::new(packetver);
     let mut name = ['\0'; 80];
     for (i, c) in shop_name.chars().take(79).enumerate() {
         name[i] = c;
@@ -1319,7 +1319,7 @@ pub fn build_req_openstore2_packet(
 }
 
 pub fn build_req_cancel_openstore_packet(packetver: u32) -> Vec<u8> {
-    let mut pkt = PacketCzReqOpenstore2::new(packetver);
+    let mut pkt = PacketCzReqOpenStore::new(packetver);
     pkt.set_store_name(['\0'; 80]);
     pkt.set_result(false);
     pkt.set_packet_length(85);
@@ -1329,21 +1329,21 @@ pub fn build_req_cancel_openstore_packet(packetver: u32) -> Vec<u8> {
 }
 
 pub fn build_req_closestore_packet(packetver: u32) -> Vec<u8> {
-    let mut pkt = PacketCzReqClosestore::new(packetver);
+    let mut pkt = PacketCzReqCloseStore::new(packetver);
     pkt.fill_raw();
     pkt.raw
 }
 
 pub fn build_req_buy_frommc_packet(aid: u32, packetver: u32) -> Vec<u8> {
-    let mut pkt = PacketCzReqBuyFrommc::new(packetver);
+    let mut pkt = PacketCzReqBuyFromMc::new(packetver);
     pkt.set_aid(aid);
     pkt.fill_raw();
     pkt.raw
 }
 
-/// Buy from a vending merchant. `CZ_PC_PURCHASE_ITEMLIST_FROMMC2` carries a
+/// Buy from a vending merchant. `CZ_PC_PURCHASE_ITEM_LIST_FROM_MC` carries a
 /// `unique_id` and is only registered server-side from 20100105; below that the
-/// V1 `CZ_PC_PURCHASE_ITEMLIST_FROMMC` (no `unique_id`) must be sent.
+/// `CZ_PC_PURCHASE_ITEM_LIST_FROM_MC_NO_UNIQUE_ID` must be sent.
 pub fn build_purchase_frommc_dispatch(
     aid: u32,
     unique_id: u32,
@@ -1358,7 +1358,7 @@ pub fn build_purchase_frommc_dispatch(
 }
 
 fn build_purchase_frommc_packet(aid: u32, items: &[(i16, i16)], packetver: u32) -> Vec<u8> {
-    let mut pkt = PacketCzPcPurchaseItemlistFrommc::new(packetver);
+    let mut pkt = PacketCzPcPurchaseItemListFromMcNoUniqueId::new(packetver);
     pkt.set_aid(aid);
     let item_list: Vec<CzPurchaseItemFrommc> = items
         .iter()
@@ -1383,7 +1383,7 @@ fn build_purchase_frommc2_packet(
     items: &[(i16, i16)],
     packetver: u32,
 ) -> Vec<u8> {
-    let mut pkt = PacketCzPcPurchaseItemlistFrommc2::new(packetver);
+    let mut pkt = PacketCzPcPurchaseItemListFromMc::new(packetver);
     pkt.set_aid(aid);
     pkt.set_unique_id(unique_id);
     let item_list: Vec<CzPurchaseItemFrommc> = items
@@ -1406,7 +1406,7 @@ fn build_purchase_frommc2_packet(
 // --- Homunculus / Mercenary ---
 
 pub fn build_companion_move_packet(gid: u32, x: u16, y: u16, packetver: u32) -> Vec<u8> {
-    let mut pkt = PacketCzRequestMovenpc::new(packetver);
+    let mut pkt = PacketCzRequestMoveNpc::new(packetver);
     pkt.set_gid(gid);
     pkt.set_dest(crate::helpers::encode_pos(x, y, 0));
     pkt.fill_raw();
@@ -1414,7 +1414,7 @@ pub fn build_companion_move_packet(gid: u32, x: u16, y: u16, packetver: u32) -> 
 }
 
 pub fn build_companion_attack_packet(gid: u32, target_gid: u32, packetver: u32) -> Vec<u8> {
-    let mut pkt = PacketCzRequestActnpc::new(packetver);
+    let mut pkt = PacketCzRequestActNpc::new(packetver);
     pkt.set_gid(gid);
     pkt.set_target_gid(target_gid);
     pkt.set_action(0);
@@ -1423,7 +1423,7 @@ pub fn build_companion_attack_packet(gid: u32, target_gid: u32, packetver: u32) 
 }
 
 pub fn build_companion_move_to_owner_packet(gid: u32, packetver: u32) -> Vec<u8> {
-    let mut pkt = PacketCzRequestMovetoowner::new(packetver);
+    let mut pkt = PacketCzRequestMoveToOwner::new(packetver);
     pkt.set_gid(gid);
     pkt.fill_raw();
     pkt.raw
@@ -1460,7 +1460,7 @@ pub fn build_rename_homun_packet(name: &str, packetver: u32) -> Vec<u8> {
 }
 
 pub fn build_trycapture_packet(gid: u32, packetver: u32) -> Vec<u8> {
-    let mut pkt = PacketCzTrycaptureMonster::new(packetver);
+    let mut pkt = PacketCzTryCaptureMonster::new(packetver);
     pkt.set_target_aid(gid);
     pkt.fill_raw();
     pkt.raw
@@ -1481,7 +1481,7 @@ pub fn build_rename_pet_packet(name: &str, packetver: u32) -> Vec<u8> {
 }
 
 pub fn build_select_petegg_packet(index: u16, packetver: u32) -> Vec<u8> {
-    let mut pkt = PacketCzSelectPetegg::new(packetver);
+    let mut pkt = PacketCzSelectPetEgg::new(packetver);
     pkt.set_index(index as i16);
     pkt.fill_raw();
     pkt.raw
@@ -1503,7 +1503,7 @@ pub fn build_active_quest_packet(quest_id: u32, active: bool, packetver: u32) ->
 }
 
 pub fn build_req_guild_menuinterface(packetver: u32) -> Vec<u8> {
-    let mut pkt = PacketCzReqGuildMenuinterface::new(packetver);
+    let mut pkt = PacketCzReqGuildMenuInterface::new(packetver);
     pkt.fill_raw();
     pkt.raw
 }
@@ -1559,7 +1559,7 @@ pub fn build_req_ban_guild(gdid: u32, aid: i32, gid: i32, reason: &str, packetve
 }
 
 pub fn build_req_change_memberpos(aid: i32, gid: i32, position_id: i32, packetver: u32) -> Vec<u8> {
-    let mut pkt = PacketCzReqChangeMemberpos::new(packetver);
+    let mut pkt = PacketCzReqChangeMemberPos::new(packetver);
     let mut row = MemberPositionInfo::new(packetver);
     row.set_aid(aid);
     row.set_gid(gid);
@@ -1575,7 +1575,7 @@ pub fn build_reg_change_guild_positioninfo(
     rows: &[ragnarok_game::guild::GuildPosition],
     packetver: u32,
 ) -> Vec<u8> {
-    let mut pkt = PacketCzRegChangeGuildPositioninfo::new(packetver);
+    let mut pkt = PacketCzRegChangeGuildPositionInfo::new(packetver);
     let list: Vec<GuildRegPositionInfo> = rows
         .iter()
         .map(|p| {

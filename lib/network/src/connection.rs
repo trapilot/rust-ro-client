@@ -26,7 +26,7 @@ impl From<io::Error> for ConnectionError {
 fn is_muted_packet(name: &str) -> bool {
     matches!(
         name,
-        "PacketCzRequestTime" | "PacketPing" | "PacketZcNotifyTime"
+        "PacketCzRequestTime" | "PacketBiPing" | "PacketZcNotifyTime"
     )
 }
 
@@ -250,13 +250,13 @@ enum FrameLen {
 mod tests {
     use super::*;
     use packets::packets::{
-        PacketHcNotifyZonesvr, PacketZcAcceptEnter2, PacketZcAid, PacketZcNotifyPlayerchat,
-        PacketZcNotifyTime, PacketZcReqWearEquipAck,
+        PacketHcNotifyZoneSvr, PacketZcAcceptEnter, PacketZcAid, PacketZcNotifyPlayerChat,
+        PacketZcNotifyTime, PacketZcReqWearEquipAckLegacy,
     };
     use std::net::Ipv4Addr;
 
     fn greeting_stream(packetver: u32, aid_bytes: &[u8]) -> Vec<u8> {
-        let mut enter = PacketZcAcceptEnter2::new(packetver);
+        let mut enter = PacketZcAcceptEnter::new(packetver);
         enter.set_x_size(5);
         enter.set_y_size(5);
         enter.fill_raw_with_packetver(Some(packetver));
@@ -284,7 +284,7 @@ mod tests {
                 .aid,
             2000000
         );
-        assert!(framed[1].as_any().is::<PacketZcAcceptEnter2>());
+        assert!(framed[1].as_any().is::<PacketZcAcceptEnter>());
         assert!(buffer.is_empty());
 
         let mut buffer = greeting_stream(packetver, &2000000u32.to_le_bytes());
@@ -294,7 +294,7 @@ mod tests {
         );
         let framed = Connection::drain_packets(&mut buffer, packetver, PacketTrace::None);
         assert_eq!(framed.len(), 1);
-        assert!(framed[0].as_any().is::<PacketZcAcceptEnter2>());
+        assert!(framed[0].as_any().is::<PacketZcAcceptEnter>());
         assert!(buffer.is_empty());
     }
 
@@ -308,9 +308,9 @@ mod tests {
         fixed.set_time(1234);
         fixed.fill_raw_with_packetver(Some(packetver));
 
-        let mut variable = PacketZcNotifyPlayerchat::new(packetver);
+        let mut variable = PacketZcNotifyPlayerChat::new(packetver);
         variable.set_msg("hello\0".to_string());
-        variable.set_packet_length((PacketZcNotifyPlayerchat::base_len(packetver) + 6) as i16);
+        variable.set_packet_length((PacketZcNotifyPlayerChat::base_len(packetver) + 6) as i16);
         variable.fill_raw_with_packetver(Some(packetver));
 
         for stream in [fixed.raw.clone(), variable.raw.clone()] {
@@ -338,7 +338,7 @@ mod tests {
     #[test]
     fn frame_len_matches_what_parsing_consumes() {
         for packetver in [20101122, 20101123, 20120307] {
-            let mut ack = PacketZcReqWearEquipAck::new(packetver);
+            let mut ack = PacketZcReqWearEquipAckLegacy::new(packetver);
             ack.set_index(3);
             ack.fill_raw_with_packetver(Some(packetver));
 
@@ -347,7 +347,7 @@ mod tests {
                 _ => panic!("no framing length at {packetver}"),
             };
             assert_eq!(expected, ack.raw.len());
-            assert_eq!(expected, PacketZcReqWearEquipAck::base_len(packetver));
+            assert_eq!(expected, PacketZcReqWearEquipAckLegacy::base_len(packetver));
         }
     }
 
@@ -376,7 +376,7 @@ mod tests {
         assert_eq!(framed.len(), 1);
         let zonesvr = framed[0]
             .as_any()
-            .downcast_ref::<PacketHcNotifyZonesvr>()
+            .downcast_ref::<PacketHcNotifyZoneSvr>()
             .unwrap();
         assert_eq!(zonesvr.gid, 150000);
         assert_eq!(zonesvr.addr.port, 6121);

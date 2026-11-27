@@ -78,7 +78,7 @@ pub struct Character {
     pub effect_state: i32,
     pub cart_design: Option<u8>,
     pub active_statuses: Vec<ActiveStatus>,
-    /// Married partner's name (from ZC_COUPLENAME); empty when unpartnered.
+    /// Married partner's name (from ZC_COUPLE_NAME); empty when unpartnered.
     pub partner_name: String,
     /// Names of the blacksmiths/alchemists who made the forged and created
     /// items we hold.
