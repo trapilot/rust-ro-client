@@ -306,6 +306,26 @@ mod tests {
         let message: String = pkt.contents.iter().take_while(|c| **c != '\0').collect();
         assert_eq!(message, "hi there");
     }
+
+    // Guild skills (ids 10000+) share CZ_UPGRADE_SKILLLEVEL with character skills since
+    // RequestUpgradeGuildSkill was merged into RequestSkillLevelUp (PL-6). The 10000+ id
+    // must survive the u16 SKID field on every supported packetver.
+    #[test]
+    fn upgrade_skill_packet_carries_guild_skill_id() {
+        for packetver in [20111102, 20120229, 20120307] {
+            let raw = build_upgrade_skill_packet(SkillEnum::GdExtension, packetver);
+            assert_eq!(raw.len(), 4, "packetver {packetver}");
+            assert_eq!(u16::from_le_bytes([raw[0], raw[1]]), 0x0112);
+
+            let parsed = packets::packets_parser::parse(&raw, packetver);
+            let pkt = parsed
+                .as_any()
+                .downcast_ref::<PacketCzUpgradeSkillLevel>()
+                .expect("expected PacketCzUpgradeSkillLevel");
+            assert_eq!(pkt.skid, 10004);
+            assert_eq!(SkillEnum::from_id(pkt.skid as u32), SkillEnum::GdExtension);
+        }
+    }
 }
 
 pub fn build_zone_enter_packet(session: &Session) -> Vec<u8> {

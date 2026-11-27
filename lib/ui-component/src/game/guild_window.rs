@@ -1476,4 +1476,66 @@ mod tests {
             "expected upgrade event, got {events:?}"
         );
     }
+
+    // Apply must send exactly one CZ_UPGRADE_SKILLLEVEL per pending point, for every pending
+    // skill: the server spends one guild point per packet.
+    #[test]
+    fn applying_several_pending_guild_points_requests_one_upgrade_per_point() {
+        let mut win = GuildWindow::new();
+        win.open();
+        win.tab = GuildTab::Skill;
+        let skill = |skill, passive| ragnarok_game::guild::GuildSkill {
+            skill,
+            level: 0,
+            sp_cost: 0,
+            attack_range: 0,
+            upgradable: true,
+            passive,
+        };
+        let mut guild = Guild::default();
+        guild.gdid = 1;
+        guild.master_name = "Me".to_string();
+        guild.skill_point = 5;
+        guild.skills = vec![
+            skill(SkillEnum::GdApproval, true),
+            skill(SkillEnum::GdExtension, true),
+        ];
+        win.skill_pending = vec![(SkillEnum::GdApproval, 1), (SkillEnum::GdExtension, 3)];
+        let mut character = Character::new();
+        character.name = "Me".to_string();
+        let data = DataTable::new();
+        let mut state = StateCache::new();
+        let win_x = 80.0;
+        let win_y = 50.0;
+        let content_y = win_y + TITLE_H + TAB_H;
+
+        let mut ctx = UiContext::new(800.0, 600.0);
+        ctx.mouse_x = win_x + WIN_W - 100.0 + 21.0;
+        ctx.mouse_y = content_y + CONTENT_H - 27.0 + 4.0 + 10.0;
+        ctx.mouse_clicked = true;
+        let mut ui = test_frame(&mut ctx, &mut state);
+        let mut build_ctx = crate::BuildCtx::test(&mut character, &data);
+        build_ctx.guild = Some(&guild);
+        build_ctx.local_gid = 1;
+        let events = win.build(&mut ui, &mut build_ctx);
+
+        let upgrades: Vec<SkillEnum> = events
+            .iter()
+            .filter_map(|e| match e {
+                GameEvent::RequestSkillLevelUp { skill } => Some(*skill),
+                _ => None,
+            })
+            .collect();
+        assert_eq!(
+            upgrades,
+            vec![
+                SkillEnum::GdApproval,
+                SkillEnum::GdExtension,
+                SkillEnum::GdExtension,
+                SkillEnum::GdExtension,
+            ],
+            "got {events:?}"
+        );
+        assert!(win.skill_pending.is_empty());
+    }
 }
