@@ -180,20 +180,20 @@ their rathena handlers:
 
 | packet                          | rathena handler                |
 | ------------------------------- | ------------------------------ |
-| CZ_ENTER2                       | clif_parse_WantToConnection    |
+| CZ_ENTER                        | clif_parse_WantToConnection    |
 | CZ_REQUEST_MOVE                 | clif_parse_WalkToXY            |
 | CZ_REQUEST_TIME                 | clif_parse_TickSend            |
 | CZ_CHANGE_DIRECTION             | clif_parse_ChangeDir           |
 | CZ_REQUEST_ACT                  | clif_parse_ActionRequest       |
-| CZ_REQNAME                      | clif_parse_GetCharNameRequest  |
-| CZ_REQNAME_BYGID                | clif_parse_SolveCharName       |
+| CZ_REQ_NAME                     | clif_parse_GetCharNameRequest  |
+| CZ_REQ_NAME_BY_GID              | clif_parse_SolveCharName       |
 | CZ_ITEM_PICKUP                  | clif_parse_TakeItem            |
 | CZ_ITEM_THROW                   | clif_parse_DropItem            |
 | CZ_USE_ITEM                     | clif_parse_UseItem             |
 | CZ_MOVE_ITEM_FROM_STORE_TO_BODY | clif_parse_MoveFromKafra       |
 | CZ_MOVE_ITEM_FROM_BODY_TO_STORE | clif_parse_MoveToKafra         |
 | CZ_USE_SKILL                    | clif_parse_UseSkillToId        |
-| CZ_USE_SKILL_TOGROUND           | clif_parse_UseSkillToPos       |
+| CZ_USE_SKILL_TO_GROUND          | clif_parse_UseSkillToPos       |
 
 The server-to-client (ZC) packets have the same structure and are not fully
 reconciled. A mismatch surfaces when the server sends a packet the client
@@ -239,6 +239,27 @@ unversioned ids in `packets_db` file order, and returns the first match. A
 second struct that re-declares an id already claimed for the same packetver is
 never produced by the parser: code that downcasts to it never fires. To give a
 packet a different name or direction, use the struct the parser already yields
-(for example `0x0187` is `PACKET_PING` both ways) instead of adding an alias.
+(for example `0x0187` is `PACKET_BI_PING` both ways) instead of adding an alias.
 Bands have no upper bound in `parse()`: an id assigned at `0x....:V` keeps
 matching for every packetver `>= V` unless a newer band reuses it.
+
+## Packet names
+
+Every packet struct in `packets_db` is named `PACKET_<DIR>_<NAME>`; the
+generator turns it into `Packet<Dir><Name>` (`PACKET_ZC_NOTIFY_STAND_ENTRY` is
+`PacketZcNotifyStandEntry`).
+
+- `<DIR>` is the direction: `CA`/`AC` (client and login server), `CH`/`HC`
+  (client and char server), `CZ`/`ZC` (client and zone server). `BI` is reserved
+  for packets sent both ways; `PACKET_BI_PING` (`0x0187`) is the only one.
+- `<NAME>` is English words split by `_`. Names carry no version digits.
+- When a message has several layouts, the plain name goes to the layout the
+  supported packetvers (20111102, 20120229 to 20120307) use, following rathena
+  pre-renewal. Every other layout keeps the plain name plus a suffix that says
+  how it differs: `_NO_X` / `_WITH_X` for a missing or extra field
+  (`ZC_NOTIFY_STAND_ENTRY_NO_HP`), `_SHORT_X` / `_INT_X` / `_BYTE_X` for a
+  narrower or wider field, `_LEGACY` / `_NEWER` when only the id differs.
+- Field names are not part of this convention; they follow the generator's
+  camel-to-snake rule (`hp_16`, `exp_64`).
+- Nested structs (`ServerAddr2`, `EquipmentitemExtrainfo301`, ...) are not
+  packets and keep their names.

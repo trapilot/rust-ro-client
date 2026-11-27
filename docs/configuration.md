@@ -329,7 +329,7 @@ Changing the key needs a restart.
 ## Skipping the level 1 warp list
 
 A level 1 Teleport does not warp on its own. The server answers the cast with a
-`ZC_WARPLIST` holding one entry, `Random`, and waits for the client to pick it.
+`ZC_WARP_LIST` holding one entry, `Random`, and waits for the client to pick it.
 The window with its single button is what the original game does, and we match
 it.
 
@@ -343,11 +343,11 @@ always reaches the window.
 
 ```mermaid
 flowchart TD
-    A[ZC_WARPLIST arrives] --> B{skip_lvl1_menu on?}
+    A[ZC_WARP_LIST arrives] --> B{skip_lvl1_menu on?}
     B -- no --> W[Open warp list window]
     B -- yes --> C{Teleport, and the only entry is Random?}
     C -- no --> W
-    C -- yes --> D[Send CZ_SELECT_WARPPOINT Random]
+    C -- yes --> D[Send CZ_SELECT_WARP_POINT Random]
     W --> E[Player clicks] --> D
 ```
 
