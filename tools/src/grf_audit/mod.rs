@@ -37,6 +37,8 @@ impl Category {
     /// never opens (`.fna` beside the `.imf`s, stray `.psd`s beside textures).
     /// Anything whose extension we do not model stays [`Category::Unclassified`]
     /// and is therefore never dropped.
+    /// `path` is a normalized entry name: the archive keys are English, so the
+    /// registry's Korean interface prefixes are compared in normalized form.
     pub fn of(path: &str) -> Self {
         let rest = path.strip_prefix("data/").unwrap_or(path);
         let ext = rest
@@ -48,8 +50,9 @@ impl Category {
 
         let image = is(&["bmp", "tga", "jpg", "jpeg", "png", "gif"]);
         if image
-            && (path.starts_with(ragnarok_resources::dir::UI_TEXTURE)
-                || path.starts_with(ragnarok_resources::dir::UI_TEXTURE_EN))
+            && ui_texture_prefixes()
+                .iter()
+                .any(|p| path.starts_with(p.as_str()))
         {
             Category::Ui
         } else if rest.starts_with("texture/") && image {
@@ -201,8 +204,20 @@ impl Default for Options {
     }
 }
 
+/// The archive's lookup key for `name`; see `ragnarok_asset_names`.
 pub fn normalize(name: &str) -> String {
-    name.replace('\\', "/").to_lowercase()
+    ragnarok_asset_names::normalize(name)
+}
+
+/// The interface texture directories as they appear in normalized entry names.
+fn ui_texture_prefixes() -> &'static [String; 2] {
+    static PREFIXES: std::sync::OnceLock<[String; 2]> = std::sync::OnceLock::new();
+    PREFIXES.get_or_init(|| {
+        [
+            normalize(ragnarok_resources::dir::UI_TEXTURE),
+            normalize(ragnarok_resources::dir::UI_TEXTURE_EN),
+        ]
+    })
 }
 
 pub fn run(grf: &GrfArchive, opts: &Options) -> Report {

@@ -276,6 +276,13 @@ impl GrfArchive {
         })
     }
 
+    /// The primary archive plus the overlays that opened. `open_layered` only
+    /// logs an overlay it cannot open, so callers that need every layer compare
+    /// this with the number of paths they passed.
+    pub fn layer_count(&self) -> usize {
+        1 + self.overlays.len()
+    }
+
     pub fn is_writable(&self) -> bool {
         self.writable
     }
