@@ -2,7 +2,7 @@ use crate::draw::{BlendKind, EffectDrawList, EffectPrimitiveDraw, EffectStatus};
 use crate::effect_trait::{BodyTint, CameraShake, Effect, EffectRenderCtx, EffectUpdateCtx};
 use crate::effects::potion_pillar::{BERSERK, PotionPillarEffect, PotionPillarParams};
 
-pub const STR_OVERLAY: &str = "버서크";
+pub const STR_OVERLAY: &str = "berserk";
 pub const SPARK_TEXTURE: &str = "ac_center2.tga";
 pub const TEXTURES: &[&str] = &[SPARK_TEXTURE, super::potion_pillar::TEXTURE];
 

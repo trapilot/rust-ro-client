@@ -1020,7 +1020,7 @@ mod tests {
         win.show(&item, &data, &CharNameCache::default(), false);
         assert_eq!(
             win.item.as_ref().unwrap().collection_path.as_deref(),
-            Some("data/texture/유저인터페이스/collection/test_resource.bmp"),
+            Some("data/texture/user_interface/collection/test_resource.bmp"),
         );
     }
 

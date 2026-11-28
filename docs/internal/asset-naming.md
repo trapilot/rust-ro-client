@@ -134,8 +134,38 @@ logged, and the pair is reported by `name_collisions()` (primary archive) or
 `layered_name_collisions()` (primary plus overlays).
 
 `tools/src/grf_audit` keys and classifies entries by normalized names, including the interface
-texture directory (`Category::Ui`), which the registry still spells in Korean until the path
-literals in code are renamed.
+texture directories (`Category::Ui`): `user_interface` (the registry's spelling) and the older
+English `userinterface`.
+
+## Path literals in code
+
+Every resource path or path fragment written in `lib`, `client` and `tools` is the output of
+`rename()`: ASCII, lowercase, `/` as the separator, `_` instead of a space. Reading them is
+the same as reading the archive. Lookups still normalize their argument, so a name that comes
+from data (a Lua table, an item resource name, a name the server sends) may stay Korean and
+reaches the right entry anyway.
+
+- `lib/resources/tests/normalized_paths.rs` checks that every path the registry states is
+  already normalized (`all_static_paths_are_normalized`) and pins the lookup key of every
+  registry path and builder.
+- The same is pinned for the headgear and identity tables (`lib/formats/tests/normalized_tables.rs`),
+  for the sprite, status icon and sound tables in `lib/game`
+  (`lib/game/tests/normalized_paths.rs`) and for the effect tables in `lib/effects`
+  (`lib/effects/tests/normalized_paths.rs`). The snapshot files hold `normalize(path)`, so a
+  literal can be rewritten in any spelling that normalizes the same way.
+  To regenerate one after an intended change: `BLESS_SNAPSHOT=1 cargo test -p <crate> --test <name>`.
+- The identity table (`builtin_name_table.rs`) keeps the case of its sprite names; a unit test
+  pins `Poring` and `GOPINICH`. Only its Korean rows were renamed.
+- When code derives something from a name, it must not read Korean characters. The mercenary
+  weapon sprite word and the mercenary sex come from `normalize(name)`, so they work for the
+  English built-in table and for a Korean Lua table alike.
+- A new literal: write the final name. `rename("data/sprite/몬스터/poring")` gives the string to
+  paste.
+
+Korean text that stays in the code is limited to test input that stands in for file content
+(Lua tables, `resnametable.txt`, item resource names, a map list header, a chat message,
+font glyphs), the tests of `ragnarok-asset-names`, `grf-build` and the lookup normalization, the
+snapshot inputs above, and one CP949 doc comment.
 
 ## `grf-build`
 

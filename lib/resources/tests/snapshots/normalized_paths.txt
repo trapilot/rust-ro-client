@@ -581,7 +581,6 @@ sprite::player::head data/sprite/human/head/male/swordman_male
 sprite::player::weapon data/sprite/human/swordman/swordman_male_sword
 sprite::player::weapon_by_item data/sprite/human/swordman/swordman_male_1201
 sprite::shield::of data/sprite/shield/swordman/swordman_male_3
-palette::head data/palette/hair/hair_swordman_male_7.pal
 palette::body data/palette/cloth/swordman_male_7.pal
 imf::for_job data/imf/swordman_female.imf
 sprite::accessory::of data/sprite/accessory/female/female_swordman
@@ -590,7 +589,6 @@ sprite::player::head data/sprite/human/head/female/swordman_female
 sprite::player::weapon data/sprite/human/swordman/swordman_female_sword
 sprite::player::weapon_by_item data/sprite/human/swordman/swordman_female_1201
 sprite::shield::of data/sprite/shield/swordman/swordman_female_3
-palette::head data/palette/hair/hair_swordman_female_7.pal
 palette::body data/palette/cloth/swordman_female_7.pal
 imf::for_job data/imf/swordman_male.imf
 sprite::accessory::of data/sprite/accessory/male/maleswordman
@@ -599,7 +597,6 @@ sprite::player::head data/sprite/human/head/male/swordman_male
 sprite::player::weapon data/sprite/human/swordman/swordman_male_sword
 sprite::player::weapon_by_item data/sprite/human/swordman/swordman_male_1201
 sprite::shield::of data/sprite/shield/swordman/swordman_male_3
-palette::head data/palette/hair/hair_swordman_male_7.pal
 palette::body data/palette/cloth/swordman_male_7.pal
 imf::of data/imf/poring_01.imf
 map::rsw data/poring_01.rsw

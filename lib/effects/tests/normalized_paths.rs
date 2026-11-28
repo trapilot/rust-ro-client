@@ -7,7 +7,7 @@
 
 use models::enums::EnumWithNumberValue;
 use models::enums::effect_id::EffectId;
-use ragnarok_asset_names::normalize;
+use ragnarok_asset_names::{normalize, rename};
 use ragnarok_effects::sfx::{WaveChoice, effect_sound};
 use ragnarok_effects::skill_units::{
     skill_unit_entry_sound, skill_unit_sprite_paths, trap_model_name,
@@ -21,9 +21,10 @@ use ragnarok_effects::{
 const SNAPSHOT_FILE: &str = "tests/snapshots/normalized_paths.txt";
 const SNAPSHOT: &str = include_str!("snapshots/normalized_paths.txt");
 
-fn dump() -> Vec<String> {
+/// `(label, path)` for everything the tables declare, as written in source.
+fn dump() -> Vec<(String, String)> {
     let mut out = Vec::new();
-    let mut add = |label: String, path: &str| out.push(format!("{label} {}", normalize(path)));
+    let mut add = |label: String, path: &str| out.push((label, path.to_string()));
 
     for value in 0..3000usize {
         let Ok(id) = EffectId::try_from_value(value) else {
@@ -51,11 +52,13 @@ fn dump() -> Vec<String> {
         }
     }
 
-    for (i, path) in effect_texture_paths().iter().enumerate() {
-        add(format!("texture[{i}] wraps={}", texture_wraps(path)), path);
+    // Both lists are sorted by their source spelling, so they are compared as
+    // sets (see `keys`).
+    for path in effect_texture_paths() {
+        add(format!("texture wraps={}", texture_wraps(&path)), &path);
     }
-    for (i, path) in skill_unit_sprite_paths().into_iter().enumerate() {
-        add(format!("unit_sprite[{i}]"), path);
+    for path in skill_unit_sprite_paths() {
+        add("unit_sprite".to_string(), path);
     }
     for unit in 0u8..=255 {
         if let Some(sound) = skill_unit_entry_sound(unit) {
@@ -73,9 +76,53 @@ fn dump() -> Vec<String> {
     out
 }
 
+/// The lookup key of every entry, one line each.
+fn keys() -> Vec<String> {
+    let mut lines: Vec<String> = dump()
+        .into_iter()
+        .map(|(label, path)| format!("{label} {}", normalize(&path)))
+        .collect();
+    lines.sort();
+    lines
+}
+
+/// Acceptance for the rename: every name the effect tables declare is ASCII.
+#[test]
+fn effect_names_are_ascii() {
+    let entries = dump();
+    assert!(entries.len() > 4_000, "the dump lost entries");
+    for (label, path) in &entries {
+        assert!(path.is_ascii(), "{label}: {path:?} is not ASCII");
+    }
+}
+
+/// Acceptance for the rename: the sprite, sound and model names the tables
+/// state are already in their final form, so `rename` leaves them alone.
+#[test]
+fn sprite_sound_and_model_names_are_normalized() {
+    let tables = [
+        "str_file",
+        "str_alias",
+        "spr",
+        "spr_burst",
+        "sfx",
+        "sfx_random",
+        "unit_sprite",
+        "unit_sound",
+        "trap_model",
+        "status_sound",
+    ];
+    for (label, path) in dump() {
+        let kind = label.split([' ', '[']).next().unwrap_or("");
+        if tables.contains(&kind) {
+            assert_eq!(rename(&path), path, "{label}: {path:?} is not normalized");
+        }
+    }
+}
+
 #[test]
 fn normalized_keys_match_the_snapshot() {
-    let actual = dump();
+    let actual = keys();
     if std::env::var_os("BLESS_SNAPSHOT").is_some() {
         let path = format!("{}/{SNAPSHOT_FILE}", env!("CARGO_MANIFEST_DIR"));
         std::fs::write(path, actual.join("\n") + "\n").expect("write snapshot");

@@ -8,7 +8,7 @@
 use models::enums::EnumWithNumberValue;
 use models::enums::skill_enums::SkillEnum;
 use models::enums::weapon::WeaponType;
-use ragnarok_asset_names::normalize;
+use ragnarok_asset_names::{normalize, rename};
 use ragnarok_game::sound::tables::ui;
 use ragnarok_game::sound::tables::{
     StatusSoundKind, skill_cast_begin_sound, skill_projectile_sound, skill_use_sound, status_sound,
@@ -26,9 +26,10 @@ fn weapon_types() -> Vec<WeaponType> {
         .collect()
 }
 
-fn dump() -> Vec<String> {
+/// `(label, path)` for everything the tables produce, as written in source.
+fn dump() -> Vec<(String, String)> {
     let mut out = Vec::new();
-    let mut add = |label: String, path: &str| out.push(format!("{label} {}", normalize(path)));
+    let mut add = |label: String, path: &str| out.push((label, path.to_string()));
 
     // Sprite paths: the base, baby, transcendent and costume job ranges plus
     // two unknown ids that fall back to the novice, both sexes.
@@ -126,7 +127,11 @@ fn dump() -> Vec<String> {
         if let Some(p) = sp::mercenary_imf_path(name) {
             add(format!("merc_imf {name}"), &p);
         }
-        if let Some(p) = sp::mercenary_weapon_sprite_path(name) {
+        // The weapon word comes from a mercenary body name; any other name
+        // has no weapon sprite to pin.
+        if !name.is_ascii()
+            && let Some(p) = sp::mercenary_weapon_sprite_path(name)
+        {
             add(format!("merc_weapon {name}"), &p);
         }
     }
@@ -190,9 +195,40 @@ fn dump() -> Vec<String> {
     out
 }
 
+/// The lookup key of every entry, one line each.
+fn keys() -> Vec<String> {
+    dump()
+        .into_iter()
+        .map(|(label, path)| format!("{label} {}", normalize(&path)))
+        .collect()
+}
+
+/// Labels whose path comes from a table in this crate. The others pass a
+/// caller-chosen name through (a Korean one on purpose), so they say nothing
+/// about the tables.
+fn comes_from_a_table(label: &str) -> bool {
+    let kind = label.split(' ').next().unwrap_or("");
+    !matches!(
+        kind,
+        "headgear" | "npc" | "monster" | "homun" | "merc_body" | "merc_imf" | "merc_weapon"
+    )
+}
+
+/// Acceptance for the rename: every path the tables write is ASCII and
+/// already in its final form, so `rename` leaves it alone.
+#[test]
+fn table_paths_are_normalized() {
+    let entries = dump();
+    assert!(entries.len() > 10_000, "the dump lost entries");
+    for (label, path) in entries.iter().filter(|(l, _)| comes_from_a_table(l)) {
+        assert!(path.is_ascii(), "{label}: {path:?} is not ASCII");
+        assert_eq!(&rename(path), path, "{label}: {path:?} is not normalized");
+    }
+}
+
 #[test]
 fn normalized_keys_match_the_snapshot() {
-    let actual = dump();
+    let actual = keys();
     if std::env::var_os("BLESS_SNAPSHOT").is_some() {
         let path = format!("{}/{SNAPSHOT_FILE}", env!("CARGO_MANIFEST_DIR"));
         std::fs::write(path, actual.join("\n") + "\n").expect("write snapshot");

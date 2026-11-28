@@ -13393,7 +13393,6 @@ monster name data/sprite/monster/name
 homun name data/sprite/homun/name
 merc_body name data/sprite/human/body/name
 merc_imf name data/imf/name.imf
-merc_weapon name data/sprite/human/mercenary/name_n
 npc 활용병 data/sprite/npc/bow_mercenary
 monster 활용병 data/sprite/monster/bow_mercenary
 homun 활용병 data/sprite/homun/bow_mercenary
@@ -13423,7 +13422,6 @@ monster poring data/sprite/monster/poring
 homun poring data/sprite/homun/poring
 merc_body poring data/sprite/human/body/poring
 merc_imf poring data/imf/poring.imf
-merc_weapon poring data/sprite/human/mercenary/poring_p
 status_icon 0 provoke.tga
 status_icon 1 endure.tga
 status_icon 2 two_hand_quicken.tga

@@ -6,7 +6,7 @@
 //! and looks up. To regenerate it after an intended change:
 //! `BLESS_SNAPSHOT=1 cargo test -p ragnarok-resources --test normalized_paths`.
 
-use ragnarok_asset_names::normalize;
+use ragnarok_asset_names::{normalize, rename};
 use ragnarok_resources as r;
 
 const SNAPSHOT_FILE: &str = "tests/snapshots/normalized_paths.txt";
@@ -16,10 +16,11 @@ const SNAPSHOT: &str = include_str!("snapshots/normalized_paths.txt");
 const NAMES: &[&str] = &["name", "검사", "poring_01", "a b"];
 const SEXES: &[&str] = &["남", "여", "male"];
 
-fn dump() -> Vec<String> {
-    let mut out: Vec<String> = Vec::new();
+/// `(label, path)` for everything the registry builds, as written in source.
+fn dump() -> Vec<(String, String)> {
+    let mut out: Vec<(String, String)> = Vec::new();
     let mut add = |label: &str, path: String| {
-        out.push(format!("{label} {}", normalize(&path)));
+        out.push((label.to_string(), path));
     };
 
     for (i, path) in r::all_static_paths().into_iter().enumerate() {
@@ -52,7 +53,7 @@ fn dump() -> Vec<String> {
         add("ui::illust", r::ui::illust::named(n));
         add("ui::item::icon", r::ui::item::icon(n));
         add("ui::minimap::of", r::ui::minimap::of(n));
-        for c in ['활', '창', 'a'] {
+        for c in ["bow", "spear", "a"] {
             add(
                 "sprite::player::mercenary_weapon",
                 r::sprite::player::mercenary_weapon(n, c),
@@ -72,7 +73,11 @@ fn dump() -> Vec<String> {
                 r::sprite::player::weapon_by_item(n, s, 1201),
             );
             add("sprite::shield::of", r::sprite::shield::of(n, s, 3));
-            add("palette::head", r::palette::head(n, s, 7));
+            // Head names are numeric ids from a table; Korean text here would
+            // merge with the Hangul run in the literal and is not a real input.
+            if n.is_ascii() {
+                add("palette::head", r::palette::head(n, s, 7));
+            }
             add("palette::body", r::palette::body(n, s, 7));
         }
     }
@@ -89,9 +94,27 @@ fn dump() -> Vec<String> {
     out
 }
 
+/// The lookup key of every entry, one line each.
+fn keys() -> Vec<String> {
+    dump()
+        .into_iter()
+        .map(|(label, path)| format!("{label} {}", normalize(&path)))
+        .collect()
+}
+
+/// Acceptance for the rename: every path the registry states outright is
+/// already ASCII and in its final form, so `rename` leaves it alone.
+#[test]
+fn all_static_paths_are_normalized() {
+    for path in r::all_static_paths() {
+        assert!(path.is_ascii(), "{path:?} is not ASCII");
+        assert_eq!(rename(path), path, "{path:?} is not in normalized form");
+    }
+}
+
 #[test]
 fn normalized_keys_match_the_snapshot() {
-    let actual = dump();
+    let actual = keys();
     if std::env::var_os("BLESS_SNAPSHOT").is_some() {
         let path = format!("{}/{SNAPSHOT_FILE}", env!("CARGO_MANIFEST_DIR"));
         std::fs::write(path, actual.join("\n") + "\n").expect("write snapshot");

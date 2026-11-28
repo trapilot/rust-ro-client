@@ -2,7 +2,7 @@
 //!
 //! Reference gif `50-100/80.gif` (a thin spear streaking to the target).
 //! Four spear sprites
-//! (`data/sprite/이팩트/창`) launched
+//! (`data/sprite/effect/spear`) launched
 //! at frames 0, 4, 8, 12, each flying from caster to target in 15 frames
 //! and stopping on arrival. The
 //! sprite faces along travel. Successive spears are launched

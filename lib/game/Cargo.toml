@@ -4,6 +4,7 @@ version = "0.1.0"
 edition = "2024"
 
 [dependencies]
+ragnarok-asset-names = { workspace = true }
 ragnarok-formats = { workspace = true }
 ragnarok-resources = { workspace = true }
 ragnarok-ai = { workspace = true }
@@ -14,6 +15,3 @@ models = { workspace = true }
 movement = { workspace = true }
 tracing = { workspace = true }
 serde = { workspace = true }
-
-[dev-dependencies]
-ragnarok-asset-names = { workspace = true }

@@ -43,23 +43,23 @@ const UNIT_UV: [[f32; 2]; 4] = [[0.0, 0.0], [1.0, 0.0], [1.0, 1.0], [0.0, 1.0]];
 
 const ICE_FRAMES: &[&str] = &["icearrow.tga"];
 const FIRE_FRAMES: &[&str] = &[
-    "불화살1.tga",
-    "불화살2.tga",
-    "불화살3.tga",
-    "불화살4.tga",
-    "불화살5.tga",
-    "불화살6.tga",
+    "fire_arrow1.tga",
+    "fire_arrow2.tga",
+    "fire_arrow3.tga",
+    "fire_arrow4.tga",
+    "fire_arrow5.tga",
+    "fire_arrow6.tga",
 ];
 const PARTICLE4_SPRITE: &str = ragnarok_resources::sprite::effect::PARTICLE4;
 
 pub const ICE_TEXTURES: &[&str] = &["icearrow.tga", "ring_blue.tga"];
 pub const FIRE_TEXTURES: &[&str] = &[
-    "불화살1.tga",
-    "불화살2.tga",
-    "불화살3.tga",
-    "불화살4.tga",
-    "불화살5.tga",
-    "불화살6.tga",
+    "fire_arrow1.tga",
+    "fire_arrow2.tga",
+    "fire_arrow3.tga",
+    "fire_arrow4.tga",
+    "fire_arrow5.tga",
+    "fire_arrow6.tga",
     "ring_yellow.tga",
 ];
 pub const FIRE_SPRITES: &[&str] = &[PARTICLE4_SPRITE];

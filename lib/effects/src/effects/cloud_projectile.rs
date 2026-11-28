@@ -7,7 +7,7 @@ pub const TEXTURES: &[&str] = &[
     "blue_ivy.bmp",
     "emp shock.tga",
     "shield_boomerang.bmp",
-    "토마.bmp",
+    "toma.bmp",
 ];
 
 const UNIT_UV: [[f32; 2]; 4] = [[0.0, 0.0], [1.0, 0.0], [0.0, 1.0], [1.0, 1.0]];
@@ -140,7 +140,7 @@ pub const SHIELDBOOMERANG: CloudParams = CloudParams {
     blend: BlendKind::Alpha,
 };
 pub const SHIELDBOOMERANG2: CloudParams = CloudParams {
-    texture: "토마.bmp",
+    texture: "toma.bmp",
     tint: WHITE,
     base_distance: 3.5,
     speed: 2.0,
