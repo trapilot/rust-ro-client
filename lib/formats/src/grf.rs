@@ -59,8 +59,12 @@ struct ParsedGrf {
     file_data_end_offset: u64,
 }
 
-/// Adds an entry read from an archive. When two different original names
-/// normalize to one key the first wins and the pair is recorded.
+/// Adds an entry read from an archive.
+///
+/// The same original name stored again (a patch appended to the archive)
+/// replaces the earlier entry: the last one wins, as before name
+/// normalization, and it is not a collision. When two *different* original
+/// names normalize to one key the first wins and the pair is recorded once.
 fn index_entry(
     entries: &mut HashMap<String, GrfEntry>,
     collisions: &mut Vec<NameCollision>,
@@ -68,13 +72,19 @@ fn index_entry(
 ) {
     let key = normalize(&entry.original);
     match entries.get(&key) {
+        Some(kept) if kept.original == entry.original => {
+            entries.insert(key, entry);
+        }
         Some(kept) => {
             tracing::warn!(
                 "GRF names {:?} and {:?} are the same resource {key:?}; keeping the first",
                 kept.original,
                 entry.original
             );
-            collisions.push((key, kept.original.clone(), entry.original));
+            let collision = (key, kept.original.clone(), entry.original);
+            if !collisions.contains(&collision) {
+                collisions.push(collision);
+            }
         }
         None => {
             entries.insert(key, entry);
