@@ -7,6 +7,7 @@ use std::sync::{Mutex, OnceLock};
 use flate2::Compression;
 use flate2::read::ZlibDecoder;
 use flate2::write::ZlibEncoder;
+use ragnarok_asset_names::normalize;
 
 use crate::FormatError;
 use crate::mixcrypt;
@@ -16,6 +17,9 @@ const HEADER_SIZE: usize = 46;
 const FILE_OFFSET: usize = 7;
 
 struct GrfEntry {
+    /// The name as decoded from the archive (or passed to `add_file`), before
+    /// normalization. `grf-build` writes it to the manifest.
+    original: String,
     compressed_size: u32,
     compressed_size_aligned: u32,
     uncompressed_size: u32,
@@ -41,6 +45,41 @@ pub struct GrfArchive {
     overlays: Vec<GrfArchive>,
     overrides: HashMap<String, Vec<u8>>,
     res_name_table: OnceLock<ResNameTable>,
+    collisions: Vec<NameCollision>,
+}
+
+/// `(key, original name kept, original name dropped)`.
+type NameCollision = (String, String, String);
+
+/// What `parse_grf` read: the entries by normalized name, the collisions met
+/// while indexing them, and where the file data ends.
+struct ParsedGrf {
+    entries: HashMap<String, GrfEntry>,
+    collisions: Vec<NameCollision>,
+    file_data_end_offset: u64,
+}
+
+/// Adds an entry read from an archive. When two different original names
+/// normalize to one key the first wins and the pair is recorded.
+fn index_entry(
+    entries: &mut HashMap<String, GrfEntry>,
+    collisions: &mut Vec<NameCollision>,
+    entry: GrfEntry,
+) {
+    let key = normalize(&entry.original);
+    match entries.get(&key) {
+        Some(kept) => {
+            tracing::warn!(
+                "GRF names {:?} and {:?} are the same resource {key:?}; keeping the first",
+                kept.original,
+                entry.original
+            );
+            collisions.push((key, kept.original.clone(), entry.original));
+        }
+        None => {
+            entries.insert(key, entry);
+        }
+    }
 }
 
 /// Extracted files on disk, keyed by their normalized path relative to the
@@ -64,7 +103,7 @@ impl DataDirIndex {
 }
 
 fn data_dir_key(name: &str) -> String {
-    let normalized = name.to_lowercase().replace('\\', "/");
+    let normalized = normalize(name);
     normalized
         .strip_prefix(ragnarok_resources::dir::DATA)
         .unwrap_or(&normalized)
@@ -80,13 +119,13 @@ fn index_dir(root: &Path, dir: &Path, out: &mut HashMap<String, PathBuf>) {
         if path.is_dir() {
             index_dir(root, &path, out);
         } else if let Ok(relative) = path.strip_prefix(root) {
-            let key = relative.to_string_lossy().to_lowercase().replace('\\', "/");
+            let key = normalize(&relative.to_string_lossy());
             out.insert(key, path);
         }
     }
 }
 
-fn parse_grf(file: &mut File) -> Result<(HashMap<String, GrfEntry>, u64), FormatError> {
+fn parse_grf(file: &mut File) -> Result<ParsedGrf, FormatError> {
     let mut header_buf = [0u8; HEADER_SIZE];
     file.read_exact(&mut header_buf)?;
 
@@ -111,25 +150,30 @@ fn parse_grf(file: &mut File) -> Result<(HashMap<String, GrfEntry>, u64), Format
 
     file.seek(SeekFrom::Start(file_data_end_offset))?;
 
-    let entries = if version == 0x200 {
+    let (entries, collisions) = if version == 0x200 {
         parse_v2_entries(file, actual_file_count)?
     } else {
         parse_v1_entries(file, actual_file_count)?
     };
 
-    Ok((entries, file_data_end_offset))
+    Ok(ParsedGrf {
+        entries,
+        collisions,
+        file_data_end_offset,
+    })
 }
 
 impl GrfArchive {
     pub fn open(path: &Path) -> Result<Self, FormatError> {
         let mut file = File::open(path).map_err(FormatError::Io)?;
-        let (entries, file_data_end_offset) = parse_grf(&mut file)?;
+        let parsed = parse_grf(&mut file)?;
 
         Ok(GrfArchive {
-            entries,
+            entries: parsed.entries,
             file: Mutex::new(file),
             path: path.to_path_buf(),
-            file_data_end_offset,
+            file_data_end_offset: parsed.file_data_end_offset,
+            collisions: parsed.collisions,
             writable: false,
             data_dir: None,
             overlays: Vec::new(),
@@ -179,13 +223,14 @@ impl GrfArchive {
             .write(true)
             .open(path)
             .map_err(FormatError::Io)?;
-        let (entries, file_data_end_offset) = parse_grf(&mut file)?;
+        let parsed = parse_grf(&mut file)?;
 
         Ok(GrfArchive {
-            entries,
+            entries: parsed.entries,
             file: Mutex::new(file),
             path: path.to_path_buf(),
-            file_data_end_offset,
+            file_data_end_offset: parsed.file_data_end_offset,
+            collisions: parsed.collisions,
             writable: true,
             data_dir: None,
             overlays: Vec::new(),
@@ -222,6 +267,7 @@ impl GrfArchive {
             file: Mutex::new(file),
             path: path.to_path_buf(),
             file_data_end_offset: HEADER_SIZE as u64,
+            collisions: Vec::new(),
             writable: true,
             data_dir: None,
             overlays: Vec::new(),
@@ -275,36 +321,40 @@ impl GrfArchive {
     /// every layer. `grf-merge` installs the tables it merged across layers
     /// here so the reachability walk sees the merged rows.
     pub fn set_override(&mut self, name: &str, data: Vec<u8>) {
-        self.overrides
-            .insert(name.to_lowercase().replace('\\', "/"), data);
+        self.overrides.insert(normalize(name), data);
     }
 
     fn read_file_direct(&self, name: &str) -> Result<Vec<u8>, FormatError> {
+        let key = normalize(name);
         if !self.overrides.is_empty()
-            && let Some(data) = self.overrides.get(&name.to_lowercase().replace('\\', "/"))
+            && let Some(data) = self.overrides.get(&key)
         {
             return Ok(data.clone());
         }
 
-        if let Some(path) = self.data_dir.as_ref().and_then(|d| d.lookup(name)) {
+        if let Some(path) = self.data_dir.as_ref().and_then(|d| d.lookup(&key)) {
             return std::fs::read(path).map_err(FormatError::Io);
         }
 
-        let name_lower = name.to_lowercase().replace('\\', "/");
-        if !self.entries.contains_key(&name_lower) {
+        if !self.entries.contains_key(&key) {
             for overlay in &self.overlays {
-                if overlay.entries.contains_key(&name_lower) {
-                    return overlay.read_archive_entry(name);
+                if overlay.entries.contains_key(&key) {
+                    return overlay.read_entry(&key, name);
                 }
             }
         }
-        self.read_archive_entry(name)
+        self.read_entry(&key, name)
     }
 
     /// This archive's own entries, ignoring `data_dir` and overlays.
     fn read_archive_entry(&self, name: &str) -> Result<Vec<u8>, FormatError> {
-        let name_lower = name.to_lowercase().replace('\\', "/");
-        let Some(entry) = self.entries.get(&name_lower) else {
+        self.read_entry(&normalize(name), name)
+    }
+
+    /// Reads the entry stored under the normalized `key`; `name` is only for
+    /// the error message.
+    fn read_entry(&self, key: &str, name: &str) -> Result<Vec<u8>, FormatError> {
+        let Some(entry) = self.entries.get(key) else {
             return Err(FormatError::Io(std::io::Error::new(
                 std::io::ErrorKind::NotFound,
                 format!("file not found in archive: {name}"),
@@ -336,7 +386,7 @@ impl GrfArchive {
             return Err(FormatError::ReadOnly);
         }
 
-        let name_lower = name.to_lowercase().replace('\\', "/");
+        let key = normalize(name);
         let compressed = zlib_compress(data)?;
         let compressed_len = compressed.len() as u32;
 
@@ -345,6 +395,7 @@ impl GrfArchive {
         file.write_all(&compressed)?;
 
         let entry = GrfEntry {
+            original: name.to_string(),
             compressed_size: compressed_len,
             compressed_size_aligned: compressed_len,
             uncompressed_size: data.len() as u32,
@@ -353,7 +404,7 @@ impl GrfArchive {
         };
 
         self.file_data_end_offset += compressed_len as u64;
-        self.entries.insert(name_lower, entry);
+        self.entries.insert(key, entry);
         Ok(())
     }
 
@@ -361,8 +412,7 @@ impl GrfArchive {
         if !self.writable {
             return Err(FormatError::ReadOnly);
         }
-        let name_lower = name.to_lowercase().replace('\\', "/");
-        Ok(self.entries.remove(&name_lower).is_some())
+        Ok(self.entries.remove(&normalize(name)).is_some())
     }
 
     pub fn save(&mut self) -> Result<(), FormatError> {
@@ -410,6 +460,7 @@ impl GrfArchive {
                 blobs.push((
                     name.clone(),
                     GrfEntry {
+                        original: entry.original.clone(),
                         compressed_size: entry.compressed_size,
                         compressed_size_aligned: entry.compressed_size_aligned,
                         uncompressed_size: entry.uncompressed_size,
@@ -454,13 +505,10 @@ impl GrfArchive {
         {
             return true;
         }
-        let name_lower = name.to_lowercase().replace('\\', "/");
-        self.overrides.contains_key(&name_lower)
-            || self.entries.contains_key(&name_lower)
-            || self
-                .overlays
-                .iter()
-                .any(|o| o.entries.contains_key(&name_lower))
+        let key = normalize(name);
+        self.overrides.contains_key(&key)
+            || self.entries.contains_key(&key)
+            || self.overlays.iter().any(|o| o.entries.contains_key(&key))
     }
 
     /// Counts only the primary archive; overlays and `data_dir` are not
@@ -546,18 +594,23 @@ impl GrfArchive {
     /// Each primary-archive entry as `(normalized key, original name)`, where
     /// the original is the decoded name before normalization.
     pub fn entries_with_original_names(&self) -> impl Iterator<Item = (&str, &str)> {
-        todo!() as std::iter::Empty<(&str, &str)>
+        self.entries
+            .iter()
+            .map(|(key, entry)| (key.as_str(), entry.original.as_str()))
     }
 
     /// Entries of the primary archive whose different original names
     /// normalize to one key, as `(key, original kept, original dropped)`.
     pub fn name_collisions(&self) -> &[(String, String, String)] {
-        todo!()
+        &self.collisions
     }
 
     /// `name_collisions` over the primary archive and every overlay.
     pub fn layered_name_collisions(&self) -> Vec<(String, String, String)> {
-        todo!()
+        std::iter::once(self)
+            .chain(self.overlays.iter())
+            .flat_map(|layer| layer.collisions.iter().cloned())
+            .collect()
     }
 }
 
@@ -592,7 +645,7 @@ fn read_u32_le(file: &mut File) -> Result<u32, FormatError> {
 fn parse_v2_entries(
     file: &mut File,
     file_count: usize,
-) -> Result<HashMap<String, GrfEntry>, FormatError> {
+) -> Result<(HashMap<String, GrfEntry>, Vec<NameCollision>), FormatError> {
     let table_compressed_size = read_u32_le(file)?;
     let table_uncompressed_size = read_u32_le(file)?;
 
@@ -606,6 +659,7 @@ fn parse_v2_entries(
         .map_err(|e| FormatError::DecompressionFailed(e.to_string()))?;
 
     let mut entries = HashMap::with_capacity(file_count);
+    let mut collisions = Vec::new();
     let mut pos = 0;
     for _ in 0..file_count {
         let name_end = table[pos..]
@@ -614,7 +668,7 @@ fn parse_v2_entries(
             .ok_or(FormatError::UnexpectedEof)?;
         let name_bytes = &table[pos..pos + name_end];
         let (name_decoded, _, _) = encoding_rs::EUC_KR.decode(name_bytes);
-        let name = name_decoded.into_owned().to_lowercase().replace('\\', "/");
+        let original = name_decoded.into_owned();
         pos += name_end + 1;
 
         if pos + 17 > table.len() {
@@ -629,9 +683,11 @@ fn parse_v2_entries(
         let offset = u32::from_le_bytes(table[pos + 13..pos + 17].try_into().unwrap());
         pos += 17;
 
-        entries.insert(
-            name,
+        index_entry(
+            &mut entries,
+            &mut collisions,
             GrfEntry {
+                original,
                 compressed_size,
                 compressed_size_aligned,
                 uncompressed_size,
@@ -640,17 +696,18 @@ fn parse_v2_entries(
             },
         );
     }
-    Ok(entries)
+    Ok((entries, collisions))
 }
 
 fn parse_v1_entries(
     file: &mut File,
     file_count: usize,
-) -> Result<HashMap<String, GrfEntry>, FormatError> {
+) -> Result<(HashMap<String, GrfEntry>, Vec<NameCollision>), FormatError> {
     let mut table = Vec::new();
     file.read_to_end(&mut table)?;
 
     let mut entries = HashMap::with_capacity(file_count);
+    let mut collisions = Vec::new();
     let mut ofs = 0;
     for _ in 0..file_count {
         if ofs + 6 > table.len() {
@@ -669,7 +726,7 @@ fn parse_v1_entries(
 
         let name_end = name_buf.iter().position(|&b| b == 0).unwrap_or(name_len);
         let (name_decoded, _, _) = encoding_rs::EUC_KR.decode(&name_buf[..name_end]);
-        let name = name_decoded.into_owned().to_lowercase().replace('\\', "/");
+        let original = name_decoded.into_owned();
 
         let ofs2 = ofs + entry_len + 4;
         if ofs2 + 17 > table.len() {
@@ -687,7 +744,7 @@ fn parse_v1_entries(
             .wrapping_sub(715);
         let compressed_size_aligned = raw_aligned.wrapping_sub(37579);
         let flags = if entry_type & 0x01 != 0 {
-            encryption_flags_for_extension(&name) | 0x01
+            encryption_flags_for_extension(&normalize(&original)) | 0x01
         } else {
             entry_type
         };
@@ -698,9 +755,11 @@ fn parse_v1_entries(
             continue;
         }
 
-        entries.insert(
-            name,
+        index_entry(
+            &mut entries,
+            &mut collisions,
             GrfEntry {
+                original,
                 compressed_size,
                 compressed_size_aligned,
                 uncompressed_size,
@@ -709,7 +768,7 @@ fn parse_v1_entries(
             },
         );
     }
-    Ok(entries)
+    Ok((entries, collisions))
 }
 
 fn encryption_flags_for_extension(filename: &str) -> u8 {
