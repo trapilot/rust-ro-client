@@ -752,7 +752,8 @@ impl ApplicationHandler for App {
         if !self.config.grf_paths.is_empty() {
             let data_dir = self.config.data_dir.as_deref().map(Path::new);
             match GrfArchive::open_layered(&self.config.grf_paths, data_dir) {
-                Ok(grf) => {
+                Ok(mut grf) => {
+                    ragnarok_game::builtin_maps::register_builtin_maps(&mut grf);
                     println!(
                         "GRF loaded: {} ({} files, {} overlay archive(s), data_dir: {})",
                         self.config.grf_paths[0],
