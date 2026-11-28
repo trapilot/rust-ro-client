@@ -223,7 +223,7 @@ fn scan_exempts_tests_directories_asset_names_and_the_allowlist() {
 }
 
 #[test]
-fn scan_exempts_only_the_lines_after_the_first_cfg_test() {
+fn scan_exempts_only_the_lines_after_a_cfg_test_module() {
     let source = format!(
         "{KOREAN_LINE}\n// #[cfg(test)] in a comment\n{KOREAN_LINE}\n    #[cfg(test)]\n\
          mod tests {{\n    {KOREAN_LINE}\n}}\n"
@@ -236,6 +236,63 @@ fn scan_exempts_only_the_lines_after_the_first_cfg_test() {
             hangul("lib/a.rs", 3, KOREAN_LINE),
         ]
     );
+}
+
+/// Line numbers that `scan` reports for one file holding `lines`.
+fn reported_lines(name: &str, lines: &[&str]) -> Vec<usize> {
+    let tree = Tree::new(name, &[("lib/a.rs", &lines.join("\n"))]);
+    scan(&tree.0)
+        .into_iter()
+        .map(|violation| match violation {
+            Violation::Hangul { line, .. } => line,
+            Violation::NonAsciiPath(path) => panic!("unexpected non-ASCII path {path}"),
+        })
+        .collect()
+}
+
+#[test]
+fn scan_continues_past_cfg_test_on_a_use_item() {
+    let lines = [
+        "#[cfg(test)]",
+        "use a::B;",
+        KOREAN_LINE,
+        "#[cfg(test)]",
+        "mod tests {",
+        KOREAN_LINE,
+        "}",
+    ];
+    assert_eq!(reported_lines("cfg_test_use", &lines), vec![3]);
+}
+
+#[test]
+fn scan_continues_past_cfg_test_on_other_items() {
+    for (name, item) in [
+        ("cfg_test_fn", "pub(crate) fn helper() {"),
+        ("cfg_test_impl", "impl<'a> BuildCtx<'a> {"),
+        ("cfg_test_mod_file", "mod tests;"),
+        ("cfg_test_mod_prefix", "model! {"),
+    ] {
+        let lines = ["#[cfg(test)]", item, KOREAN_LINE];
+        assert_eq!(reported_lines(name, &lines), vec![3], "{item}");
+    }
+    assert_eq!(
+        reported_lines("cfg_test_last_line", &[KOREAN_LINE, "#[cfg(test)]"]),
+        vec![1]
+    );
+}
+
+#[test]
+fn scan_stops_at_a_cfg_test_module_in_any_accepted_form() {
+    for (name, between, module) in [
+        ("module_attribute", "#[allow(dead_code)]", "mod tests {"),
+        ("module_comment", "    // why", "mod tests {"),
+        ("module_blank", "", "mod tests {"),
+        ("module_pub", "", "pub mod test_support {"),
+        ("module_pub_crate", "", "    pub(crate) mod tests {"),
+    ] {
+        let lines = ["#[cfg(test)]", between, module, KOREAN_LINE, "}"];
+        assert_eq!(reported_lines(name, &lines), Vec::<usize>::new(), "{name}");
+    }
 }
 
 #[test]
