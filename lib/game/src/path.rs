@@ -193,12 +193,7 @@ mod tests {
         let action = try_move_to(&gat, 25, 30, 35, 30).expect("a detour exists around the wall");
         let last = action.path.last().unwrap();
         assert_eq!((last.x, last.y), (35, 30));
-        assert!(
-            action
-                .path
-                .iter()
-                .all(|n| n.x != 30 || !(10..50).contains(&n.y))
-        );
+        assert!(action.path.iter().all(|n| n.x != 30 || !(10..50).contains(&n.y)));
     }
 
     #[test]

@@ -206,11 +206,7 @@ pub fn shift_allows_monster(
     if noshift || target.entity_type != EntityType::Monster {
         return true;
     }
-    if class == TargetClass::Supportive {
-        shift
-    } else {
-        !shift
-    }
+    if class == TargetClass::Supportive { shift } else { !shift }
 }
 
 pub fn skill_target_allowed(
