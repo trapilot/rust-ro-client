@@ -404,13 +404,14 @@ fn default_mode_drops_unreferenced_textures_and_keep_protects_them() {
 #[test]
 fn ui_artwork_with_a_korean_source_name_is_kept_by_default() {
     // Interface art cannot be enumerated, so the default mode must not drop it
-    // even though its name is English once normalized.
+    // even though its name is English once normalized (and no registry entry
+    // names this file, so only the category keeps it).
     let dir = Scratch::new("ui_kept");
     let source = dir.path("old.grf");
     write_raw_grf(
         &source,
         &[(
-            "data\\texture\\유저인터페이스\\login_interface\\t_배경.bmp",
+            "data\\texture\\유저인터페이스\\zz_unlisted_art.bmp",
             b"ui",
         )],
     );
