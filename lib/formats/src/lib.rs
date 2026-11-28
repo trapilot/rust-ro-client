@@ -2,6 +2,7 @@ pub mod act;
 pub mod builtin_accessory_table;
 pub mod builtin_name_table;
 pub mod damage_number;
+pub mod flat_map;
 pub mod fog_table;
 pub mod gat;
 pub mod gnd;
