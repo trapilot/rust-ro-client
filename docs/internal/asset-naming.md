@@ -174,9 +174,10 @@ only:
 
 - in a file below a directory named `tests`;
 - in `lib/asset-names/`;
-- on a line in a `#[cfg(test)] mod … { }` module. The scan stops at the first such module, so
-  keep it at the end of the file: code below it is not checked. A `#[cfg(test)]` on a `use`,
-  `fn`, `impl` or `mod x;` exempts nothing;
+- on a line in a `#[cfg(test)] mod … { }` module. The module ends at the first lone `}` with the
+  indent of its `mod` line, as rustfmt writes it, and the scan resumes after it; with no such line
+  the rest of the file is not checked. A `#[cfg(test)]` on a `use`, `fn`, `impl` or `mod x;`
+  exempts nothing;
 - in `tools/src/grf_merge/tables.rs`, a doc comment about CP949 bytes.
 
 Even there, use it only where the Korean text is the point: input that stands in for original

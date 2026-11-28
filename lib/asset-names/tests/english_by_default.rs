@@ -76,8 +76,7 @@ fn may_hold_hangul(relative: &str) -> bool {
         || ALLOWLIST.iter().any(|(file, _reason)| *file == relative)
 }
 
-/// Reports Hangul lines up to the first `#[cfg(test)] mod … {`. Everything below that line is
-/// exempt, including any code that follows the module.
+/// Reports the Hangul lines of a file, except those of its `#[cfg(test)] mod … {` modules.
 fn scan_source(path: &Path, relative: &str, violations: &mut Vec<Violation>) {
     let bytes = fs::read(path).unwrap_or_else(|error| panic!("cannot read {path:?}: {error}"));
     let source = String::from_utf8_lossy(&bytes);
@@ -90,27 +89,58 @@ fn scan_source(path: &Path, relative: &str, violations: &mut Vec<Violation>) {
                 text: line.to_string(),
             });
         }
-        if line.trim_start().starts_with("#[cfg(test)]")
-            && opens_a_module(lines.clone().map(|(_, line)| line))
-        {
-            break;
+        if let Some(indent) = enter_test_module(line, &mut lines) {
+            // Consumes through the closing brace, or the whole file when there is none.
+            lines.find(|(_, line)| closes_module(line, indent));
         }
     }
 }
 
-/// Whether the first line that is not blank, a `//` comment or an attribute opens an inline module.
-fn opens_a_module<'a>(lines: impl Iterator<Item = &'a str>) -> bool {
-    let item = lines.map(str::trim).find(|line| {
-        let attribute = line.starts_with("#[") && line.ends_with(']');
-        !(line.is_empty() || line.starts_with("//") || attribute)
-    });
-    item.is_some_and(|item| {
-        let item = item
-            .strip_prefix("pub(crate) ")
-            .or_else(|| item.strip_prefix("pub "))
-            .unwrap_or(item);
-        item.starts_with("mod ") && item.ends_with('{')
-    })
+/// When `line` starts a `#[cfg(test)]` inline module, moves `lines` past its `mod … {` line and
+/// returns that line's indent. Otherwise leaves `lines` untouched.
+fn enter_test_module<'a>(
+    line: &str,
+    lines: &mut (impl Iterator<Item = (usize, &'a str)> + Clone),
+) -> Option<usize> {
+    let rest = line.trim().strip_prefix("#[cfg(test)]")?.trim_start();
+    if !precedes_item(rest) {
+        return opens_a_module(rest).then(|| indent_of(line));
+    }
+    let mut ahead = lines.clone();
+    let (_, item) = ahead.find(|(_, line)| !precedes_item(line.trim()))?;
+    if !opens_a_module(item.trim()) {
+        return None;
+    }
+    *lines = ahead;
+    Some(indent_of(item))
+}
+
+/// Whether a trimmed line is blank, a `//` comment or a whole attribute.
+fn precedes_item(line: &str) -> bool {
+    let attribute = line.starts_with("#[") && line.ends_with(']');
+    line.is_empty() || line.starts_with("//") || attribute
+}
+
+/// Whether a trimmed item opens an inline module.
+fn opens_a_module(item: &str) -> bool {
+    let item = ["pub ", "pub(crate) ", "pub(super) "]
+        .iter()
+        .find_map(|visibility| item.strip_prefix(visibility))
+        .or_else(|| {
+            let (_path, rest) = item.strip_prefix("pub(in ")?.split_once(") ")?;
+            Some(rest)
+        })
+        .unwrap_or(item);
+    item.starts_with("mod ") && item.ends_with('{')
+}
+
+fn indent_of(line: &str) -> usize {
+    line.chars().take_while(|c| c.is_whitespace()).count()
+}
+
+/// Whether `line` is the lone `}` that rustfmt puts at the indent of the `mod` line.
+fn closes_module(line: &str, indent: usize) -> bool {
+    line.trim() == "}" && indent_of(line) == indent
 }
 
 fn is_hangul_syllable(c: char) -> bool {
