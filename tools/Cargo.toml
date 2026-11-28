@@ -32,6 +32,10 @@ name = "grf-prune"
 path = "src/bin/grf_prune.rs"
 
 [[bin]]
+name = "grf-build"
+path = "src/bin/grf_build.rs"
+
+[[bin]]
 name = "grf-merge"
 path = "src/bin/grf_merge.rs"
 
@@ -53,6 +57,7 @@ path = "src/bin/viewer.rs"
 
 
 [dependencies]
+ragnarok-asset-names = { workspace = true }
 ragnarok-formats = { workspace = true }
 ragnarok-resources = { workspace = true }
 ragnarok-renderer = { workspace = true }
@@ -71,3 +76,7 @@ notify = "7"
 libloading = { workspace = true }
 arboard = { version = "3", features = ["wayland-data-control"] }
 gif = "0.13"
+
+[dev-dependencies]
+flate2 = { workspace = true }
+encoding_rs = { workspace = true }
