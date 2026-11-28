@@ -1,9 +1,65 @@
 //! Maps the client generates in memory when the GRF does not carry them.
 
+use ragnarok_formats::flat_map::{FlatMapSpec, build_flat_map};
+use ragnarok_formats::gnd::GndFile;
 use ragnarok_formats::grf::GrfArchive;
 
-pub fn register_builtin_maps(_grf: &mut GrfArchive) -> usize {
-    todo!("PL-26: register tanthu")
+/// Login map for new characters. Must match the server's `tanthu` mcache:
+/// 64x64 cells, walkable interior, blocked one-cell border.
+const TANTHU: &str = "tanthu";
+const TANTHU_SIZE: i32 = 64;
+
+/// Maps whose first ground texture is borrowed for the generated map, in order.
+const TEXTURE_SOURCES: [&str; 2] = ["new_1-1", "prontera"];
+
+fn first_texture(grf: &GrfArchive, map_name: &str) -> Option<String> {
+    let path = ragnarok_resources::map::gnd(map_name);
+    let data = grf.read_file(&path).ok()?;
+    match GndFile::parse(&data) {
+        Ok(gnd) => gnd.textures.into_iter().next().filter(|t| !t.is_empty()),
+        Err(e) => {
+            tracing::warn!("Cannot read ground texture from {path}: {e}");
+            None
+        }
+    }
+}
+
+/// Installs the generated maps into `grf` as overrides and returns how many it
+/// added. A map the archive already provides is left alone, and a missing
+/// texture source skips the map (the client then shows its missing-map window).
+pub fn register_builtin_maps(grf: &mut GrfArchive) -> usize {
+    if grf.read_file(&ragnarok_resources::map::rsw(TANTHU)).is_ok() {
+        tracing::info!("{TANTHU} already provided by the data source, not generating it");
+        return 0;
+    }
+
+    let Some(texture) = TEXTURE_SOURCES
+        .iter()
+        .find_map(|name| first_texture(grf, name))
+    else {
+        tracing::warn!("No ground texture source found, {TANTHU} not generated");
+        return 0;
+    };
+
+    let spec = FlatMapSpec {
+        name: TANTHU.to_string(),
+        gat_width: TANTHU_SIZE,
+        gat_height: TANTHU_SIZE,
+        texture,
+    };
+    let files = match build_flat_map(&spec) {
+        Ok(files) => files,
+        Err(e) => {
+            tracing::warn!("Cannot generate {TANTHU}: {e}");
+            return 0;
+        }
+    };
+
+    grf.set_override(&ragnarok_resources::map::gat(TANTHU), files.gat);
+    grf.set_override(&ragnarok_resources::map::gnd(TANTHU), files.gnd);
+    grf.set_override(&ragnarok_resources::map::rsw(TANTHU), files.rsw);
+    tracing::info!("Generated flat map {TANTHU} ({TANTHU_SIZE}x{TANTHU_SIZE})");
+    1
 }
 
 #[cfg(test)]
