@@ -20,8 +20,190 @@ pub struct FlatMapFiles {
     pub rsw: Vec<u8>,
 }
 
-pub fn build_flat_map(_spec: &FlatMapSpec) -> Result<FlatMapFiles, FormatError> {
-    todo!("PL-26: write GAT/GND/RSW bytes")
+/// Largest accepted side, in GAT cells. Real maps stay far below this; the cap
+/// keeps a bad spec from allocating gigabytes.
+const MAX_SIDE: i32 = 4096;
+/// Width of the texture name field in a GND file.
+const TEXTURE_FIELD_LEN: usize = 80;
+/// Width of the file name fields in an RSW file.
+const RSW_NAME_FIELD_LEN: usize = 40;
+
+const GAT_BLOCKED: i32 = 1;
+const GAT_WALKABLE: i32 = 0;
+/// Raw water type below zero makes the renderer skip water entirely.
+const NO_WATER: i32 = -1;
+
+fn invalid(msg: String) -> FormatError {
+    FormatError::Io(std::io::Error::new(std::io::ErrorKind::InvalidInput, msg))
+}
+
+fn put_f32(out: &mut Vec<u8>, v: f32) {
+    out.extend_from_slice(&v.to_le_bytes());
+}
+
+fn put_i32(out: &mut Vec<u8>, v: i32) {
+    out.extend_from_slice(&v.to_le_bytes());
+}
+
+/// Writes `s` as an EUC-KR string NUL-padded to `len` bytes. `s` must be shorter
+/// than `len`, so the field always ends in at least one NUL.
+fn put_padded_string(
+    out: &mut Vec<u8>,
+    s: &str,
+    len: usize,
+    what: &str,
+) -> Result<(), FormatError> {
+    let (encoded, _, had_errors) = encoding_rs::EUC_KR.encode(s);
+    if had_errors || encoded.contains(&0) {
+        return Err(invalid(format!(
+            "{what} {s:?} is not a valid EUC-KR string"
+        )));
+    }
+    if encoded.len() >= len {
+        return Err(invalid(format!(
+            "{what} {s:?} is {} bytes, must be under {len}",
+            encoded.len()
+        )));
+    }
+    out.extend_from_slice(&encoded);
+    out.resize(out.len() + (len - encoded.len()), 0);
+    Ok(())
+}
+
+fn validate(spec: &FlatMapSpec) -> Result<(), FormatError> {
+    for (axis, v) in [
+        ("gat_width", spec.gat_width),
+        ("gat_height", spec.gat_height),
+    ] {
+        if v <= 0 || v % 2 != 0 || v > MAX_SIDE {
+            return Err(invalid(format!(
+                "{axis} must be a positive even number up to {MAX_SIDE}, got {v}"
+            )));
+        }
+    }
+    if spec.name.is_empty() {
+        return Err(invalid("map name must not be empty".to_string()));
+    }
+    if spec.texture.is_empty() {
+        return Err(invalid("texture must not be empty".to_string()));
+    }
+    Ok(())
+}
+
+fn build_gat(spec: &FlatMapSpec) -> Vec<u8> {
+    let (w, h) = (spec.gat_width, spec.gat_height);
+    let mut out = Vec::with_capacity(14 + (w * h) as usize * 20);
+    out.extend_from_slice(b"GRAT");
+    out.extend_from_slice(&[1, 2]);
+    put_i32(&mut out, w);
+    put_i32(&mut out, h);
+    for y in 0..h {
+        for x in 0..w {
+            for _ in 0..4 {
+                put_f32(&mut out, 0.0);
+            }
+            let walkable = (1..=w - 2).contains(&x) && (1..=h - 2).contains(&y);
+            put_i32(&mut out, if walkable { GAT_WALKABLE } else { GAT_BLOCKED });
+        }
+    }
+    out
+}
+
+fn build_gnd(spec: &FlatMapSpec) -> Result<Vec<u8>, FormatError> {
+    let (w, h) = (spec.gat_width / 2, spec.gat_height / 2);
+    let mut out = Vec::with_capacity(256 + (w * h) as usize * 28);
+    out.extend_from_slice(b"GRGN");
+    out.extend_from_slice(&[1, 7]);
+    put_i32(&mut out, w);
+    put_i32(&mut out, h);
+    put_f32(&mut out, 10.0);
+
+    put_i32(&mut out, 1);
+    put_i32(&mut out, TEXTURE_FIELD_LEN as i32);
+    put_padded_string(&mut out, &spec.texture, TEXTURE_FIELD_LEN, "texture")?;
+
+    // One 8x8 lightmap: full shadow-map brightness, no colour tint.
+    put_i32(&mut out, 1);
+    put_i32(&mut out, 8);
+    put_i32(&mut out, 8);
+    put_i32(&mut out, 1);
+    out.extend_from_slice(&[255u8; 64]);
+    out.extend_from_slice(&[0u8; 192]);
+
+    put_i32(&mut out, 1);
+    for v in [0.0f32, 1.0, 0.0, 1.0] {
+        put_f32(&mut out, v);
+    }
+    for v in [0.0f32, 0.0, 1.0, 1.0] {
+        put_f32(&mut out, v);
+    }
+    out.extend_from_slice(&0i16.to_le_bytes());
+    out.extend_from_slice(&0i16.to_le_bytes());
+    out.extend_from_slice(&[255, 255, 255, 255]);
+
+    for _ in 0..(w * h) {
+        for _ in 0..4 {
+            put_f32(&mut out, 0.0);
+        }
+        put_i32(&mut out, 0);
+        put_i32(&mut out, -1);
+        put_i32(&mut out, -1);
+    }
+    Ok(out)
+}
+
+fn build_rsw(spec: &FlatMapSpec) -> Result<Vec<u8>, FormatError> {
+    let mut out = Vec::with_capacity(256);
+    out.extend_from_slice(b"GRSW");
+    out.extend_from_slice(&[1, 9]);
+    put_padded_string(&mut out, "", RSW_NAME_FIELD_LEN, "ini file")?;
+    put_padded_string(
+        &mut out,
+        &format!("{}.gnd", spec.name),
+        RSW_NAME_FIELD_LEN,
+        "gnd file",
+    )?;
+    put_padded_string(
+        &mut out,
+        &format!("{}.gat", spec.name),
+        RSW_NAME_FIELD_LEN,
+        "gat file",
+    )?;
+    put_padded_string(&mut out, "", RSW_NAME_FIELD_LEN, "source file")?;
+
+    // water: level, type, wave height, wave speed, wave pitch, anim speed
+    put_f32(&mut out, 0.0);
+    put_i32(&mut out, NO_WATER);
+    put_f32(&mut out, 1.0);
+    put_f32(&mut out, 2.0);
+    put_f32(&mut out, 50.0);
+    put_i32(&mut out, 3);
+
+    // light: longitude, latitude, diffuse, ambient, shadow map alpha
+    put_i32(&mut out, 45);
+    put_i32(&mut out, 45);
+    for v in [1.0f32, 1.0, 1.0, 0.3, 0.3, 0.3] {
+        put_f32(&mut out, v);
+    }
+    put_f32(&mut out, 1.0);
+
+    // ground bounds: top, bottom, left, right
+    for v in [-500, 500, -500, 500] {
+        put_i32(&mut out, v);
+    }
+
+    // object count
+    put_i32(&mut out, 0);
+    Ok(out)
+}
+
+pub fn build_flat_map(spec: &FlatMapSpec) -> Result<FlatMapFiles, FormatError> {
+    validate(spec)?;
+    // Build the cheap RSW first so an oversized name fails before the big buffers.
+    let rsw = build_rsw(spec)?;
+    let gnd = build_gnd(spec)?;
+    let gat = build_gat(spec);
+    Ok(FlatMapFiles { gat, gnd, rsw })
 }
 
 #[cfg(test)]
