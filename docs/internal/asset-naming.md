@@ -164,10 +164,40 @@ reaches the right entry anyway.
 - A new literal: write the final name. `rename("data/sprite/몬스터/poring")` gives the string to
   paste.
 
-Korean text that stays in the code is limited to test input that stands in for file content
-(Lua tables, `resnametable.txt`, item resource names, a map list header, a chat message,
-font glyphs), the tests of `ragnarok-asset-names`, `grf-build` and the lookup normalization, the
-snapshot inputs above, and one CP949 doc comment.
+## English by default
+
+Identifiers, file names and resource path literals are English ASCII. A fake resource name in a
+test is English too (`red_potion`, `goblin_card`). Korean is for input that must be Korean.
+
+Hangul syllables (U+AC00..U+D7A3) may appear in a `.rs` file under `lib/`, `client/` or `tools/`
+only:
+
+- in a file below a directory named `tests`;
+- in `lib/asset-names/`;
+- after the first `#[cfg(test)]` line of the file. This is meant for the test module at the end
+  of a file; it also exempts the code below a `#[cfg(test)]` item placed higher up, so review
+  such a file by eye;
+- in `tools/src/grf_merge/tables.rs`, a doc comment about CP949 bytes.
+
+Even there, use it only where the Korean text is the point: input that stands in for original
+file content (Lua tables, `resnametable.txt`, item resource names, a map list header), a chat
+message, font glyphs, the tests of `ragnarok-asset-names`, `grf-build` and the lookup
+normalization, and the snapshot inputs above. Name a new test that feeds original Korean data
+`korean_compat_*`.
+
+`lib/asset-names/tests/english_by_default.rs` enforces this, and that every file and directory
+name under those three directories is ASCII (`target/` is skipped):
+
+```bash
+cargo test -p ragnarok-asset-names --test english_by_default
+```
+
+When it fails, replace the Korean name with the output of `ragnarok_asset_names::rename()`. A
+file that really needs Hangul outside tests, such as one with player-facing text, goes into
+`ALLOWLIST` in that test with its reason.
+
+To add a new word, edit `lib/asset-names/dictionary.toml` as described in
+[Adding or changing a word](#adding-or-changing-a-word).
 
 ## `grf-build`
 
