@@ -3141,6 +3141,9 @@ dependencies = [
 [[package]]
 name = "ragnarok-resources"
 version = "0.1.0"
+dependencies = [
+ "ragnarok-asset-names",
+]
 
 [[package]]
 name = "ragnarok-tools"
