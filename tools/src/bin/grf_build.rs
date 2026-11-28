@@ -25,7 +25,12 @@ Sources are listed highest priority first. Exit codes: 0 ok, 1 failure,
 2 name collisions (nothing written), 64 usage error.
 ";
 
-fn parse_args() -> Result<Options, String> {
+enum Parsed {
+    Help,
+    Run(Options),
+}
+
+fn parse_args() -> Result<Parsed, String> {
     let mut sources = Vec::new();
     let mut out = None;
     let mut opts = Options {
@@ -50,7 +55,7 @@ fn parse_args() -> Result<Options, String> {
             "--keep" => opts.keep.push(grf_audit::normalize(&value()?)),
             "--manifest" => opts.manifest = Some(PathBuf::from(value()?)),
             "--allow-collisions" => opts.allow_collisions = true,
-            "-h" | "--help" => return Err(USAGE.to_string()),
+            "-h" | "--help" => return Ok(Parsed::Help),
             flag if flag.starts_with('-') => {
                 return Err(format!("unknown flag `{flag}`\n\n{USAGE}"));
             }
@@ -62,7 +67,7 @@ fn parse_args() -> Result<Options, String> {
     }
     opts.sources = sources;
     opts.out = out.ok_or_else(|| format!("--out is required\n\n{USAGE}"))?;
-    Ok(opts)
+    Ok(Parsed::Run(opts))
 }
 
 fn mb(bytes: u64) -> String {
@@ -71,7 +76,11 @@ fn mb(bytes: u64) -> String {
 
 fn main() {
     let opts = match parse_args() {
-        Ok(o) => o,
+        Ok(Parsed::Run(o)) => o,
+        Ok(Parsed::Help) => {
+            print!("{USAGE}");
+            return;
+        }
         Err(message) => {
             eprintln!("{message}");
             std::process::exit(64);

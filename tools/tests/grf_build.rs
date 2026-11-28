@@ -522,3 +522,34 @@ fn binary_exits_64_on_usage_errors() {
         );
     }
 }
+
+#[test]
+fn a_name_stored_twice_builds_one_entry_with_the_last_data() {
+    let dir = Scratch::new("dup_same_name");
+    let source = dir.path("old.grf");
+    let out = dir.path("data.grf");
+    write_raw_grf(&source, &[("data\\a.txt", b"old"), ("data\\a.txt", b"new")]);
+
+    let summary = grf_build::build(&options(&[&source], &out)).unwrap();
+
+    assert_eq!(summary.files, 1);
+    assert_eq!(summary.collisions, 0);
+    let built = GrfArchive::open(&out).unwrap();
+    assert_eq!(built.file_count(), 1);
+    assert_eq!(built.read_file("data/a.txt").unwrap(), b"new");
+    let manifest = std::fs::read_to_string(&summary.manifest).unwrap();
+    assert_eq!(manifest.lines().count(), 1, "{manifest}");
+}
+
+#[test]
+fn binary_help_prints_usage_to_stdout_and_exits_0() {
+    for flag in ["--help", "-h"] {
+        let result = bin().arg(flag).output().unwrap();
+        assert_eq!(result.status.code(), Some(0), "{flag}: {result:?}");
+        assert!(
+            String::from_utf8_lossy(&result.stdout).contains("usage: grf-build"),
+            "{flag}: {result:?}"
+        );
+        assert!(result.stderr.is_empty(), "{flag}: {result:?}");
+    }
+}

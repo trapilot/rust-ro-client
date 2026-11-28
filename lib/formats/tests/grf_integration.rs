@@ -566,6 +566,64 @@ fn entries_that_normalize_to_one_key_are_reported_and_first_wins() {
 }
 
 #[test]
+fn same_original_name_twice_is_not_a_collision_and_the_last_wins() {
+    let path = temp_grf_path("dup_same_name");
+    let _c = CleanupFile(path.clone());
+    write_raw_grf(&path, &[("data\\a.txt", b"old"), ("data\\a.txt", b"new")]);
+    let grf = GrfArchive::open(&path).unwrap();
+
+    assert!(
+        grf.name_collisions().is_empty(),
+        "{:?}",
+        grf.name_collisions()
+    );
+    assert_eq!(grf.file_count(), 1);
+    assert_eq!(grf.read_file("data/a.txt").unwrap(), b"new");
+}
+
+#[test]
+fn re_appended_name_wins_over_a_case_variant_and_the_collision_is_kept_once() {
+    let path = temp_grf_path("dup_same_then_variant");
+    let _c = CleanupFile(path.clone());
+    write_raw_grf(
+        &path,
+        &[("a/X.spr", b"1"), ("a/x.spr", b"2"), ("a/X.spr", b"3")],
+    );
+    let grf = GrfArchive::open(&path).unwrap();
+
+    assert_eq!(grf.read_file("a/x.spr").unwrap(), b"3");
+    assert_eq!(
+        grf.name_collisions(),
+        &[(
+            "a/x.spr".to_string(),
+            "a/X.spr".to_string(),
+            "a/x.spr".to_string()
+        )]
+    );
+}
+
+#[test]
+fn a_dropped_variant_repeated_is_recorded_only_once() {
+    let path = temp_grf_path("dup_variant_twice");
+    let _c = CleanupFile(path.clone());
+    write_raw_grf(
+        &path,
+        &[("a/X.spr", b"1"), ("a/x.spr", b"2"), ("a/x.spr", b"3")],
+    );
+    let grf = GrfArchive::open(&path).unwrap();
+
+    assert_eq!(grf.read_file("a/x.spr").unwrap(), b"1");
+    assert_eq!(
+        grf.name_collisions(),
+        &[(
+            "a/x.spr".to_string(),
+            "a/X.spr".to_string(),
+            "a/x.spr".to_string()
+        )]
+    );
+}
+
+#[test]
 fn korean_name_and_its_translation_collide() {
     let path = temp_grf_path("collide_korean");
     let _c = CleanupFile(path.clone());

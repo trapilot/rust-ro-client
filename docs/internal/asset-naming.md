@@ -131,7 +131,9 @@ table. Archives written by `create` / `add_file` always store the normalized ASC
 
 If two different original names normalize to the same key, the first entry wins, a warning is
 logged, and the pair is reported by `name_collisions()` (primary archive) or
-`layered_name_collisions()` (primary plus overlays).
+`layered_name_collisions()` (primary plus overlays). The same original name stored twice in one
+archive (a patch appended to it) is not a collision: the last entry wins, as it did before
+normalization.
 
 `tools/src/grf_audit` keys and classifies entries by normalized names, including the interface
 texture directories (`Category::Ui`): `user_interface` (the registry's spelling) and the older
