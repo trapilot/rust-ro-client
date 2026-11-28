@@ -542,6 +542,23 @@ impl GrfArchive {
     pub fn path(&self) -> &Path {
         &self.path
     }
+
+    /// Each primary-archive entry as `(normalized key, original name)`, where
+    /// the original is the decoded name before normalization.
+    pub fn entries_with_original_names(&self) -> impl Iterator<Item = (&str, &str)> {
+        todo!() as std::iter::Empty<(&str, &str)>
+    }
+
+    /// Entries of the primary archive whose different original names
+    /// normalize to one key, as `(key, original kept, original dropped)`.
+    pub fn name_collisions(&self) -> &[(String, String, String)] {
+        todo!()
+    }
+
+    /// `name_collisions` over the primary archive and every overlay.
+    pub fn layered_name_collisions(&self) -> Vec<(String, String, String)> {
+        todo!()
+    }
 }
 
 fn zlib_compress(data: &[u8]) -> Result<Vec<u8>, FormatError> {
