@@ -603,7 +603,17 @@ impl GrfArchive {
     /// listed once and resolved like `layered_file_list`: the earliest layer
     /// that has a key supplies its original name. Ordered by key.
     pub fn layered_entries_with_original_names(&self) -> Vec<(&str, &str)> {
-        todo!()
+        let mut seen: HashSet<&str> = HashSet::new();
+        let mut list = Vec::new();
+        for layer in std::iter::once(self).chain(self.overlays.iter()) {
+            for (key, entry) in &layer.entries {
+                if seen.insert(key.as_str()) {
+                    list.push((key.as_str(), entry.original.as_str()));
+                }
+            }
+        }
+        list.sort();
+        list
     }
 
     /// Entries of the primary archive whose different original names
