@@ -309,6 +309,23 @@ fn missing_or_corrupt_source_fails_without_output() {
 }
 
 #[test]
+fn corrupt_overlay_is_an_error_not_a_silent_skip() {
+    // `open_layered` only logs an overlay it cannot open; a build that quietly
+    // lacked a source would produce an incomplete data.grf.
+    let dir = Scratch::new("bad_overlay");
+    let primary = dir.path("p.grf");
+    let junk = dir.path("junk.grf");
+    let out = dir.path("data.grf");
+    write_raw_grf(&primary, THREE);
+    std::fs::write(&junk, b"not a grf at all").unwrap();
+
+    let err = grf_build::build(&options(&[&primary, &junk], &out)).unwrap_err();
+
+    assert!(matches!(err, BuildError::Failed(_)), "{err:?}");
+    assert!(!out.exists());
+}
+
+#[test]
 fn no_sources_is_an_error() {
     let dir = Scratch::new("no_sources");
     let err = grf_build::build(&options(&[], &dir.path("data.grf"))).unwrap_err();
