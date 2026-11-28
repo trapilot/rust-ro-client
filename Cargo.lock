@@ -3044,6 +3044,7 @@ name = "ragnarok-effects"
 version = "0.1.0"
 dependencies = [
  "models",
+ "ragnarok-asset-names",
  "ragnarok-profiling",
  "ragnarok-resources",
  "tracing",
@@ -3070,6 +3071,7 @@ dependencies = [
  "models",
  "movement",
  "ragnarok-ai",
+ "ragnarok-asset-names",
  "ragnarok-effects",
  "ragnarok-formats",
  "ragnarok-profiling",

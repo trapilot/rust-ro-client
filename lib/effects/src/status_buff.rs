@@ -165,7 +165,7 @@ pub fn status_reaction(efst: ClientEffectIcon) -> Option<StatusReaction> {
         I::SgSunWarm => StatusReaction::aura(&[E::Doublegumgang, E::Redlightbody]),
         I::Mindbreaker => StatusReaction::on_activate(&[E::Magiccrasher2]),
         I::Ting => StatusReaction::on_activate(&[E::Quakebody]).with_sound(
-            "effect\\t_벽튕김.wav",
+            "effect/t_wall_bounce.wav",
             SfxPos::World,
             false,
         ),
@@ -213,7 +213,7 @@ pub fn status_reaction_by_efst(efst: i16) -> Option<StatusReaction> {
     match efst {
         EFST_MOON => Some(StatusReaction::aura(&[E::Spherewind2])),
         EFST_DEVIL1 => Some(StatusReaction::kind(StatusKind::DevilBlind).with_sound(
-            "effect\\_blind.wav",
+            "effect/_blind.wav",
             SfxPos::Ui(-100.0),
             true,
         )),

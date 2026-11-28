@@ -113,7 +113,7 @@ mod tests {
         let table = make_table();
         assert_eq!(
             table.item_icon_path(501).unwrap(),
-            "data/texture/유저인터페이스/item/빨간포션.bmp"
+            "data/texture/user_interface/item/빨간포션.bmp"
         );
         assert!(table.item_icon_path(999).is_none());
     }

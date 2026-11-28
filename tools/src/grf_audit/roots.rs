@@ -86,7 +86,7 @@ pub fn collect(
         }
         if res::lua::ALL.contains(&path)
             || alternates.contains(&path)
-            || path.starts_with("data/texture/유저인터페이스/illust/")
+            || path.starts_with("data/texture/user_interface/illust/")
         {
             probe!(path.to_string(), Origin::Registry);
         } else {

@@ -758,7 +758,7 @@ mod tests {
         assert_eq!(attachment_offset(&body, &head), (7, -15));
     }
 
-    // Real idle attach points from data.grf: 기사_남 body, 1_남 head, 남_산타모자
+    // Real idle attach points from data.grf: knight_male body, 1_male head, male_santa_hat
     // headgear, which draws at zoom 0.93.
     #[test]
     fn headgear_offset_follows_the_head_through_its_own_zoom() {

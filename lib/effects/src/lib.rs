@@ -325,7 +325,7 @@ mod tests {
         assert!(
             paths
                 .iter()
-                .any(|p| p.starts_with("data/texture/유저인터페이스/item/")),
+                .any(|p| p.starts_with("data/texture/user_interface/item/")),
             "thrown item icons resolve under the item dir",
         );
         assert!(
@@ -346,7 +346,7 @@ mod tests {
     fn effect_spr_paths_cover_spr_def_effects() {
         let paths = effect_spr_paths();
         assert!(
-            paths.contains(&"data/sprite/이팩트/스톱"),
+            paths.contains(&"data/sprite/effect/stop"),
             "NpcStop's sprite must be preloaded",
         );
         let mut sorted = paths.clone();

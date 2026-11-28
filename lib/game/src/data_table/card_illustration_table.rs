@@ -68,7 +68,7 @@ mod tests {
         let table = CardIllustrationTable::from_entries(entries);
         assert_eq!(
             table.illustration_path(4001),
-            Some("data/texture/유저인터페이스/cardbmp/카드일러스트1.bmp".to_string()),
+            Some("data/texture/user_interface/cardbmp/카드일러스트1.bmp".to_string()),
         );
         assert_eq!(table.illustration_path(9999), None);
     }

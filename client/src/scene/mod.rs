@@ -19,7 +19,7 @@ use ragnarok_renderer::{
     scale_clip_vertices,
 };
 
-/// Action index of the ice-shatter in `얼음땡.act` (action 0 is the block).
+/// Action index of the ice-shatter in `ice_block.act` (action 0 is the block).
 const FREEZE_SHATTER_ACTION: usize = 1;
 
 /// Negative Y is up, so this lifts the graffiti decal clear of the terrain.

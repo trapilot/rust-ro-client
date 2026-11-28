@@ -44,7 +44,7 @@ are lost on the next save.
 | `refuse_party_invite` | Auto-decline incoming party invitations. | `false` | No |
 | `map_recovery_command` | Chat command sent by the map-recovery window's warp button when a map cannot be loaded because its data is missing from the GRF. | `"@go prontera"` | No |
 | `last_char_slot` | Slot of the character selected last, restored to preselect it and its page on the next character-select screen. Client-side only; the server sends no last-used marker. | `null` | No |
-| `account_backgrounds` | GRF texture paths for the account-screen background. One is picked at random per session and stretched behind the login, server and character screens. Empty or all-missing falls back to the solid clear color. | `["data/texture/유저인터페이스/rag_title.bmp", "data/texture/유저인터페이스/rag_title2.bmp", "data/texture/유저인터페이스/rag_title3.bmp"]` | No |
+| `account_backgrounds` | GRF texture paths for the account-screen background. One is picked at random per session and stretched behind the login, server and character screens. Empty or all-missing falls back to the solid clear color. | `["data/texture/user_interface/rag_title.bmp", "data/texture/user_interface/rag_title2.bmp", "data/texture/user_interface/rag_title3.bmp"]` | No |
 | `admin_account_ids` | Account ids treated as GM. Their characters use the Operator body sprite and render their name, guild name and chat in yellow. | `[]` | No |
 | `see_self_as_gm_when_gm` | When the local player's account id is in `admin_account_ids`, also render it as a GM to itself. No effect for non-GM accounts. | `false` | No |
 >>>
@@ -287,7 +287,7 @@ map entry, so we can see when that happens:
 ```
 
 Memory grows with the square of the factor and upload time grows with it as well.
-Measured on `검사_남.spr`, the male swordman body, 118 frames:
+Measured on `swordman_male.spr`, the male swordman body, 118 frames:
 
 | Factor | Resize time | Texture memory |
 | --- | --- | --- |
