@@ -14,3 +14,6 @@ models = { workspace = true }
 movement = { workspace = true }
 tracing = { workspace = true }
 serde = { workspace = true }
+
+[dev-dependencies]
+ragnarok-asset-names = { workspace = true }
