@@ -76,11 +76,13 @@ fn may_hold_hangul(relative: &str) -> bool {
         || ALLOWLIST.iter().any(|(file, _reason)| *file == relative)
 }
 
-/// Reports Hangul lines up to the first `#[cfg(test)]`; the repo keeps test modules at the end of
-/// a file.
+/// Reports Hangul lines up to the first `#[cfg(test)] mod … {`. Everything below that line is
+/// exempt, including any code that follows the module.
 fn scan_source(path: &Path, relative: &str, violations: &mut Vec<Violation>) {
     let bytes = fs::read(path).unwrap_or_else(|error| panic!("cannot read {path:?}: {error}"));
-    for (index, line) in String::from_utf8_lossy(&bytes).lines().enumerate() {
+    let source = String::from_utf8_lossy(&bytes);
+    let mut lines = source.lines().enumerate();
+    while let Some((index, line)) = lines.next() {
         if line.chars().any(is_hangul_syllable) {
             violations.push(Violation::Hangul {
                 file: relative.to_string(),
@@ -88,10 +90,27 @@ fn scan_source(path: &Path, relative: &str, violations: &mut Vec<Violation>) {
                 text: line.to_string(),
             });
         }
-        if line.trim_start().starts_with("#[cfg(test)]") {
+        if line.trim_start().starts_with("#[cfg(test)]")
+            && opens_a_module(lines.clone().map(|(_, line)| line))
+        {
             break;
         }
     }
+}
+
+/// Whether the first line that is not blank, a `//` comment or an attribute opens an inline module.
+fn opens_a_module<'a>(lines: impl Iterator<Item = &'a str>) -> bool {
+    let item = lines.map(str::trim).find(|line| {
+        let attribute = line.starts_with("#[") && line.ends_with(']');
+        !(line.is_empty() || line.starts_with("//") || attribute)
+    });
+    item.is_some_and(|item| {
+        let item = item
+            .strip_prefix("pub(crate) ")
+            .or_else(|| item.strip_prefix("pub "))
+            .unwrap_or(item);
+        item.starts_with("mod ") && item.ends_with('{')
+    })
 }
 
 fn is_hangul_syllable(c: char) -> bool {

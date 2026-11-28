@@ -174,9 +174,9 @@ only:
 
 - in a file below a directory named `tests`;
 - in `lib/asset-names/`;
-- after the first `#[cfg(test)]` line of the file. This is meant for the test module at the end
-  of a file; it also exempts the code below a `#[cfg(test)]` item placed higher up, so review
-  such a file by eye;
+- on a line in a `#[cfg(test)] mod … { }` module. The scan stops at the first such module, so
+  keep it at the end of the file: code below it is not checked. A `#[cfg(test)]` on a `use`,
+  `fn`, `impl` or `mod x;` exempts nothing;
 - in `tools/src/grf_merge/tables.rs`, a doc comment about CP949 bytes.
 
 Even there, use it only where the Korean text is the point: input that stands in for original
