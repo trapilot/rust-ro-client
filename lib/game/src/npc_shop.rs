@@ -438,7 +438,7 @@ mod tests {
                     let mut i = make_item(501, "Red Potion");
                     i.index = 1;
                     i.count = 10;
-                    i.resource_name = Some("빨간포션".into());
+                    i.resource_name = Some("red_potion".into());
                     i
                 },
                 price: 25,
@@ -450,7 +450,7 @@ mod tests {
                     i.item_type = ItemType::Weapon;
                     i.index = 5;
                     i.count = 1;
-                    i.resource_name = Some("스틸레토".into());
+                    i.resource_name = Some("stiletto".into());
                     i
                 },
                 price: 5000,

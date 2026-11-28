@@ -1080,7 +1080,7 @@ mod tests {
             item_resource: Some(ItemResourceTable::from_entries(
                 {
                     let mut m = HashMap::new();
-                    m.insert(4025u16, "고블린카드".to_string());
+                    m.insert(4025u16, "goblin_card".to_string());
                     m
                 },
                 HashMap::new(),
@@ -1090,7 +1090,7 @@ mod tests {
         win.show_card(4025, &data);
         let paths = win.pending_card_texture_paths();
         assert_eq!(paths.len(), 1);
-        assert!(paths[0].contains("collection/고블린카드.bmp"));
+        assert!(paths[0].contains("collection/goblin_card.bmp"));
     }
 
     #[test]
