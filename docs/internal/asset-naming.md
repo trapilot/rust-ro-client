@@ -112,3 +112,51 @@ These runs have no key. `rename()` romanizes them.
 | `강` | `_RWC승리의왕관_8강` | "8강" = quarter-final; one syllable, means "river" or "strong" elsewhere. |
 | `세` | `_랄프폰지게666세` | "the 666th"; one syllable, too generic. |
 | `랄프폰지게` | `_랄프폰지게666세` | A proper name with no item in the rAthena database; spelling unknown. |
+
+## Where names are normalized
+
+`ragnarok_asset_names::normalize` (the same function as `rename`) is applied in one layer,
+`lib/formats/src/grf.rs` and `res_name_table.rs`:
+
+- every entry read from an archive, after EUC-KR decoding, is stored under its normalized
+  key. `GrfArchive` also keeps the decoded original name (`entries_with_original_names`,
+  `layered_entries_with_original_names`) for manifests;
+- every lookup (`read_file`, `file_exists`, `set_override`, `remove_file`, `add_file`) and every
+  `data_dir` file key is normalized the same way;
+- `resnametable.txt` keys and values are normalized, so `resolve` returns English names.
+
+So an archive that still holds Korean names opens and answers to both spellings, with no alias
+table. Archives written by `create` / `add_file` always store the normalized ASCII name, and
+`save()` on an archive opened with `open_rw` rewrites its names as ASCII too.
+
+If two different original names normalize to the same key, the first entry wins, a warning is
+logged, and the pair is reported by `name_collisions()` (primary archive) or
+`layered_name_collisions()` (primary plus overlays).
+
+`tools/src/grf_audit` keys and classifies entries by normalized names, including the interface
+texture directory (`Category::Ui`), which the registry still spells in Korean until the path
+literals in code are renamed.
+
+## `grf-build`
+
+`tools/src/bin/grf_build.rs` (logic in `tools/src/grf_build`) turns an original archive into the
+archive the client reads:
+
+```bash
+cargo run -p ragnarok-tools --bin grf-build --release -- old/data.grf --out data/data.grf
+```
+
+1. Open the sources as a layered stack (first wins). Every source must open as a GRF.
+2. If different original names collide, print them and exit 2 without writing anything,
+   unless `--allow-collisions`.
+3. Choose the entries: all of them with `--all`, otherwise everything `grf-prune` would keep
+   with its default categories (`--server` and `--keep` work as in `grf-prune`).
+4. Write them in name order with `GrfArchive::create` / `add_file` / `save`, then the manifest
+   `original<TAB>new`, sorted by `new`.
+
+The tool never modifies a source, never overwrites an existing file, and removes a partly
+written output when it fails. After a rename that changes a dictionary value, run it again and
+update any literal path in code that used the old name (see "Adding or changing a word").
+
+Not verified here: a run on a real `data.grf`. The runtime that built this has no game assets,
+so the tests use small archives written by hand.

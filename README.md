@@ -53,7 +53,7 @@ classic-client/
       texture/
 ```
 
-The GRF archive holds everything the renderer reads: maps (GAT/RSW/GND), sprites (SPR/ACT), effects (STR), 3D models (RSM/GR2), and textures. The client and every tool read resources by their Korean names, exactly as they are stored in the archive; we do not rename or repack them.
+The GRF archive holds everything the renderer reads: maps (GAT/RSW/GND), sprites (SPR/ACT), effects (STR), 3D models (RSM/GR2), and textures. The client and every tool read resources by English ASCII names (`data/sprite/human/body/male/swordman_male.spr`). Every name entering the archive layer, whether an index entry, a `data_dir` file or a lookup, goes through `ragnarok_asset_names::normalize`, so an original archive that still uses Korean names opens fine; `grf-build` rewrites it with the English names. See [asset naming](docs/internal/asset-naming.md).
 
 Resources are resolved by priority. `data_dir` (loose extracted files) is checked first, then each archive in `grf_paths` in order, so the first archive wins over the later ones. This lets a second GRF, or a folder of extracted files, override individual resources without touching the base archive. The layout inside `data_dir` mirrors the archive's `data/` folder: to override `data/sprite/foo.spr`, place the file at `<data_dir>/sprite/foo.spr`.
 
@@ -349,9 +349,9 @@ cargo run -p ragnarok-tools --bin gr2-viewer -- --grf data/data.grf data/model/3
 cargo run -p ragnarok-tools --bin gr2-viewer -- --grf data/data.grf data/model/3dmob/empelium90_0.gr2
 ```
 
-## GRF audit: verify, prune and merge
+## GRF audit: verify, prune, merge and build
 
-Three command line tools answer the same question from different sides: which entries of an archive can the client actually reach? `grf-verify` lists what the client asks for and the archive does not hold. `grf-prune` lists what the archive holds and nothing asks for, and can write a smaller archive without it. `grf-merge` flattens a stack of archives into one, with the same precedence the client applies at runtime.
+Three command line tools answer the same question from different sides (a fourth, `grf-build`, is described last): which entries of an archive can the client actually reach? `grf-verify` lists what the client asks for and the archive does not hold. `grf-prune` lists what the archive holds and nothing asks for, and can write a smaller archive without it. `grf-merge` flattens a stack of archives into one, with the same precedence the client applies at runtime.
 
 They share one engine, `tools/src/grf_audit`. It starts from the roots, every path the client names on its own, then follows references from file to file until nothing new appears. The roots are the [`ragnarok-resources`](lib/resources/src/lib.rs) registry (every path the code states outright) plus one path per row of every data table the client reads: item resources, job and NPC identity, accessory, skill sounds, effect tables, quest artwork, status icons, skill icons, `.gr2` actors, and the map list.
 
@@ -500,6 +500,26 @@ merged — 44765 entries, 1335.7MB
 ```
 
 # Divergence from original client
+
+### grf-build
+
+Rebuilds `data.grf` with English resource names. Give it the original archive (Korean names, or an already renamed one) and an output path; every entry is written under its normalized name, so the result is a GRF 0x200 the client reads directly. Sources are listed highest priority first, like `grf_paths`, and are only read, never modified. The tool refuses to write over a source or over an existing file.
+
+```bash
+cargo run -p ragnarok-tools --bin grf-build --release -- old/data.grf --out data/data.grf
+cargo run -p ragnarok-tools --bin grf-build --release -- old/data.grf old/data-2.grf --out data/data.grf --all
+```
+
+| Flag | Meaning |
+|---|---|
+| `--out <path>` | archive to write (required) |
+| `--all` | copy every entry. Without it, entries are dropped exactly as `grf-prune` drops them with its default categories (textures and models nothing reaches) |
+| `--server <path>` | same as `grf-prune` |
+| `--keep <prefix>` | never drop entries under this prefix (repeatable) |
+| `--manifest <path>` | where to write the TSV `original<TAB>new` sorted by `new` (default `<out>.manifest.tsv`) |
+| `--allow-collisions` | keep the first entry when two different names become the same resource |
+
+Exit codes: 0 done, 1 failure (unreadable source, `--out` equals a source, existing output), 2 name collisions (nothing is written; the list goes to stderr), 64 usage error. The client does not read the manifest; it is there so you can trace an English name back to the original.
 
 ## AI
 Instead of using Lua files from the player directory to implement AI, we implement a highly configurable AI in the client directly, inspired by [AzzyAI](https://github.com/SpenceKonde/AzzyAI).
