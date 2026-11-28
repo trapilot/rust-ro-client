@@ -410,10 +410,7 @@ fn ui_artwork_with_a_korean_source_name_is_kept_by_default() {
     let source = dir.path("old.grf");
     write_raw_grf(
         &source,
-        &[(
-            "data\\texture\\유저인터페이스\\zz_unlisted_art.bmp",
-            b"ui",
-        )],
+        &[("data\\texture\\유저인터페이스\\zz_unlisted_art.bmp", b"ui")],
     );
 
     let mut opts = options(&[&source], &dir.path("out.grf"));
