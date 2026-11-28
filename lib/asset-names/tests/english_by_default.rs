@@ -6,6 +6,12 @@ use std::path::{Path, PathBuf};
 
 const SCANNED_DIRS: [&str; 3] = ["lib", "client", "tools"];
 
+/// Files that may hold Hangul outside tests, each with the reason.
+const ALLOWLIST: [(&str, &str); 1] = [(
+    "tools/src/grf_merge/tables.rs",
+    "doc comment about the CP949 bytes of one syllable",
+)];
+
 const HINT: &str = "use the English name from ragnarok_asset_names::rename(), \
                     see docs/internal/asset-naming.md";
 
@@ -22,8 +28,74 @@ enum Violation {
 
 /// Every violation under `lib/`, `client/` and `tools/` of `root`, in that order and sorted by
 /// name inside each. `target/` directories are skipped.
-fn scan(_root: &Path) -> Vec<Violation> {
-    todo!()
+fn scan(root: &Path) -> Vec<Violation> {
+    let mut violations = Vec::new();
+    for dir in SCANNED_DIRS {
+        let path = root.join(dir);
+        if path.is_dir() {
+            scan_dir(&path, dir, &mut violations);
+        }
+    }
+    violations
+}
+
+fn scan_dir(path: &Path, relative: &str, violations: &mut Vec<Violation>) {
+    let mut entries: Vec<fs::DirEntry> = fs::read_dir(path)
+        .and_then(Iterator::collect)
+        .unwrap_or_else(|error| panic!("cannot list {path:?}: {error}"));
+    entries.sort_by_key(fs::DirEntry::file_name);
+
+    for entry in entries {
+        let name = entry.file_name();
+        // Does not follow symlinks, so a link cannot lead the walk out of the workspace.
+        let kind = entry
+            .file_type()
+            .unwrap_or_else(|error| panic!("cannot stat {:?}: {error}", entry.path()));
+        if kind.is_dir() && name == "target" {
+            continue;
+        }
+        // A name that is not UTF-8 gets U+FFFD, so it is reported too.
+        let child = format!("{relative}/{}", name.to_string_lossy());
+        if !child.is_ascii() {
+            violations.push(Violation::NonAsciiPath(child.clone()));
+        }
+        if kind.is_dir() {
+            scan_dir(&entry.path(), &child, violations);
+        } else if kind.is_file() && child.ends_with(".rs") && !may_hold_hangul(&child) {
+            scan_source(&entry.path(), &child, violations);
+        }
+    }
+}
+
+fn may_hold_hangul(relative: &str) -> bool {
+    let in_tests_dir = relative
+        .rsplit_once('/')
+        .is_some_and(|(dirs, _)| dirs.split('/').any(|dir| dir == "tests"));
+    in_tests_dir
+        || relative.starts_with("lib/asset-names/")
+        || ALLOWLIST.iter().any(|(file, _reason)| *file == relative)
+}
+
+/// Reports Hangul lines up to the first `#[cfg(test)]`; the repo keeps test modules at the end of
+/// a file.
+fn scan_source(path: &Path, relative: &str, violations: &mut Vec<Violation>) {
+    let bytes = fs::read(path).unwrap_or_else(|error| panic!("cannot read {path:?}: {error}"));
+    for (index, line) in String::from_utf8_lossy(&bytes).lines().enumerate() {
+        if line.chars().any(is_hangul_syllable) {
+            violations.push(Violation::Hangul {
+                file: relative.to_string(),
+                line: index + 1,
+                text: line.to_string(),
+            });
+        }
+        if line.trim_start().starts_with("#[cfg(test)]") {
+            break;
+        }
+    }
+}
+
+fn is_hangul_syllable(c: char) -> bool {
+    ('\u{AC00}'..='\u{D7A3}').contains(&c)
 }
 
 fn workspace_root() -> PathBuf {
