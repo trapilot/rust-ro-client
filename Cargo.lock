@@ -3003,6 +3003,10 @@ dependencies = [
 ]
 
 [[package]]
+name = "ragnarok-asset-names"
+version = "0.1.0"
+
+[[package]]
 name = "ragnarok-audio"
 version = "0.1.0"
 dependencies = [

@@ -1,6 +1,7 @@
 [workspace]
 members = [
     "client",
+    "lib/asset-names",
     "lib/formats",
     "lib/resources",
     "lib/renderer",
@@ -58,6 +59,7 @@ puffin_http = "0.17"
 #packets = { git = "https://github.com/nmeylan/rust-ro.git", rev = "2e673a24" }
 
 # Internal crates
+ragnarok-asset-names = { path = "lib/asset-names" }
 ragnarok-formats = { path = "lib/formats" }
 ragnarok-resources = { path = "lib/resources" }
 ragnarok-renderer = { path = "lib/renderer" }
