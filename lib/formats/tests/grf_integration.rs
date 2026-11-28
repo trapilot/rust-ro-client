@@ -1,3 +1,4 @@
+use std::io::Write;
 use std::path::{Path, PathBuf};
 
 use ragnarok_formats::act::ActFile;
@@ -388,4 +389,430 @@ fn add_file_overwrites_existing() {
     let grf = GrfArchive::open(&path).unwrap();
     assert_eq!(grf.file_count(), 1);
     assert_eq!(grf.read_file("data/test.txt").unwrap(), b"version B");
+}
+
+// ---------------------------------------------------------------------------
+// Asset name normalization: every name entering or leaving the archive layer
+// goes through `ragnarok_asset_names::normalize`.
+// ---------------------------------------------------------------------------
+
+use ragnarok_asset_names::{normalize, rename};
+
+/// Writes a GRF 0x200 the way the original tools do: names are stored exactly
+/// as given (EUC-KR, any case, any separator) in the order given. `add_file`
+/// cannot make these archives because it normalizes.
+fn write_raw_grf(path: &Path, files: &[(&str, &[u8])]) {
+    use flate2::Compression;
+    use flate2::write::ZlibEncoder;
+
+    const HEADER: usize = 46;
+    let zlib = |data: &[u8]| {
+        let mut encoder = ZlibEncoder::new(Vec::new(), Compression::default());
+        encoder.write_all(data).unwrap();
+        encoder.finish().unwrap()
+    };
+
+    let mut body = Vec::new();
+    let mut table = Vec::new();
+    for (name, data) in files {
+        let compressed = zlib(data);
+        let (encoded, _, _) = encoding_rs::EUC_KR.encode(name);
+        table.extend_from_slice(&encoded);
+        table.push(0);
+        table.extend_from_slice(&(compressed.len() as u32).to_le_bytes());
+        table.extend_from_slice(&(compressed.len() as u32).to_le_bytes());
+        table.extend_from_slice(&(data.len() as u32).to_le_bytes());
+        table.push(0x01);
+        table.extend_from_slice(&(body.len() as u32).to_le_bytes());
+        body.extend_from_slice(&compressed);
+    }
+    let table_compressed = zlib(&table);
+
+    let mut header = [0u8; HEADER];
+    header[..16].copy_from_slice(b"Master of Magic\0");
+    header[30..34].copy_from_slice(&(body.len() as u32).to_le_bytes());
+    header[38..42].copy_from_slice(&((files.len() + 7) as u32).to_le_bytes());
+    header[42..46].copy_from_slice(&0x200u32.to_le_bytes());
+
+    let mut out = Vec::new();
+    out.extend_from_slice(&header);
+    out.extend_from_slice(&body);
+    out.extend_from_slice(&(table_compressed.len() as u32).to_le_bytes());
+    out.extend_from_slice(&(table.len() as u32).to_le_bytes());
+    out.extend_from_slice(&table_compressed);
+    std::fs::write(path, out).unwrap();
+}
+
+#[test]
+fn raw_helper_writes_an_archive_the_reader_opens() {
+    let path = temp_grf_path("raw_helper");
+    let _c = CleanupFile(path.clone());
+    write_raw_grf(&path, &[("data/plain.txt", b"abc")]);
+
+    let grf = GrfArchive::open(&path).unwrap();
+    assert_eq!(grf.file_count(), 1);
+    assert_eq!(grf.read_file("data/plain.txt").unwrap(), b"abc");
+}
+
+#[test]
+fn korean_entry_is_found_by_korean_and_by_english_name() {
+    let path = temp_grf_path("korean_lookup");
+    let _c = CleanupFile(path.clone());
+    write_raw_grf(
+        &path,
+        &[("data\\texture\\유저인터페이스\\a.bmp", b"ui-art")],
+    );
+    let grf = GrfArchive::open(&path).unwrap();
+
+    let english = format!("data/texture/{}/a.bmp", rename("유저인터페이스"));
+    assert_eq!(grf.read_file(&english).unwrap(), b"ui-art");
+    assert_eq!(
+        grf.read_file("data\\texture\\유저인터페이스\\A.BMP")
+            .unwrap(),
+        b"ui-art"
+    );
+    assert!(grf.file_exists(&english));
+    assert!(grf.file_exists("data/texture/유저인터페이스/a.bmp"));
+}
+
+#[test]
+fn entry_names_of_an_old_archive_are_normalized() {
+    let path = temp_grf_path("old_names");
+    let _c = CleanupFile(path.clone());
+    write_raw_grf(
+        &path,
+        &[
+            ("data\\sprite\\몬스터\\Poring.SPR", b"1"),
+            ("data/wav/_effect.wav", b"2"),
+        ],
+    );
+    let grf = GrfArchive::open(&path).unwrap();
+
+    let mut names: Vec<&str> = grf.entry_names().collect();
+    names.sort();
+    let mut expected = vec![
+        normalize("data/sprite/몬스터/poring.spr"),
+        "data/wav/_effect.wav".to_string(),
+    ];
+    expected.sort();
+    assert_eq!(names, expected);
+    assert!(names.iter().all(|n| n.is_ascii()));
+}
+
+#[test]
+fn data_dir_beats_archive_across_korean_and_english_names() {
+    let primary = temp_grf_path("datadir_korean");
+    let dir = std::env::temp_dir().join(format!("test_grf_{}_datadir_ko", std::process::id()));
+    let _c1 = CleanupFile(primary.clone());
+    let _c2 = CleanupDir(dir.clone());
+
+    write_raw_grf(
+        &primary,
+        &[("data\\texture\\유저인터페이스\\a.bmp", b"from_grf")],
+    );
+    let english_dir = dir.join("texture").join(rename("유저인터페이스"));
+    std::fs::create_dir_all(&english_dir).unwrap();
+    std::fs::write(english_dir.join("a.bmp"), b"from_disk").unwrap();
+
+    let grf =
+        GrfArchive::open_layered(&[primary.to_string_lossy().into_owned()], Some(&dir)).unwrap();
+
+    assert_eq!(
+        grf.read_file("data/texture/유저인터페이스/a.bmp").unwrap(),
+        b"from_disk"
+    );
+    let english = format!("data/texture/{}/a.bmp", rename("유저인터페이스"));
+    assert_eq!(grf.read_file(&english).unwrap(), b"from_disk");
+}
+
+#[test]
+fn data_dir_files_with_korean_names_are_indexed_by_english_key() {
+    let dir = std::env::temp_dir().join(format!("test_grf_{}_datadir_ko2", std::process::id()));
+    let primary = temp_grf_path("datadir_ko2");
+    let _c1 = CleanupFile(primary.clone());
+    let _c2 = CleanupDir(dir.clone());
+
+    write_grf(&primary, &[("data/other.txt", b"x")]);
+    std::fs::create_dir_all(dir.join("texture/유저인터페이스")).unwrap();
+    std::fs::write(dir.join("texture/유저인터페이스/B.BMP"), b"disk").unwrap();
+
+    let grf =
+        GrfArchive::open_layered(&[primary.to_string_lossy().into_owned()], Some(&dir)).unwrap();
+    let english = format!("data/texture/{}/b.bmp", rename("유저인터페이스"));
+    assert_eq!(grf.read_file(&english).unwrap(), b"disk");
+    assert_eq!(
+        grf.read_file("data/texture/유저인터페이스/b.bmp").unwrap(),
+        b"disk"
+    );
+}
+
+#[test]
+fn entries_that_normalize_to_one_key_are_reported_and_first_wins() {
+    let path = temp_grf_path("collide_case");
+    let _c = CleanupFile(path.clone());
+    write_raw_grf(&path, &[("a/X.spr", b"first"), ("a/x.spr", b"second")]);
+    let grf = GrfArchive::open(&path).unwrap();
+
+    assert_eq!(grf.file_count(), 1);
+    assert_eq!(grf.read_file("a/x.spr").unwrap(), b"first");
+    assert_eq!(
+        grf.name_collisions(),
+        &[(
+            "a/x.spr".to_string(),
+            "a/X.spr".to_string(),
+            "a/x.spr".to_string()
+        )]
+    );
+}
+
+#[test]
+fn korean_name_and_its_translation_collide() {
+    let path = temp_grf_path("collide_korean");
+    let _c = CleanupFile(path.clone());
+    let english = format!("a/{}.spr", rename("검사"));
+    write_raw_grf(
+        &path,
+        &[("a/검사.spr", b"korean"), (english.as_str(), b"english")],
+    );
+    let grf = GrfArchive::open(&path).unwrap();
+
+    assert_eq!(grf.name_collisions().len(), 1);
+    let (key, kept, dropped) = &grf.name_collisions()[0];
+    assert_eq!(key, &normalize("a/검사.spr"));
+    assert_eq!(kept, "a/검사.spr");
+    assert_eq!(dropped, &english);
+    assert_eq!(grf.read_file(&english).unwrap(), b"korean");
+}
+
+#[test]
+fn distinct_names_report_no_collisions() {
+    let path = temp_grf_path("collide_none");
+    let _c = CleanupFile(path.clone());
+    write_raw_grf(
+        &path,
+        &[("a/x.spr", b"1"), ("a/y.spr", b"2"), ("a/검사.spr", b"3")],
+    );
+    let grf = GrfArchive::open(&path).unwrap();
+
+    assert!(grf.name_collisions().is_empty());
+    assert!(grf.layered_name_collisions().is_empty());
+    assert_eq!(grf.file_count(), 3);
+}
+
+#[test]
+fn layered_collisions_cover_overlays_but_a_name_in_two_layers_is_not_one() {
+    let primary = temp_grf_path("collide_layer_p");
+    let overlay = temp_grf_path("collide_layer_o");
+    let _c1 = CleanupFile(primary.clone());
+    let _c2 = CleanupFile(overlay.clone());
+    write_raw_grf(&primary, &[("data/shared.txt", b"p")]);
+    write_raw_grf(
+        &overlay,
+        &[
+            ("data/shared.txt", b"o"),
+            ("data/Dup.txt", b"1"),
+            ("data/dup.txt", b"2"),
+        ],
+    );
+
+    let grf = GrfArchive::open_layered(
+        &[
+            primary.to_string_lossy().into_owned(),
+            overlay.to_string_lossy().into_owned(),
+        ],
+        None,
+    )
+    .unwrap();
+
+    assert!(grf.name_collisions().is_empty());
+    assert_eq!(
+        grf.layered_name_collisions(),
+        vec![(
+            "data/dup.txt".to_string(),
+            "data/Dup.txt".to_string(),
+            "data/dup.txt".to_string()
+        )]
+    );
+}
+
+#[test]
+fn add_file_stores_only_normalized_ascii_names() {
+    let path = temp_grf_path("add_normalized");
+    let _c = CleanupFile(path.clone());
+    {
+        let mut grf = GrfArchive::create(&path).unwrap();
+        grf.add_file("data/몬스터/x.spr", b"body").unwrap();
+        grf.add_file("DATA\\Wav\\Y.WAV", b"wav").unwrap();
+        grf.save().unwrap();
+    }
+
+    let grf = GrfArchive::open(&path).unwrap();
+    let mut names: Vec<&str> = grf.entry_names().collect();
+    names.sort();
+    assert!(names.iter().all(|n| n.is_ascii()), "{names:?}");
+    assert_eq!(
+        names,
+        vec![normalize("data/몬스터/x.spr").as_str(), "data/wav/y.wav"]
+    );
+    assert_eq!(grf.read_file("data/몬스터/x.spr").unwrap(), b"body");
+}
+
+#[test]
+fn remove_file_accepts_a_korean_name() {
+    let path = temp_grf_path("remove_korean");
+    let _c = CleanupFile(path.clone());
+    write_raw_grf(
+        &path,
+        &[("data/몬스터/x.spr", b"1"), ("data/keep.txt", b"2")],
+    );
+
+    let mut grf = GrfArchive::open_rw(&path).unwrap();
+    assert!(grf.remove_file("DATA\\몬스터\\x.spr").unwrap());
+    assert!(!grf.remove_file("data/몬스터/x.spr").unwrap());
+    assert_eq!(grf.file_count(), 1);
+}
+
+#[test]
+fn saving_an_old_archive_rewrites_its_names_as_ascii() {
+    let path = temp_grf_path("resave_old");
+    let _c = CleanupFile(path.clone());
+    write_raw_grf(&path, &[("data/몬스터/x.spr", b"body")]);
+    {
+        let mut grf = GrfArchive::open_rw(&path).unwrap();
+        grf.save().unwrap();
+    }
+
+    let grf = GrfArchive::open(&path).unwrap();
+    assert!(grf.entry_names().all(|n| n.is_ascii()));
+    assert_eq!(grf.read_file("data/몬스터/x.spr").unwrap(), b"body");
+}
+
+#[test]
+fn entries_with_original_names_pairs_key_and_decoded_name() {
+    let path = temp_grf_path("originals");
+    let _c = CleanupFile(path.clone());
+    write_raw_grf(
+        &path,
+        &[
+            ("data\\texture\\유저인터페이스\\A.BMP", b"1"),
+            ("data/plain.txt", b"2"),
+        ],
+    );
+    let grf = GrfArchive::open(&path).unwrap();
+
+    let mut pairs: Vec<(&str, &str)> = grf.entries_with_original_names().collect();
+    pairs.sort();
+    let mut expected = vec![
+        (
+            normalize("data/texture/유저인터페이스/a.bmp"),
+            "data\\texture\\유저인터페이스\\A.BMP".to_string(),
+        ),
+        ("data/plain.txt".to_string(), "data/plain.txt".to_string()),
+    ];
+    expected.sort();
+    let expected: Vec<(&str, &str)> = expected
+        .iter()
+        .map(|(k, o)| (k.as_str(), o.as_str()))
+        .collect();
+    assert_eq!(pairs, expected);
+}
+
+#[test]
+fn korean_overlay_entry_is_shadowed_by_the_english_primary_entry() {
+    let primary = temp_grf_path("shadow_p");
+    let overlay = temp_grf_path("shadow_o");
+    let _c1 = CleanupFile(primary.clone());
+    let _c2 = CleanupFile(overlay.clone());
+    let english = format!("data/{}.txt", rename("검사"));
+    write_raw_grf(&primary, &[(english.as_str(), b"primary")]);
+    write_raw_grf(&overlay, &[("data/검사.txt", b"overlay")]);
+
+    let grf = GrfArchive::open_layered(
+        &[
+            primary.to_string_lossy().into_owned(),
+            overlay.to_string_lossy().into_owned(),
+        ],
+        None,
+    )
+    .unwrap();
+
+    assert_eq!(grf.read_file("data/검사.txt").unwrap(), b"primary");
+    assert_eq!(grf.layered_file_list().len(), 1);
+}
+
+#[test]
+fn res_name_table_alias_to_a_korean_name_still_resolves() {
+    let path = temp_grf_path("alias_korean");
+    let _c = CleanupFile(path.clone());
+    // The table is EUC-KR text, like the real one.
+    let (table, _, _) = encoding_rs::EUC_KR
+        .encode("유저인터페이스\\map\\pvp_n_2-2.bmp#유저인터페이스\\map\\job_hunter.bmp#\n");
+    write_raw_grf(
+        &path,
+        &[
+            ("data/resnametable.txt", &table),
+            ("data/texture/유저인터페이스/map/job_hunter.bmp", b"minimap"),
+        ],
+    );
+    assert_eq!(
+        ragnarok_resources::table::RES_NAME,
+        "data/resnametable.txt",
+        "test archive must use the registry's table name"
+    );
+    let grf = GrfArchive::open(&path).unwrap();
+
+    let alias = "data/texture/유저인터페이스/map/pvp_n_2-2.bmp";
+    assert!(grf.file_exists(alias));
+    assert_eq!(grf.read_file(alias).unwrap(), b"minimap");
+}
+
+#[test]
+fn empty_and_unknown_names_are_not_found() {
+    let path = temp_grf_path("not_found");
+    let _c = CleanupFile(path.clone());
+    write_raw_grf(&path, &[("data/a.txt", b"1")]);
+    let grf = GrfArchive::open(&path).unwrap();
+
+    assert!(grf.read_file("").is_err());
+    assert!(!grf.file_exists(""));
+    assert!(grf.read_file("data/없는파일.txt").is_err());
+}
+
+#[test]
+fn layered_entries_with_original_names_resolves_each_key_once() {
+    let primary = temp_grf_path("layered_orig_p");
+    let overlay = temp_grf_path("layered_orig_o");
+    let _c1 = CleanupFile(primary.clone());
+    let _c2 = CleanupFile(overlay.clone());
+    let english = format!("data/{}.txt", rename("검사"));
+    write_raw_grf(&primary, &[("data/B.txt", b"1"), (english.as_str(), b"2")]);
+    write_raw_grf(
+        &overlay,
+        &[
+            ("DATA\\b.TXT", b"3"),
+            ("data/검사.txt", b"4"),
+            ("data/c.txt", b"5"),
+        ],
+    );
+    let grf = GrfArchive::open_layered(
+        &[
+            primary.to_string_lossy().into_owned(),
+            overlay.to_string_lossy().into_owned(),
+        ],
+        None,
+    )
+    .unwrap();
+
+    let pairs = grf.layered_entries_with_original_names();
+    let mut expected = vec![
+        ("data/b.txt".to_string(), "data/B.txt".to_string()),
+        (normalize("data/검사.txt"), english.clone()),
+        ("data/c.txt".to_string(), "data/c.txt".to_string()),
+    ];
+    expected.sort();
+    let expected: Vec<(&str, &str)> = expected
+        .iter()
+        .map(|(k, o)| (k.as_str(), o.as_str()))
+        .collect();
+    assert_eq!(pairs, expected);
 }

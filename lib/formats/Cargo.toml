@@ -5,6 +5,7 @@ edition = "2024"
 
 [dependencies]
 byteorder = { workspace = true }
+ragnarok-asset-names = { workspace = true }
 ragnarok-resources = { workspace = true }
 tracing = { workspace = true }
 flate2 = { workspace = true }

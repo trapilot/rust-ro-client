@@ -5,14 +5,14 @@ use crate::draw::{BlendKind, EffectDrawList, EffectPrimitiveDraw, EffectStatus};
 use crate::effect_trait::{Effect, EffectRenderCtx, EffectUpdateCtx};
 
 const EXPLOSION_TEXTURES: &[&str] = &[
-    "폭발1.tga",
-    "폭발2.tga",
-    "폭발3.tga",
-    "폭발4.tga",
-    "폭발5.tga",
-    "폭발6.tga",
-    "폭발7.tga",
-    "폭발8.tga",
+    "explosion1.tga",
+    "explosion2.tga",
+    "explosion3.tga",
+    "explosion4.tga",
+    "explosion5.tga",
+    "explosion6.tga",
+    "explosion7.tga",
+    "explosion8.tga",
 ];
 pub const TEXTURES: &[&str] = EXPLOSION_TEXTURES;
 
@@ -214,7 +214,7 @@ mod tests {
         advance(&mut e, 0.5);
         let first = first_texture(&e);
         assert!(
-            first.starts_with("폭발"),
+            first.starts_with("explosion"),
             "texture should be an explosion frame"
         );
 

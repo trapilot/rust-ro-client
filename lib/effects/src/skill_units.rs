@@ -147,15 +147,15 @@ pub struct SkillUnitEntrySound {
 pub fn skill_unit_entry_sound(unit_id: u8) -> Option<SkillUnitEntrySound> {
     Some(match unit_id {
         UNT_WARP_WAITING | UNT_WARP_ACTIVE => SkillUnitEntrySound {
-            wave: "effect\\EF_Portal.wav",
+            wave: "effect/ef_portal.wav",
             one_in: 1,
         },
         UNT_FIREWALL => SkillUnitEntrySound {
-            wave: "effect\\EF_FireWall.wav",
+            wave: "effect/ef_firewall.wav",
             one_in: 1,
         },
         UNT_KAEN => SkillUnitEntrySound {
-            wave: "effect\\화염진.wav",
+            wave: "effect/fire_formation.wav",
             one_in: 8,
         },
         _ => return None,
@@ -167,16 +167,16 @@ pub fn skill_unit_entry_sound(unit_id: u8) -> Option<SkillUnitEntrySound> {
 /// blast, …) fires separately via [`trap_trigger_effect`].
 pub fn trap_model_name(unit_id: u8) -> Option<&'static str> {
     Some(match unit_id {
-        UNT_ANKLESNARE => "외부소품\\트랩01.rsm",
-        UNT_SKIDTRAP => "외부소품\\트랩02.rsm",
-        UNT_LANDMINE => "외부소품\\트랩03.rsm",
-        UNT_FREEZINGTRAP => "외부소품\\트랩03_2.rsm",
-        UNT_BLASTMINE => "외부소품\\트랩03_3.rsm",
-        UNT_SANDMAN => "외부소품\\트랩03_4.rsm",
-        UNT_FLASHER => "외부소품\\트랩03_5.rsm",
-        UNT_SHOCKWAVE => "외부소품\\트랩03_6.rsm",
-        UNT_CLAYMORETRAP => "외부소품\\트랩04.rsm",
-        UNT_TALKIEBOX => "외부소품\\트랩05.rsm",
+        UNT_ANKLESNARE => "exterior/trap01.rsm",
+        UNT_SKIDTRAP => "exterior/trap02.rsm",
+        UNT_LANDMINE => "exterior/trap03.rsm",
+        UNT_FREEZINGTRAP => "exterior/trap03_2.rsm",
+        UNT_BLASTMINE => "exterior/trap03_3.rsm",
+        UNT_SANDMAN => "exterior/trap03_4.rsm",
+        UNT_FLASHER => "exterior/trap03_5.rsm",
+        UNT_SHOCKWAVE => "exterior/trap03_6.rsm",
+        UNT_CLAYMORETRAP => "exterior/trap04.rsm",
+        UNT_TALKIEBOX => "exterior/trap05.rsm",
         _ => return None,
     })
 }
@@ -313,13 +313,10 @@ mod tests {
         // Placement: an RSM model, not a sprite effect.
         assert_eq!(skill_unit_effect(UNT_FREEZINGTRAP, true), None);
         assert_eq!(skill_unit_effect(UNT_ANKLESNARE, true), None);
-        assert_eq!(
-            trap_model_name(UNT_ANKLESNARE),
-            Some("외부소품\\트랩01.rsm")
-        );
+        assert_eq!(trap_model_name(UNT_ANKLESNARE), Some("exterior/trap01.rsm"));
         assert_eq!(
             trap_model_name(UNT_BLASTMINE),
-            Some("외부소품\\트랩03_3.rsm")
+            Some("exterior/trap03_3.rsm")
         );
         assert_eq!(trap_model_name(UNT_SAFETYWALL), None);
         // Trigger: the burst fires for explosive traps, not for holders.
@@ -354,15 +351,15 @@ mod tests {
     #[test]
     fn warp_and_firewall_play_on_entry_kaen_is_chance_gated() {
         let warp = skill_unit_entry_sound(UNT_WARP_ACTIVE).expect("warp entry sound");
-        assert_eq!(warp.wave, "effect\\EF_Portal.wav");
+        assert_eq!(warp.wave, "effect/ef_portal.wav");
         assert_eq!(warp.one_in, 1);
         assert_eq!(
             skill_unit_entry_sound(UNT_WARP_WAITING).map(|s| s.wave),
-            Some("effect\\EF_Portal.wav")
+            Some("effect/ef_portal.wav")
         );
         assert_eq!(
             skill_unit_entry_sound(UNT_FIREWALL).map(|s| s.wave),
-            Some("effect\\EF_FireWall.wav")
+            Some("effect/ef_firewall.wav")
         );
         assert_eq!(skill_unit_entry_sound(UNT_KAEN).map(|s| s.one_in), Some(8));
         assert!(skill_unit_entry_sound(UNT_ICEWALL).is_none());

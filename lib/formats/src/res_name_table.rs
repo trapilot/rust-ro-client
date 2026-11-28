@@ -1,5 +1,7 @@
 use std::collections::HashMap;
 
+use ragnarok_asset_names::normalize;
+
 use crate::lua_table::decode_euc_kr;
 
 /// Bases the table's keys are relative to, longest first so `data/texture/`
@@ -69,10 +71,6 @@ impl ResNameTable {
     }
 }
 
-fn normalize(name: &str) -> String {
-    name.to_lowercase().replace('\\', "/")
-}
-
 #[cfg(test)]
 mod tests {
     use super::*;
@@ -99,7 +97,7 @@ mod tests {
             table
                 .resolve("data/texture/유저인터페이스/map/pvp_n_2-2.bmp")
                 .as_deref(),
-            Some("data/texture/유저인터페이스/map/job_hunter.bmp")
+            Some(normalize("data/texture/유저인터페이스/map/job_hunter.bmp").as_str())
         );
         assert_eq!(table.resolve("data/prontera.rsw"), None);
     }

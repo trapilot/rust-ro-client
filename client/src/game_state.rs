@@ -565,7 +565,7 @@ pub struct GameState {
     pub broadcast: Broadcast,
     pub pending_confirms: PendingConfirms,
     /// NPC cutin illustrations by position slot (0 left / 1 middle / 2 right);
-    /// GRF base name under `data/texture/유저인터페이스/illust/`.
+    /// GRF base name under `data/texture/user_interface/illust/`.
     pub npc_cutins: [Option<String>; 3],
     pub chat_rooms: ChatRoomRegistry,
     pub pending_chat_room: Option<(String, i16, bool)>,

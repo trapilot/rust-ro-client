@@ -8,3 +8,6 @@ models = { workspace = true }
 ragnarok-resources = { workspace = true }
 tracing = { workspace = true }
 ragnarok-profiling = { workspace = true }
+
+[dev-dependencies]
+ragnarok-asset-names = { workspace = true }

@@ -3003,6 +3003,10 @@ dependencies = [
 ]
 
 [[package]]
+name = "ragnarok-asset-names"
+version = "0.1.0"
+
+[[package]]
 name = "ragnarok-audio"
 version = "0.1.0"
 dependencies = [
@@ -3040,6 +3044,7 @@ name = "ragnarok-effects"
 version = "0.1.0"
 dependencies = [
  "models",
+ "ragnarok-asset-names",
  "ragnarok-profiling",
  "ragnarok-resources",
  "tracing",
@@ -3053,6 +3058,7 @@ dependencies = [
  "encoding_rs",
  "flate2",
  "models",
+ "ragnarok-asset-names",
  "ragnarok-resources",
  "tracing",
 ]
@@ -3065,6 +3071,7 @@ dependencies = [
  "models",
  "movement",
  "ragnarok-ai",
+ "ragnarok-asset-names",
  "ragnarok-effects",
  "ragnarok-formats",
  "ragnarok-profiling",
@@ -3137,6 +3144,9 @@ dependencies = [
 [[package]]
 name = "ragnarok-resources"
 version = "0.1.0"
+dependencies = [
+ "ragnarok-asset-names",
+]
 
 [[package]]
 name = "ragnarok-tools"
@@ -3144,12 +3154,15 @@ version = "0.1.0"
 dependencies = [
  "arboard",
  "bytemuck",
+ "encoding_rs",
+ "flate2",
  "gif",
  "glam",
  "image",
  "libloading",
  "models",
  "notify",
+ "ragnarok-asset-names",
  "ragnarok-effects",
  "ragnarok-formats",
  "ragnarok-game",
