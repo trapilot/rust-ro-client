@@ -744,14 +744,13 @@ fn korean_overlay_entry_is_shadowed_by_the_english_primary_entry() {
 fn res_name_table_alias_to_a_korean_name_still_resolves() {
     let path = temp_grf_path("alias_korean");
     let _c = CleanupFile(path.clone());
+    // The table is EUC-KR text, like the real one.
+    let (table, _, _) = encoding_rs::EUC_KR
+        .encode("유저인터페이스\\map\\pvp_n_2-2.bmp#유저인터페이스\\map\\job_hunter.bmp#\n");
     write_raw_grf(
         &path,
         &[
-            (
-                "data/resnametable.txt",
-                "유저인터페이스\\map\\pvp_n_2-2.bmp#유저인터페이스\\map\\job_hunter.bmp#\n"
-                    .as_bytes(),
-            ),
+            ("data/resnametable.txt", &table),
             ("data/texture/유저인터페이스/map/job_hunter.bmp", b"minimap"),
         ],
     );
