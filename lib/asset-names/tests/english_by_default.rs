@@ -366,3 +366,130 @@ fn scan_skips_target_directories() {
     );
     assert_eq!(scan(&tree.0), vec![]);
 }
+
+#[test]
+fn scan_resumes_after_a_test_module_closes() {
+    for (name, close) in [
+        ("resume_plain", "}"),
+        ("resume_trailing_space", "}  \t"),
+        ("resume_crlf", "}\r"),
+    ] {
+        let lines = [
+            "#[cfg(test)]",
+            "mod tests {",
+            KOREAN_LINE,
+            close,
+            "fn f() {}",
+            KOREAN_LINE,
+        ];
+        assert_eq!(reported_lines(name, &lines), vec![6], "{close:?}");
+    }
+}
+
+#[test]
+fn scan_reports_between_two_test_modules() {
+    let lines = [
+        "#[cfg(test)]",
+        "mod first {",
+        KOREAN_LINE,
+        "}",
+        KOREAN_LINE,
+        "#[cfg(test)]",
+        "mod second {",
+        KOREAN_LINE,
+        "}",
+    ];
+    assert_eq!(reported_lines("two_modules", &lines), vec![5]);
+}
+
+#[test]
+fn scan_ends_a_nested_test_module_at_the_brace_with_its_indent() {
+    let lines = [
+        "mod outer {",
+        "    #[cfg(test)]",
+        "    mod tests {",
+        "        fn f() {",
+        "        }",
+        KOREAN_LINE,
+        "}",
+        KOREAN_LINE,
+        "    }",
+        KOREAN_LINE,
+        "}",
+    ];
+    assert_eq!(reported_lines("nested_module", &lines), vec![10]);
+}
+
+#[test]
+fn scan_exempts_the_rest_of_the_file_when_a_test_module_never_closes() {
+    for (name, last) in [
+        ("unclosed_end", KOREAN_LINE),
+        ("unclosed_other_indent", "    }"),
+        ("unclosed_not_alone", "};"),
+    ] {
+        let lines = [
+            KOREAN_LINE,
+            "#[cfg(test)]",
+            "mod tests {",
+            KOREAN_LINE,
+            last,
+            KOREAN_LINE,
+        ];
+        assert_eq!(reported_lines(name, &lines), vec![1], "{last:?}");
+    }
+    // Cut off right after the opening line.
+    let lines = ["#[cfg(test)]", "mod tests {"];
+    assert_eq!(
+        reported_lines("unclosed_truncated", &lines),
+        Vec::<usize>::new()
+    );
+}
+
+#[test]
+fn scan_exempts_a_test_module_opened_on_the_attribute_line_or_with_restricted_visibility() {
+    for (name, opening) in [
+        ("form_one_line", &["#[cfg(test)] mod tests {"][..]),
+        (
+            "form_pub_super",
+            &["#[cfg(test)]", "pub(super) mod tests {"],
+        ),
+        (
+            "form_pub_in",
+            &["#[cfg(test)]", "pub(in crate::a) mod tests {"],
+        ),
+        (
+            "form_one_line_pub_super",
+            &["#[cfg(test)] pub(super) mod tests {"],
+        ),
+    ] {
+        let mut lines = opening.to_vec();
+        lines.extend([KOREAN_LINE, "}", KOREAN_LINE]);
+        assert_eq!(
+            reported_lines(name, &lines),
+            vec![lines.len()],
+            "{opening:?}"
+        );
+    }
+}
+
+#[test]
+fn scan_takes_the_item_on_the_attribute_line_as_the_cfg_test_item() {
+    // The module on the next line is not a test module.
+    let lines = ["#[cfg(test)] use a::B;", "mod real {", KOREAN_LINE, "}"];
+    assert_eq!(reported_lines("one_line_use", &lines), vec![3]);
+}
+
+/// The brace match is textual, so it can only resume too early, which reports too much.
+#[test]
+fn scan_resumes_early_on_a_raw_string_holding_the_closing_line() {
+    let lines = [
+        "#[cfg(test)]",
+        "mod tests {",
+        "    const S: &str = r\"",
+        "}",
+        KOREAN_LINE,
+        "\";",
+        "}",
+    ];
+    assert_eq!(reported_lines("raw_string_brace", &lines), vec![5]);
+}
