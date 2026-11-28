@@ -1064,7 +1064,7 @@ fn create_single(name: &str) -> State {
             name_identified.insert(1701u16, "Bow".to_string());
             name_identified.insert(4025u16, "Goblin Card".to_string());
             let mut illust_entries = HashMap::new();
-            illust_entries.insert(4025u16, "고블린카드".to_string());
+            illust_entries.insert(4025u16, "goblin_card".to_string());
             let data = DataTable {
                 item_slot_count: Some(ItemSlotCountTable::from_entries(slot_entries)),
                 item_description: Some(ItemDescriptionTable::from_entries(

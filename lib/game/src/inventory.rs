@@ -1058,8 +1058,8 @@ mod tests {
             HashMap::from([(1201, "Knife".to_string())]),
         ));
         data_table.item_resource = Some(ItemResourceTable::from_entries(
-            HashMap::from([(1201, "단검".to_string())]),
-            HashMap::from([(1201, "무기".to_string())]),
+            HashMap::from([(1201, "knife".to_string())]),
+            HashMap::from([(1201, "weapon".to_string())]),
         ));
         data_table.item_slot_count = Some(ItemSlotCountTable::from_entries(HashMap::from([(
             1201u16, 4u8,
@@ -1087,7 +1087,7 @@ mod tests {
         assert!(item.is_identified);
         assert_eq!(
             icon_path.as_deref(),
-            Some("data/texture/user_interface/item/단검.bmp")
+            Some("data/texture/user_interface/item/knife.bmp")
         );
         assert_eq!(
             crate::display_name::format_equipment_display_name(
