@@ -777,3 +777,42 @@ fn empty_and_unknown_names_are_not_found() {
     assert!(!grf.file_exists(""));
     assert!(grf.read_file("data/없는파일.txt").is_err());
 }
+
+#[test]
+fn layered_entries_with_original_names_resolves_each_key_once() {
+    let primary = temp_grf_path("layered_orig_p");
+    let overlay = temp_grf_path("layered_orig_o");
+    let _c1 = CleanupFile(primary.clone());
+    let _c2 = CleanupFile(overlay.clone());
+    let english = format!("data/{}.txt", rename("검사"));
+    write_raw_grf(&primary, &[("data/B.txt", b"1"), (english.as_str(), b"2")]);
+    write_raw_grf(
+        &overlay,
+        &[
+            ("DATA\\b.TXT", b"3"),
+            ("data/검사.txt", b"4"),
+            ("data/c.txt", b"5"),
+        ],
+    );
+    let grf = GrfArchive::open_layered(
+        &[
+            primary.to_string_lossy().into_owned(),
+            overlay.to_string_lossy().into_owned(),
+        ],
+        None,
+    )
+    .unwrap();
+
+    let pairs = grf.layered_entries_with_original_names();
+    let mut expected = vec![
+        ("data/b.txt".to_string(), "data/B.txt".to_string()),
+        (normalize("data/검사.txt"), english.clone()),
+        ("data/c.txt".to_string(), "data/c.txt".to_string()),
+    ];
+    expected.sort();
+    let expected: Vec<(&str, &str)> = expected
+        .iter()
+        .map(|(k, o)| (k.as_str(), o.as_str()))
+        .collect();
+    assert_eq!(pairs, expected);
+}

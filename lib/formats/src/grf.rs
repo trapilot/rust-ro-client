@@ -599,6 +599,13 @@ impl GrfArchive {
             .map(|(key, entry)| (key.as_str(), entry.original.as_str()))
     }
 
+    /// Every name in the layer stack as `(normalized key, original name)`,
+    /// listed once and resolved like `layered_file_list`: the earliest layer
+    /// that has a key supplies its original name. Ordered by key.
+    pub fn layered_entries_with_original_names(&self) -> Vec<(&str, &str)> {
+        todo!()
+    }
+
     /// Entries of the primary archive whose different original names
     /// normalize to one key, as `(key, original kept, original dropped)`.
     pub fn name_collisions(&self) -> &[(String, String, String)] {
